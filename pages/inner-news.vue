@@ -3,7 +3,7 @@
     <div class="inner-news">
       <div class="container_xl">
         <div>
-          <nuxt-link class="inner-news-back-btn" to="/"
+          <nuxt-link class="service-back-btn" to="/"
             ><svg
               width="16"
               height="13"
@@ -104,18 +104,7 @@ export default {
           value: "Option2",
           label: "Option2",
         },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-        {
-          value: "Option4",
-          label: "Option4",
-        },
-        {
-          value: "Option5",
-          label: "Option5",
-        },
+       
       ],
       value: "",
     };

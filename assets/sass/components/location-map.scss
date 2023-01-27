@@ -13,6 +13,18 @@
     line-height: 32px;
     margin-bottom: 0;
   }
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background: #73abff;
+    opacity: 0.3;
+    filter: blur(149.397px);
+    width: 271px;
+    height: 271px;
+    left: 40%;
+    top: -7px;
+  }
 }
 .location-map-grid {
   display: grid;
