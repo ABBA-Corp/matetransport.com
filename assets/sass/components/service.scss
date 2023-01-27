@@ -26,20 +26,19 @@
   padding: 30px 87px;
   background: #ffffff;
   border-radius: 12px;
-  .service-title {
-    h1 {
-      @include fontStyle(24px, 700, $dark-blue);
-      line-height: 32px;
-      margin-bottom: 8px;
-    }
-    p {
-      @include fontStyle(14px, 400, #aaaaaa);
-      line-height: 150%;
-    }
+}
+.service-title {
+  h1 {
+    @include fontStyle(24px, 700, $dark-blue);
+    line-height: 32px;
+    margin-bottom: 8px;
+  }
+  p {
+    @include fontStyle(14px, 400, #aaaaaa);
+    line-height: 150%;
   }
 }
-
-.service-select {
+feColorMatrix .service-select {
   input {
     height: 48px !important;
     width: 248px;

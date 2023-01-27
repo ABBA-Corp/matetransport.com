@@ -1,5 +1,6 @@
 .location-map {
   padding-top: 40px;
+  padding-bottom: 146px;
 }
 .location-map-title {
   margin-bottom: 24px;
@@ -53,4 +54,20 @@
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 16px;
+}
+.lm-title {
+  @include fontStyle(24px, 600, $dark-blue);
+  line-height: 150%;
+  margin-bottom: 4px;
+}
+.lm-area {
+  @include fontStyle(18px, 600, #96adc1);
+  line-height: 150%;
+  margin-bottom: 16px;
+}
+.lm-text {
+  p {
+    @include fontStyle(14px, 400, #353437);
+    line-height: 24px;
+  }
 }
