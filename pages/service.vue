@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="bg-color">
-    <div class="all-news-padding"></div>
     <div class="service">
       <div class="container_xl">
         <div>
