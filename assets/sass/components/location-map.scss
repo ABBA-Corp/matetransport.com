@@ -7,7 +7,12 @@
     line-height: 60px;
   }
   p {
-    @include fontStyle(18px, 400, rgba(2, 1, 5,0.7));
+    @include fontStyle(18px, 400, rgba(2, 1, 5, 0.7));
     line-height: 32px;
   }
+}
+.location-map-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
 }

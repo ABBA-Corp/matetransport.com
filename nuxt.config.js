@@ -34,7 +34,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
   ],
-
+  mode: "spa",
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // fix to work with swiperjs 8 - need to run with standalone:true. That can make some troubles.

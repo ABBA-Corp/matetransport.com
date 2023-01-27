@@ -14,13 +14,13 @@
   border-radius: 16px;
   width: calc(1200px / 2 - 24px);
   position: relative;
-  .form-title {
-    h2 {
-      @include fontStyle(25.9227px, 700, $light-blue);
-      line-height: 110%;
-    }
-    margin-bottom: 33px;
+}
+.form-title {
+  h2 {
+    @include fontStyle(25.9227px, 700, $light-blue);
+    line-height: 110%;
   }
+  margin-bottom: 33px;
 }
 .form-block {
   display: flex;
@@ -96,5 +96,5 @@
   }
 }
 .banner-steps {
-    margin-top: 40px;
+  margin-top: 40px;
 }
