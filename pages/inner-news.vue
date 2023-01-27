@@ -24,26 +24,31 @@
             class="inner-news-title d-flex align-items-center justify-content-between"
           >
             <div class="d-flex flex-column">
-              <h1>Delivery Trucks</h1>
+              <h1>The 9 best homes in New York</h1>
               <p>
-                Sasco Global provides professional and <br />
-                comprehensive Air Freight
+                Integer tincidunt rutrum faucibus. Proin sit amet varius arcu.
+                Aliquam vel leo augue donec.
               </p>
             </div>
             <div>
-              <el-select
-                class="inner-news-select"
-                v-model="value"
-                placeholder="Select"
-              >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                >
-                </el-option>
-              </el-select>
+              <div class="news-card-date">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.66664 3.11263H7.77756M9.33331 3.11263H10.6942C11.6608 3.11263 12.4442 3.89605 12.4442 4.86264V10.6942C12.4442 11.6608 11.6608 12.4442 10.6942 12.4442H3.30572C2.33914 12.4442 1.55573 11.6608 1.55573 10.6942V4.86264C1.55573 3.89605 2.33914 3.11263 3.30572 3.11263M1.55573 7.00055H10.1109M4.66664 4.66722V1.55688M9.33331 4.66722V1.55688"
+            stroke="#B6C2CD"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        2023.02.18
+      </div>
             </div>
           </div>
 
@@ -104,7 +109,6 @@ export default {
           value: "Option2",
           label: "Option2",
         },
-       
       ],
       value: "",
     };

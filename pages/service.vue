@@ -32,7 +32,7 @@
             </div>
             <div>
               <el-select
-                class="service-select"
+                class="inner-news-select"
                 v-model="value"
                 placeholder="Select"
               >

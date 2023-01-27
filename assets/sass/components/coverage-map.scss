@@ -124,17 +124,7 @@
   .news-card-body {
     padding-top: 16px;
   }
-  .news-card-date {
-    @include fontStyle(12px, 500, #b6c2cd);
-    line-height: 150%;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    svg {
-      margin-right: 7.5px;
-    }
-  }
+
   .news-card-title {
     @include fontStyle(18px, 500, $dark-blue);
     line-height: 21px;
@@ -158,5 +148,16 @@
     svg {
       margin-left: 8px;
     }
+  }
+}
+.news-card-date {
+  @include fontStyle(12px, 500, #b6c2cd);
+  line-height: 150%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 7.5px;
   }
 }
