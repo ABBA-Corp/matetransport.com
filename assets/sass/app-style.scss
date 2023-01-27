@@ -1,0 +1,21 @@
+@mixin fontStyle($fontSize, $weight, $color) {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $fontSize;
+  line-height: 16px;
+  color: $color;
+}
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+p {
+  margin-bottom: 0;
+}
+ul {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}

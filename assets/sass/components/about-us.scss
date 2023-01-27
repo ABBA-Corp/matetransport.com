@@ -1,0 +1,87 @@
+.about-us {
+  position: relative;
+  margin-top: 160px;
+  opacity: 1;
+  background: linear-gradient(#fff, #fff #fff, transparent);
+  z-index: 20;
+  &:before {
+    content: " ";
+    background: linear-gradient(#fff, #fff #fff, transparent);
+
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.04;
+    background-image: url(~/assets/images/image24.png);
+    background-repeat: no-repeat;
+    // background-position: 50% 0;
+    background-size: cover;
+  }
+}
+.img-block {
+  position: relative;
+  img {
+    position: absolute;
+    left: -90px;
+    z-index: 10;
+  }
+}
+.about-us-grid {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  position: relative;
+}
+.about-title {
+  h4 {
+    @include fontStyle(20px, 700, $dark-blue);
+    line-height: 28px;
+  }
+  margin-bottom: 56px;
+}
+.about-text {
+  margin-top: 61px;
+  p {
+    @include fontStyle(16px, 400, #96adc1);
+    line-height: 28px;
+  }
+}
+.about-us-info {
+  padding-top: 102px;
+  padding-bottom: 157px;
+}
+.about-us-img-text {
+  position: absolute;
+  bottom: 83px;
+  left: 200px;
+  h2 {
+    @include fontStyle(28px, 700, $dark-blue);
+    line-height: 36px;
+  }
+  p {
+    @include fontStyle(16px, 400, #96adc1);
+    line-height: 20px;
+  }
+}
+.ellipse-shodow-about {
+  background: #73abff;
+  opacity: 0.3;
+  filter: blur(165.385px);
+  position: absolute;
+  width: 650px;
+  height: 611px;
+  bottom: calc(-611px / 2);
+  right: calc(-611px / 3);
+}
+.ellipse-shodow-about2 {
+  position: absolute;
+  width: 518px;
+  height: 518px;
+  bottom: -174px;
+  left: calc(-518px/3);
+  background: #73abff;
+  opacity: 0.4;
+  filter: blur(165.385px);
+}

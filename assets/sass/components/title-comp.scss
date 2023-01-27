@@ -1,0 +1,23 @@
+.title-comp {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  h1 {
+    @include fontStyle(48px, 800, $dark-blue);
+    line-height: 60px;
+    margin-bottom: 0;
+  }
+  span {
+    margin-top: 8px;
+    display: block;
+    width: 167px;
+    height: 4px;
+    background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+    border-radius: 133px;
+  }
+  p {
+    @include fontStyle(16px, 400, #5d5d5f);
+    line-height: 24px;
+    margin-bottom: 0;
+  }
+}
