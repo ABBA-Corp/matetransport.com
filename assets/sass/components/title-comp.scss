@@ -21,3 +21,11 @@
     margin-bottom: 0;
   }
 }
+.small-title {
+  margin-top: 8px;
+  display: block;
+  width: 48px !important;
+  height: 4px;
+  background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+  border-radius: 133px;
+}

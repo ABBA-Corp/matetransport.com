@@ -81,7 +81,7 @@
             </p>
           </div>
         </div>
-        <LastNews> <Title title="News" /></LastNews>
+        <LastNews> <TitleSmall title="News" /></LastNews>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
 import NewsCard from "../components/cards/NewsCard.vue";
 import ServiceApplicationCard from "../components/cards/ServiceApplicationCard.vue";
 import LastNews from "../components/LastNews.vue";
-import Title from "../components/Title.vue";
+import TitleSmall from "../components/TitleSmall.vue";
 
 export default {
   data() {
@@ -121,7 +121,7 @@ export default {
     };
   },
 
-  components: { NewsCard, ServiceApplicationCard, LastNews, Title },
+  components: { NewsCard, ServiceApplicationCard, LastNews, TitleSmall },
 };
 </script>
 <style lang="scss">

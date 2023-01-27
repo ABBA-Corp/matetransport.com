@@ -2,6 +2,7 @@
   padding-top: 40px;
 }
 .location-map-title {
+  margin-bottom: 24px;
   h1 {
     @include fontStyle(48px, 700, #020105);
     line-height: 60px;
@@ -9,10 +10,47 @@
   p {
     @include fontStyle(18px, 400, rgba(2, 1, 5, 0.7));
     line-height: 32px;
+    margin-bottom: 0;
   }
 }
 .location-map-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
+}
+.location-map-banner {
+  border-radius: 16px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+.location-map-text {
+  margin-top: 20px;
+  p {
+    @include fontStyle(16px, 400, #5d5d5f);
+    line-height: 32px;
+    margin-bottom: 0;
+    &:last-child {
+      margin-top: 20px;
+    }
+  }
+}
+.location-map-info {
+  margin-bottom: 80px;
+}
+.location-map-maps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+// location-map card
+
+.location-map-card {
+}
+.lm-map {
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
 }

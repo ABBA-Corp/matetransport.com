@@ -12,7 +12,28 @@
         </p>
       </div>
       <div class="location-map-grid">
-        <div class="location-map-info"></div>
+        <div class="location-map-info">
+          <div class="location-map-banner">
+            <img src="../assets/images/Rectangle 23896.png" alt="" />
+          </div>
+          <div class="location-map-text">
+            <p>
+              Ship a Car, New York Inc delivers superior shipping service to Los
+              angles people relocating their vehicles, businesses moving their
+              general freight and/or transporting heavy haul equipment as well
+              as volume relocation services for dealers and corporations. SAC is
+              an experienced transport broker with direct access to the largest
+              network of carriers. One simple call does it all. When you choose
+              Ship A Car, we deliver not only your vehicle and/or freight, but
+              peace of mind as well.
+            </p>
+            <p>
+              Contact a Ship A Car transport coordinator now at (866) 821-4555
+              for direct vehicle transport service to/from any residential or
+              business location in the city of New York.Ship
+            </p>
+          </div>
+        </div>
         <div class="location-map-form">
           <div class="banner-form">
             <form action="">
@@ -107,10 +128,20 @@
           </div>
         </div>
       </div>
+
+      <TitleSmall title="Map" />
+
+      <div class="location-map-maps-grid">
+        <LocationMapCard />
+        <LocationMapCard />
+      </div>
     </div>
   </div>
 </template>
 <script>
+import LocationMapCard from "../components/cards/LocationMapCard.vue";
+import TitleSmall from "../components/TitleSmall.vue";
+
 export default {
   data() {
     return {
@@ -131,6 +162,7 @@ export default {
       ],
     };
   },
+  components: { TitleSmall, LocationMapCard },
 };
 </script>
 <style lang=""></style>
