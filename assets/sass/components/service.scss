@@ -15,6 +15,9 @@
   @include fontStyle(14px, 500, #005ba8);
   line-height: 18px;
   display: inline-flex;
+  &:hover {
+    color: #005ba8;
+  }
   svg {
     margin-right: 9px;
   }

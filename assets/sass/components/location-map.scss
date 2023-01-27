@@ -1,0 +1,13 @@
+.location-map {
+  padding-top: 40px;
+}
+.location-map-title {
+  h1 {
+    @include fontStyle(48px, 700, #020105);
+    line-height: 60px;
+  }
+  p {
+    @include fontStyle(18px, 400, rgba(2, 1, 5,0.7));
+    line-height: 32px;
+  }
+}

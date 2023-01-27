@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
     <Header />
+    <div class="header-back"></div>
+
     <Nuxt />
     <Footer />
   </div>
@@ -15,4 +17,9 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style lang="scss">
+.header-back {
+  height: 129px;
+  background: white;
+}
+</style>
