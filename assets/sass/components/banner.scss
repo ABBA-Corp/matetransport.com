@@ -30,7 +30,25 @@
     @include fontStyle(18px, 600, $dark-blue);
     margin-bottom: 16px;
   }
-  input {
+  .checkbox-input {
+    .ant-radio-wrapper {
+      margin-bottom: 0 !important;
+      @include fontStyle(16px, 400, $dark-blue);
+      line-height: 150%;
+    }
+    .ant-radio-inner {
+      width: 24px;
+      height: 24px;
+      background-color: #f4f8ff;
+      border-color: #008aff;
+      &::after {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  input,
+  .checkbox-input,textarea {
     background: #f4f8ff;
     border: 1px solid #d2dbec;
     border-radius: 12px;

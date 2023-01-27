@@ -21,6 +21,9 @@
   padding: 30px 87px;
   background: #ffffff;
   border-radius: 12px;
+  position: relative;
+  z-index: 10;
+
   .inner-news-title {
     h1 {
       @include fontStyle(24px, 700, $dark-blue);
@@ -33,6 +36,17 @@
     }
   }
 }
+.inner-news-shadow {
+  position: absolute;
+  background: #73ABFF;
+  opacity: 0.3;
+  filter: blur(165.385px);
+  width: 271px;
+  height: 271px;
+  right: -107px;
+  bottom: 45%;
+}
+
 .inner-news-banner {
   margin-top: 24px;
   width: 100%;

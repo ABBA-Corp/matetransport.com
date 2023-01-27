@@ -137,6 +137,31 @@ feColorMatrix .service-select {
   margin-top: 112px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background: #73abff;
+    opacity: 0.3;
+    filter: blur(165.385px);
+    width: 420px;
+    height: 420px;
+    left: -151px;
+    bottom: 21px;
+    z-index: -1;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    background: #73abff;
+    opacity: 0.3;
+    filter: blur(165.385px);
+    width: 420px;
+    height: 420px;
+    right: 61px;
+    top: 0;
+    z-index: -1;
+  }
 }
 .services-card {
   padding: 38px 22px;

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="bg-color">
     <div class="all-news">
-      <div class="container_xl">
+      <div class="container_xl position-relative">
         <div>
           <nuxt-link class="all-news-back-btn" to="/"
             ><svg
@@ -19,6 +19,7 @@
             Back
           </nuxt-link>
         </div>
+        <div class="all-news-shadow"></div>
         <div class="all-news-container">
           <div class="all-news-title">
             <h1>Barcha yangiliklar</h1>
@@ -50,8 +51,6 @@ import NewsCard from "../components/cards/NewsCard.vue";
 export default { components: { NewsCard } };
 </script>
 <style lang="scss">
-.bg-color {
-  background: #f5f5f5;
-}
+
 
 </style>

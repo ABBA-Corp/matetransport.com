@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="bg-color">
     <div class="inner-news">
-      <div class="container_xl">
+      <div class="container_xl position-relative">
         <div>
           <nuxt-link class="service-back-btn" to="/"
             ><svg
@@ -19,6 +19,7 @@
             Back
           </nuxt-link>
         </div>
+        <div class="inner-news-shadow"></div>
         <div class="inner-news-container">
           <div
             class="inner-news-title d-flex align-items-center justify-content-between"

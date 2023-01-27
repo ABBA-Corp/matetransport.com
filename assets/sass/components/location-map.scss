@@ -25,6 +25,17 @@
     left: 40%;
     top: -7px;
   }
+  &::before {
+    content: "";
+    position: absolute;
+    background: #73abff;
+    opacity: 0.25;
+    filter: blur(165.385px);
+    width: 420px;
+    height: 420px;
+    left: -430px;
+    top: 171px;
+  }
 }
 .location-map-grid {
   display: grid;
@@ -81,5 +92,19 @@
   p {
     @include fontStyle(14px, 400, #353437);
     line-height: 24px;
+  }
+}
+.location-map-form {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background: #73abff;
+    opacity: 0.3;
+    filter: blur(165.385px);
+    width: 420px;
+    height: 420px;
+    right: calc(-420px - 157px);
+    top: 30%;
   }
 }

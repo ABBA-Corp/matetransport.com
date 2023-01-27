@@ -1,0 +1,26 @@
+.calculator-container {
+  padding: 30px 20px;
+  background: #ffffff;
+  border: 1px solid #e9effa;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 8fr 3.2fr;
+  grid-gap: 28px;
+}
+.calculator-title {
+  @include fontStyle(24px, 600, #000);
+  line-height: 32px;
+  margin-bottom: 24px;
+}
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+.calculator-info {
+  margin-top: 14px;
+  background: #ffffff;
+  border: 1.5px solid #ecf3ff;
+  border-radius: 16px;
+  padding: 24px;
+}

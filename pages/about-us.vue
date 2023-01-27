@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="about">
-    <div class="container_xl">
+    <div class="container_xl postion-relative">
       <div>
         <nuxt-link class="service-back-btn" to="/"
           ><svg
@@ -18,6 +18,7 @@
           Back
         </nuxt-link>
       </div>
+      <div class="about-us-shadow"></div>
       <div class="about-container">
         <div class="service-title">
           <div class="d-flex flex-column">
@@ -25,7 +26,18 @@
           </div>
         </div>
         <div class="about-grid-container">
-          <div></div>
+          <div>
+            <div class="about-video">
+              <img src="../assets/images/Exclude.png" alt="" />
+              <video
+                autoplay="autoplay"
+                loop="loop"
+                playsinline
+                muted="muted"
+                src="../assets/video/Logistics_Intro_Video_KEFt2quibkg_135.mp4"
+              ></video>
+            </div>
+          </div>
           <div class="about-desc">
             <h1>Объявления</h1>
             <p>

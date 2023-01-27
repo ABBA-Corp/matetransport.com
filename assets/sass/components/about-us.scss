@@ -96,6 +96,19 @@
   padding: 30px 20px;
   background: #fff;
   border-radius: 12px;
+  position: relative;
+  z-index: 10;
+}
+.about-us-shadow {
+  position: absolute;
+  background: #73abff;
+  opacity: 0.3;
+  filter: blur(149.397px);
+  width: 271px;
+  height: 271px;
+  top: -51px;
+  left: 50%;
+  z-index: 1;
 }
 .about-grid-container {
   display: grid;
@@ -131,6 +144,13 @@
 // employee card
 
 .employee-card {
+  position: relative;
+}
+.employee-bg {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  left: 23px;
 }
 .employee-card-avatar {
   width: 230px;
@@ -138,20 +158,44 @@
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 16px;
+  z-index: 10;
+  position: relative;
 }
 .employee-card-name {
   @include fontStyle(18px, 700, $dark-blue);
   line-height: 150%;
   margin-bottom: 0;
   text-align: center;
+  z-index: 10;
+  position: relative;
 }
 .employee-card-position {
   @include fontStyle(14px, 400, #96adc1);
   line-height: 150%;
   text-align: center;
+  z-index: 10;
+  position: relative;
 }
 .employee-card-grid {
   display: flex;
   justify-content: space-around;
   margin-top: 40px;
+}
+.about-video {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  margin-top: 50px;
+  img {
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% + 4px);
+    top: -2px;
+    left: -1px;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

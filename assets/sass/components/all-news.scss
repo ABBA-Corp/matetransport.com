@@ -5,6 +5,16 @@
 .all-news-padding {
   margin-top: 130px;
 }
+.all-news-shadow {
+  position: absolute;
+  width: 271px;
+  height: 271px;
+  left: 40%;
+  top: 0;
+  background: #73abff;
+  opacity: 0.3;
+  filter: blur(149.397px);
+}
 .all-news-back-btn {
   display: inline-flex;
   align-items: center;
@@ -26,6 +36,8 @@
   padding: 30px 21px;
   background: #ffffff;
   border-radius: 12px;
+  position: relative;
+  z-index: 10;
   .all-news-title {
     h1 {
       @include fontStyle(24px, 600, $dark-blue);

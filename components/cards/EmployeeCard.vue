@@ -1,5 +1,10 @@
 <template lang="html">
   <div class="employee-card">
+    <img
+      class="employee-bg"
+      src="../../assets/images/employee-img.png"
+      alt=""
+    />
     <div class="employee-card-avatar">
       <img src="../../assets/images/Ellipse 102.png" alt="" />
     </div>
