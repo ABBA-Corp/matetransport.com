@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="about-desc">
-            <h1>Объявления</h1>
+            <h1>Специализированный</h1>
             <p>
               Специализированный онлайн-сервис «Matelogistics» предоставляет
               полный спектр услуг. Объявления охватывают всю республику
@@ -92,13 +92,18 @@
               «Matelogistics» предоставляет полный спектр услуг.
             </p>
           </div>
-          <div></div>
+          <div class="employee-card-grid">
+            <EmployeeCard />
+            <EmployeeCard />
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {};
+import EmployeeCard from "../components/cards/EmployeeCard.vue";
+
+export default { components: { EmployeeCard } };
 </script>
 <style lang=""></style>

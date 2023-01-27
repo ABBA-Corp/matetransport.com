@@ -127,3 +127,31 @@
     text-align: center;
   }
 }
+
+// employee card
+
+.employee-card {
+}
+.employee-card-avatar {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.employee-card-name {
+  @include fontStyle(18px, 700, $dark-blue);
+  line-height: 150%;
+  margin-bottom: 0;
+  text-align: center;
+}
+.employee-card-position {
+  @include fontStyle(14px, 400, #96adc1);
+  line-height: 150%;
+  text-align: center;
+}
+.employee-card-grid {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
