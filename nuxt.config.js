@@ -21,6 +21,7 @@ export default {
   plugins: [
     { src: "~plugins/antd-ui.js", ssr: false },
     { src: "~plugins/element-ui.js", ssr: false },
+    { src: "~plugins/vue-beautiful-chat.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

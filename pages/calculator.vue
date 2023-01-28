@@ -117,8 +117,6 @@
               </div>
             </div>
           </div>
-          <!-- <checkbox-svg-map :map="USA" v-model="selectedLocations"/> -->
-          <!-- <p v-for="item in selectedLocations">{{ item }}</p> -->
         </div>
       </div>
     </div>
@@ -126,9 +124,7 @@
 </template>
 <script>
 import CalculatorInfoItems from "../components/calculator/calculatorInfoItems.vue";
-import { CheckboxSvgMap } from "vue-svg-map";
-// import SvgMap from "vue-simple-svg-map";
-import USA from "@svg-maps/usa";
+
 import CalculatorStep1 from "../components/calculator/calculatorStep1.vue";
 import CalculatorStep2 from "../components/calculator/calculatorStep2.vue";
 import CalculatorStep3 from "../components/calculator/calculatorStep3.vue";
@@ -137,8 +133,6 @@ export default {
   data() {
     return {
       steps: 1,
-      USA,
-      selectedLocations: [],
     };
   },
   methods: {
@@ -149,7 +143,6 @@ export default {
   },
   components: {
     CalculatorInfoItems,
-    CheckboxSvgMap,
     CalculatorStep1,
     CalculatorStep2,
     CalculatorStep3,
@@ -164,4 +157,3 @@ export default {
   },
 };
 </script>
-<style lang="" src="vue-svg-map/dist/index.css"></style>

@@ -7,17 +7,28 @@
       />
       <div class="coverage-map-grid">
         <div class="coverage-map-img">
-          <img src="../assets/svg/map.svg" alt="" />
+          <!-- <img src="../assets/svg/map.svg" alt="" /> -->
+          <checkbox-svg-map
+            :map="USA"
+            v-model="selectedLocations"
+            @mouseover="pointLocation"
+            @mouseout="unpointLocation"
+            @mousemove="moveOnLocation"
+          />
+          <div class="examples__block__map__tooltip" :style="tooltipStyle">
+            {{ pointedLocation }}
+          </div>
+          <p v-for="item in selectedLocations">{{ item }}</p>
         </div>
         <div class="coverage-map-form">
           <div class="form-block-map">
             <label for="inputFrom">Tochka A</label>
-            <input type="text" id="inputFrom" placeholder="Zip or city" />
+            <input type="text" id="inputFrom" :value="selectedLocations[0]" placeholder="Zip or city" />
           </div>
 
           <div class="form-block-map">
             <label for="inputTo">Tochka B</label>
-            <input type="text" id="inputTo" placeholder="Zip or city" />
+            <input type="text" id="inputTo" :value="selectedLocations[1]" placeholder="Zip or city" />
           </div>
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
@@ -91,15 +102,71 @@
 <script>
 import LastNews from "./LastNews.vue";
 import Title from "./Title.vue";
-
+import { CheckboxSvgMap } from "vue-svg-map";
+// import SvgMap from "vue-simple-svg-map";
+import { getLocationName } from "../utilities";
+import USA from "@svg-maps/usa";
 export default {
-  components: { Title, LastNews },
+  data() {
+    return {
+      USA,
+      selectedLocations: [],
+      pointedLocation: null,
+      tooltipStyle: null,
+    };
+  },
+  methods: {
+    pointLocation(event) {
+      this.pointedLocation = getLocationName(event.target);
+    },
+    unpointLocation(event) {
+      this.pointedLocation = null;
+      this.tooltipStyle = { display: "none" };
+    },
+    moveOnLocation(event) {
+      this.tooltipStyle = {
+        display: "block",
+        top: `${event.clientY + 10}px`,
+        left: `${event.clientX - 100}px`,
+      };
+    },
+    getLocationClass(location, index) {
+      // Generate heat map
+      return `svg-map__location svg-map__location--heat${index % 4}`;
+    },
+  },
+  components: { Title, LastNews, CheckboxSvgMap },
+  watch: {
+    selectedLocations(newVal, oldVal) {
+      console.log(newVal);
+      if(this.selectedLocations.length > 2) {
+        this.selectedLocations =  this.selectedLocations.slice(-2);
+
+      }
+    },
+  },
 };
 </script>
+<style lang="" src="vue-svg-map/dist/index.css"></style>
+
 <style lang="scss">
+.svg-map__location {
+  fill: rgb(2, 78, 144);
+}
+.svg-map {
+  stroke: none;
+  width: 600px;
+}
 .coverage-map-grid {
   display: grid;
   grid-template-columns: auto auto;
+}
+.svg-map__location:focus,
+.svg-map__location:hover {
+  fill: rgb(40, 146, 239);
+}
+.svg-map__location[aria-checked="true"] {
+  fill: rgb(40, 146, 239);
 }
 .mate-news {
   position: relative;
