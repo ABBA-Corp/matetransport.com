@@ -7,6 +7,10 @@
   grid-template-columns: 8fr 3.2fr;
   grid-gap: 28px;
 }
+.calculator {
+  padding-top: 20px;
+  padding-bottom: 44px;
+}
 .calculator-title {
   @include fontStyle(24px, 600, #000);
   line-height: 32px;
@@ -22,5 +26,160 @@
   background: #ffffff;
   border: 1.5px solid #ecf3ff;
   border-radius: 16px;
-  padding: 24px;
+  .calculator-info-body {
+    padding: 24px;
+    padding-bottom: 0;
+  }
+  .calculator-info-items {
+    display: grid;
+    grid-template-columns: 9fr 12fr 1fr;
+    grid-gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ecf3ff;
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .edit-btn {
+      cursor: pointer;
+    }
+    span {
+      @include fontStyle(14px, 400, #868686);
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      .ant-btn {
+        margin-left: 8px;
+      }
+    }
+    p {
+      @include fontStyle(14px, 400, $dark-blue);
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+    .ant-btn {
+      border: none;
+      padding: 0;
+      height: initial !important;
+    }
+    .items-checkbox {
+      .ant-radio-wrapper {
+        display: flex;
+      }
+    }
+  }
+  .calculator-info-footer {
+    padding: 24px;
+    background: #f7fafc;
+  }
+  .calculator-footer-items {
+    display: grid;
+
+    grid-template-columns: 9fr 12fr 1fr;
+    grid-gap: 10px;
+    span {
+      @include fontStyle(14px, 400, #868686);
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      .ant-btn {
+        margin-left: 8px;
+      }
+    }
+    p {
+      @include fontStyle(14px, 400, #868686);
+      line-height: 20px;
+    }
+    h3 {
+      font-family: "Mulish";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+    .ant-btn {
+      border: none;
+      padding: 0;
+      height: initial !important;
+    }
+    .items-checkbox {
+      .ant-radio-wrapper {
+        display: flex;
+      }
+    }
+  }
+}
+
+.ant-tooltip-inner {
+  @include fontStyle(12px, 400, #000);
+  line-height: 16px;
+  color: #000 !important;
+  background-color: rgb(237, 242, 247) !important;
+  border: 1px solid #d2dbec;
+}
+
+.block-help {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  p {
+    @include fontStyle(13px, 300, #000);
+    line-height: 150%;
+  }
+}
+.contact-us {
+  padding: 18px 25px;
+  display: inline-flex;
+  grid-template-columns: auto auto;
+  background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+  border-radius: 14px;
+  .contact-us-svg {
+    display: inline;
+    margin-right: 26px;
+  }
+  .contact-us-body {
+    h4 {
+      @include fontStyle(13px, 700, #ffffff);
+      line-height: 150%;
+      margin-bottom: 4px;
+    }
+    p {
+      @include fontStyle(12px, 400, #ffffff);
+      line-height: 150%;
+      margin-bottom: 0;
+    }
+  }
+}
+.step-title {
+  @include fontStyle(24px, 600, $dark-blue);
+  line-height: 32px;
+  margin-bottom: 0;
+}
+.tariff-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 24px;
+}
+.tariff-info-text {
+  @include fontStyle(16px, 400, #0070ce);
+  line-height: 20px;
+  margin-bottom: 14px;
+  svg {
+    margin-right: 7.6px;
+  }
+}
+.included-tariff {
+  padding: 20px;
+  background: #f4f8ff;
+  border-radius: 14px;
+  margin-top: 37px;
 }

@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@svg-maps/usa": "^1.1.1",
     "ant-design-vue": "^1.7.8",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
@@ -18,6 +19,8 @@
     "swiper": "^8.4.6",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
+    "vue-simple-svg-map": "^0.1.7",
+    "vue-svg-map": "^1.2.0",
     "vue-template-compiler": "^2.7.10"
   },
   "devDependencies": {

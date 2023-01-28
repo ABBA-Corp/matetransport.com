@@ -4,7 +4,7 @@
       <div class="container_xl header-top-grid">
         <div class="d-flex align-items-center header-text-animate">
           <div class="anim-left"></div>
-          <p>
+          <p class="slider-text">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. publishing software like Aldus PageMaker including
             versions of

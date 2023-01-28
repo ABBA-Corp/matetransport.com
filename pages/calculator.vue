@@ -20,120 +20,148 @@
           </nuxt-link>
         </div>
         <div class="calculator-container">
-          <div class="calculator-form">
-            <h1 class="calculator-title">Vehicle delivery details</h1>
-            <div class="">
-              <div class="form-block">
-                <label for="inputFrom">Delivery address</label>
-                <div class="calculator-grid">
-                  <input
-                    type="text"
-                    id="inputFrom"
-                    placeholder="Street home flat"
-                  />
-                  <input
-                    type="text"
-                    id="inputFrom"
-                    placeholder="Street home flat"
-                  />
-                </div>
-              </div>
+          <CalculatorStep1 :changeSteps="changeSteps" v-if="steps == 1" />
+          <CalculatorStep2 :changeSteps="changeSteps" v-if="steps == 2" />
+          <CalculatorStep3 v-if="steps == 3" />
+          <div class="calculator-info">
+            <div class="calculator-info-body">
+              <CalculatorInfoItems
+                name="Distance"
+                :edit="true"
+                option="2753mi"
+              />
+              <CalculatorInfoItems
+                name="First avail. date"
+                :edit="true"
+                option="01/21/2023"
+              />
+              <CalculatorInfoItems
+                name="Vehicle"
+                :edit="true"
+                option="2020 Alfa Romeo Giulia Quadrifoglio"
+              />
+              <CalculatorInfoItems
+                name="Ship from"
+                :edit="true"
+                option="New York, NY 10025"
+              />
+              <CalculatorInfoItems
+                name="Ship to"
+                :edit="true"
+                option="California City, CA 93505"
+              />
+              <CalculatorInfoItems
+                name="Vehicle condition"
+                :edit="true"
+                :checkbox="['Running', 'Non-running']"
+              />
+              <CalculatorInfoItems
+                name="Transport type"
+                :edit="true"
+                :checkbox="['Open (-$190)', 'Enclosed']"
+              />
 
-              <div class="form-block">
-                <label for="inputTo"
-                  >California City, CA 93505 , This is a?</label
-                >
-                <a-radio-group v-model="value" @change="onChange">
-                  <div class="calculator-grid">
-                    <div class="checkbox-input">
-                      <a-radio :value="1">
-                        Residential address
-                      </a-radio>
-                    </div>
-                    <div class="checkbox-input">
-                      <a-radio :value="2">
-                        Residential address
-                      </a-radio>
-                    </div>
-                  </div>
-                </a-radio-group>
-              </div>
+              <CalculatorInfoItems
+                name="Service type"
+                :edit="true"
+                option="Door to door"
+              />
+              <CalculatorInfoItems
+                name="Insurance"
+                :edit="true"
+                option="Included"
+              />
+              <CalculatorInfoItems
+                name="Transit time"
+                :edit="true"
+                option="7-9 days"
+                info="We coordinate all shipments through a large network of
+                      licensed Auto Shipping Carriers nationwide. We coordinate
+                      all shipments through a large network of licensed Auto
+                      Shipping Carriers nationwide."
+              />
+            </div>
+            <div class="calculator-info-footer">
+              <div class="calculator-footer-items">
+                <span
+                  >Transit time
+                  <a-tooltip placement="top" color="red">
+                    <template slot="title" color="red">
+                      <span color="red" class="hover-info">Transit time</span>
+                    </template>
+                    <a-button
+                      ><svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.65625 5V3.65625H6.34375V5H7.65625ZM7.65625 10.3438V6.34375H6.34375V10.3438H7.65625ZM2.28125 2.3125C3.59375 1 5.16667 0.34375 7 0.34375C8.83333 0.34375 10.3958 1 11.6875 2.3125C13 3.60417 13.6562 5.16667 13.6562 7C13.6562 8.83333 13 10.4062 11.6875 11.7188C10.3958 13.0104 8.83333 13.6562 7 13.6562C5.16667 13.6562 3.59375 13.0104 2.28125 11.7188C0.989583 10.4062 0.34375 8.83333 0.34375 7C0.34375 5.16667 0.989583 3.60417 2.28125 2.3125Z"
+                          fill="#9A999B"
+                        />
+                      </svg>
+                    </a-button> </a-tooltip
+                ></span>
 
-              <div class="form-block">
-                <label for="inputTo"
-                  >California City, CA 93505 , This is a?</label
-                >
-                <a-radio-group v-model="value1" @change="onChange">
-                  <div class="calculator-grid">
-                    <div class="checkbox-input">
-                      <a-radio :value="1">
-                        Residential address
-                      </a-radio>
-                    </div>
-                    <div class="checkbox-input">
-                      <a-radio :value="2">
-                        Residential address
-                      </a-radio>
-                    </div>
-                  </div>
-                </a-radio-group>
+                <h3>$600</h3>
               </div>
-
-              <div class="form-block">
-                <label for="">Have any special instructions? (Optional)</label>
-                <textarea
-                  name=""
-                  id=""
-                  cols="20"
-                  rows="5"
-                  placeholder="Description"
-                ></textarea>
+              <div class="calculator-footer-items">
+                <span>Price option </span>
+                <p>Have you had problems in the order process?</p>
               </div>
-              <div
-                class="banner-form-btn d-flex justify-content-end steps-action pt-3"
-              >
-                <div class="form-btn">
-                  Next stage<svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
-                      stroke="white"
-                      stroke-width="1.5"
-                      stroke-miterlimit="10"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
+              <div class="calculator-footer-items">
+                <span></span>
+                <b>$2729 Discounted cash price</b>
               </div>
             </div>
           </div>
-          <div class="calculator-info">
-            adas
-          </div>
+          <!-- <checkbox-svg-map :map="USA" v-model="selectedLocations"/> -->
+          <!-- <p v-for="item in selectedLocations">{{ item }}</p> -->
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import CalculatorInfoItems from "../components/calculator/calculatorInfoItems.vue";
+import { CheckboxSvgMap } from "vue-svg-map";
+// import SvgMap from "vue-simple-svg-map";
+import USA from "@svg-maps/usa";
+import CalculatorStep1 from "../components/calculator/calculatorStep1.vue";
+import CalculatorStep2 from "../components/calculator/calculatorStep2.vue";
+import CalculatorStep3 from "../components/calculator/calculatorStep3.vue";
 export default {
+  name: "MyMap",
   data() {
     return {
-      value: 1,
-      value1: 1,
+      steps: 1,
+      USA,
+      selectedLocations: [],
     };
   },
   methods: {
-    onChange(e) {
-      console.log("radio checked", e.target.value);
+    changeSteps(step) {
+      this.steps = step;
+      console.log(step);
+    },
+  },
+  components: {
+    CalculatorInfoItems,
+    CheckboxSvgMap,
+    CalculatorStep1,
+    CalculatorStep2,
+    CalculatorStep3,
+  },
+  watch: {
+    selectedLocations(newVal, oldVal) {
+      if ((newVal = !oldVal)) {
+        console.log(this.selectedLocations);
+      }
+      console.log(this.selectedLocations);
     },
   },
 };
 </script>
-<style lang=""></style>
+<style lang="" src="vue-svg-map/dist/index.css"></style>

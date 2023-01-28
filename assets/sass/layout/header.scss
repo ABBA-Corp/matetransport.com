@@ -66,6 +66,7 @@
   }
   .anim-left {
     left: 0;
+    z-index: 100;
     background: linear-gradient(
       270deg,
       #f0f8ff 36.73%,
@@ -75,6 +76,7 @@
   }
   .anim-right {
     right: 0;
+    z-index: 100;
     background: linear-gradient(
       270deg,
       #f0f8ff 36.73%,
@@ -98,7 +100,7 @@
         @include fontStyle(16px, 500, #96adc1);
         line-height: 20px;
         position: relative;
-        
+
         &::after {
           content: "";
           position: absolute;
@@ -110,7 +112,7 @@
           border-radius: 59px;
           left: 0;
           background-color: $light-blue;
-          transition: .3s;
+          transition: 0.3s;
         }
         &:hover {
           color: $dark-blue;
@@ -142,5 +144,30 @@
 
     @include fontStyle(13px, 600, $dark-blue);
     background-clip: padding-box;
+  }
+}
+.slider-text {
+  animation: sliderText 20s infinite linear;
+}
+
+@keyframes sliderText {
+  0% {
+    transform: translateX(100%);
+  }
+
+  25% {
+    transform: translateX(50%);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(-100%);
   }
 }

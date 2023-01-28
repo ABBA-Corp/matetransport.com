@@ -1,6 +1,8 @@
 <template>
   <div class="flex items-center justify-center blog position-relative">
-    <div class="container_xl position-relative carousel_navigate logistic-service-carousel">
+    <div
+      class="container_xl position-relative carousel_navigate logistic-service-carousel"
+    >
       <p>Choice service (click for moree information</p>
       <div class="navigate-grid">
         <div class="swiper-button-prev">
@@ -65,6 +67,7 @@
         <div class="swiper-slide">
           <LogisticsServicesCard />
         </div>
+        <div class="swiper-slide"><div></div></div>
       </div>
     </div>
   </div>
