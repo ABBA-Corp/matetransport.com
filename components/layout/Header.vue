@@ -44,7 +44,7 @@
     </div>
     <div class="header-navbar">
       <div
-        class="container_xl d-flex justify-content-between align-items-center"
+        class="container_xl header-navbar-items"
       >
         <div class="header-navbar-logo">
           <img src="../../assets/svg/image 2.svg" alt="" />
@@ -74,6 +74,9 @@
               ><span>Zayavka qoldirish</span></nuxt-link
             >
           </div>
+        </div>
+        <div class="mobile-menu">
+          <img src="../../assets/svg/hamburger-menu.svg" alt="" />
         </div>
       </div>
     </div>
@@ -163,5 +166,4 @@ export default {
     }
   }
 }
-
 </style>

@@ -13,6 +13,9 @@
     @include fontStyle(16px, 500, #fff);
     line-height: 24px;
     margin-bottom: 20px;
+    &:hover {
+      color: #fff;
+    }
     svg {
       margin-right: 10.21px;
     }
@@ -28,6 +31,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr auto;
+  padding-bottom: 24px;
 }
 .footer-menu {
   .menu-title {
@@ -71,4 +75,9 @@
   z-index: 100;
   background-color: #214690;
   position: relative;
+}
+.footer-map {
+  iframe {
+    border-radius: 8px !important;
+  }
 }

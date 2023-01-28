@@ -18,8 +18,6 @@ export default {
 };
 </script>
 <style lang="scss">
-.header-back {
-  height: 129px;
-  background: white;
-}
+
+
 </style>

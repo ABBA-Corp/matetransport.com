@@ -11,6 +11,13 @@
     max-width: 1200px;
   }
 }
+@media (max-width: 1200px) and (min-width: 300px) {
+  .container_xl {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: initial;
+  }
+}
 // @media (min-width: 1320px) {
 //   .container_xl {
 //     max-width: 1200px;

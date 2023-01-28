@@ -10,22 +10,38 @@
           <!-- <img src="../assets/svg/map.svg" alt="" /> -->
           <checkbox-svg-map
             :map="USA"
+            :location-class="getLocationClass"
             v-model="selectedLocations"
             @mouseover="pointLocation"
             @mouseout="unpointLocation"
             @mousemove="moveOnLocation"
           />
-         
+          <div
+				class="examples__block__map__tooltip"
+				:style="tooltipStyle"
+			>
+				{{ pointedLocation }}
+			</div>
         </div>
         <div class="coverage-map-form">
           <div class="form-block-map">
             <label for="inputFrom">Tochka A</label>
-            <input type="text" id="inputFrom" :value="selectedLocations[0]" placeholder="Zip or city" />
+            <input
+              type="text"
+              id="inputFrom"
+              :value="selectedLocations[0]"
+              placeholder="Zip or city"
+            />
           </div>
 
           <div class="form-block-map">
             <label for="inputTo">Tochka B</label>
-            <input type="text" id="inputTo" :value="selectedLocations[1]" placeholder="Zip or city" />
+            <input
+              type="text"
+              id="inputTo"
+              :value="selectedLocations[1]"
+              placeholder="Zip or city"
+            />
           </div>
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
@@ -136,9 +152,8 @@ export default {
   watch: {
     selectedLocations(newVal, oldVal) {
       console.log(newVal);
-      if(this.selectedLocations.length > 2) {
-        this.selectedLocations =  this.selectedLocations.slice(-2);
-
+      if (this.selectedLocations.length > 2) {
+        this.selectedLocations = this.selectedLocations.slice(-2);
       }
     },
   },
@@ -188,5 +203,117 @@ export default {
     opacity: 0.45;
     filter: blur(165.385px);
   }
+}
+
+// .svg-map {
+//   width: 100%;
+//   height: auto;
+//   stroke: #666;
+//   stroke-width: 1;
+//   stroke-linecap: round;
+//   stroke-linejoin: round;
+
+//   &__location {
+//     fill: #a1d99b;
+//     cursor: pointer;
+
+//     &:focus,
+//     &:hover {
+//       fill: #b8e2b3;
+//       outline: 0;
+//     }
+
+//     &[aria-checked="true"] {
+//       fill: #f4bc44;
+//     }
+//   }
+// }
+/* Using box model */
+* {
+  box-sizing: border-box;
+}
+
+/* Maps examples */
+.examples {
+	width: 1000px;
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
+	text-align: center;
+
+	&__title {
+		margin-bottom: 80px;
+		padding-bottom: 40px;
+		border-bottom: 1px dotted black;
+		font-size: 24px;
+	}
+
+	&__block {
+		margin-bottom: 80px;
+		padding-bottom: 80px;
+		border-bottom: 1px dotted black;
+
+
+		&__title {
+			margin-bottom: 40px;
+			font-size: 20px;
+		}
+
+		&__info {
+			display: inline-block;
+			vertical-align: top;
+			width: 450px;
+			text-align: left;
+
+			&__item {
+				margin-bottom: 20px;
+			}
+		}
+
+		&__map {
+			display: inline-block;
+			width: 500px;
+
+			&--australia {
+				.svg-map {
+					stroke-width: 0.5; // Australia stroke is larger than other maps
+				}
+			}
+
+			&--usa {
+				width: 800px; // USA needs more space	for tooltip
+
+				.svg-map__location {
+					&--heat0 {
+						fill: blue;
+					}
+
+					&--heat1 {
+						fill: lightblue;
+					}
+
+					&--heat2 {
+						fill: orange;
+					}
+
+					&--heat3 {
+						fill: red;
+					}
+
+					&:focus,
+					&:hover {
+						opacity: 0.75;
+					}
+				}
+			}
+
+			&__tooltip {
+				position: fixed;
+				// width: 200px;
+				padding: 10px;
+				border: 1px solid darkgray;
+				background-color: white;
+			}
+		}
+	}
 }
 </style>

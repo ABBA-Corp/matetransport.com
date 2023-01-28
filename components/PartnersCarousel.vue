@@ -45,8 +45,8 @@ import PartnersCard from "./cards/PartnersCard.vue";
 export default {
   mounted() {
     const swiper = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      spaceBetween: 24,
+      slidesPerView: 2,
+      spaceBetween: 20,
       centeredSlides: true,
       loop: true,
       autoplay: {
@@ -56,21 +56,20 @@ export default {
       speed: 30000,
       breakpoints: {
         320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
+          slidesPerView: 2,
+          spaceBetween: 20,
         },
         770: {
-          slidesPerView: 2,
-          spaceBetween: 50,
+          slidesPerView: 3,
+          spaceBetween: 20,
         },
-
-        771: {
-          slidesPerView: 4,
-          spaceBetween: 30,
+        1300: {
+          slidesPerView: 3,
+          spaceBetween: 20,
         },
         1440: {
           slidesPerView: 4,
-          spaceBetween: 30,
+          spaceBetween: 20,
         },
       },
     });

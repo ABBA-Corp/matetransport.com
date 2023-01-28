@@ -146,3 +146,10 @@
 .banner-steps {
   margin-top: 40px;
 }
+
+@media (max-width: 1200px) and (min-width: 300px) {
+  .banner-form {
+    margin-right: 16px;
+    width: initial;
+  }
+}

@@ -171,3 +171,32 @@
     transform: translateX(-100%);
   }
 }
+
+.header-navbar-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+.header-back {
+  height: 129px;
+  background: white;
+}
+@media (max-width: 1080px) {
+  .header-navbar-nav,
+  .header-navbar-btn {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+  .header-top {
+    display: none;
+  }
+  .header-back {
+    height: 81px;
+  }
+}
