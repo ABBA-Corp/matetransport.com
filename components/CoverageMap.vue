@@ -15,10 +15,7 @@
             @mouseout="unpointLocation"
             @mousemove="moveOnLocation"
           />
-          <div class="examples__block__map__tooltip" :style="tooltipStyle">
-            {{ pointedLocation }}
-          </div>
-          <p v-for="item in selectedLocations">{{ item }}</p>
+         
         </div>
         <div class="coverage-map-form">
           <div class="form-block-map">
