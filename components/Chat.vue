@@ -155,7 +155,7 @@ export default {
 }
 .sc-launcher {
   background: #ffffff !important;
-  box-shadow: 0px 4px 35px rgba(0, 138, 255, 0.15) !important;
+  box-shadow: 0px 4px 35px rgba(0, 138, 255, 0.25) !important;
 }
 .sc-message--content.sent .sc-message--text {
   background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);

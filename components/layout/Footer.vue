@@ -186,7 +186,15 @@
           </ul>
         </div>
         <div class="footer-map">
-          <img src="../../assets/images/Rectangle 23905.png" alt="" />
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.6359508726446!2d69.33234131492554!3d41.33852900698645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef48a8ed4d0e9%3A0x3772abeffc72e7b8!2z0KPQvdC40LLQtdGA0YHQuNGC0LXRgiDQmNC90YXQsA!5e0!3m2!1sru!2s!4v1674815269297!5m2!1sru!2s"
+            width="100%"
+            height="300"
+            style="border: 0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
       <div class="footer-hr"></div>
