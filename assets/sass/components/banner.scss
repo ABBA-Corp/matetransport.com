@@ -153,3 +153,16 @@
     width: initial;
   }
 }
+@media (max-width: 1000px)  {
+  .banner-form {
+    margin-right: 16px;
+    margin-left: 16px;
+    width: initial;
+  }
+  .banner-video {
+    height: 400px;
+  }
+  .banner-grid {
+    grid-template-columns: 1fr;
+  }
+}

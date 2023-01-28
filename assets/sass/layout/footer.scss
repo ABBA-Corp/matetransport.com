@@ -81,3 +81,11 @@
     border-radius: 8px !important;
   }
 }
+@media (max-width: 1080px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .footer-map {
+    margin-top: 24px;
+  }
+}
