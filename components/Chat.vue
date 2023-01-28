@@ -150,8 +150,8 @@ export default {
 }
 .sc-chat-window {
   border-radius: 24px !important;
-  max-height: 421px !important;
-  width: 280px !important;
+  max-height: 562px !important;
+  width: 340px !important;
 }
 .sc-launcher {
   background: #ffffff !important;
@@ -163,7 +163,7 @@ export default {
   font-family: "Mulish";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   /* identical to box height, or 18px */
 
@@ -179,7 +179,7 @@ export default {
   font-family: "Mulish";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   /* or 18px */
 
@@ -190,6 +190,20 @@ export default {
   border-radius: 12px !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    scroll-padding: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(160, 160, 160,0.5) !important;
+    opacity: 0;
+    border-radius: 5px;
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
 }
 .sc-chat-window {
   padding-left: 16px;
@@ -212,5 +226,55 @@ export default {
 .sc-user-input {
   background: #fff !important;
   box-shadow: none !important;
+}
+.sc-user-input--button {
+  &:nth-child(1) {
+    display: none !important;
+  }
+  &:nth-child(2) {
+    display: none !important;
+  }
+  &:nth-child(3) {
+    display: none !important;
+  }
+  .sc-user-input--button-icon-wrapper {
+    background: linear-gradient(90deg, #008aff 0%, #005ba8 100%) !important;
+    border-radius: 50% !important;
+    width: 32px;
+    height: 32px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    svg {
+      color: #fff !important;
+    }
+  }
+}
+.sc-user-input--text {
+  //   padding-left: 0 !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  padding-right: 60px !important;
+  background: #f7f7f7 !important;
+  border-radius: 12px !important;
+  position: relative !important;
+}
+.sc-user-input--buttons {
+  right: 16px !important;
+  top: 16px !important;
+}
+.sc-message--content.sent .sc-message--text {
+  max-width: calc(100% - 50px) !important;
+}
+.sc-message--text {
+  padding: 6px 12px;
+  p {
+    margin-bottom: 0 !important;
+  }
+}
+.sc-header--img {
+    padding: 0 !important;
+    width: 48px;
+    height: 48px;
 }
 </style>
