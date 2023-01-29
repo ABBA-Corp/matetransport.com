@@ -38,3 +38,56 @@
     margin-bottom: 0;
   }
 }
+.about-logistic-comp {
+  padding-top: 60px;
+  padding-bottom: 120px;
+}
+.about-logistic-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+@media (max-width: 1000px) {
+  .al-card-title-grid {
+    grid-gap: 14px;
+    .al-card-icon {
+      border-radius: 6px;
+      height: 56px;
+      width: 56px;
+      svg {
+        width: 26px;
+        height: 31px;
+      }
+    }
+    .al-card-title {
+      display: flex;
+      align-items: center;
+      h2 {
+        @include fontStyle(18px, 700, $dark-blue);
+        line-height: 24px;
+        letter-spacing: -0.03em;
+      }
+    }
+  }
+  .al-card-text {
+    margin-top: 12px;
+    p {
+      @include fontStyle(14px, 400, #96adc1);
+      line-height: 24px;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+    }
+  }
+  .about-logistic-comp-grid {
+    grid-gap: 12px;
+  }
+}
+@media (max-width: 850px) {
+  .about-logistic-comp-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-logistic-comp {
+    padding-top: 30px;
+    padding-bottom: 56px;
+  }
+}

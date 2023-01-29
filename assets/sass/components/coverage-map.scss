@@ -165,3 +165,135 @@
     margin-right: 7.5px;
   }
 }
+.coverage-map-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+@media (max-width: 1000px) {
+  .coverage-map-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  .coverage-map-img {
+    svg {
+      width: 100%;
+    }
+  }
+  .last-news {
+    margin-top: 150px;
+  }
+}
+@media (max-width: 900px) {
+  .coverage-map-form {
+    padding: 24px 16px;
+  }
+  .coverage-map-form-btn {
+    margin-top: 20px;
+    .form-btn {
+      border-radius: 6px;
+      @include fontStyle(14px, 600, #fff);
+      line-height: 18px;
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+  }
+  .form-block-map {
+    flex-direction: column;
+    margin-bottom: 24px;
+    label {
+      @include fontStyle(16px, 700, $dark-blue);
+      margin-bottom: 16px;
+    }
+    input {
+      padding: 14px 16px;
+      border: 1px solid #d2dbec;
+      @include fontStyle(14px, 400, $dark-blue);
+      line-height: 20px;
+      &::placeholder {
+        @include fontStyle(16px, 400, $dark-blue);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .log-news {
+    padding: 16px 24px;
+    grid-gap: 40px;
+    h3 {
+      @include fontStyle(18px, 700, #fff);
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+    img {
+      width: 110px;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .coverage-map-grid {
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+  }
+  .coverage-map-img {
+    svg {
+      width: 100%;
+    }
+  }
+  .log-news {
+    padding: 8px 16px;
+    grid-gap: 20px;
+    border-radius: 5px;
+    h3 {
+      @include fontStyle(10px, 700, #fff);
+      line-height: 12px;
+      margin-bottom: 0;
+    }
+    img {
+      width: 60px;
+    }
+  }
+  .last-news {
+    .reload-news {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 16px;
+      margin-bottom: 24px;
+      .reload-news-btn {
+        width: 32px;
+        height: 32px;
+
+        svg {
+          width: 22px;
+        }
+      }
+
+      h5 {
+        @include fontStyle(14px, 600, $dark-blue);
+        line-height: 110%;
+        margin-bottom: 0;
+      }
+    }
+    .last-news-title {
+      @include fontStyle(12px, 400, $dark-blue);
+      line-height: 110%;
+      margin-bottom: 4px;
+    }
+  }
+  .last-news {
+    margin-top: 58px;
+  }
+  .mate-news {
+    margin-top: 56px;
+  }
+  .coverage-map {
+    padding-top: 56px;
+    padding-bottom: 30px;
+  }
+}
+@media (max-width: 576px) {
+  .coverage-map {
+    padding-top: 0px;
+    padding-bottom: 30px;
+  }
+}

@@ -8,7 +8,7 @@
     </div>
     <div class="logistic-services-container container_xl">
       <div class="carousel_grid">
-        <div><LogisticsServicesCarousel /></div>
+        <div class="position-relative"><LogisticsServicesCarousel /></div>
       </div>
     </div>
   </div>

@@ -22,15 +22,8 @@ export default {
 };
 </script>
 <style lang="scss">
-.about-logistic-comp {
-  padding-top: 60px;
-  padding-bottom: 120px;
-}
-.about-logistic-comp-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
+
+
 .about-shadow {
   position: relative;
   &::after {

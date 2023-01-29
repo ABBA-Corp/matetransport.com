@@ -18,10 +18,5 @@ import Title from "./Title.vue";
 export default { components: { Title, LogisticCompCard } };
 </script>
 <style lang="scss">
-.logistic-comp-grid {
-  display: flex;
-  justify-content: space-between;
-  margin-top: calc(56px + 30px);
-  margin-left: 46px;
-}
+
 </style>

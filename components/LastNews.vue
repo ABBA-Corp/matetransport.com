@@ -121,11 +121,7 @@ export default {
 </script>
 
 <style lang="scss">
-.carousel-container {
-  margin-top: 90px !important;
-  max-width: 1920px;
-  margin: 0 auto;
-}
+
 .last-news {
   .carousel_navigate {
     margin-left: 0;

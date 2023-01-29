@@ -1,6 +1,7 @@
 <template>
   <div class="flex items-center justify-center blog position-relative">
     <div
+      ref="carouselControl"
       class="container_xl position-relative carousel_navigate logistic-service-carousel"
     >
       <p>Choice service (click for moree information</p>
@@ -67,8 +68,12 @@
         <div class="swiper-slide">
           <LogisticsServicesCard />
         </div>
-        <div class="swiper-slide"><div><h1></h1></div></div>
-        <div class="swiper-slide"><div><h1></h1></div></div>
+        <div class="swiper-slide">
+          <div><h1></h1></div>
+        </div>
+        <div class="swiper-slide">
+          <div><h1></h1></div>
+        </div>
       </div>
     </div>
   </div>
@@ -81,7 +86,17 @@ import "swiper/swiper-bundle.min.css";
 import LogisticsServicesCard from "../cards/LogisticsServicesCard.vue";
 import PartnersCard from "../cards/PartnersCard.vue";
 export default {
+  computed: {
+    windowWidth() {
+      return window.innerWidth;
+    },
+  },
   mounted() {
+    window.addEventListener("resize", () => {
+      const car = this.$refs.carouselControl;
+      car.style.width = `${window.innerWidth - 32}px`;
+    });
+
     const swiper = new Swiper(".mySwiper-2", {
       slidesPerView: 3,
       spaceBetween: 24,
@@ -97,11 +112,11 @@ export default {
       speed: 1000,
       breakpoints: {
         320: {
-          slidesPerView: 1,
+          slidesPerView: 4,
           spaceBetween: 10,
         },
         770: {
-          slidesPerView: 2,
+          slidesPerView: 3,
           spaceBetween: 50,
         },
 
@@ -116,6 +131,7 @@ export default {
       },
     });
   },
+
   components: {
     PartnersCard,
     PartnersCard,
@@ -124,13 +140,7 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
-.carousel-container {
-  margin-top: 90px !important;
-  max-width: 1920px;
-  margin: 0 auto;
-}
 .carousel_navigate {
   margin-left: 0;
   display: flex;
@@ -176,7 +186,38 @@ export default {
     margin-bottom: 0;
   }
 }
+
 .logistic-service-carousel {
   margin-bottom: 37px;
+}
+@media (max-width: 576px) {
+  .carousel_navigate {
+    margin-left: 0;
+    display: flex;
+    justify-content: space-between;
+    .swiper-button-prev,
+    .swiper-button-next {
+      position: static !important;
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2.40546px solid #2c7bf2;
+      &::after {
+        display: none;
+      }
+      svg {
+        width: 16px;
+      }
+    }
+    p {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  .logistic-service-carousel {
+    margin-bottom: 24px;
+  }
 }
 </style>

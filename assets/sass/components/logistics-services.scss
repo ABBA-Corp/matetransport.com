@@ -7,3 +7,8 @@
 .logistic-services {
   padding-top: calc(60px + 29px);
 }
+@media (max-width: 576px) {
+  .logistic-services {
+    padding-top: 45px;
+  }
+}

@@ -169,10 +169,7 @@ export default {
   stroke: none;
   width: 600px;
 }
-.coverage-map-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-}
+
 .svg-map__location:focus,
 .svg-map__location:hover {
   fill: rgb(40, 146, 239);

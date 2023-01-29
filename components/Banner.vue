@@ -1,5 +1,11 @@
 <template lang="html">
   <div class="banner">
+    <div class="container_xl banner-title-mobile">
+      <Title
+        title="Fast & reliable nationwide auto transport company"
+        text="Montway Auto Transport is the number one rated car transporter in the U.S."
+      />
+    </div>
     <div class="banner-grid">
       <div class="banner-video">
         <div class="banner-title">
@@ -51,7 +57,7 @@
             <label for="inputTo">Your phone number</label>
             <input type="text" id="inputTo" placeholder="Zip or city" />
           </div>
-          <div class="banner-form-btn d-flex justify-content-end steps-action">
+          <div class="banner-form-btn  steps-action">
             <div
               class="form-btn"
               @click="next"
@@ -126,6 +132,8 @@
   </div>
 </template>
 <script>
+import Title from "./Title.vue";
+
 export default {
   data() {
     return {
@@ -177,6 +185,7 @@ export default {
       this.iconLoading = { delay: 1000 };
     },
   },
+  components: { Title },
 };
 </script>
 <style lang="scss">
@@ -203,13 +212,7 @@ export default {
   background: transparent !important;
 }
 
-.banner-select {
-  .el-input {
-    input {
-      height: 60px !important;
-    }
-  }
-}
+
 .el-select-dropdown {
   background: #f4f8ff !important;
   border: 1px solid #d2dbec !important;
