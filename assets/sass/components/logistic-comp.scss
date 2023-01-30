@@ -80,8 +80,14 @@
       @include fontStyle(16px, 400, #96adc1);
       line-height: 24px;
     }
+    
   }
   .logistic-block {
+    margin-bottom: 100px;
+    &:last-child {
+    margin-bottom: 0;
+
+    }
     svg {
       height: 197px;
       width: 143px;
@@ -92,7 +98,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    grid-gap: 100px;
+    
     margin-top: 100px;
   }
 }

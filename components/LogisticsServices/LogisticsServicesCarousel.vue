@@ -92,13 +92,15 @@ export default {
     },
   },
   mounted() {
+    const car = this.$refs.carouselControl;
+    car.style.width = `${window.innerWidth - 32}px`;
     window.addEventListener("resize", () => {
       const car = this.$refs.carouselControl;
       car.style.width = `${window.innerWidth - 32}px`;
     });
 
     const swiper = new Swiper(".mySwiper-2", {
-      slidesPerView: 3,
+      slidesPerView: 4,
       spaceBetween: 24,
       // loop: true,
       //   autoplay: {
@@ -112,12 +114,8 @@ export default {
       speed: 1000,
       breakpoints: {
         320: {
-          slidesPerView: 4,
+          slidesPerView: 5,
           spaceBetween: 10,
-        },
-        770: {
-          slidesPerView: 3,
-          spaceBetween: 50,
         },
 
         771: {
@@ -145,6 +143,14 @@ export default {
   margin-left: 0;
   display: flex;
   justify-content: space-between;
+  .swiper-button-disabled {
+    background: #2c7bf2 !important;
+    svg {
+      path {
+        fill: #fff !important;
+      }
+    }
+  }
   .swiper-button-prev,
   .swiper-button-next {
     position: static !important;
@@ -162,14 +168,7 @@ export default {
       transform: rotate(180deg);
     }
   }
-  .swiper-button-disabled {
-    background: #2c7bf2;
-    svg {
-      path {
-        fill: #fff !important;
-      }
-    }
-  }
+
   .navigate-grid {
     display: grid;
     grid-gap: 20px;

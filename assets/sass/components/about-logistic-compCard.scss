@@ -91,3 +91,19 @@
     padding-bottom: 56px;
   }
 }
+@media (max-width: 576px) {
+  .about-logistic-comp {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .about-logistic-card {
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .al-card-title-grid {
+    display: flex;
+    .al-card-icon {
+      margin-right: 14px;
+    }
+  }
+}

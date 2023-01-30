@@ -56,10 +56,14 @@ export default {
       speed: 30000,
       breakpoints: {
         320: {
+          slidesPerView: 1.4,
+          spaceBetween: 12,
+        },
+        576: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
-        770: {
+        768: {
           slidesPerView: 3,
           spaceBetween: 20,
         },

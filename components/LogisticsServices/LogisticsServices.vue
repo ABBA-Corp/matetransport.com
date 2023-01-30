@@ -7,7 +7,7 @@
       />
     </div>
     <div class="logistic-services-container container_xl">
-      <div class="carousel_grid">
+      <div class="carousel_grid" ref="carouselWidth">
         <div class="position-relative"><LogisticsServicesCarousel /></div>
       </div>
     </div>
@@ -18,6 +18,14 @@ import Title from "../Title.vue";
 import LogisticsServicesCarousel from "./LogisticsServicesCarousel.vue";
 
 export default {
+  mounted() {
+    const car = this.$refs.carouselWidth;
+    car.style.width = `${window.innerWidth + 500}px`;
+    window.addEventListener("resize", () => {
+      const car = this.$refs.carouselWidth;
+      car.style.width = `${window.innerWidth + 500}px`;
+    });
+  },
   components: { Title, LogisticsServicesCarousel },
 };
 </script>
@@ -41,5 +49,10 @@ export default {
   position: absolute;
   left: 0;
   max-width: calc(1200px + 500px);
+}
+@media (max-width: 576px) {
+  .logistic-services-container {
+    height: 320px;
+  }
 }
 </style>

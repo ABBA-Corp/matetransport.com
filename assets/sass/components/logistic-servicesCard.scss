@@ -18,19 +18,32 @@
     margin-top: 9.3px;
   }
 }
-// @media (max-width: 576px) {
-//   .logs-card-body {
-
-//     margin-top: 39.8px;
-//     h3 {
-//       @include fontStyle(16px, 700, #ffffff);
-//       line-height: 30px;
-//     }
-//     p {
-//       @include fontStyle(16.1082px, 400, #ffffff);
-//       line-height: 19px;
-//       margin-bottom: 0;
-//       margin-top: 9.3px;
-//     }
-//   }
-// }
+@media (max-width: 576px) {
+  .log-services-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .logs-card-img {
+    height: 70px;
+    object-fit: contain;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .logs-card-body {
+    margin-top: 18px;
+    h3 {
+      @include fontStyle(16px, 700, #ffffff);
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+    p {
+      @include fontStyle(12px, 400, #ffffff);
+      line-height: 14px;
+      margin-bottom: 0;
+      margin-top: 8px;
+    }
+  }
+}
