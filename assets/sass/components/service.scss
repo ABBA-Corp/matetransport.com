@@ -222,3 +222,41 @@ feColorMatrix .service-select {
     }
   }
 }
+@media (max-width: 576px) {
+  .service-app-card {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 22px;
+    background: #ffffff;
+    border: 1px solid #ebf4fe;
+    box-shadow: 0px 4px 24px rgba(243, 249, 253, 0.32);
+    border-radius: 6px;
+    padding: 14px;
+    .da-card-icon {
+      .circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 10px solid #ebf4fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include fontStyle(32px, 700, $dark-blue);
+        line-height: 150%;
+      }
+    }
+    .da-card-body {
+      h4 {
+        @include fontStyle(18px, 700, $dark-blue);
+        line-height: 150%;
+        margin-bottom: 8px;
+      }
+      p {
+        @include fontStyle(14px, 400, #5d5d5f);
+        line-height: 150%;
+        line-height: 24px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
