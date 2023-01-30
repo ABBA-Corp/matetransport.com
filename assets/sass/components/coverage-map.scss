@@ -127,6 +127,8 @@
     overflow: hidden;
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   .news-card-body {
@@ -178,6 +180,9 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
   }
+  .news-card-img {
+    height: 160px !important;
+  }
   .coverage-map-img {
     svg {
       width: 100%;
@@ -187,7 +192,7 @@
     margin-top: 150px;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .coverage-map-form {
     padding: 24px 16px;
   }
@@ -224,6 +229,7 @@
   .log-news {
     padding: 16px 24px;
     grid-gap: 40px;
+    
     h3 {
       @include fontStyle(18px, 700, #fff);
       line-height: 20px;
@@ -232,6 +238,9 @@
     img {
       width: 110px;
     }
+  }
+  .last-news {
+    margin-top: 100px;
   }
 }
 @media (max-width: 768px) {
@@ -302,7 +311,7 @@
   }
   .news-card {
     .news-card-img {
-      height: 180px;
+      height: 180px !important;
       width: 100%;
       object-fit: cover;
       border-radius: 6px;
@@ -340,5 +349,6 @@
     line-height: 150%;
     margin-bottom: 10px;
     display: flex;
+    margin-top: 0;
   }
 }

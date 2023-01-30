@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="title-comp">
+    <div class="title-comp title-small">
       <div>
         <h1 v-html="title"></h1>
         <span class="small-title"></span>

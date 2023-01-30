@@ -22,7 +22,7 @@
         <div class="inner-news-shadow"></div>
         <div class="inner-news-container">
           <div
-            class="inner-news-title d-flex align-items-center justify-content-between"
+            class="inner-news-title "
           >
             <div class="d-flex flex-column">
               <h1>The 9 best homes in New York</h1>

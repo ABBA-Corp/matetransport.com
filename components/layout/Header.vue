@@ -43,9 +43,7 @@
       </div>
     </div>
     <div class="header-navbar">
-      <div
-        class="container_xl header-navbar-items"
-      >
+      <div class="container_xl header-navbar-items">
         <div class="header-navbar-logo">
           <img src="../../assets/svg/image 2.svg" alt="" />
         </div>
@@ -91,7 +89,6 @@ export default {
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      console.log(scrollTop);
       if (scrollTop > 300) {
         header.style.top = "0px";
         header.style.marginTop = "0";

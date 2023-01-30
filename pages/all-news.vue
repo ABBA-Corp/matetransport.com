@@ -25,19 +25,33 @@
             <h1>Barcha yangiliklar</h1>
 
             <div class="all-news-grid">
-              <NewsCard />
-              <NewsCard />
-              <NewsCard />
-            </div>
-            <div class="all-news-grid">
-              <NewsCard />
-              <NewsCard />
-              <NewsCard />
-            </div>
-            <div class="all-news-grid">
-              <NewsCard />
-              <NewsCard />
-              <NewsCard />
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
+              <div class="all-news-card-box">
+                <NewsCard />
+              </div>
             </div>
           </div>
         </div>
@@ -51,6 +65,5 @@ import NewsCard from "../components/cards/NewsCard.vue";
 export default { components: { NewsCard } };
 </script>
 <style lang="scss">
-
 
 </style>

@@ -21,6 +21,10 @@
     margin-bottom: 0;
   }
 }
+.title-small {
+  grid-gap: 0 !important;
+  margin-bottom: 0;
+}
 .small-title {
   margin-top: 8px;
   display: block;
@@ -70,5 +74,9 @@
       line-height: 20px;
       margin-bottom: 0;
     }
+  }
+  .title-small {
+    grid-gap: 0 !important;
+    margin-bottom: 24px !important;
   }
 }
