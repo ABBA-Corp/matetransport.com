@@ -81,9 +81,20 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      value: 1,
+      value1: 1,
+    };
+  },
   props: {
     changeSteps: {
       type: Function,
+    },
+  },
+  methods: {
+    onChange(e) {
+      console.log("radio checked", e.target.value);
     },
   },
 };

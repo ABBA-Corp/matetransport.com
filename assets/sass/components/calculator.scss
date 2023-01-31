@@ -11,6 +11,9 @@
   padding-top: 20px;
   padding-bottom: 44px;
 }
+.block-help-mobile {
+  display: none !important;
+}
 .calculator-title {
   @include fontStyle(24px, 600, #000);
   line-height: 32px;
@@ -198,16 +201,92 @@
     grid-template-columns: 3fr 1fr;
     grid-gap: 28px;
   }
+  .block-help {
+    width: 90%;
+  }
 }
 @media (max-width: 768px) {
-
   .calculator-container {
-    padding: 30px 20px;
-    background: #ffffff;
-    border: 1px solid #e9effa;
-    border-radius: 12px;
-    display: grid;
     grid-template-columns: 1fr;
     grid-gap: 28px;
+  }
+  .block-help {
+    width: 100%;
+  }
+
+  .block-help-web {
+    display: none;
+  }
+  .block-help-mobile {
+    display: flex !important;
+  }
+}
+@media (max-width: 576px) {
+  .calculator-title {
+    @include fontStyle(18px, 600, $dark-blue);
+    line-height: 24px;
+    margin-bottom: 16px;
+  }
+  .block-help {
+    margin-top: 28px;
+    p {
+      @include fontStyle(12px, 300, #000);
+    }
+  }
+  .step-title {
+    @include fontStyle(18px, 600, $dark-blue);
+    line-height: 24px;
+    margin-bottom: 0;
+  }
+  .contact-us {
+    padding: 16px;
+    display: flex;
+    background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+    border-radius: 14px;
+    .contact-us-svg {
+      display: flex;
+      align-items: center;
+      margin-right: 8px;
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    .contact-us-body {
+      h4 {
+        @include fontStyle(12px, 700, #ffffff);
+        line-height: 14px;
+        margin-bottom: 4px;
+      }
+      p {
+        @include fontStyle(11px, 400, #ffffff);
+        line-height: 12px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .steps-action {
+    padding-top: 0 !important;
+    margin-top: 24px;
+    .form-btn {
+      width: 100%;
+    }
+  }
+  .included-tariff {
+    padding: 16px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  .tariff-info-text {
+    @include fontStyle(14px, 400, #0070ce);
+    line-height: 16px;
+    svg {
+      margin-right: 7.6px;
+    }
+  }
+  .tariff-info-grid {
+    display: grid;
+    grid-template-columns:  1fr;
+    margin-top: 24px;
   }
 }
