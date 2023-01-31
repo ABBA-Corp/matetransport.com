@@ -1,3 +1,4 @@
+// const locales = "./lang/en-US.js";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -22,6 +23,7 @@ export default {
     { src: "~plugins/antd-ui.js", ssr: false },
     { src: "~plugins/element-ui.js", ssr: false },
     { src: "~plugins/vue-beautiful-chat.js", ssr: false },
+    { src: "~plugins/currentLang.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,7 +36,58 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
+    "@nuxtjs/i18n",
+    "@nuxtjs/axios",
   ],
+  axios: {
+    credentials: true,
+    init(axios) {
+      axios.defaults.withCredentials = true;
+    },
+    baseURL: "https://metalogistics.pythonanywhere.com/api",
+  },
+
+  i18n: {
+    locales: [
+      {
+        code: "en",
+        name: "English",
+      },
+      {
+        code: "es",
+        name: "Español",
+      },
+      {
+        code: "fr",
+        name: "Français",
+      },
+    ],
+    defaultLocale: "en",
+    differentDomains: false,
+    // baseUrl: "http://localhost:3000/",
+    strategy: "prefix_except_default",
+    sortRoutes: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "lang",
+      alwaysRedirect: true,
+      fallbackLocale: "en",
+    },
+    vueI18n: {
+      // fallbackLocale: "en",
+      messages: {
+        en: {
+          welcometo: "Welcome",
+        },
+        fr: {
+          welcometo: "Bienvenue",
+        },
+        es: {
+          welcometo: "Bienvenido",
+        },
+      },
+    },
+  },
   mode: "spa",
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

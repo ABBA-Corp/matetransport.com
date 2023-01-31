@@ -47,13 +47,30 @@
         <div class="header-navbar-logo">
           <img src="../../assets/svg/image 2.svg" alt="" />
         </div>
+        <el-dropdown trigger="click" @command="handleCommand">
+          <span class="el-dropdown-link">
+            {{ $i18n.locale }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              v-for="locale in availableLocales"
+              :key="locale.code"
+              :command="locale.code"
+              icon="el-icon-plus"
+              >{{ locale.name }}</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </el-dropdown>
+
         <div class="header-navbar-nav">
           <ul>
             <li>
-              <nuxt-link class="is-active" to="/">How it works</nuxt-link>
+              <nuxt-link class="is-active" :to="localePath('/inner-news')"
+                >How it works</nuxt-link
+              >
             </li>
             <li>
-              <nuxt-link to="/">For individuals</nuxt-link>
+              <nuxt-link :to="localePath('/')">For individuals</nuxt-link>
             </li>
             <li>
               <nuxt-link to="/">For businesses</nuxt-link>
@@ -84,8 +101,30 @@
 import TextCarousel from "./TextCarousel.vue";
 
 export default {
+  data() {
+    return {
+      translations: [],
+    };
+  },
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales;
+    },
+  },
+  methods: {
+    handleCommand(command) {
+      this.$i18n.setLocale(command);
+      this.GET_TRANSLATIONS(command);
+    },
+    async GET_TRANSLATIONS(command) {
+      this.translations = await this.$store.dispatch(
+        "fetchTranslations/getTranslations",
+        command
+      );
+      console.log(this.translations);
+    },
+  },
   mounted() {
-    console.log(this.$refs);
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;

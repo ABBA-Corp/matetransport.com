@@ -116,6 +116,11 @@
   grid-gap: 32px;
   margin-top: 24px;
 }
+.about-us-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
 .about-desc {
   h1 {
     @include fontStyle(18px, 700, $dark-blue);
@@ -160,6 +165,11 @@
   margin-bottom: 16px;
   z-index: 10;
   position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 .employee-card-name {
   @include fontStyle(18px, 700, $dark-blue);
@@ -238,6 +248,14 @@
     padding-bottom: 64px;
   }
 }
+@media (max-width: 992px) and (min-width: 768px) {
+  .about-video {
+    position: relative;
+    height: 270px;
+    width: 100%;
+    margin-top: 50px;
+  }
+}
 @media (max-width: 768px) {
   .about-us-info {
     padding-top: 64px;
@@ -265,8 +283,23 @@
       text-align: left;
     }
   }
+  .about-grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 32px;
+    margin-top: 24px;
+  }
 }
 @media (max-width: 576px) {
+  .about-us-shadow {
+    display: none;
+  }
+  .about-video {
+    position: relative;
+    height: 238px;
+    width: 100%;
+    margin-top: 24px;
+  }
   .about-title {
     margin-bottom: 32px;
     h4 {
@@ -280,6 +313,76 @@
     p {
       @include fontStyle(14px, 400, #96adc1);
       line-height: 20px;
+    }
+  }
+  .employee-card-avatar {
+    width: 161px;
+    height: 161px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+    z-index: 10;
+    position: relative;
+  }
+  .employee-bg {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    left: 23px;
+    height: 232px;
+    width: 134px;
+  }
+  .employee-card-name {
+    @include fontStyle(16px, 700, $dark-blue);
+  }
+  .employee-card-position {
+    @include fontStyle(12px, 400, #96adc1);
+    margin-top: 2px;
+  }
+  .about-container {
+    padding: 22px 16px;
+  }
+  .about-grid-container {
+    margin-top: 0;
+  }
+  .about-desc {
+    h1 {
+      @include fontStyle(18px, 600, $dark-blue);
+      line-height: 32px;
+    }
+  }
+  .employee-card-grid {
+    margin-top: 3px;
+  }
+  .about-number-info {
+    h2 {
+      @include fontStyle(18px, 700, $dark-blue);
+      line-height: 24px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    h6 {
+      @include fontStyle(12px, 400, #96adc1);
+      line-height: 150%;
+      text-align: center;
+    }
+  }
+  .about-us-numbers {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 40px;
+  }
+}
+@media (max-width: 500px) {
+  .employee-card-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3px;
+  }
+  .employee-card {
+    &:last-child {
+      margin-top: 40px;
     }
   }
 }

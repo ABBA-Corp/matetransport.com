@@ -7,7 +7,6 @@
       />
       <div class="coverage-map-grid">
         <div class="coverage-map-img">
-          <!-- <img src="../assets/svg/map.svg" alt="" /> -->
           <checkbox-svg-map
             :map="USA"
             :location-class="getLocationClass"
@@ -16,12 +15,9 @@
             @mouseout="unpointLocation"
             @mousemove="moveOnLocation"
           />
-          <div
-				class="examples__block__map__tooltip"
-				:style="tooltipStyle"
-			>
-				{{ pointedLocation }}
-			</div>
+          <div class="examples__block__map__tooltip" :style="tooltipStyle">
+            {{ pointedLocation }}
+          </div>
         </div>
         <div class="coverage-map-form">
           <div class="form-block-map">
@@ -29,7 +25,7 @@
             <input
               type="text"
               id="inputFrom"
-              :value="selectedLocations[0]"
+              :value="countries[selectedLocations[0]]"
               placeholder="Zip or city"
             />
           </div>
@@ -39,10 +35,11 @@
             <input
               type="text"
               id="inputTo"
-              :value="selectedLocations[1]"
+              :value="countries[selectedLocations[1]]"
               placeholder="Zip or city"
             />
           </div>
+
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
           >
@@ -123,6 +120,63 @@ export default {
   data() {
     return {
       USA,
+      countries: {
+        ak: "Alaska",
+        al: "Alabama",
+        ar: "Arkansas",
+        as: "American Samoa",
+        az: "Arizona",
+        ca: "California",
+        co: "Colorado",
+        ct: "Connecticut",
+        dc: "District of Columbia",
+        de: "Delaware",
+        fl: "Florida",
+        ga: "Georgia",
+        gu: "Guam",
+        hi: "Hawaii",
+        ia: "Iowa",
+        id: "Idaho",
+        il: "Illinois",
+        in: "Indiana",
+        ks: "Kansas",
+        ky: "Kentucky",
+        la: "Louisiana",
+        ma: "Massachusetts",
+        md: "Maryland",
+        me: "Maine",
+        mi: "Michigan",
+        mn: "Minnesota",
+        mo: "Missouri",
+        ms: "Mississippi",
+        mt: "Montana",
+        nc: "North Carolina",
+        nd: "North Dakota",
+        ne: "Nebraska",
+        nh: "New Hampshire",
+        nj: "New Jersey",
+        nm: "New Mexico",
+        nv: "Nevada",
+        ny: "New York",
+        oh: "Ohio",
+        ok: "Oklahoma",
+        or: "Oregon",
+        pa: "Pennsylvania",
+        pr: "Puerto Rico",
+        ri: "Rhode Island",
+        sc: "South Carolina",
+        sd: "South Dakota",
+        tn: "Tennessee",
+        tx: "Texas",
+        ut: "Utah",
+        va: "Virginia",
+        vi: "Virgin Islands",
+        vt: "Vermont",
+        wa: "Washington",
+        wi: "Wisconsin",
+        wv: "West Virginia",
+        wy: "Wyoming",
+      },
       selectedLocations: [],
       pointedLocation: null,
       tooltipStyle: null,
@@ -151,7 +205,6 @@ export default {
   components: { Title, LastNews, CheckboxSvgMap },
   watch: {
     selectedLocations(newVal, oldVal) {
-      console.log(newVal);
       if (this.selectedLocations.length > 2) {
         this.selectedLocations = this.selectedLocations.slice(-2);
       }
@@ -232,85 +285,84 @@ export default {
 
 /* Maps examples */
 .examples {
-	width: 1000px;
-	margin: 0 auto;
-	font-family: Arial, sans-serif;
-	text-align: center;
+  width: 1000px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  text-align: center;
 
-	&__title {
-		margin-bottom: 80px;
-		padding-bottom: 40px;
-		border-bottom: 1px dotted black;
-		font-size: 24px;
-	}
+  &__title {
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px dotted black;
+    font-size: 24px;
+  }
 
-	&__block {
-		margin-bottom: 80px;
-		padding-bottom: 80px;
-		border-bottom: 1px dotted black;
+  &__block {
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px dotted black;
 
+    &__title {
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
 
-		&__title {
-			margin-bottom: 40px;
-			font-size: 20px;
-		}
+    &__info {
+      display: inline-block;
+      vertical-align: top;
+      width: 450px;
+      text-align: left;
 
-		&__info {
-			display: inline-block;
-			vertical-align: top;
-			width: 450px;
-			text-align: left;
+      &__item {
+        margin-bottom: 20px;
+      }
+    }
 
-			&__item {
-				margin-bottom: 20px;
-			}
-		}
+    &__map {
+      display: inline-block;
+      width: 500px;
 
-		&__map {
-			display: inline-block;
-			width: 500px;
+      &--australia {
+        .svg-map {
+          stroke-width: 0.5; // Australia stroke is larger than other maps
+        }
+      }
 
-			&--australia {
-				.svg-map {
-					stroke-width: 0.5; // Australia stroke is larger than other maps
-				}
-			}
+      &--usa {
+        width: 800px; // USA needs more space	for tooltip
 
-			&--usa {
-				width: 800px; // USA needs more space	for tooltip
+        .svg-map__location {
+          &--heat0 {
+            fill: blue;
+          }
 
-				.svg-map__location {
-					&--heat0 {
-						fill: blue;
-					}
+          &--heat1 {
+            fill: lightblue;
+          }
 
-					&--heat1 {
-						fill: lightblue;
-					}
+          &--heat2 {
+            fill: orange;
+          }
 
-					&--heat2 {
-						fill: orange;
-					}
+          &--heat3 {
+            fill: red;
+          }
 
-					&--heat3 {
-						fill: red;
-					}
+          &:focus,
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+      }
 
-					&:focus,
-					&:hover {
-						opacity: 0.75;
-					}
-				}
-			}
-
-			&__tooltip {
-				position: fixed;
-				// width: 200px;
-				padding: 10px;
-				border: 1px solid darkgray;
-				background-color: white;
-			}
-		}
-	}
+      &__tooltip {
+        position: fixed;
+        // width: 200px;
+        padding: 10px;
+        border: 1px solid darkgray;
+        background-color: white;
+      }
+    }
+  }
 }
 </style>

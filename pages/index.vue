@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="home-page">
-  <Chat/>
     <Banner />
     <div class="carousel-container">
       <div class="container_xl position-relative">
@@ -13,9 +12,9 @@
     </div>
     <AboutUs />
     <LogisticCompany />
-    <LogisticsServices/>
+    <LogisticsServices />
     <CoverageMap />
-    <AboutLogisticComp/>
+    <AboutLogisticComp />
   </div>
 </template>
 
@@ -27,11 +26,24 @@ import LogisticCompany from "../components/LogisticCompany.vue";
 import PartnersCarousel from "../components/PartnersCarousel.vue";
 import LogisticsServices from "../components/LogisticsServices/LogisticsServices.vue";
 import CoverageMap from "../components/CoverageMap.vue";
-import AboutLogisticComp from "../components/AboutLogisticComp.vue"
+import AboutLogisticComp from "../components/AboutLogisticComp.vue";
 import Chat from "../components/Chat.vue";
 export default {
   name: "IndexPage",
-  components: { Banner, PartnersCard, AboutUs, LogisticCompany, LogisticsServices, CoverageMap, AboutLogisticComp, Chat },
+
+  mounted() {
+    console.log(this.currentLang);
+  },
+  components: {
+    Banner,
+    PartnersCard,
+    AboutUs,
+    LogisticCompany,
+    LogisticsServices,
+    CoverageMap,
+    AboutLogisticComp,
+    Chat,
+  },
 };
 </script>
 <style>

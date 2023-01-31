@@ -63,7 +63,7 @@
               рекламу об аренде спецтехники.Специализированный онлайн-сервис
               «Matelogistics» предоставляет полный спектр услуг.
             </p>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="about-us-numbers">
               <div class="about-number-info">
                 <h2>15 years +</h2>
                 <h6>A lot of year experiance</h6>

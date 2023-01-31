@@ -95,7 +95,6 @@ export default {
     const car = this.$refs.carouselControl;
     car.style.width = `${window.innerWidth - 32}px`;
     window.addEventListener("resize", () => {
-      const car = this.$refs.carouselControl;
       car.style.width = `${window.innerWidth - 32}px`;
     });
 

@@ -35,6 +35,7 @@
           </div>
         </div>
         <div class="location-map-form">
+        <div class="location-map-shadow"></div>
           <div class="banner-form">
             <form action="">
               <div class="form-title">
