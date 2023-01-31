@@ -6,6 +6,9 @@
   grid-gap: 20px;
   grid-template-columns: repeat(2, 1fr);
 }
+.el-select-dropdown {
+  z-index: 2005 !important;
+}
 .banner-form {
   padding: 24px;
   z-index: 200;
@@ -331,11 +334,10 @@
     height: 317px;
   }
   .checkbox-input {
-    
     .ant-radio-inner {
       width: 16px !important;
       height: 16px !important;
-     
+
       &::after {
         width: 10px !important;
         height: 10px !important;
@@ -357,7 +359,7 @@
       outline: none;
     }
   }
-  .calculator-container{
+  .calculator-container {
     padding: 16px !important;
   }
 }

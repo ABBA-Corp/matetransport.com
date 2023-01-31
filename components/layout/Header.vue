@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="header" ref="navScroll">
+
     <div class="header-top">
       <div class="container_xl header-top-grid">
         <div class="d-flex align-items-center header-text-animate">
@@ -93,7 +94,7 @@
             >
           </div>
         </div>
-        <div class="mobile-menu">
+        <div class="mobile-menu" @click="drawerOpen">
           <img src="../../assets/svg/hamburger-menu.svg" alt="" />
         </div>
       </div>
@@ -102,11 +103,18 @@
 </template>
 <script>
 import TextCarousel from "./TextCarousel.vue";
-
+import Drawer from "vue-drawer";
 export default {
+  props: {
+    drawerOpen: {
+      type: Function
+    }
+  },
   data() {
     return {
       translations: [],
+      drawerShow: false,
+      
     };
   },
   computed: {
@@ -118,6 +126,9 @@ export default {
     handleCommand(command) {
       this.$i18n.setLocale(command);
       this.GET_TRANSLATIONS(command);
+    },
+    drawerToggle() {
+      this.drawerShow = !this.drawerShow;
     },
     async GET_TRANSLATIONS(command) {
       this.translations = await this.$store.dispatch(
@@ -143,7 +154,7 @@ export default {
       this.lastScrollTop = scrollTop;
     });
   },
-  components: { TextCarousel },
+  components: { TextCarousel, Drawer },
 };
 </script>
 <style lang="scss">
@@ -153,7 +164,7 @@ export default {
   width: 100%;
   position: fixed;
   left: 0;
-  z-index: 2020 !important;
+  z-index: 2006 !important;
   top: 0;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 24px 54px -16px rgba(0, 70, 147, 0.12);
@@ -204,5 +215,8 @@ export default {
       color: #fff;
     }
   }
+}
+.el-drawer__wrapper {
+  z-index: 2009 !important;
 }
 </style>

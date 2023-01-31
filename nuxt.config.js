@@ -23,7 +23,9 @@ export default {
     { src: "~plugins/antd-ui.js", ssr: false },
     { src: "~plugins/element-ui.js", ssr: false },
     { src: "~plugins/vue-beautiful-chat.js", ssr: false },
+    { src: "~plugins/drawer-layout.js", ssr: false },
     { src: "~plugins/currentLang.js", ssr: false },
+    
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,6 +40,7 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/i18n",
     "@nuxtjs/axios",
+    "@nuxtjs/proxy"
   ],
   axios: {
     credentials: true,
@@ -46,7 +49,9 @@ export default {
     },
     baseURL: "https://metalogistics.pythonanywhere.com/api",
   },
-
+  proxy: {
+    '/https://metalogistics.pythonanywhere.com/api/': { target: 'http://localhost:3000/', pathRewrite: {'^/https://metalogistics.pythonanywhere.com/api/': ''}, changeOrigin: true }
+  },
   i18n: {
     locales: [
       {
