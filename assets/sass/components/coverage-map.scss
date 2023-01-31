@@ -229,7 +229,7 @@
   .log-news {
     padding: 16px 24px;
     grid-gap: 40px;
-    
+
     h3 {
       @include fontStyle(18px, 700, #fff);
       line-height: 20px;
@@ -308,6 +308,12 @@
   .coverage-map {
     padding-top: 0px;
     padding-bottom: 0;
+  }
+  .coverage-map-img {
+    height: 400px;
+    svg {
+      width: 100%;
+    }
   }
   .news-card {
     .news-card-img {

@@ -215,45 +215,45 @@ export default {
 <style lang="" src="vue-svg-map/dist/index.css"></style>
 
 <style lang="scss">
-// .svg-map__location {
-//   fill: rgb(2, 78, 144);
-// }
-// .svg-map {
-//   stroke: none;
-//   width: 600px;
-// }
+.svg-map__location {
+  fill: rgb(2, 78, 144);
+}
+.svg-map {
+  stroke: none;
+  width: 600px;
+}
 
-// .svg-map__location:focus,
-// .svg-map__location:hover {
-//   fill: rgb(40, 146, 239);
-// }
-// .svg-map__location[aria-checked="true"] {
-//   fill: rgb(40, 146, 239);
-// }
-// .mate-news {
-//   position: relative;
-//   &::after {
-//     content: "";
-//     position: absolute;
-//     width: 395px;
-//     height: 381px;
-//     left: calc(-395px - 30px);
-//     background: #73abff;
-//     opacity: 0.45;
-//     filter: blur(165.385px);
-//   }
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     width: 395px;
-//     height: 381px;
-//     bottom: -243px;
-//     left: 50%;
-//     background: #73abff;
-//     opacity: 0.45;
-//     filter: blur(165.385px);
-//   }
-// }
+.svg-map__location:focus,
+.svg-map__location:hover {
+  fill: rgb(40, 146, 239);
+}
+.svg-map__location[aria-checked="true"] {
+  fill: rgb(40, 146, 239);
+}
+.mate-news {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 395px;
+    height: 381px;
+    left: calc(-395px - 30px);
+    background: #73abff;
+    opacity: 0.45;
+    filter: blur(165.385px);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 395px;
+    height: 381px;
+    bottom: -243px;
+    left: 50%;
+    background: #73abff;
+    opacity: 0.45;
+    filter: blur(165.385px);
+  }
+}
 
 // .svg-map {
 //   width: 100%;
@@ -284,85 +284,85 @@ export default {
 }
 
 /* Maps examples */
-// .examples {
-//   width: 1000px;
-//   margin: 0 auto;
-//   font-family: Arial, sans-serif;
-//   text-align: center;
+.examples {
+  width: 1000px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  text-align: center;
 
-//   &__title {
-//     margin-bottom: 80px;
-//     padding-bottom: 40px;
-//     border-bottom: 1px dotted black;
-//     font-size: 24px;
-//   }
+  &__title {
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px dotted black;
+    font-size: 24px;
+  }
 
-//   &__block {
-//     margin-bottom: 80px;
-//     padding-bottom: 80px;
-//     border-bottom: 1px dotted black;
+  &__block {
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px dotted black;
 
-//     &__title {
-//       margin-bottom: 40px;
-//       font-size: 20px;
-//     }
+    &__title {
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
 
-//     &__info {
-//       display: inline-block;
-//       vertical-align: top;
-//       width: 450px;
-//       text-align: left;
+    &__info {
+      display: inline-block;
+      vertical-align: top;
+      width: 450px;
+      text-align: left;
 
-//       &__item {
-//         margin-bottom: 20px;
-//       }
-//     }
+      &__item {
+        margin-bottom: 20px;
+      }
+    }
 
-//     &__map {
-//       display: inline-block;
-//       width: 500px;
+    &__map {
+      display: inline-block;
+      width: 500px;
 
-//       &--australia {
-//         .svg-map {
-//           stroke-width: 0.5; // Australia stroke is larger than other maps
-//         }
-//       }
+      &--australia {
+        .svg-map {
+          stroke-width: 0.5; // Australia stroke is larger than other maps
+        }
+      }
 
-//       &--usa {
-//         width: 800px; // USA needs more space	for tooltip
+      &--usa {
+        width: 800px; // USA needs more space	for tooltip
 
-//         .svg-map__location {
-//           &--heat0 {
-//             fill: blue;
-//           }
+        .svg-map__location {
+          &--heat0 {
+            fill: blue;
+          }
 
-//           &--heat1 {
-//             fill: lightblue;
-//           }
+          &--heat1 {
+            fill: lightblue;
+          }
 
-//           &--heat2 {
-//             fill: orange;
-//           }
+          &--heat2 {
+            fill: orange;
+          }
 
-//           &--heat3 {
-//             fill: red;
-//           }
+          &--heat3 {
+            fill: red;
+          }
 
-//           &:focus,
-//           &:hover {
-//             opacity: 0.75;
-//           }
-//         }
-//       }
+          &:focus,
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+      }
 
-//       &__tooltip {
-//         position: fixed;
-//         // width: 200px;
-//         padding: 10px;
-//         border: 1px solid darkgray;
-//         background-color: white;
-//       }
-//     }
-//   }
-// }
+      &__tooltip {
+        position: fixed;
+        // width: 200px;
+        padding: 10px;
+        border: 1px solid darkgray;
+        background-color: white;
+      }
+    }
+  }
+}
 </style>
