@@ -277,4 +277,9 @@ export default {
     width: 48px;
     height: 48px;
 }
+@media (max-width: 450px) {
+  .sc-chat-window {
+    bottom: 90px !important;
+  }
+}
 </style>

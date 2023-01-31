@@ -21,12 +21,12 @@
         </div>
         <div class="service-container">
           <div
-            class="service-title d-flex align-items-center justify-content-between"
+            class="service-title"
           >
             <div class="d-flex flex-column">
               <h1>Delivery Trucks</h1>
               <p>
-                Sasco Global provides professional and <br />
+                Sasco Global provides professional and 
                 comprehensive Air Freight
               </p>
             </div>
