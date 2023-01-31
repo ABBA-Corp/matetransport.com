@@ -1,6 +1,9 @@
 .header {
   width: 100%;
 }
+.nav_drop {
+  z-index: 2021 !important;
+}
 .header-top {
   padding-top: 7px;
   padding-bottom: 9px;
@@ -131,7 +134,17 @@
     }
   }
 }
+
 .header-navbar-btn {
+  display: flex;
+  align-items: center;
+  .nav_lang {
+    margin-right: 28px;
+    .el-dropdown-link {
+      @include fontStyle(16px, 600, $dark-blue);
+      line-height: 20px;
+    }
+  }
   .leave-comment {
     position: relative;
     padding: 14px 26px 13px 25px;

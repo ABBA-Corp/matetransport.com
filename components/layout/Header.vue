@@ -47,20 +47,6 @@
         <div class="header-navbar-logo">
           <img src="../../assets/svg/image 2.svg" alt="" />
         </div>
-        <el-dropdown trigger="click" @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{ $i18n.locale }}<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              v-for="locale in availableLocales"
-              :key="locale.code"
-              :command="locale.code"
-              icon="el-icon-plus"
-              >{{ locale.name }}</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
 
         <div class="header-navbar-nav">
           <ul>
@@ -84,6 +70,23 @@
           </ul>
         </div>
         <div class="header-navbar-btn">
+          <el-dropdown
+            trigger="click"
+            class="nav_lang"
+            @command="handleCommand"
+          >
+            <span class="el-dropdown-link">
+              Рус<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown" class="nav_drop">
+              <el-dropdown-item
+                v-for="locale in availableLocales"
+                :key="locale.code"
+                :command="locale.code"
+                >{{ locale.name }}</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
           <div>
             <nuxt-link class="leave-comment" to="/"
               ><span>Zayavka qoldirish</span></nuxt-link
