@@ -14,12 +14,12 @@
         <AboutLogisticCard
           data-aos="fade-up"
           data-aos-duration="800"
-          :data-aos-delay="500"
+          :data-aos-delay="400"
         />
         <AboutLogisticCard
           data-aos="fade-up"
           data-aos-duration="800"
-          :data-aos-delay="900"
+          :data-aos-delay="600"
         />
       </div>
     </div>
