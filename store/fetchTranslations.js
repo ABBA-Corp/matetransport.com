@@ -1,8 +1,8 @@
 export const actions = {
-  async getTranslations({}, lang) {
+  async getTranslations({}, langCode) {
     const res = await this.$axios.$get(`/articles`, {
       headers: {
-        language: lang,
+        language: langCode,
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
