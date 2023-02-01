@@ -49,6 +49,7 @@ export default {
       axios.defaults.withCredentials = true;
     },
     baseURL: "https://metalogistics.pythonanywhere.com/api",
+    
   },
   proxy: {
     "/https://metalogistics.pythonanywhere.com/api/": {
