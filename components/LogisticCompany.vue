@@ -4,9 +4,9 @@
       <Title title="Mate logistics Company" text="Why you should book with one of the best auto <br/> shipping companies:"/>
 
       <div class="logistic-comp-grid">
-        <LogisticCompCard />
-        <LogisticCompCard />
-        <LogisticCompCard />
+        <LogisticCompCard data-aos="fade-right" data-aos-duration="800"/>
+        <LogisticCompCard data-aos="zoom-in" data-aos-duration="800"/>
+        <LogisticCompCard data-aos="fade-left" data-aos-duration="800"/>
       </div>
     </div>
   </div>

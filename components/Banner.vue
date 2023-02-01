@@ -7,7 +7,7 @@
       />
     </div>
     <div class="banner-grid">
-      <div class="banner-video">
+      <div class="banner-video" data-aos="fade-right" data-aos-duration="1000">
         <div class="banner-title">
           <h1>Fast & reliable nationwide auto transport company</h1>
           <p>
@@ -25,7 +25,7 @@
           ></video>
         </div>
       </div>
-      <div class="banner-form">
+      <div class="banner-form" data-aos="fade-left" data-aos-duration="1000">
         <div class="ellipse-shodow3"></div>
 
         <form action="">
@@ -57,7 +57,7 @@
             <label for="inputTo">Your phone number</label>
             <input type="text" id="inputTo" placeholder="Zip or city" />
           </div>
-          <div class="banner-form-btn  steps-action">
+          <div class="banner-form-btn steps-action">
             <div
               class="form-btn"
               @click="next"
@@ -211,7 +211,6 @@ export default {
   border: 2.07381px dashed #d8dfec;
   background: transparent !important;
 }
-
 
 .el-select-dropdown {
   background: #f4f8ff !important;

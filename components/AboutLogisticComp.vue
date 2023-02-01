@@ -6,9 +6,21 @@
         text="Why you should book with one of the best auto <br/> shipping companies:"
       />
       <div class="about-logistic-comp-grid about-shadow">
-        <AboutLogisticCard />
-        <AboutLogisticCard />
-        <AboutLogisticCard />
+        <AboutLogisticCard
+          data-aos="fade-up"
+          data-aos-duration="800"
+          :data-aos-delay="200"
+        />
+        <AboutLogisticCard
+          data-aos="fade-up"
+          data-aos-duration="800"
+          :data-aos-delay="500"
+        />
+        <AboutLogisticCard
+          data-aos="fade-up"
+          data-aos-duration="800"
+          :data-aos-delay="900"
+        />
       </div>
     </div>
   </div>
@@ -22,8 +34,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
-
 .about-shadow {
   position: relative;
   &::after {

@@ -1,5 +1,9 @@
 <template>
-  <div class="flex items-center justify-center blog position-relative">
+  <div
+    class="flex items-center justify-center blog position-relative"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -82,6 +86,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -3,7 +3,7 @@
     <div class="container_xl">
       <Title title="Biz qanday ishlaymiz?" />
       <div class="about-us-grid">
-        <div class="img-block">
+        <div class="img-block" data-aos="fade-right" data-aos-duration="1000">
           <img
             src="../assets/images/579_primaryy-1024x657-1870x1200 1.png"
             alt=""
@@ -149,7 +149,11 @@
             </p>
           </div>
         </div>
-        <div class="about-us-info">
+        <div
+          class="about-us-info"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <div class="about-title">
             <h4>
               Kompaniyamizning ishlash tartibi shulardan iborat barcha qadamlar

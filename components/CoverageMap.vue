@@ -6,7 +6,7 @@
         text="Специализированный онлайн-сервис «Matelogistics» <br/> предоставляет полный спектр услуг. Объявления <br/> охватывают всю"
       />
       <div class="coverage-map-grid">
-        <div class="coverage-map-img">
+        <div class="coverage-map-img"  data-aos="zoom-in" data-aos-duration="800">
           <checkbox-svg-map
             :map="USA"
             :location-class="getLocationClass"
@@ -19,7 +19,7 @@
             {{ pointedLocation }}
           </div>
         </div>
-        <div class="coverage-map-form">
+        <div class="coverage-map-form"  data-aos="fade-left" data-aos-duration="800">
           <div class="form-block-map">
             <label for="inputFrom">Tochka A</label>
             <input

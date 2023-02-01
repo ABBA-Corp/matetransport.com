@@ -16,7 +16,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/sass/app.scss"],
+  css: ["~/assets/sass/app.scss","aos/dist/aos.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -25,7 +25,8 @@ export default {
     { src: "~plugins/vue-beautiful-chat.js", ssr: false },
     { src: "~plugins/drawer-layout.js", ssr: false },
     { src: "~plugins/currentLang.js", ssr: false },
-    
+    { src: "~/plugins/aos", ssr: false },
+    { src: "~plugins/vue-js-modal.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -40,7 +41,7 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/i18n",
     "@nuxtjs/axios",
-    "@nuxtjs/proxy"
+    "@nuxtjs/proxy",
   ],
   axios: {
     credentials: true,
@@ -50,7 +51,11 @@ export default {
     baseURL: "https://metalogistics.pythonanywhere.com/api",
   },
   proxy: {
-    '/https://metalogistics.pythonanywhere.com/api/': { target: 'http://localhost:3000/', pathRewrite: {'^/https://metalogistics.pythonanywhere.com/api/': ''}, changeOrigin: true }
+    "/https://metalogistics.pythonanywhere.com/api/": {
+      target: "http://localhost:3000/",
+      pathRewrite: { "^/https://metalogistics.pythonanywhere.com/api/": "" },
+      changeOrigin: true,
+    },
   },
   i18n: {
     locales: [
@@ -97,6 +102,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // fix to work with swiperjs 8 - need to run with standalone:true. That can make some troubles.
+    vendor: ["aos"],
     standalone: true,
     extend(config, ctx) {
       // fix to work with swiperjs 8 add needed deps. you can get them from error when doing nuxt generate

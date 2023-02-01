@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="swiper mySwiper-2">
+    <div class="swiper mySwiper-2"  data-aos="fade-left" data-aos-duration="800">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <LogisticsServicesCard />
