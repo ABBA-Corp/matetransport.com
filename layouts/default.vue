@@ -275,6 +275,9 @@ export default {
   align-items: center;
   margin-bottom: 56px;
   margin-top: 56px;
+  .drawer_brands {
+    margin-top: 32px;
+  }
   svg {
     path {
       stroke: #024e90;
