@@ -164,6 +164,14 @@
 .banner-title-mobile {
   display: none;
 }
+.checkbox-input {
+  .ant-radio-inner {
+    &::after {
+      top: 3px !important;
+      left: 3px !important;
+    }
+  }
+}
 @media (max-width: 1200px) and (min-width: 300px) {
   .banner-form {
     margin-right: 16px;
@@ -341,6 +349,8 @@
       &::after {
         width: 10px !important;
         height: 10px !important;
+        top: 2px !important;
+        left: 2px !important;
       }
     }
   }

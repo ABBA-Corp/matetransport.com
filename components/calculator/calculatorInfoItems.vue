@@ -28,8 +28,28 @@
         </a-radio>
       </div>
     </a-radio-group>
-    <p v-if="!checkbox">{{ option }}</p>
-    <div class="edit-btn">
+    <div class="edit_input" v-if="editShow">
+      <input type="text" />
+      <span @click="editInfo(false)"
+        ><svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+            stroke="#024E90"
+            stroke-width="1.5"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          /></svg
+      ></span>
+    </div>
+    <p v-if="!checkbox && !editShow">{{ option }}</p>
+    <div class="edit-btn" @click="editInfo(true)" v-if="!editShow">
       <svg
         v-if="edit"
         width="13"
@@ -53,13 +73,53 @@ export default {
     return {
       value: 1,
       value1: 1,
+      editShow: false,
     };
   },
   methods: {
     onChange(e) {
       console.log("radio checked", e.target.value);
     },
+    editInfo(val) {
+      this.editShow = val;
+    },
   },
 };
 </script>
-<style lang=""></style>
+<style lang="scss">
+.edit_input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  input {
+    background: #f4f8ff;
+    border: 1px solid #d2dbec;
+    border-radius: 6px;
+    width: 100%;
+    padding: 6px 13px;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #024e90;
+    &:focus {
+      outline: none;
+    }
+  }
+  span {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    svg {
+      width: 16px;
+      height: 16px;
+      path {
+        stroke: #9a999b;
+      }
+    }
+  }
+}
+</style>
