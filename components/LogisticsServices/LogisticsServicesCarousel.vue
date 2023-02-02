@@ -36,37 +36,10 @@
         </div>
       </div>
     </div>
-    <div class="swiper mySwiper-2"  data-aos="fade-left" data-aos-duration="800">
+    <div class="swiper mySwiper-2" data-aos="fade-left" data-aos-duration="800">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
-        </div>
-        <div class="swiper-slide">
-          <LogisticsServicesCard />
+        <div class="swiper-slide" v-for="service in services">
+          <LogisticsServicesCard :service="service"/>
         </div>
         <div class="swiper-slide">
           <div><h1></h1></div>
@@ -86,6 +59,7 @@ import "swiper/swiper-bundle.min.css";
 import LogisticsServicesCard from "../cards/LogisticsServicesCard.vue";
 import PartnersCard from "../cards/PartnersCard.vue";
 export default {
+  props: ["services"],
   computed: {
     windowWidth() {
       return window.innerWidth;

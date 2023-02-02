@@ -15,6 +15,7 @@
             @mouseout="unpointLocation"
             @mousemove="moveOnLocation"
           />
+            
           <div class="examples__block__map__tooltip" :style="tooltipStyle">
             {{ pointedLocation }}
           </div>

@@ -8,7 +8,7 @@
     </div>
     <div class="logistic-services-container container_xl">
       <div class="carousel_grid" ref="carouselWidth">
-        <div class="position-relative"><LogisticsServicesCarousel /></div>
+        <div class="position-relative"><LogisticsServicesCarousel :services="services"/></div>
       </div>
     </div>
   </div>
@@ -18,6 +18,7 @@ import Title from "../Title.vue";
 import LogisticsServicesCarousel from "./LogisticsServicesCarousel.vue";
 
 export default {
+  props: ["services"],
   mounted() {
     const car = this.$refs.carouselWidth;
     car.style.width = `${window.innerWidth + 500}px`;

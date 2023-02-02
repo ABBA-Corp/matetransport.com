@@ -1,6 +1,7 @@
 // const locales = "./lang/en-US.js";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  loading: "~/components/loading.vue",
   head: {
     title: "meta-logistics",
     htmlAttrs: {
@@ -16,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/sass/app.scss","aos/dist/aos.css"],
+  css: ["~/assets/sass/app.scss", "aos/dist/aos.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -28,7 +29,11 @@ export default {
     { src: "~/plugins/aos", ssr: false },
     { src: "~plugins/vue-js-modal.js", ssr: false },
   ],
-
+  loadingIndicator: {
+    name: "circle",
+    color: "#3B8070",
+    background: "white",
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -49,7 +54,6 @@ export default {
       axios.defaults.withCredentials = true;
     },
     baseURL: "https://metalogistics.pythonanywhere.com/api",
-    
   },
   proxy: {
     "/https://metalogistics.pythonanywhere.com/api/": {
@@ -65,12 +69,8 @@ export default {
         name: "English",
       },
       {
-        code: "es",
-        name: "Español",
-      },
-      {
-        code: "fr",
-        name: "Français",
+        code: "ru",
+        name: "Russian",
       },
     ],
     defaultLocale: "en",

@@ -58,8 +58,11 @@ feColorMatrix .service-select {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
+  height: 565px;
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 .service-desc {
@@ -234,8 +237,14 @@ feColorMatrix .service-select {
   .service-container {
     padding: 32px;
   }
+  .service-banner {
+    height: 400px;
+  }
 }
 @media (max-width: 768px) {
+  .service-banner {
+    height: 300px;
+  }
   .service-title {
     display: flex;
     flex-direction: column;
@@ -348,12 +357,13 @@ feColorMatrix .service-select {
     div {
       width: 100%;
       input {
-        width: 100%
-      };
+        width: 100%;
+      }
     }
   }
   .service-banner {
     margin-top: 16px;
+    height: 214px;
   }
   .service-btn-group {
     display: flex;

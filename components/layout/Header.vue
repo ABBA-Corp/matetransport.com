@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="header" ref="navScroll">
-
     <div class="header-top">
       <div class="container_xl header-top-grid">
         <div class="d-flex align-items-center header-text-animate">
@@ -45,7 +44,7 @@
     </div>
     <div class="header-navbar">
       <div class="container_xl header-navbar-items">
-        <div class="header-navbar-logo">
+        <div class="header-navbar-logo" @click="show">
           <img src="../../assets/svg/image 2.svg" alt="" />
         </div>
 
@@ -98,23 +97,46 @@
           <img src="../../assets/svg/hamburger-menu.svg" alt="" />
         </div>
       </div>
+      <modal name="modal_header" width="590px" height="auto">
+        <div class="modal_container">
+          <div class="modal_header d-flex justify-content-between">
+            <h5>Tezkor aloqa</h5>
+            <span @click="hide"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                  stroke="#024E90"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></span>
+          </div></div
+      ></modal>
     </div>
   </div>
 </template>
 <script>
 import TextCarousel from "./TextCarousel.vue";
+
 import Drawer from "vue-drawer";
 export default {
   props: {
     drawerOpen: {
-      type: Function
-    }
+      type: Function,
+    },
   },
   data() {
     return {
       translations: [],
       drawerShow: false,
-      
     };
   },
   computed: {
@@ -122,23 +144,39 @@ export default {
       return this.$i18n.locales;
     },
   },
+
   methods: {
+    show() {
+      this.$modal.show(`modal_header`);
+    },
+    hide() {
+      this.$modal.hide(`modal_header`);
+    },
     handleCommand(command) {
       this.$i18n.setLocale(command);
-      this.GET_TRANSLATIONS(command);
+      this.GET_STATIC_INFORMATIONS(command);
+      this.$store.commit("getTranslations", command);
     },
     drawerToggle() {
       this.drawerShow = !this.drawerShow;
     },
     async GET_TRANSLATIONS(command) {
-      this.translations = await this.$store.dispatch(
+      this.translations = this.$store.dispatch(
         "fetchTranslations/getTranslations",
         command
       );
-      console.log(this.translations);
+    },
+    async GET_STATIC_INFORMATIONS() {
+      const info = await this.$store.dispatch(
+        "fetchStaticInformations/getStaticInformations",
+        this.$i18n.locale
+      );
+      await this.$store.commit("getInfo", info);
     },
   },
   mounted() {
+    this.GET_STATIC_INFORMATIONS();
+
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;

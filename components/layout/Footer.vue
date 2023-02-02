@@ -26,7 +26,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              +998 99 011 89 34</a
+              {{ $store.state.staticInfo.nbm }}</a
             >
             <a href="">
               <svg
@@ -51,7 +51,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              America California street 8A</a
+              {{ $store.state.staticInfo.adres }}</a
             >
             <a href=""
               ><svg
@@ -69,11 +69,11 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              info@matelogistics.com</a
+              {{ $store.state.staticInfo.email }}</a
             >
           </div>
           <div class="brand-icons">
-            <span
+            <a :href="$store.state.staticInfo.instagram"
               ><svg
                 width="24"
                 height="24"
@@ -90,8 +90,8 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </span>
-            <span
+            </a>
+            <a :href="$store.state.staticInfo.facebook"
               ><svg
                 width="24"
                 height="24"
@@ -108,8 +108,8 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </span>
-            <span
+            </a>
+            <a :href="$store.state.staticInfo.telegram"
               ><svg
                 width="24"
                 height="24"
@@ -126,8 +126,8 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </span>
-            <span
+            </a>
+            <a :href="$store.state.staticInfo.telegram"
               ><svg
                 width="24"
                 height="24"
@@ -144,7 +144,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </span>
+            </a>
           </div>
         </div>
         <div class="footer-menu">
@@ -202,7 +202,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            +998 99 011 89 34</a
+            {{ $store.state.staticInfo.nbm }}</a
           >
           <a href="">
             <svg
@@ -227,7 +227,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-            America California street 8A</a
+            {{ $store.state.staticInfo.adres }}</a
           >
           <a href=""
             ><svg
@@ -245,20 +245,11 @@
                 stroke-linejoin="round"
               />
             </svg>
-            info@matelogistics.com</a
+            {{ $store.state.staticInfo.email }}</a
           >
         </div>
-        <div class="footer-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.6359508726446!2d69.33234131492554!3d41.33852900698645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef48a8ed4d0e9%3A0x3772abeffc72e7b8!2z0KPQvdC40LLQtdGA0YHQuNGC0LXRgiDQmNC90YXQsA!5e0!3m2!1sru!2s!4v1674815269297!5m2!1sru!2s"
-            width="488px"
-            height="214"
-            style="border: 0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+
+        <div class="footer-map" v-html="$store.state.staticInfo.map"></div>
       </div>
       <div class="footer-hr"></div>
       <div class="footer-bottom d-flex justify-content-between">
@@ -275,13 +266,14 @@ export default {
       return this.$i18n.locale;
     },
   },
+  mounted() {},
   watch: {
-    localChange(newVal,oldVal) {
-      if(newVal != oldVal) {
+    localChange(newVal, oldVal) {
+      if (newVal != oldVal) {
         console.log("GETTT");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang=""></style>

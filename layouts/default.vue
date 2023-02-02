@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <div class="header-back"></div>
     <el-drawer
       title="I am the title"
       :visible.sync="drawer"
@@ -173,7 +174,6 @@
 
     <Chat />
     <Header :drawerOpen="drawerOpen" />
-    <div class="header-back"></div>
     <Nuxt />
     <Footer />
   </div>
@@ -294,5 +294,11 @@ export default {
 }
 .body-control {
   height: calc(100% - 97px);
+}
+
+@media (max-width: 1000px) and (min-width: 576px) {
+  .el-drawer {
+    width: 270px !important;
+  }
 }
 </style>

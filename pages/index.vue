@@ -12,7 +12,7 @@
     </div>
     <AboutUs />
     <LogisticCompany />
-    <LogisticsServices />
+    <LogisticsServices :services="services" />
     <CoverageMap />
     <AboutLogisticComp />
   </div>
@@ -30,9 +30,37 @@ import AboutLogisticComp from "../components/AboutLogisticComp.vue";
 import Chat from "../components/Chat.vue";
 export default {
   name: "IndexPage",
-
+  data() {
+    return {
+      services: [],
+    };
+  },
+  computed: {
+    localChange() {
+      return this.$i18n.locale;
+    },
+  },
   mounted() {
-    console.log(this.currentLang);
+    this.GET_SERVICES();
+    this.GET_GOOGLE_API();
+  },
+  methods: {
+    async GET_GOOGLE_API() {
+      this.googleApi = await this.$store.dispatch(
+        "fetchGoogleApi/getGoogleApi"
+      );
+    },
+    async GET_SERVICES() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.services = await this.$store.dispatch(
+        "fetchServices/getServices",
+        this.$i18n.locale
+      );
+      console.log(this.services);
+      await this.$nuxt.$loading.finish();
+    },
   },
   components: {
     Banner,
@@ -43,6 +71,12 @@ export default {
     CoverageMap,
     AboutLogisticComp,
     Chat,
+  },
+  watch: {
+    localChange(newVal, oldVal) {
+      if (newVal != oldVal) {
+      }
+    },
   },
 };
 </script>

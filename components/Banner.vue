@@ -9,20 +9,126 @@
     <div class="banner-grid">
       <div class="banner-video" data-aos="fade-right" data-aos-duration="1000">
         <div class="banner-title">
-          <h1>Fast & reliable nationwide auto transport company</h1>
+          <h1>{{ $store.state.staticInfo.title }}</h1>
           <p>
-            Montway Auto Transport is the number one rated car transporter in
-            the U.S.
+            {{ $store.state.staticInfo.subtitle }}
           </p>
         </div>
         <div class="video-container">
           <video
+            ref="video"
             autoplay="autoplay"
             loop="loop"
-            playsinline
-            muted="muted"
-            src="../assets/video/Logistics_Intro_Video_KEFt2quibkg_135.mp4"
+            :muted="videoMuted"
+            type="video/mp4"
+            src="../assets/video/logistic_vid.mp4"
           ></video>
+        </div>
+        <div class="video_controller">
+          <div class="playVideo" @click="videoPlay">
+            <svg
+              v-if="!video"
+              class="pause_svg"
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1280.000000pt"
+              height="1280.000000pt"
+              viewBox="0 0 1280.000000 1280.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <metadata>
+                Created by potrace 1.15, written by Peter Selinger 2001-2017
+              </metadata>
+              <g
+                transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+                fill="#fff"
+                stroke="none"
+              >
+                <path
+                  d="M4610 6399 l0 -2881 43 25 c195 114 4144 2392 4494 2593 339 194 448
+262 440 270 -7 7 -743 434 -1637 949 -894 516 -2001 1155 -2460 1420 -459 265
+-845 487 -857 494 l-23 12 0 -2882z"
+                />
+              </g>
+            </svg>
+            <svg
+              v-else
+              width="13"
+              height="16"
+              viewBox="0 0 13 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0.495361"
+                y="0.85376"
+                width="5.2653"
+                height="14.2915"
+                rx="1.70865"
+                fill="white"
+              />
+              <rect
+                x="7.26404"
+                y="0.85376"
+                width="5.2653"
+                height="14.2915"
+                rx="1.70865"
+                fill="white"
+              />
+            </svg>
+          </div>
+          <div class="playVideo" @click="videoSound">
+            <svg
+              v-if="!video"
+              class="pause_svg"
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1280.000000pt"
+              height="1280.000000pt"
+              viewBox="0 0 1280.000000 1280.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <metadata>
+                Created by potrace 1.15, written by Peter Selinger 2001-2017
+              </metadata>
+              <g
+                transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+                fill="#fff"
+                stroke="none"
+              >
+                <path
+                  d="M4610 6399 l0 -2881 43 25 c195 114 4144 2392 4494 2593 339 194 448
+262 440 270 -7 7 -743 434 -1637 949 -894 516 -2001 1155 -2460 1420 -459 265
+-845 487 -857 494 l-23 12 0 -2882z"
+                />
+              </g>
+            </svg>
+            <svg
+              v-else
+              width="13"
+              height="16"
+              viewBox="0 0 13 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0.495361"
+                y="0.85376"
+                width="5.2653"
+                height="14.2915"
+                rx="1.70865"
+                fill="white"
+              />
+              <rect
+                x="7.26404"
+                y="0.85376"
+                width="5.2653"
+                height="14.2915"
+                rx="1.70865"
+                fill="white"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div class="banner-form" data-aos="fade-left" data-aos-duration="1000">
@@ -140,6 +246,8 @@ export default {
       loading: false,
       iconLoading: false,
       current: 0,
+      video: true,
+      videoMuted: false,
       steps: [
         {
           title: "First",
@@ -184,6 +292,27 @@ export default {
     enterIconLoading() {
       this.iconLoading = { delay: 1000 };
     },
+    videoPlay() {
+      if (this.video) {
+        this.$refs.video.pause();
+        this.video = false;
+      } else {
+        this.$refs.video.play();
+        this.video = true;
+      }
+    },
+    videoSound() {
+      if (this.videoMuted) {
+        this.videoMuted = false;
+      } else {
+        this.videoMuted = true;
+      }
+    },
+  },
+  mounted() {
+    this.video = true;
+    this.videoMuted = false;
+    this.$refs.video.play();
   },
   components: { Title },
 };

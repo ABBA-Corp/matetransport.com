@@ -1,0 +1,33 @@
+.vm--modal {
+  background: #ffffff;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+.modal_header {
+  padding: 22px 24px;
+  background: #f4f8ff;
+  h5 {
+    @include fontStyle(24px, 700, $dark-blue);
+    line-height: 32px;
+  }
+  span {
+    cursor: pointer;
+    svg {
+      width: 32px;
+      height: 32px;
+      path {
+        stroke: #000;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .modal_header {
+    padding: 16px;
+    background: #f4f8ff;
+    h5 {
+      @include fontStyle(18px, 700, $dark-blue);
+      line-height: 24px;
+    }
+  }
+}

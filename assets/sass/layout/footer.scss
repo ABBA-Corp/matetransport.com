@@ -23,7 +23,7 @@
 }
 .brand-icons {
   display: flex;
-  span {
+  a {
     margin-right: 18.67px;
   }
 }
@@ -82,8 +82,11 @@
   position: relative;
 }
 .footer-map {
+  height: 100%;
   iframe {
     border-radius: 8px !important;
+    height: 214px;
+    width: 488px;
   }
 }
 

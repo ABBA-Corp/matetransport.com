@@ -213,3 +213,12 @@
     height: 81px;
   }
 }
+@media (max-width: 1150px) and (min-width: 1080px) {
+  .header-navbar-nav {
+    ul {
+      li {
+        margin-right: 30px;
+      }
+    }
+  }
+}

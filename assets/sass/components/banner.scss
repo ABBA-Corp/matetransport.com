@@ -32,6 +32,48 @@
     }
   }
 }
+.video_controller {
+  position: absolute;
+  bottom: 28px;
+  width: 50%;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .soundVideo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(9.35485px);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .playVideo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(9.35485px);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    .pause_svg {
+      width: 100%;
+      height: 100%;
+    }
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+  }
+}
 .form-block {
   display: flex;
   flex-direction: column;
