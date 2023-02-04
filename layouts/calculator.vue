@@ -365,7 +365,18 @@ export default {
       document.body.style.height = "100vh";
     },
   },
-  mounted() {},
+  mounted() {
+    if (this.$route.fullPath.includes("transport")) {
+      this.currentPath = "/calculator/delivery-details";
+    }
+    console.log(this.$route.fullPath.includes("choice-tarifs"));
+    if (this.$route.fullPath.includes("choice-tarifs")) {
+      this.currentPath = "/calculator/transport";
+    }
+    if (this.$route.fullPath.includes("delivery-details")) {
+      this.currentPath = "/";
+    }
+  },
   components: {
     CalculatorInfoItems,
     CalculatorStep1,

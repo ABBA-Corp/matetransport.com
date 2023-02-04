@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="location-map-form">
-        <div class="location-map-shadow"></div>
+          <div class="location-map-shadow"></div>
           <div class="banner-form">
             <form action="">
               <div class="form-title">
@@ -60,11 +60,7 @@
               <div
                 class="banner-form-btn d-flex justify-content-end steps-action"
               >
-                <div
-                  class="form-btn"
-                  @click="next"
-                  v-if="current < steps.length - 1"
-                >
+                <div class="form-btn">
                   Next stage<svg
                     width="24"
                     height="24"
@@ -353,8 +349,8 @@ export default {
     LocationMapCard,
     ServiceApplicationCard,
     PartnersCarousel,
-    Title
-},
+    Title,
+  },
 };
 </script>
 <style lang=""></style>

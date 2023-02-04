@@ -1,25 +1,32 @@
 <template lang="html">
   <div class="home-page">
-    <LazyBanner />
+    <Banner />
     <div class="carousel-container">
       <div class="container_xl position-relative">
         <div class="ellipse-shodow"></div>
         <div class="ellipse-shodow2"></div>
       </div>
       <div class="carousel-left"></div>
-      <LazyPartnersCarousel />
+      <PartnersCarousel />
       <div class="carousel-right"></div>
     </div>
-    <LazyAboutUs />
-    <LazyLogisticCompany />
-    <LazyLogisticsServices :services="services" />
-    <LazyCoverageMap />
-    <LazyAboutLogisticComp />
+    <AboutUs />
+    <LogisticCompany />
+    <LogisticsServices :services="services" />
+    <CoverageMap />
+    <AboutLogisticComp />
   </div>
 </template>
 
 <script>
+import AboutLogisticComp from "../components/AboutLogisticComp.vue";
+import AboutUs from "../components/AboutUs.vue";
+import Banner from "../components/Banner.vue";
 import Chat from "../components/Chat.vue";
+import CoverageMap from "../components/CoverageMap.vue";
+import LogisticCompany from "../components/LogisticCompany.vue";
+import LogisticsServices from "../components/LogisticsServices/LogisticsServices.vue";
+import PartnersCarousel from "../components/PartnersCarousel.vue";
 export default {
   name: "IndexPage",
   data() {
@@ -56,6 +63,13 @@ export default {
   },
   components: {
     Chat,
+    Banner,
+    PartnersCarousel,
+    AboutUs,
+    LogisticCompany,
+    LogisticsServices,
+    CoverageMap,
+    AboutLogisticComp,
   },
   watch: {
     localChange(newVal, oldVal) {
@@ -71,6 +85,12 @@ export default {
 }
 .home-page {
   overflow: hidden;
-  transition: 1s;
+  transition: 2s;
+}
+body {
+  transition: 10s;
+}
+*{
+scroll-behavior: smooth !important;
 }
 </style>

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="banner">
     <div class="container_xl banner-title-mobile">
-      <LazyTitle
+      <Title
         title="Fast & reliable nationwide auto transport company"
         text="Montway Auto Transport is the number one rated car transporter in the U.S."
       />
@@ -188,11 +188,7 @@
           </div>
 
           <div class="banner-form-btn steps-action">
-            <div
-              class="form-btn"
-              @click="next"
-              v-if="current < steps.length - 1"
-            >
+            <div class="form-btn" @click="next" v-if="active != 3">
               Next stage<svg
                 width="24"
                 height="24"
@@ -210,6 +206,28 @@
                 />
               </svg>
             </div>
+            <nuxt-link
+              class="form-btn"
+              v-else
+              :to="localePath('/calculator/delivery-details')"
+            >
+              Next stage<svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </nuxt-link>
           </div>
           <div class="banner-steps">
             <el-steps :active="active" finish-status="success">
@@ -269,86 +287,92 @@
   </div>
 </template>
 <script>
+import Title from './Title.vue';
+
 export default {
-  data() {
-    return {
-      loading: false,
-      iconLoading: false,
-      current: 0,
-      video: true,
-      videoMuted: false,
-      active: 1,
-      steps: [
-        {
-          title: "First",
-          content: "First-content",
-        },
-        {
-          title: "Second",
-          content: "Second-content",
-        },
-        {
-          title: "Last",
-          content: "Last-content",
-        },
-      ],
-      options: [
-        {
-          value: "Option1",
-          label: "Option1",
-        },
-        {
-          value: "Option2",
-          label: "Option2",
-        },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-      ],
-      value: "",
-    };
-  },
-  methods: {
-    // next() {
-    //   this.current++;
-    // },
-    prev() {
-      this.current--;
+    data() {
+        return {
+            loading: false,
+            iconLoading: false,
+            current: 0,
+            video: true,
+            videoMuted: false,
+            active: 1,
+            steps: [
+                {
+                    title: "First",
+                    content: "First-content",
+                },
+                {
+                    title: "Second",
+                    content: "Second-content",
+                },
+                {
+                    title: "Last",
+                    content: "Last-content",
+                },
+            ],
+            options: [
+                {
+                    value: "Option1",
+                    label: "Option1",
+                },
+                {
+                    value: "Option2",
+                    label: "Option2",
+                },
+                {
+                    value: "Option3",
+                    label: "Option3",
+                },
+            ],
+            value: "",
+        };
     },
-    enterLoading() {
-      this.loading = true;
+    methods: {
+        // next() {
+        //   this.current++;
+        // },
+        prev() {
+            this.current--;
+        },
+        enterLoading() {
+            this.loading = true;
+        },
+        enterIconLoading() {
+            this.iconLoading = { delay: 1000 };
+        },
+        next() {
+            if (this.active++ > 2)
+                this.active = 0;
+            console.log(this.active);
+        },
+        videoPlay() {
+            if (!this.$refs.video.paused) {
+                this.$refs.video.pause();
+                this.video = false;
+            }
+            else {
+                this.$refs.video.play();
+                this.video = true;
+                console.log(this.$refs.video.muted);
+            }
+        },
+        videoSound() {
+            if (this.$refs.video.muted) {
+                this.$refs.video.muted = false;
+            }
+            else {
+                this.$refs.video.muted = true;
+            }
+        },
     },
-    enterIconLoading() {
-      this.iconLoading = { delay: 1000 };
-    },
-    next() {
-      if (this.active++ > 2) this.active = 0;
-      console.log(this.active);
-    },
-    videoPlay() {
-      if (!this.$refs.video.paused) {
-        this.$refs.video.pause();
-        this.video = false;
-      } else {
-        this.$refs.video.play();
+    mounted() {
         this.video = true;
-        console.log(this.$refs.video.muted);
-      }
+        this.videoMuted = false;
+        this.$refs.video.play();
     },
-    videoSound() {
-      if (this.$refs.video.muted) {
-        this.$refs.video.muted = false;
-      } else {
-        this.$refs.video.muted = true;
-      }
-    },
-  },
-  mounted() {
-    this.video = true;
-    this.videoMuted = false;
-    this.$refs.video.play();
-  },
+    components: { Title }
 };
 </script>
 <style lang="scss">

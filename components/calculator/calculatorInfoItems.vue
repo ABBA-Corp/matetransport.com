@@ -82,6 +82,12 @@ export default {
     },
     editInfo(val) {
       this.editShow = val;
+      console.log(this.editShow);
+    },
+    CloseInput() {
+      if (this.editShow) {
+        this.editShow = false;
+      }
     },
   },
 };

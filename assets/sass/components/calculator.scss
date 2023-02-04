@@ -60,6 +60,7 @@
       @include fontStyle(14px, 400, $dark-blue);
       line-height: 20px;
       margin-bottom: 0;
+      cursor: pointer;
     }
     .ant-btn {
       border: none;

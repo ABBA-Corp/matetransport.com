@@ -162,6 +162,9 @@
   padding: 10px 29px;
   border-radius: 500px;
   cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
   svg {
     margin-left: 18px;
   }
