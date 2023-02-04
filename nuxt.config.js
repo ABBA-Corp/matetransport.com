@@ -28,6 +28,7 @@ export default {
     { src: "~plugins/currentLang.js", ssr: false },
     { src: "~/plugins/aos", ssr: false },
     { src: "~plugins/vue-js-modal.js", ssr: false },
+    { src: "~plugins/v-mask.js", ssr: false },
   ],
   loadingIndicator: {
     name: "circle",

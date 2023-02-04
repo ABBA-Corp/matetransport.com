@@ -10,7 +10,12 @@
       >
         {{ service.title }}
       </h3>
-      <h3 v-else>Car delivery</h3>
+      <h3
+        v-else
+        @click="$router.push(localeLocation(`/service/${service.id}`))"
+      >
+        Car delivery
+      </h3>
 
       <p v-if="service.sub_title">
         {{ service.sub_title }}

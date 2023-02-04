@@ -19,7 +19,7 @@
             ref="video"
             autoplay="autoplay"
             loop="loop"
-            :muted="videoMuted"
+            :muted="true"
             type="video/mp4"
             src="../assets/video/logistic_vid.mp4"
           ></video>
@@ -79,52 +79,22 @@
           </div>
           <div class="playVideo" @click="videoSound">
             <svg
-              v-if="!video"
-              class="pause_svg"
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1280.000000pt"
-              height="1280.000000pt"
-              viewBox="0 0 1280.000000 1280.000000"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <metadata>
-                Created by potrace 1.15, written by Peter Selinger 2001-2017
-              </metadata>
-              <g
-                transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-                fill="#fff"
-                stroke="none"
-              >
-                <path
-                  d="M4610 6399 l0 -2881 43 25 c195 114 4144 2392 4494 2593 339 194 448
-262 440 270 -7 7 -743 434 -1637 949 -894 516 -2001 1155 -2460 1420 -459 265
--845 487 -857 494 l-23 12 0 -2882z"
-                />
-              </g>
-            </svg>
-            <svg
-              v-else
-              width="13"
-              height="16"
-              viewBox="0 0 13 16"
+              width="20"
+              height="18"
+              viewBox="0 0 20 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect
-                x="0.495361"
-                y="0.85376"
-                width="5.2653"
-                height="14.2915"
-                rx="1.70865"
+              <path
+                d="M8.40396 1.72494L4.91407 4.46162H1.72696C1.20109 4.46162 0.770828 4.91217 0.770828 5.46285V12.4381C0.770828 12.9889 1.20109 13.4393 1.72696 13.4393H4.91407L8.40396 16.176C9.04138 16.6766 9.93377 16.2093 9.93377 15.375V2.52592C9.93377 1.69156 9.02545 1.22432 8.40396 1.72494Z"
                 fill="white"
               />
-              <rect
-                x="7.26404"
-                y="0.85376"
-                width="5.2653"
-                height="14.2915"
-                rx="1.70865"
+              <path
+                d="M13.089 3.36027C12.6588 2.90972 11.9417 2.90972 11.5116 3.36027C11.0813 3.81082 11.0813 4.56174 11.5116 5.0123C13.5832 7.18162 13.5832 10.7028 11.5116 12.8721C11.0813 13.3226 11.0813 14.0736 11.5116 14.5239C11.7345 14.7576 12.0213 14.8577 12.2922 14.8577C12.5631 14.8577 12.8661 14.741 13.0731 14.5073C16.0371 11.4535 16.0371 6.44739 13.089 3.36027Z"
+                fill="white"
+              />
+              <path
+                d="M14.332 0.740397C13.9019 1.19095 13.9019 1.94187 14.332 2.39242C16.0052 4.14457 16.9296 6.46407 16.9296 8.95045C16.9296 11.4368 16.0052 13.7563 14.332 15.5085C13.9019 15.959 13.9019 16.71 14.332 17.1605C14.5551 17.394 14.8419 17.5109 15.1128 17.5109C15.3997 17.5109 15.6865 17.3941 15.8937 17.1772C17.9812 14.9912 19.1444 12.0709 19.1444 8.96714C19.1444 5.86334 17.997 2.95978 15.8937 0.757084C15.4793 0.289846 14.7782 0.289846 14.332 0.740397Z"
                 fill="white"
               />
             </svg>
@@ -293,19 +263,20 @@ export default {
       this.iconLoading = { delay: 1000 };
     },
     videoPlay() {
-      if (this.video) {
+      if (!this.$refs.video.paused) {
         this.$refs.video.pause();
         this.video = false;
       } else {
         this.$refs.video.play();
         this.video = true;
+        console.log(this.$refs.video.muted);
       }
     },
     videoSound() {
-      if (this.videoMuted) {
-        this.videoMuted = false;
+      if (this.$refs.video.muted) {
+        this.$refs.video.muted = false;
       } else {
-        this.videoMuted = true;
+        this.$refs.video.muted = true;
       }
     },
   },

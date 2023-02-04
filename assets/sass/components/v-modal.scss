@@ -1,14 +1,18 @@
 .vm--modal {
   background: #ffffff;
   border-radius: 8px !important;
-  overflow: hidden;
 }
 .modal_header {
   padding: 22px 24px;
   background: #f4f8ff;
+  align-items: center;
   h5 {
     @include fontStyle(24px, 700, $dark-blue);
     line-height: 32px;
+    margin-bottom: 0;
+  }
+  .sub-text {
+    width: 100% !important;
   }
   span {
     cursor: pointer;
@@ -21,13 +25,226 @@
     }
   }
 }
+.modal_body {
+  padding: 24px;
+
+  .modal-tariff-info-grid {
+    margin-top: 24px;
+    p {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .modal-form-block {
+    margin-top: 24px;
+
+    input {
+      border-radius: 6px;
+    }
+  }
+  .modal_form_block {
+    label {
+      color: #506c85;
+    }
+    input {
+      &::placeholder {
+        color: #96adc1;
+      }
+    }
+  }
+  .modal-form-btn {
+    .form-btn {
+      padding-top: 26px;
+      padding-bottom: 26px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+.modal-application-form-btn {
+  display: flex;
+  justify-content: flex-end;
+  .form-btn {
+    padding: 18px 73px;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+.fasting-contact-text {
+  @include fontStyle(16px, 500, #96adc1);
+  margin-bottom: 0;
+  line-height: 24px;
+  width: 70%;
+}
+
+//  timer
+
+.flip-card__top {
+  background: transparent !important;
+}
+.flip-card__back-bottom,
+.flip-card__back,
+.flip-card__bottom,
+.flip-clock__slot {
+  display: none !important;
+}
+.flip-card__top {
+  background: linear-gradient(90deg, #008aff 0%, #005ba8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  height: initial !important;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 700 !important;
+  font-size: 40px !important;
+  line-height: 150% !important;
+}
+.timer_text {
+  @include fontStyle(16px, 500, #000);
+  line-height: 150%;
+  text-align: center;
+}
+.another_attempt {
+  @include fontStyle(14px, 300, #6d7696);
+  line-height: 150%;
+  text-align: center;
+  text-decoration-line: underline;
+  margin-top: 50px;
+}
+.modal_timer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .two_dots {
+    position: absolute;
+    background: linear-gradient(90deg, #008aff 0%, #005ba8 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    height: initial !important;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    line-height: 150% !important;
+    display: flex;
+    align-items: center;
+  }
+}
+.flip-clock__card {
+  width: 3rem !important;
+  padding: 0 !important;
+}
+.flip-card__top[data-v-b6b5360c],
+.flip-card__bottom[data-v-b6b5360c],
+.flip-card__back-bottom[data-v-b6b5360c],
+.flip-card__back[data-v-b6b5360c]::before,
+.flip-card__back[data-v-b6b5360c]::after {
+  width: 3rem !important;
+  padding: 0 !important;
+}
+.flip-clock {
+  #flip-card-seconds-53147225-3cc8-4a31-83cb-d6d6d78e1af {
+    .flip-clock__card {
+      position: relative !important;
+      display: flex;
+      align-items: center;
+      width: 1rem !important;
+      &:after {
+        content: ":" !important;
+        position: absolute !important;
+        left: -10px !important;
+        background: linear-gradient(90deg, #008aff 0%, #005ba8 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        height: initial !important;
+        font-family: "Mulish";
+        font-style: normal;
+        font-weight: 700 !important;
+        font-size: 40px !important;
+        line-height: 150% !important;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.m-form-title {
+  @include fontStyle(24px, 600, $dark-blue);
+  line-height: 32px;
+  margin-bottom: 24px;
+  display: inline;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 5px;
+    width: 110%;
+    background: #fff;
+  }
+}
+.modal_form_container {
+  margin-top: 16px;
+}
+.form-block-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 21px;
+}
+.m-form-title-hr {
+  border-bottom: 1px solid #d2dbec;
+  margin-bottom: 24px;
+}
 @media (max-width: 576px) {
+  .vm--container {
+    display: flex;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+  }
+  .vm--modal {
+    width: 90% !important;
+    left: auto !important;
+  }
   .modal_header {
     padding: 16px;
     background: #f4f8ff;
     h5 {
       @include fontStyle(18px, 700, $dark-blue);
       line-height: 24px;
+    }
+  }
+  .modal_body {
+    padding: 24px;
+    .fasting-contact-text {
+      @include fontStyle(14px, 500, #96adc1);
+      line-height: 20px;
+    }
+    .modal-tariff-info-grid {
+      margin-top: 24px;
+      p {
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .modal-form-block {
+      margin-top: 24px;
+      input {
+        border-radius: 6px;
+      }
+    }
+    .modal-form-btn {
+      .form-btn {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        @include fontStyle(14px, 500, #fff);
+      }
     }
   }
 }

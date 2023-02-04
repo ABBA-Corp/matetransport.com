@@ -7,7 +7,7 @@
   grid-template-columns: repeat(2, 1fr);
 }
 .el-select-dropdown {
-  z-index: 2005 !important;
+  z-index: 2006 !important;
 }
 .banner-form {
   padding: 24px;
@@ -154,16 +154,16 @@
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  .form-btn {
-    background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
-    @include fontStyle(16px, 600, #fff);
-    line-height: 20px;
-    padding: 10px 29px;
-    border-radius: 500px;
-    cursor: pointer;
-    svg {
-      margin-left: 18px;
-    }
+}
+.form-btn {
+  background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+  @include fontStyle(16px, 600, #fff);
+  line-height: 20px;
+  padding: 10px 29px;
+  border-radius: 500px;
+  cursor: pointer;
+  svg {
+    margin-left: 18px;
   }
 }
 .banner-video {

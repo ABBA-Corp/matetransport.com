@@ -27,8 +27,11 @@
     @include fontStyle(13px, 400, $dark-blue);
     line-height: 16px;
     letter-spacing: -0.03em;
-
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     &:nth-child(1) {
+      margin-right: 17px;
       svg {
         margin-left: 14px;
       }
