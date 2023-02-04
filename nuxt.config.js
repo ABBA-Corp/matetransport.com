@@ -56,13 +56,7 @@ export default {
     },
     baseURL: "https://metalogistics.pythonanywhere.com/api",
   },
-  proxy: {
-    "/https://metalogistics.pythonanywhere.com/api/": {
-      target: "http://localhost:3000/",
-      pathRewrite: { "^/https://metalogistics.pythonanywhere.com/api/": "" },
-      changeOrigin: true,
-    },
-  },
+
   i18n: {
     locales: [
       {

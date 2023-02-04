@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[27],{1464:function(n,t,c){"use strict";c.r(t);var e={},l=c(81),component=Object(l.a)(e,(function(){this._self._c;return this._m(0)}),[function(){var n=this._self._c;return n("div",[n("div",{staticClass:"padding-top"}),this._v("\n  2343242343 adsad3\n")])}],!1,null,null,null);t.default=component.exports}}]);
