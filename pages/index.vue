@@ -71,5 +71,6 @@ export default {
 }
 .home-page {
   overflow: hidden;
+  transition: 1s;
 }
 </style>

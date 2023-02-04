@@ -51,9 +51,7 @@
         <div class="header-navbar-nav">
           <ul>
             <li>
-              <nuxt-link class="is-active" :to="localePath('/inner-news')"
-                >How it works</nuxt-link
-              >
+              <a class="is-active" href="#howItWorks">How it works</a>
             </li>
             <li>
               <nuxt-link :to="localePath('/')">For individuals</nuxt-link>

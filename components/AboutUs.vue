@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="about-us">
+  <div class="about-us" id="howItWorks">
     <div class="container_xl">
       <LazyTitle title="Biz qanday ishlaymiz?" />
       <div class="about-us-grid">
@@ -161,13 +161,11 @@
             </h4>
           </div>
           <div class="about-steps">
-            <a-steps :current="current">
-              <a-step
-                v-for="item in steps"
-                :key="item.title"
-                :title="item.title"
-              />
-            </a-steps>
+            <el-steps :active="2" finish-status="success">
+              <el-step title="Location"></el-step>
+              <el-step title="Name order"></el-step>
+              <el-step title="Truck"></el-step>
+            </el-steps>
           </div>
           <div class="about-text">
             <p>

@@ -108,31 +108,85 @@
           <div class="form-title">
             <h2>Get an instant quoteor call now call</h2>
           </div>
-          <div class="form-block">
-            <label for="inputFrom">Send a copy the quote to</label>
-            <input type="text" id="inputFrom" placeholder="Zip or city" />
-          </div>
-          <div class="form-block">
-            <label for="inputFrom">First available date</label>
-            <el-select
-              class="banner-select"
-              v-model="value"
-              placeholder="Select"
-            >
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+          <div v-if="active == 1">
+            <div class="form-block">
+              <label for="inputFrom">Send a copy the quote to</label>
+              <input type="text" id="inputFrom" placeholder="Zip or city" />
+            </div>
+            <div class="form-block">
+              <label for="inputFrom">First available date</label>
+              <el-select
+                class="banner-select"
+                v-model="value"
+                placeholder="Select"
               >
-              </el-option>
-            </el-select>
-            <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+            </div>
+            <div class="form-block">
+              <label for="inputTo">Your phone number</label>
+              <input type="text" id="inputTo" placeholder="Zip or city" />
+            </div>
           </div>
-          <div class="form-block">
-            <label for="inputTo">Your phone number</label>
-            <input type="text" id="inputTo" placeholder="Zip or city" />
+          <div v-if="active == 2">
+            <div class="form-block">
+              <input type="text" id="inputFrom" placeholder="Zip or city" />
+            </div>
+            <div class="form-block">
+              <el-select
+                class="banner-select"
+                v-model="value"
+                placeholder="Select"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+            </div>
+            <div class="form-block">
+              <label for="inputTo">Your phone number</label>
+              <input type="text" id="inputTo" placeholder="Zip or city" />
+            </div>
           </div>
+          <div v-if="active == 3">
+            <div class="form-block">
+              <input type="text" id="inputFrom" placeholder="Zip or city" />
+            </div>
+            <div class="form-block">
+              <label for="inputFrom">First available date</label>
+              <el-select
+                class="banner-select"
+                v-model="value"
+                placeholder="Select"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+            </div>
+            <div class="form-block">
+              <label for="inputTo">Your phone number</label>
+              <input type="text" id="inputTo" placeholder="Zip or city" />
+            </div>
+          </div>
+
           <div class="banner-form-btn steps-action">
             <div
               class="form-btn"
@@ -158,27 +212,34 @@
             </div>
           </div>
           <div class="banner-steps">
-            <a-steps :current="current">
+            <el-steps :active="active" finish-status="success">
+              <el-step title="Location"></el-step>
+              <el-step title="Name order"></el-step>
+              <el-step title="Truck"></el-step>
+            </el-steps>
+            <!-- <a-steps :current="current">
               <a-step
                 v-for="item in steps"
                 :key="item.title"
                 :title="item.title"
               />
-            </a-steps>
+            </a-steps> -->
           </div>
           <p class="banner-form-info">
             Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
             barcha policy and private qoidalariga rozilik bildirasiz
           </p>
+
+          <!-- <el-button style="margin-top: 12px;" @click="next"
+            >Next step</el-button
+          > -->
+
           <!-- <el-steps :active="active" finish-status="success">
             <el-step title="Step 1"></el-step>
             <el-step title="Step 2"></el-step>
             <el-step title="Step 3"></el-step>
           </el-steps> -->
 
-          <!-- <div class="steps-content">
-            {{ steps[current].content }}
-          </div> -->
           <!-- <div class="steps-action">
             <a-button
               v-if="current < steps.length - 1"
@@ -216,6 +277,7 @@ export default {
       current: 0,
       video: true,
       videoMuted: false,
+      active: 1,
       steps: [
         {
           title: "First",
@@ -248,9 +310,9 @@ export default {
     };
   },
   methods: {
-    next() {
-      this.current++;
-    },
+    // next() {
+    //   this.current++;
+    // },
     prev() {
       this.current--;
     },
@@ -259,6 +321,10 @@ export default {
     },
     enterIconLoading() {
       this.iconLoading = { delay: 1000 };
+    },
+    next() {
+      if (this.active++ > 2) this.active = 0;
+      console.log(this.active);
     },
     videoPlay() {
       if (!this.$refs.video.paused) {

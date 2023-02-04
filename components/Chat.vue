@@ -153,6 +153,7 @@ export default {
   max-height: 562px !important;
   width: 340px !important;
 }
+
 .sc-launcher {
   background: #ffffff !important;
   box-shadow: 0px 4px 35px rgba(0, 138, 255, 0.25) !important;
@@ -281,5 +282,21 @@ export default {
   .sc-chat-window {
     bottom: 90px !important;
   }
+}
+@media (max-width: 576px) {
+  .sc-chat-window {
+  border-radius: 24px !important;
+  max-height: 421px !important;
+  width: 280px !important;
+}
+.sc-user-input--text {
+  //   padding-left: 0 !important;
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  padding-right: 60px !important;
+  background: #f7f7f7 !important;
+  border-radius: 12px !important;
+  position: relative !important;
+}
 }
 </style>

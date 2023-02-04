@@ -1,5 +1,8 @@
 <template lang="html">
   <div class="coverage-map">
+    <div class="examples__block__map__tooltip" v-if="pointedLocation" :style="tooltipStyle">
+      {{ pointedLocation }}
+    </div>
     <div class="container_xl">
       <Title
         title="USA car shipping <br/> coverage map"
@@ -11,25 +14,25 @@
           data-aos="zoom-in"
           data-aos-duration="800"
         >
-          <checkbox-svg-map
+          <!-- <checkbox-svg-map
             :map="USA"
             :location-class="getLocationClass"
             v-model="selectedLocations"
             @mouseover="pointLocation"
             @mouseout="unpointLocation"
             @mousemove="moveOnLocation"
-          />
-
-          <div class="examples__block__map__tooltip" :style="tooltipStyle">
-            {{ pointedLocation }}
-          </div>
+          /> -->
 
           <svg
+            class="map_select"
             width="600"
+            ref="mapRef"
             height="391"
             viewBox="0 0 600 391"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @mousemove="moveOnLocation"
+            @mouseout="unpointLocation"
           >
             <g style="mix-blend-mode: multiply;" opacity="0.25">
               <path
@@ -38,66 +41,69 @@
               />
             </g>
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              :id="1"
+              :class="{ 'is-active_map': currentMap.includes(1) }"
+              @click="mapClick(this, 1)"
+              data-name="wash1"
+              @mouseover="pointLocation"
               d="M143.376 223.916L144.32 220.981L151.083 211.368L148.334 203.156L107.409 141.779L110.45 136.596L108.486 135.815L118.403 104.933L79.6781 92.705H78.2047L77.4113 93.5516L77.6757 95.1131L78.7903 97.0696L75.39 102.808V107.238L70.4786 111.998L70.2141 113.164L72.8965 120.463L71.952 128.741L68.5424 131.018V131.732L70.9036 132.128L75.6262 140.923L73.671 144.441L75.1067 146.661H76.939L79.1586 145.551L80.7359 144.309L87.867 145.485L81.7182 146.265L80.7737 151.025H79.6592L79.0736 149.266C79.0736 149.266 78.1291 150.207 77.9591 150.207C77.7891 150.207 77.109 151.317 77.109 151.317L76.1645 162.191L77.4679 162.849H77.9969L78.5164 167.665L81.3499 175.294L84.2306 179.461L85.7324 181.22L84.9484 191.257C85.4042 192.091 85.723 192.993 85.8929 193.928C86.0384 194.761 86.3124 195.567 86.7052 196.317L95.6686 198.923L107.078 206.664L106.427 209.138L105.246 211.415L112.509 211.81L111.791 213.503L111.47 215.262L116.372 220.906L113.822 225.609L115.192 226.39L115.456 227.697L125.137 229.259L141.76 231.084L145.095 231.018L143.376 223.916Z"
               fill="#2892EF"
             >
               <span>H1asdasdyg</span>
             </path>
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              :id="2"
+              data-name="wash2"
+              :class="{ 'is-active_map': currentMap.includes(2) }"
+              @click="mapClick(this, 2)"
+              @mouseover="pointLocation"
               d="M119.905 58.5097L144.377 58.632L159.943 63.4575L171.711 28.4372H171.598L125.005 15.5692L123.967 16.2182L124.618 17.7138L123.967 24.2419L124.618 28.7947L124.75 29.5754L122.521 30.0927L119.102 35.4638C119.102 35.4638 117.686 32.4726 118.073 32.0775C118.46 31.6824 119.905 24.2701 119.905 24.2701L114.021 23.48L111.792 21.9185L106.125 16.2746H104.821L104.491 17.7703V26.3113L101.941 34.3915L103.376 36.2164L103.707 38.2858L101.676 41.1077V37.1288L101.091 37.0065L99.7872 39.0195L100.174 42.3776L109.534 46.5164V49.2537L109.988 52.7717L119.905 58.5097Z"
               fill="#024E90"
             />
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              :id="3"
+              data-name="wash3"
+              :class="{ 'is-active_map': currentMap.includes(3) }"
+              @click="mapClick(this, 3)"
+              @mouseover="pointLocation"
               d="M158.639 75.0568L163.871 72.3196L159.772 63.4022L144.377 58.6426L119.905 58.5109L109.969 52.7729L109.506 49.2549L99.7584 43.9779L100.089 49.8381L94.1291 56.6202L90.5967 66.4593L82.4173 80.7948L78.2331 81.6414V82.6855L79.7349 84.3786V92.7786H79.6499L118.403 104.969L147.645 112.325L158.639 75.0568Z"
               fill="#024E90"
             />
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              :id="4"
+              data-name="wash4"
+              :class="{ 'is-active_map': currentMap.includes(4) }"
+              @click="mapClick(this, 4)"
+              @mouseover="pointLocation"
               d="M208.292 94.3131L205.25 93.6265C205.25 93.6265 203.682 92.6858 203.361 92.7799C203.04 92.8739 190.998 90.8986 190.998 90.8986L186.681 83.7685L184.32 72.4807L183.734 72.0857L181.968 73.6565H181.184L181.572 69.7434L184.811 61.1459L182.167 56.2546L181.279 49.9052L175.612 40.9126C175.612 40.9126 177.019 34.6291 178.067 30.3209L171.701 28.4396L159.942 63.4599L159.772 63.4035L163.871 72.3208L158.639 75.0581L147.645 112.327L201.822 125.101L208.292 94.3131Z"
               fill="#024E90"
             />
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              :id="5"
+              @click="mapClick(this, '5')"
               d="M148.411 195.91L151.084 187.209L154.909 187.651L157.563 190.774L157.903 190.68L173.658 118.457L147.646 112.324L118.404 104.968L108.496 135.849L110.451 136.63L107.41 141.813L148.335 203.19L150.007 200.406L148.411 195.91Z"
               fill="#024E90"
             />
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              id="6"
+              @click="mapClick(this, '6')"
               d="M160.301 179.676L157.902 190.673L157.562 190.767L154.908 187.644L151.083 187.202L148.41 195.903L150.006 200.399L148.334 203.221L151.083 211.433L144.32 220.98L143.376 223.915L145.142 231.045L141.808 231.111L140.363 233.397L140.721 234.761C140.721 234.761 179.201 255.577 179.002 255.869C178.804 256.16 191.885 257.816 200.622 258.973L210.435 189.215L160.301 179.676Z"
               fill="#024E90"
             />
             <path
-              id="1"
-              data-name="USA"
-              @click="mapClick('USA')"
+              id="7"
+              @click="mapClick('7')"
               d="M270.516 96.1643L276.797 47.8621L180.211 31.0057L178.048 30.3566C177 34.6648 175.593 40.9483 175.593 40.9483L181.26 49.9409L182.148 56.2903L184.792 61.1816L181.553 69.7791L181.165 73.6922H181.949L183.716 72.1214L184.301 72.5164L186.662 83.8042L190.979 90.9343C190.979 90.9343 203.05 92.9567 203.342 92.8156C203.635 92.6745 205.231 93.6622 205.231 93.6622L208.273 94.3489L209.491 87.4727L270.516 96.1643Z"
               fill="#024E90"
             />
             <path
               id="1"
-              data-name="USA"
               @click="mapClick('USA')"
               d="M199.603 136.566L201.822 125.1L173.657 118.459L160.302 179.676L210.455 189.214L217.785 140.084L199.603 136.566Z"
               fill="#024E90"
             />
             <path
               id="1"
-              data-name="USA"
               @click="mapClick('USA')"
               d="M336.074 71.0487L332.645 54.1359L333.76 51.4645L333.722 51.4739L276.797 47.8618L272.093 84.0767L337.453 88.5448L336.074 71.0487Z"
               fill="#024E90"
@@ -1022,7 +1028,7 @@
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
           >
-            <div class="form-btn">
+            <nuxt-link :to="localePath('/location-map')" class="form-btn">
               Next step<svg
                 width="24"
                 height="24"
@@ -1039,7 +1045,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </div>
+            </nuxt-link>
           </div>
           <p class="form-block-form-info">
             Специализированный онлайн-сервис «Matelogistics» <br />
@@ -1159,14 +1165,20 @@ export default {
       selectedLocations: [],
       pointedLocation: null,
       tooltipStyle: null,
+      currentMap: [],
     };
   },
   methods: {
     pointLocation(event) {
-      this.pointedLocation = getLocationName(event.target);
+      console.log(event.toElement.dataset.name);
+      this.pointedLocation = event.toElement.dataset.name;
     },
-    mapClick(val) {
-      console.log(val);
+    mapClick(event, val) {
+      this.currentMap.push(val);
+
+      if (this.currentMap.length > 2) {
+        this.currentMap = this.currentMap.slice(-2);
+      }
     },
     unpointLocation(event) {
       this.pointedLocation = null;
@@ -1176,7 +1188,7 @@ export default {
       this.tooltipStyle = {
         display: "block",
         top: `${event.clientY + 10}px`,
-        left: `${event.clientX - 100}px`,
+        left: `${event.clientX - 10}px`,
       };
     },
     getLocationClass(location, index) {
@@ -1343,8 +1355,12 @@ export default {
         padding: 10px;
         border: 1px solid darkgray;
         background-color: white;
+        z-index: 100;
       }
     }
   }
+}
+.is-active_map {
+  fill: #2892ef;
 }
 </style>
