@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="banner">
     <div class="container_xl banner-title-mobile">
-      <Title
+      <LazyTitle
         title="Fast & reliable nationwide auto transport company"
         text="Montway Auto Transport is the number one rated car transporter in the U.S."
       />
@@ -208,8 +208,6 @@
   </div>
 </template>
 <script>
-import Title from "./Title.vue";
-
 export default {
   data() {
     return {
@@ -285,7 +283,6 @@ export default {
     this.videoMuted = false;
     this.$refs.video.play();
   },
-  components: { Title },
 };
 </script>
 <style lang="scss">

@@ -8,7 +8,7 @@
       direction="ltr"
     >
       <div class="drawer_container">
-        <div class="drawer_hadear">
+        <div class="drawer_hadear" @click="show('modal_leave_weak')">
           <img src="../assets/svg/image 2.svg" alt="" />
           <span @click="drawerClose">
             <svg
@@ -199,6 +199,12 @@ export default {
     },
     drawerClose() {
       this.drawer = false;
+    },
+    show(name) {
+      this.$modal.show(name);
+      this.drawer = false;
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
     },
   },
   components: {

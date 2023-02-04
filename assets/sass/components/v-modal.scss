@@ -25,9 +25,33 @@
     }
   }
 }
+.vm--container {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: red !important;
+    border-radius: 10px !important;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+  }
+}
 .modal_body {
   padding: 24px;
-
+  background: #fff;
+  border-radius: 16px;
   .modal-tariff-info-grid {
     margin-top: 24px;
     p {
@@ -83,6 +107,9 @@
 
 .flip-card__top {
   background: transparent !important;
+}
+.flip-clock__piece {
+  margin: 0 0.3rem !important;
 }
 .flip-card__back-bottom,
 .flip-card__back,
@@ -200,7 +227,18 @@
   border-bottom: 1px solid #d2dbec;
   margin-bottom: 24px;
 }
+
+@media (max-width: 768px) {
+  .form-block-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px;
+  }
+}
 @media (max-width: 576px) {
+  .form-block-grid {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 12px;
+  }
   .vm--container {
     display: flex;
     display: flex;
@@ -246,5 +284,19 @@
         @include fontStyle(14px, 500, #fff);
       }
     }
+  }
+  .timer_text {
+    @include fontStyle(14px, 500, #000);
+  }
+  .flip-card__top {
+    font-size: 32px !important;
+  }
+  .modal_timer {
+    .two_dots {
+      font-size: 32px !important;
+    }
+  }
+  .another_attempt {
+    margin-top: 32px;
   }
 }

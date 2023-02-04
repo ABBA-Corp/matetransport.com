@@ -48,6 +48,7 @@ export default {
     "@nuxtjs/i18n",
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
+    "nuxt-lazy-load",
   ],
   axios: {
     credentials: true,
@@ -107,6 +108,16 @@ export default {
           encoding: "encoding",
         },
       ];
+    },
+    loaders: {
+      vue: {
+        prettify: false,
+      },
+    },
+    loaders: {
+      vue: {
+        prettify: false,
+      },
     },
   },
 };
