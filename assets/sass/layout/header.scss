@@ -164,6 +164,7 @@
 }
 .slider-text {
   animation: sliderText 20s infinite linear;
+  margin-bottom: 0;
 }
 
 @keyframes sliderText {
@@ -198,7 +199,7 @@
   cursor: pointer;
 }
 .header-back {
-  height: 129px;
+  height: 125px;
   background: white;
 }
 @media (max-width: 1080px) {

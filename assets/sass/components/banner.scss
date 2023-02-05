@@ -155,6 +155,11 @@
   display: flex;
   justify-content: flex-end;
 }
+.el-select-dropdown {
+  .el-select-dropdown__wrap {
+    overflow-y: scroll !important;
+  }
+}
 .form-btn {
   background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
   @include fontStyle(16px, 600, #fff);

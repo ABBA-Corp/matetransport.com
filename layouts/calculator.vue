@@ -197,61 +197,305 @@
           <Nuxt />
           <div class="calculator-info">
             <div class="calculator-info-body">
-              <CalculatorInfoItems
-                name="Distance"
-                :edit="true"
-                option="2753mi"
-              />
-              <CalculatorInfoItems
-                name="First avail. date"
-                :edit="true"
-                option="01/21/2023"
-              />
-              <CalculatorInfoItems
-                name="Vehicle"
-                :edit="true"
-                option="2020 Alfa Romeo Giulia Quadrifoglio"
-              />
-              <CalculatorInfoItems
-                name="Ship from"
-                :edit="true"
-                option="New York, NY 10025"
-              />
-              <CalculatorInfoItems
-                name="Ship to"
-                :edit="true"
-                option="California City, CA 93505"
-              />
-              <CalculatorInfoItems
-                name="Vehicle condition"
-                :edit="false"
-                :checkbox="['Running', 'Non-running']"
-              />
-              <CalculatorInfoItems
-                name="Transport type"
-                :edit="false"
-                :checkbox="['Open (-$190)', 'Enclosed']"
-              />
+              <div class="calculator-info-items">
+                <span>Distance </span>
+                <div class="edit_input" v-if="activeEdit == 1">
+                  <input type="text" />
+                  <span @click="activeEdit = 0"
+                    ><svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                        stroke="#024E90"
+                        stroke-width="1.5"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      /></svg
+                  ></span>
+                </div>
+                <p v-else>2753mi</p>
+              </div>
+              <div class="calculator-info-items">
+                <span
+                  >First avail. date
+                  <a-tooltip placement="top" color="red">
+                    <template slot="title" color="red">
+                      <span color="red" class="hover-info"
+                        >Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Accusamus velit quis mollitia sunt assumenda iste
+                        iusto? Possimus qui dolorum quaerat.</span
+                      >
+                    </template>
+                    <a-button
+                      ><svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.65625 5V3.65625H6.34375V5H7.65625ZM7.65625 10.3438V6.34375H6.34375V10.3438H7.65625ZM2.28125 2.3125C3.59375 1 5.16667 0.34375 7 0.34375C8.83333 0.34375 10.3958 1 11.6875 2.3125C13 3.60417 13.6562 5.16667 13.6562 7C13.6562 8.83333 13 10.4062 11.6875 11.7188C10.3958 13.0104 8.83333 13.6562 7 13.6562C5.16667 13.6562 3.59375 13.0104 2.28125 11.7188C0.989583 10.4062 0.34375 8.83333 0.34375 7C0.34375 5.16667 0.989583 3.60417 2.28125 2.3125Z"
+                          fill="#9A999B"
+                        />
+                      </svg>
+                    </a-button> </a-tooltip
+                ></span>
 
-              <CalculatorInfoItems
-                name="Service type"
-                :edit="false"
-                option="Door to door"
-              />
-              <CalculatorInfoItems
-                name="Insurance"
-                :edit="false"
-                option="Included"
-              />
-              <CalculatorInfoItems
-                name="Transit time"
-                :edit="false"
-                option="7-9 days"
-                info="We coordinate all shipments through a large network of
-                      licensed Auto Shipping Carriers nationwide. We coordinate
-                      all shipments through a large network of licensed Auto
-                      Shipping Carriers nationwide."
-              />
+                <div class="edit_input" v-if="activeEdit == 2">
+                  <a-date-picker
+                    @change="onChangeDate"
+                    :default-value="moment(dateValue, dateFormatList[0])"
+                    :format="dateFormatList"
+                  />
+                </div>
+                <p v-if="!(activeEdit == 2)">{{ dateValue }}</p>
+                <div
+                  class="edit-btn"
+                  v-if="!(activeEdit == 2)"
+                  @click="activeEdit = 2"
+                >
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.6123 2.6875L11.3936 3.90625L8.89355 1.40625L10.1123 0.1875C10.2373 0.0625 10.3936 0 10.5811 0C10.7686 0 10.9248 0.0625 11.0498 0.1875L12.6123 1.75C12.7373 1.875 12.7998 2.03125 12.7998 2.21875C12.7998 2.40625 12.7373 2.5625 12.6123 2.6875ZM0.799805 9.5L8.1748 2.125L10.6748 4.625L3.2998 12H0.799805V9.5Z"
+                      fill="#9A999B"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="calculator-info-items">
+                <span>Vehicle </span>
+                <div class="edit_select" v-if="activeEdit == 3">
+                  <div class="d-flex flex-column">
+                    <el-select
+                      v-model="value"
+                      class="mb-2"
+                      filterable
+                      placeholder="Select"
+                    >
+                      <el-option
+                        class="edit-select"
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                    <el-select
+                      v-model="value"
+                      class="mb-2"
+                      filterable
+                      placeholder="Select"
+                    >
+                      <el-option
+                        class="edit-select"
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                    <el-select
+                      v-model="value"
+                      class="mb-2"
+                      filterable
+                      placeholder="Select"
+                    >
+                      <el-option
+                        class="edit-select"
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                    <div class="select-btns d-flex">
+                      <div class="save-btn btn btn-primary">Save</div>
+                      <div class="cancel-btn btn mx-3" @click="activeEdit = 0">
+                        Cancel
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p v-else>2020 Alfa Romeo Giulia Quadrifoglio</p>
+                <div
+                  class="edit-btn"
+                  v-if="!(activeEdit == 3)"
+                  @click="activeEdit = 3"
+                >
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.6123 2.6875L11.3936 3.90625L8.89355 1.40625L10.1123 0.1875C10.2373 0.0625 10.3936 0 10.5811 0C10.7686 0 10.9248 0.0625 11.0498 0.1875L12.6123 1.75C12.7373 1.875 12.7998 2.03125 12.7998 2.21875C12.7998 2.40625 12.7373 2.5625 12.6123 2.6875ZM0.799805 9.5L8.1748 2.125L10.6748 4.625L3.2998 12H0.799805V9.5Z"
+                      fill="#9A999B"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="calculator-info-items">
+                <span>Ship from </span>
+
+                <div class="edit_select" v-if="activeEdit == 4">
+                  <el-select
+                    v-model="shipFrom"
+                    class="mb-2"
+                    filterable
+                    placeholder="Select"
+                  >
+                    <el-option
+                      class="edit-select"
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <p v-else>New York, NY 10025</p>
+                <div
+                  class="edit-btn"
+                  @click="activeEdit = 4"
+                  v-if="!(activeEdit == 4)"
+                >
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.6123 2.6875L11.3936 3.90625L8.89355 1.40625L10.1123 0.1875C10.2373 0.0625 10.3936 0 10.5811 0C10.7686 0 10.9248 0.0625 11.0498 0.1875L12.6123 1.75C12.7373 1.875 12.7998 2.03125 12.7998 2.21875C12.7998 2.40625 12.7373 2.5625 12.6123 2.6875ZM0.799805 9.5L8.1748 2.125L10.6748 4.625L3.2998 12H0.799805V9.5Z"
+                      fill="#9A999B"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="calculator-info-items">
+                <span>Ship to </span>
+
+                <div class="edit_select" v-if="activeEdit == 5">
+                  <el-select
+                    v-model="shipTo"
+                    class="mb-2"
+                    filterable
+                    placeholder="Select"
+                  >
+                    <el-option
+                      class="edit-select"
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <p v-else>California City, CA 93505</p>
+                <div
+                  class="edit-btn"
+                  @click="activeEdit = 5"
+                  v-if="!(activeEdit == 5)"
+                >
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.6123 2.6875L11.3936 3.90625L8.89355 1.40625L10.1123 0.1875C10.2373 0.0625 10.3936 0 10.5811 0C10.7686 0 10.9248 0.0625 11.0498 0.1875L12.6123 1.75C12.7373 1.875 12.7998 2.03125 12.7998 2.21875C12.7998 2.40625 12.7373 2.5625 12.6123 2.6875ZM0.799805 9.5L8.1748 2.125L10.6748 4.625L3.2998 12H0.799805V9.5Z"
+                      fill="#9A999B"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="calculator-info-items">
+                <span>Vehicle condition </span>
+                <a-radio-group v-model="vehicle" @change="onChange">
+                  <div class="items-checkbox">
+                    <a-radio
+                      :value="radio.code"
+                      v-for="(radio, index) in vehicleCondition"
+                    >
+                      <p>{{ radio.name }}</p>
+                    </a-radio>
+                  </div>
+                </a-radio-group>
+              </div>
+              <div class="calculator-info-items">
+                <span>Transport type</span>
+                <a-radio-group v-model="transport" @change="onChange">
+                  <div class="items-checkbox">
+                    <a-radio
+                      :value="radio.code"
+                      v-for="(radio, index) in transportType"
+                    >
+                      <p>{{ radio.name }}</p>
+                    </a-radio>
+                  </div>
+                </a-radio-group>
+              </div>
+              <div class="calculator-info-items">
+                <span>Service type </span>
+                <p>Door to door</p>
+              </div>
+
+              <div class="calculator-info-items">
+                <span>Insurance </span>
+                <p>Included</p>
+              </div>
+              <div class="calculator-info-items">
+                <span
+                  >Transit time
+                  <a-tooltip placement="top" color="red">
+                    <template slot="title" color="red">
+                      <span color="red" class="hover-info"
+                        >We coordinate all shipments through a large network of
+                        licensed Auto Shipping Carriers nationwide. We
+                        coordinate all shipments through a large network of
+                        licensed Auto Shipping Carriers nationwide.</span
+                      >
+                    </template>
+                    <a-button
+                      ><svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7.65625 5V3.65625H6.34375V5H7.65625ZM7.65625 10.3438V6.34375H6.34375V10.3438H7.65625ZM2.28125 2.3125C3.59375 1 5.16667 0.34375 7 0.34375C8.83333 0.34375 10.3958 1 11.6875 2.3125C13 3.60417 13.6562 5.16667 13.6562 7C13.6562 8.83333 13 10.4062 11.6875 11.7188C10.3958 13.0104 8.83333 13.6562 7 13.6562C5.16667 13.6562 3.59375 13.0104 2.28125 11.7188C0.989583 10.4062 0.34375 8.83333 0.34375 7C0.34375 5.16667 0.989583 3.60417 2.28125 2.3125Z"
+                          fill="#9A999B"
+                        />
+                      </svg>
+                    </a-button> </a-tooltip
+                ></span>
+                <p>7-9 days</p>
+              </div>
             </div>
             <div class="calculator-info-footer">
               <div class="calculator-footer-items">
@@ -329,6 +573,7 @@ import Chat from "../components/Chat.vue";
 import CalculatorStep1 from "../components/calculator/calculatorStep1.vue";
 import CalculatorStep2 from "../components/calculator/calculatorStep2.vue";
 import CalculatorStep3 from "../components/calculator/calculatorStep3.vue";
+import moment from "moment";
 export default {
   layout: "defaut",
   name: "MyMap",
@@ -337,6 +582,77 @@ export default {
       steps: 1,
       drawer: false,
       currentPath: "",
+      activeEdit: 0,
+      dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
+      vehicleCondition: [
+        {
+          code: 1,
+          name: "Running",
+        },
+        {
+          code: 2,
+          name: "Non-running",
+        },
+      ],
+      vehicle: 1,
+      transportType: [
+        {
+          code: 0,
+          name: "Open (-$190)",
+        },
+        {
+          code: 1,
+          name: "Enclosed",
+        },
+      ],
+      transport: 0,
+      startValue: "01/01/2015",
+      dateValue: "01/01/2015",
+      options: [
+        {
+          value: "Option1",
+          label: "Option1 Option1 Option1",
+        },
+        {
+          value: "Option2",
+          label: "Option2",
+        },
+        {
+          value: "Option3",
+          label: "Option3",
+        },
+        {
+          value: "Option4",
+          label: "Option4",
+        },
+        {
+          value: "Option5",
+          label: "Option5",
+        },
+        {
+          value: "Option1",
+          label: "Option1 Option1 Option1",
+        },
+        {
+          value: "Option2",
+          label: "Option2",
+        },
+        {
+          value: "Option3",
+          label: "Option3",
+        },
+        {
+          value: "Option4",
+          label: "Option4",
+        },
+        {
+          value: "Option5",
+          label: "Option5",
+        },
+      ],
+      value: "",
+      shipFrom: "",
+      shipTo: "",
     };
   },
   computed: {
@@ -346,8 +662,16 @@ export default {
     routerName() {
       return this.$route.name;
     },
+    editInformation(value) {
+      this.editValue = value;
+    },
+    editProp() {
+      console.log(this.activeEdit);
+    },
   },
   methods: {
+    moment,
+
     changeSteps(step) {
       this.steps = step;
       console.log(step);
@@ -355,8 +679,16 @@ export default {
     drawerOpen() {
       this.drawer = true;
     },
+    onChangeDate(value, dateStrings) {
+      this.dateValue = dateStrings;
+      console.log("From: ", value, ", to: ", dateStrings);
+      console.log(this.dateValue);
+    },
     drawerClose() {
       this.drawer = false;
+    },
+    onChange(e) {
+      console.log("radio checked", e.target.value);
     },
     show(name) {
       this.$modal.show(name);
@@ -393,6 +725,18 @@ export default {
       }
       console.log(this.selectedLocations);
     },
+    dateValue(val) {
+      console.log("startValue", val);
+      if (val != "") {
+        this.activeEdit = 0;
+      }
+    },
+    shipTo(val) {
+      this.activeEdit = 0;
+    },
+    shipFrom(val) {
+      this.activeEdit = 0;
+    },
     routerName(oldVal, newVal) {
       if (oldVal !== newVal) {
         if (this.$route.fullPath.includes("transport")) {
@@ -410,3 +754,33 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.edit-select {
+  height: initial !important;
+  padding: 0 10px !important;
+  &::after {
+    display: none !important;
+  }
+  span {
+    font-size: 14px !important;
+  }
+}
+.edit_select {
+  input {
+    background: #f4f8ff;
+    border: none !important;
+    border-radius: 6px;
+    width: 100%;
+    padding: 6px 13px;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #024e90;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+</style>

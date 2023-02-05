@@ -28,9 +28,9 @@
         </a-radio>
       </div>
     </a-radio-group>
-    <div class="edit_input" v-if="editShow">
+    <div class="edit_input" v-if="editValue">
       <input type="text" />
-      <span @click="editInfo(false)"
+      <span @click="editInformation(false)"
         ><svg
           width="24"
           height="24"
@@ -48,8 +48,8 @@
           /></svg
       ></span>
     </div>
-    <p v-if="!checkbox && !editShow">{{ option }}</p>
-    <div class="edit-btn" @click="editInfo(true)" v-if="!editShow">
+    <p v-if="!checkbox && !editValue">{{ option }}</p>
+    <div class="edit-btn" @click="editInformation(true)" v-if="!editValue">
       <svg
         v-if="edit"
         width="13"
@@ -68,7 +68,30 @@
 </template>
 <script>
 export default {
-  props: ["checkbox", "info", "edit", "option", "name"],
+  props: {
+    editInformation: {
+      type: Function,
+      required: true,
+    },
+    checkbox: {
+      type: Array,
+    },
+    editValue: {
+      type: Boolean,
+    },
+    edit: {
+      type: Boolean,
+    },
+    option: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    info: {
+      type: String,
+    },
+  },
   data() {
     return {
       value: 1,
@@ -118,6 +141,51 @@ export default {
   span {
     position: absolute;
     right: 10px;
+    cursor: pointer;
+    svg {
+      width: 16px;
+      height: 16px;
+      path {
+        stroke: #9a999b;
+      }
+    }
+  }
+}
+.edit_select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  input {
+    background: transparent;
+    border: none;
+
+    width: 100%;
+    // padding: 6px 13px;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #024e90;
+    &:focus {
+      outline: none;
+    }
+  }
+  .el-select {
+    background: #f4f8ff;
+    border: 1px solid #d2dbec;
+    border-radius: 6px;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  span {
+    position: absolute;
+    right: 0;
     cursor: pointer;
     svg {
       width: 16px;
