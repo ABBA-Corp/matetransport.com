@@ -181,7 +181,7 @@
           </div>
         </div></modal
       >
-      <modal name="modal_timer" width="590px" height="auto">
+      <modal name="modal_timer" width="440px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
             <h5>Tezkor aloqa</h5>
