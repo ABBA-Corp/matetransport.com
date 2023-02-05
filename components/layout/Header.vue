@@ -24,7 +24,7 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </span>
-          <span class="header-top-link" @click="show('modal_header')"
+          <span class="header-top-link" @click="show('modal_success')"
             >Contact us
             <svg
               width="11"
@@ -95,7 +95,7 @@
           <img src="../../assets/svg/hamburger-menu.svg" alt="" />
         </div>
       </div>
-      <modal name="modal_header" width="440px" height="auto">
+      <modal name="modal_header" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
             <h5>Tezkor aloqa</h5>
@@ -181,7 +181,7 @@
           </div>
         </div></modal
       >
-      <modal name="modal_timer" width="440px" height="auto">
+      <modal name="modal_timer" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
             <h5>Tezkor aloqa</h5>
@@ -219,6 +219,50 @@
             </div>
             <div class="d-flex justify-content-center">
               <span class="another_attempt">Boshqattan urinish</span>
+            </div>
+          </div>
+        </div></modal
+      >
+      <modal name="modal_success" width="590px" height="auto">
+        <div class="modal_container">
+          <div class="modal_header d-flex justify-content-between">
+            <h5>Tezkor aloqa</h5>
+            <span @click="hide('modal_success')"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                  stroke="#024E90"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></span>
+          </div>
+          <div class="modal_body d-flex flex-column align-items-center">
+            <span class="success_icon"
+              ><img src="../../assets/svg/succees icon.svg" alt=""
+            /></span>
+            <div class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4">
+              <h5 class="success_contact">
+                Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
+                chiqadi
+              </h5>
+              <p class="fasting-contact-text text-center mt-1">
+                Shu vaqt ichida bizning operatorlarimiz siz bilan bog’lanadilar
+              </p>
+            </div>
+
+            <div class="modal-form-btn w-100">
+              <div class="form-btn" @click="sendNomer">
+                Biz bilan aloqaga chiqish
+              </div>
             </div>
           </div>
         </div></modal

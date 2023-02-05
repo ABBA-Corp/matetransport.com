@@ -25,6 +25,14 @@
     }
   }
 }
+.success_icon {
+  margin-top: 16px;
+}
+.success_contact {
+  @include fontStyle(18px, 500, $dark-blue);
+  line-height: 24px;
+  text-align: center;
+}
 .vm--modal {
   overflow-y: scroll !important;
   &::-webkit-scrollbar {
@@ -245,6 +253,19 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 12px;
   }
+  .success_icon {
+    margin-top: 8px;
+    img {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  .success_contact {
+    @include fontStyle(16px, 500, $dark-blue);
+    line-height: 20px;
+    text-align: center;
+  }
   .vm--container {
     display: flex;
     display: flex;
@@ -268,6 +289,7 @@
     .fasting-contact-text {
       @include fontStyle(14px, 500, #96adc1);
       line-height: 20px;
+      width: 100%;
     }
     .modal-tariff-info-grid {
       margin-top: 24px;
