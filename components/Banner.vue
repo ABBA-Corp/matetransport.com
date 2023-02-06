@@ -137,9 +137,12 @@
           </div>
           <div v-if="active == 2">
             <div class="form-block">
+              <label for="">Transport car FROM</label>
               <input type="text" id="inputFrom" placeholder="Zip or city" />
             </div>
             <div class="form-block">
+              <label for="">Transport car TO</label>
+
               <el-select
                 class="banner-select"
                 v-model="value"
@@ -154,18 +157,15 @@
                 </el-option>
               </el-select>
               <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
-            </div>
-            <div class="form-block">
-              <label for="inputTo">Your phone number</label>
-              <input type="text" id="inputTo" placeholder="Zip or city" />
             </div>
           </div>
           <div v-if="active == 3">
             <div class="form-block">
+              <label for="">Vehicle year</label>
               <input type="text" id="inputFrom" placeholder="Zip or city" />
             </div>
             <div class="form-block">
-              <label for="inputFrom">First available date</label>
+              <label for="inputFrom"> Vehicle make</label>
               <el-select
                 class="banner-select"
                 v-model="value"
@@ -182,7 +182,7 @@
               <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
             </div>
             <div class="form-block">
-              <label for="inputTo">Your phone number</label>
+              <label for="inputTo">Vehicle model</label>
               <input type="text" id="inputTo" placeholder="Zip or city" />
             </div>
           </div>
@@ -287,92 +287,89 @@
   </div>
 </template>
 <script>
-import Title from './Title.vue';
+import Title from "./Title.vue";
 
 export default {
-    data() {
-        return {
-            loading: false,
-            iconLoading: false,
-            current: 0,
-            video: true,
-            videoMuted: false,
-            active: 1,
-            steps: [
-                {
-                    title: "First",
-                    content: "First-content",
-                },
-                {
-                    title: "Second",
-                    content: "Second-content",
-                },
-                {
-                    title: "Last",
-                    content: "Last-content",
-                },
-            ],
-            options: [
-                {
-                    value: "Option1",
-                    label: "Option1",
-                },
-                {
-                    value: "Option2",
-                    label: "Option2",
-                },
-                {
-                    value: "Option3",
-                    label: "Option3",
-                },
-            ],
-            value: "",
-        };
+  data() {
+    return {
+      loading: false,
+      iconLoading: false,
+      current: 0,
+      video: true,
+      videoMuted: false,
+      active: 1,
+      steps: [
+        {
+          title: "First",
+          content: "First-content",
+        },
+        {
+          title: "Second",
+          content: "Second-content",
+        },
+        {
+          title: "Last",
+          content: "Last-content",
+        },
+      ],
+      options: [
+        {
+          value: "Option1",
+          label: "Option1",
+        },
+        {
+          value: "Option2",
+          label: "Option2",
+        },
+        {
+          value: "Option3",
+          label: "Option3",
+        },
+      ],
+      value: "",
+    };
+  },
+  methods: {
+    // next() {
+    //   this.current++;
+    // },
+    prev() {
+      this.current--;
     },
-    methods: {
-        // next() {
-        //   this.current++;
-        // },
-        prev() {
-            this.current--;
-        },
-        enterLoading() {
-            this.loading = true;
-        },
-        enterIconLoading() {
-            this.iconLoading = { delay: 1000 };
-        },
-        next() {
-            if (this.active++ > 2)
-                this.active = 0;
-            console.log(this.active);
-        },
-        videoPlay() {
-            if (!this.$refs.video.paused) {
-                this.$refs.video.pause();
-                this.video = false;
-            }
-            else {
-                this.$refs.video.play();
-                this.video = true;
-                console.log(this.$refs.video.muted);
-            }
-        },
-        videoSound() {
-            if (this.$refs.video.muted) {
-                this.$refs.video.muted = false;
-            }
-            else {
-                this.$refs.video.muted = true;
-            }
-        },
+    enterLoading() {
+      this.loading = true;
     },
-    mounted() {
-        this.video = true;
-        this.videoMuted = false;
+    enterIconLoading() {
+      this.iconLoading = { delay: 1000 };
+    },
+    next() {
+      if (this.active++ > 2) this.active = 0;
+      console.log(this.active);
+    },
+    videoPlay() {
+      if (!this.$refs.video.paused) {
+        this.$refs.video.pause();
+        this.video = false;
+      } else {
         this.$refs.video.play();
+        this.video = true;
+        console.log(this.$refs.video.muted);
+      }
     },
-    components: { Title }
+    videoSound() {
+      if (this.$refs.video.muted) {
+        this.$refs.video.muted = false;
+      } else {
+        this.$refs.video.muted = true;
+      }
+    },
+  },
+  mounted() {
+    this.video = true;
+    this.videoMuted = false;
+    this.$refs.video.play();
+  },
+  components: { Title },
 };
 </script>
 <style lang="scss">

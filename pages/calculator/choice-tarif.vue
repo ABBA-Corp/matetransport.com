@@ -107,7 +107,7 @@
           </p>
         </div>
       </div>
-      <div class="block-help block-help-web">
+      <div class="block-help block-help-web" @click="show('modal_discount')">
         <p>
           Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning barcha
           policy and private qoidalariga rozilik bildirasiz
@@ -159,6 +159,16 @@ export default {
     },
   },
   methods: {
+    show(name) {
+      this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
+    },
+    hide(name) {
+      this.$modal.hide(name);
+      document.body.style.overflowY = "auto";
+      document.body.style.height = "auto";
+    },
     onChange(e) {
       console.log("radio checked", e.target.value);
     },

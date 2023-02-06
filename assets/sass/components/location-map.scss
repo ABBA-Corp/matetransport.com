@@ -68,6 +68,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
+  margin-top: 56px;
 }
 // location-map card
 
@@ -125,6 +126,7 @@
   }
   .location-map-maps-grid {
     grid-template-columns: 1fr;
+    margin-top: 24px;
   }
   .service-from-cards {
     grid-template-columns: 1fr;

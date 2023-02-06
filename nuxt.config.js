@@ -32,7 +32,7 @@ export default {
   ],
   loadingIndicator: {
     name: "circle",
-    color: "#3B8070",
+    color: "#008AFF",
     background: "white",
   },
   // Auto import components: https://go.nuxtjs.dev/config-components

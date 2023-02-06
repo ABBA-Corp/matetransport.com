@@ -1,3 +1,6 @@
+.vm--container {
+  z-index: 2007;
+}
 .vm--modal {
   background: #ffffff;
   border-radius: 8px !important;
@@ -25,6 +28,11 @@
     }
   }
 }
+.discount-timer {
+  @include fontStyle(14px, 300, $dark-blue);
+  line-height: 150%;
+  margin-top: 8px;
+}
 .success_icon {
   margin-top: 16px;
 }
@@ -39,29 +47,7 @@
     width: 0 !important;
   }
 }
-.vm--container {
-  // overflow-y: scroll;
-  // &::-webkit-scrollbar {
-  //   width: 0 !important;
-  // }
 
-  /* Track */
-  // &::-webkit-scrollbar-track {
-  //   box-shadow: inset 0 0 5px grey;
-  //   border-radius: 10px;
-  // }
-
-  /* Handle */
-  // &::-webkit-scrollbar-thumb {
-  //   background: red !important;
-  //   border-radius: 10px !important;
-  // }
-
-  /* Handle on hover */
-  // &::-webkit-scrollbar-thumb:hover {
-  //   background: #b30000;
-  // }
-}
 .modal_body {
   padding: 24px;
   background: #fff;
@@ -88,6 +74,15 @@
     input {
       &::placeholder {
         color: #96adc1;
+      }
+    }
+    .ant-calendar-picker {
+      height: 100%;
+      div {
+        height: 100%;
+        input {
+          height: 100%;
+        }
       }
     }
   }
@@ -241,7 +236,36 @@
   border-bottom: 1px solid #d2dbec;
   margin-bottom: 24px;
 }
-
+.discount-text {
+  @include fontStyle(14px, 300, #969696);
+  line-height: 150%;
+  padding: 0 30px;
+  margin-bottom: 8px;
+}
+.discount-title {
+  @include fontStyle(18px, 500, $dark-blue);
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+.modal-discount {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.modal-discount-btn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+  .form-btn {
+    padding-top: 26px;
+    padding-bottom: 26px;
+    display: flex;
+    justify-content: center;
+  }
+  .form-discount-btn {
+    background: #f9f9f9;
+    color: #000;
+  }
+}
 @media (max-width: 768px) {
   .form-block-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -252,6 +276,23 @@
   .form-block-grid {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 12px;
+  }
+  .modal-discount-btn {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row: revert-layer;
+    grid-gap: 8px;
+    .form-btn {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-size: 14px;
+    }
+  }
+
+  .discount-text {
+    font-size: 12px;
+    padding: 0;
+    margin-bottom: 0;
   }
   .success_icon {
     margin-top: 8px;
@@ -326,5 +367,9 @@
   }
   .another_attempt {
     margin-top: 32px;
+  }
+  .modal-discount {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

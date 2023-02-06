@@ -22,3 +22,18 @@ ul {
 .bg-color {
   background: #f5f5f5;
 }
+body {
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  /* Track */
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #008aff;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+}

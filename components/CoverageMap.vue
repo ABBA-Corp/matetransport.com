@@ -1010,7 +1010,8 @@
           data-aos-duration="800"
         >
           <div class="form-block-map">
-            <label for="inputFrom">Tochka A</label>
+            <!-- <label for="inputFrom">Tochka A</label> -->
+            <span class="blue_space">Tochka A</span>
             <input
               type="text"
               id="inputFrom"
@@ -1018,13 +1019,33 @@
               placeholder="Zip or city"
             />
           </div>
-
           <div class="form-block-map">
-            <label for="inputTo">Tochka B</label>
+            <!-- <label for="inputFrom">Tochka A</label> -->
+            <span class="white_space">Tochka A shahari</span>
             <input
               type="text"
-              id="inputTo"
-              :value="countries[selectedLocations[1]]"
+              id="inputFrom"
+              :value="countries[selectedLocations[0]]"
+              placeholder="Zip or city"
+            />
+          </div>
+          <div class="form-block-map">
+            <!-- <label for="inputFrom">Tochka A</label> -->
+            <span class="blue_space">Tochka B</span>
+            <input
+              type="text"
+              id="inputFrom"
+              :value="countries[selectedLocations[0]]"
+              placeholder="Zip or city"
+            />
+          </div>
+          <div class="form-block-map">
+            <!-- <label for="inputFrom">Tochka A</label> -->
+            <span class="white_space">Tochka B shahari</span>
+            <input
+              type="text"
+              id="inputFrom"
+              :value="countries[selectedLocations[0]]"
               placeholder="Zip or city"
             />
           </div>

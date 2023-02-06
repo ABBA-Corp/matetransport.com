@@ -24,7 +24,7 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </span>
-          <span class="header-top-link" @click="show('modal_success')"
+          <span class="header-top-link" @click="show('modal_header')"
             >Contact us
             <svg
               width="11"
@@ -249,7 +249,9 @@
             <span class="success_icon"
               ><img src="../../assets/svg/succees icon.svg" alt=""
             /></span>
-            <div class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4">
+            <div
+              class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4"
+            >
               <h5 class="success_contact">
                 Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
                 chiqadi
@@ -327,19 +329,11 @@
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Truck Year</label>
-                    <el-select
-                      class="banner-select"
-                      v-model="value"
-                      placeholder="Calendar"
-                    >
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      >
-                      </el-option>
-                    </el-select>
+                    <a-date-picker
+                      @change="onChangeDate"
+                      :default-value="moment(dateValue, dateFormatList[0])"
+                      :format="dateFormatList"
+                    />
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Truck marka</label>
@@ -377,19 +371,11 @@
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Delivery data</label>
-                    <el-select
-                      class="banner-select"
-                      v-model="value"
-                      placeholder="Calendar"
-                    >
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      >
-                      </el-option>
-                    </el-select>
+                    <a-date-picker
+                      @change="onChangeDate"
+                      :default-value="moment(dateValue, dateFormatList[0])"
+                      :format="dateFormatList"
+                    />
                   </div>
                 </div>
               </div>
@@ -443,7 +429,9 @@ export default {
     return {
       translations: [],
       drawerShow: false,
+      dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       deadline2: moment().add(1, "h").format(fmt),
+      dateValue: "01/01/2015",
       options: [
         {
           value: "Option1",
@@ -468,6 +456,12 @@ export default {
   },
 
   methods: {
+    moment,
+    onChangeDate(value, dateStrings) {
+      this.dateValue = dateStrings;
+      console.log("From: ", value, ", to: ", dateStrings);
+      console.log(this.dateValue);
+    },
     sendNomer() {
       this.$modal.hide(`modal_header`);
 
@@ -532,6 +526,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.ant-calendar-picker-container {
+  z-index: 2006 !important;
+}
 .header {
   transition: all 0.3s !important;
   height: auto;
