@@ -277,6 +277,18 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 12px;
   }
+  .modal-application-form-btn {
+display: flex;
+justify-content: center;
+    .form-btn {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      padding: 15px 0;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
   .modal-discount-btn {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
