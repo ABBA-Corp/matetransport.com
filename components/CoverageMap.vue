@@ -1090,7 +1090,7 @@
         </div>
       </div>
 
-      <LastNews>
+      <LastNews :articles="articles">
         <div class="reload-news">
           <div class="reload-news-btn">
             <svg
@@ -1127,6 +1127,7 @@ import { CheckboxSvgMap } from "vue-svg-map";
 import { getLocationName } from "../utilities";
 import USA from "@svg-maps/usa";
 export default {
+  props: ["articles"],
   data() {
     return {
       USA,

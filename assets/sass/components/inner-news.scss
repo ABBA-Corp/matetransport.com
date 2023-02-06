@@ -56,8 +56,11 @@
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
+  height: 566px;
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover
   }
 }
 .inner-news-desc {
@@ -181,5 +184,6 @@
   }
   .inner-news-banner {
     margin-top: 6px;
+    height: 208px;
   }
 }

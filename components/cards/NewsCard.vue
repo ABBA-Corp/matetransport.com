@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="news-card">
     <div class="news-card-img">
-      <img src="../../assets/images/Rectangle 23902.png" alt="" />
+      <img :src="article.image" alt="" />
     </div>
     <div class="news-card-body">
       <div class="news-card-date">
@@ -20,14 +20,17 @@
             stroke-linejoin="round"
           />
         </svg>
-        2023.02.18
+        {{ article.created_date }}
       </div>
-      <h4 class="news-card-title">The 9 best homes in New York</h4>
+      <nuxt-link
+        :to="localePath(`/inner-news/${article.id}`)"
+        class="news-card-title"
+        >{{ article.title }}</nuxt-link
+      >
       <p class="news-card-text">
-        Integer tincidunt rutrum faucibus. Proin sit amet varius arcu. Aliquam
-        vel leo augue donec.
+        {{ article.subtitle }}
       </p>
-      <nuxt-link to="/" class="news-card-btn">
+      <nuxt-link :to="localePath('/all-news')" class="news-card-btn">
         Read more
         <svg
           width="20"
@@ -49,6 +52,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["article"],
+
+};
 </script>
 <style lang=""></style>

@@ -2,8 +2,8 @@
   <div
     class="flex last-news items-center justify-center blog position-relative"
   >
-    <div class="container_xl position-relative carousel_navigate">
-     <slot></slot>
+    <div class="container_xl position-relative carousel_navigate mb-4">
+      <slot></slot>
       <div class="navigate-grid">
         <div class="swiper-button-prev">
           <svg
@@ -37,7 +37,13 @@
     </div>
     <div class="swiper mySwiper-3">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide" v-for="article in articles">
+          <NewsCard :article="article" />
+        </div>
+        <div class="swiper-slide" v-for="article in articles">
+          <NewsCard :article="article" />
+        </div>
+        <!-- <div class="swiper-slide">
           <NewsCard />
         </div>
         <div class="swiper-slide">
@@ -63,10 +69,7 @@
         </div>
         <div class="swiper-slide">
           <NewsCard />
-        </div>
-        <div class="swiper-slide">
-          <NewsCard />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -78,6 +81,7 @@ import Swiper from "swiper/swiper-bundle.js";
 import "swiper/swiper-bundle.min.css";
 import NewsCard from "./cards/NewsCard.vue";
 export default {
+  props: ["articles"],
   mounted() {
     const swiper = new Swiper(".mySwiper-3", {
       slidesPerView: 3,
@@ -121,7 +125,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .last-news {
   .carousel_navigate {
     margin-left: 0;

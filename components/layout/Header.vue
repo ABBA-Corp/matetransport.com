@@ -76,6 +76,7 @@
             <span class="el-dropdown-link">
               Рус<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
+
             <el-dropdown-menu slot="dropdown" class="nav_drop">
               <el-dropdown-item
                 v-for="locale in availableLocales"
@@ -312,17 +313,18 @@
                 </div>
                 <div class="form-block-grid">
                   <div class="modal_form_block form-block">
-                    <label for="">Truck model</label>
+                    <label for="">Truck marka</label>
                     <el-select
                       class="banner-select"
-                      v-model="value"
-                      placeholder="Model"
+                      v-model="carMake"
+                      placeholder="Change marka"
+                      @focus="__GET_CAR_MAKES()"
                     >
                       <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
+                        v-for="item in carMakes"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
                       >
                       </el-option>
                     </el-select>
@@ -336,17 +338,18 @@
                     />
                   </div>
                   <div class="modal_form_block form-block">
-                    <label for="">Truck marka</label>
+                    <label for="">Truck model</label>
                     <el-select
                       class="banner-select"
                       v-model="value"
-                      placeholder="Change marka"
+                      placeholder="Model"
+                      :disabled="carMake == ''"
                     >
                       <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
+                        v-for="item in carModles"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
                       >
                       </el-option>
                     </el-select>
@@ -363,11 +366,43 @@
                 <div class="form-block-grid">
                   <div class="modal_form_block form-block">
                     <label for="">Pickup location</label>
-                    <input type="text" placeholder="Location" />
+                    <el-select
+                      v-model="shipFrom"
+                      class="mb-2"
+                      filterable
+                      ref="selectInput"
+                      @focus="__GET_CITIES"
+                      placeholder="Select"
+                    >
+                      <el-option
+                        class="edit-select"
+                        v-for="item in shipFromOptions"
+                        :key="item.id"
+                        :label="`${item.state.name} ${item.state.code} ${item.zip}`"
+                        :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                      >
+                      </el-option>
+                    </el-select>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Delivery location</label>
-                    <input type="text" placeholder="Location" />
+                    <el-select
+                      v-model="shipTo"
+                      class="mb-2"
+                      filterable
+                      ref="selectInput"
+                      @focus="__GET_CITIES"
+                      placeholder="Select"
+                    >
+                      <el-option
+                        class="edit-select"
+                        v-for="item in shipFromOptions"
+                        :key="item.id"
+                        :label="`${item.state.name} ${item.state.code} ${item.zip}`"
+                        :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                      >
+                      </el-option>
+                    </el-select>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Delivery data</label>
@@ -447,6 +482,13 @@ export default {
         },
       ],
       value: "",
+      carMake: "",
+      carMakes: [],
+      carModles: [],
+      shipFrom: "",
+      shipTo: "",
+      shipFromOptions: [],
+      number: 0,
     };
   },
   computed: {
@@ -459,12 +501,9 @@ export default {
     moment,
     onChangeDate(value, dateStrings) {
       this.dateValue = dateStrings;
-      console.log("From: ", value, ", to: ", dateStrings);
-      console.log(this.dateValue);
     },
     sendNomer() {
       this.$modal.hide(`modal_header`);
-
       (this.deadline2 = moment().add(1, "h").format(fmt)),
         this.$modal.show(`modal_timer`);
     },
@@ -482,9 +521,8 @@ export default {
       console.log(e);
     },
     handleCommand(command) {
-      this.$i18n.setLocale(command);
       this.GET_STATIC_INFORMATIONS(command);
-      this.$store.commit("getTranslations", command);
+      this.$i18n.setLocale(command);
     },
     drawerToggle() {
       this.drawerShow = !this.drawerShow;
@@ -496,15 +534,39 @@ export default {
       );
     },
     async GET_STATIC_INFORMATIONS() {
+      // this.$nextTick(() => {
+      //   this.$nuxt.$loading.start();
+      // });
       const info = await this.$store.dispatch(
         "fetchStaticInformations/getStaticInformations",
         this.$i18n.locale
       );
       await this.$store.commit("getInfo", info);
+      // await this.$nuxt.$loading.finish();
+    },
+
+    async __GET_CAR_MAKES() {
+      this.carMakes = await this.$store.dispatch(
+        "fetchCars/getCarMakes",
+        this.$i18n.locale
+      );
+    },
+    async __GET_CITIES() {
+      this.shipFromOptions = await this.$store.dispatch(
+        "fetchLocations/getCities"
+      );
+    },
+    numberUt(x) {
+      this.number = x
+        .toString()
+        .replace(".", ",")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
   },
   mounted() {
     this.GET_STATIC_INFORMATIONS();
+    this.numberUt(124234324.989);
+    console.log(this.$refs.selectInput);
     const time = new Date();
     console.log(time);
     var header = this.$refs.navScroll;
@@ -523,6 +585,20 @@ export default {
     });
   },
   components: { TextCarousel, Drawer, FlipCountdown },
+  watch: {
+    async carMake(val) {
+      this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
+        langCode: this.$i18n.locale,
+        paramsId: val,
+      });
+    },
+    async shipFrom(newVal, oldVal) {
+      this.shipFromOptions = await this.$store.dispatch(
+        "fetchLocations/getCities",
+        this.shipFrom
+      );
+    },
+  },
 };
 </script>
 <style lang="scss">

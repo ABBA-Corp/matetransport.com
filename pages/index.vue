@@ -13,7 +13,7 @@
     <AboutUs />
     <LogisticCompany />
     <LogisticsServices :services="services" />
-    <CoverageMap />
+    <CoverageMap :articles="articles" />
     <AboutLogisticComp />
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       services: [],
+      articles: [],
     };
   },
   computed: {
@@ -41,14 +42,9 @@ export default {
   },
   mounted() {
     this.GET_SERVICES();
-    this.GET_GOOGLE_API();
+    this.GET_ARTICLES();
   },
   methods: {
-    async GET_GOOGLE_API() {
-      this.googleApi = await this.$store.dispatch(
-        "fetchGoogleApi/getGoogleApi"
-      );
-    },
     async GET_SERVICES() {
       this.$nextTick(() => {
         this.$nuxt.$loading.start();
@@ -57,8 +53,13 @@ export default {
         "fetchServices/getServices",
         this.$i18n.locale
       );
-      console.log(this.services);
-      await this.$nuxt.$loading.finish();
+      this.$nuxt.$loading.finish();
+    },
+    async GET_ARTICLES() {
+      this.articles = await this.$store.dispatch(
+        "fetchArticles/getArticles",
+        this.$i18n.locale
+      );
     },
   },
   components: {
@@ -85,12 +86,9 @@ export default {
 }
 .home-page {
   overflow: hidden;
-  transition: 2s;
 }
-body {
-  transition: 10s;
-}
-*{
-scroll-behavior: smooth !important;
+
+* {
+  scroll-behavior: smooth !important;
 }
 </style>

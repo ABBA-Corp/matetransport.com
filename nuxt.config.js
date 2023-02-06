@@ -109,15 +109,6 @@ export default {
         },
       ];
     },
-    loaders: {
-      vue: {
-        prettify: false,
-      },
-    },
-    loaders: {
-      vue: {
-        prettify: false,
-      },
-    },
+   
   },
 };

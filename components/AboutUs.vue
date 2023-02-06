@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="about-us" id="howItWorks">
     <div class="container_xl">
-      <LazyTitle title="Biz qanday ishlaymiz?" />
+      <Title title="Biz qanday ishlaymiz?" />
       <div class="about-us-grid">
         <div class="img-block" data-aos="fade-right" data-aos-duration="1000">
           <img

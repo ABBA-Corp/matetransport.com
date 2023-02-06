@@ -161,11 +161,24 @@
     @include fontStyle(18px, 500, $dark-blue);
     line-height: 21px;
     margin-bottom: 8px;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    flex-grow: 1;
   }
   .news-card-text {
     @include fontStyle(16px, 400, #96adc1);
     line-height: 24px;
     margin-bottom: 24px;
+    height: 48px;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    flex-grow: 1;
   }
   .news-card-btn {
     @include fontStyle(14px, 500, $dark-blue);

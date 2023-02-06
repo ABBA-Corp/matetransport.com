@@ -25,32 +25,8 @@
             <h1>Barcha yangiliklar</h1>
 
             <div class="all-news-grid">
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
-              </div>
-              <div class="all-news-card-box">
-                <NewsCard />
+              <div class="all-news-card-box" v-for="article in articles">
+                <NewsCard :article="article" />
               </div>
             </div>
           </div>
@@ -62,8 +38,28 @@
 <script>
 import NewsCard from "../components/cards/NewsCard.vue";
 
-export default { components: { NewsCard } };
+export default {
+  data() {
+    return {
+      articles: [],
+    };
+  },
+  mounted() {
+    this.GET_ARTICLES();
+  },
+  methods: {
+    async GET_ARTICLES() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.articles = await this.$store.dispatch(
+        "fetchArticles/getArticles",
+        this.$i18n.locale
+      );
+      this.$nuxt.$loading.finish();
+    },
+  },
+  components: { NewsCard },
+};
 </script>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

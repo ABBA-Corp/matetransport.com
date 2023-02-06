@@ -367,7 +367,6 @@ export default {
   mounted() {
     this.video = true;
     this.videoMuted = false;
-    this.$refs.video.play();
   },
   components: { Title },
 };

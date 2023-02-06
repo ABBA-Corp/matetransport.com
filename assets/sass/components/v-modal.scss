@@ -68,6 +68,11 @@
     }
   }
   .modal_form_block {
+    .el-select {
+      input {
+        height: 100%;
+      }
+    }
     label {
       color: #506c85;
     }

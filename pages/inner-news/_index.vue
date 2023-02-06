@@ -21,43 +21,41 @@
         </div>
         <div class="inner-news-shadow"></div>
         <div class="inner-news-container">
-          <div
-            class="inner-news-title "
-          >
+          <div class="inner-news-title">
             <div class="d-flex flex-column">
-              <h1>The 9 best homes in New York</h1>
+              <h1>{{ article.title }}</h1>
               <p>
-                Integer tincidunt rutrum faucibus. Proin sit amet varius arcu.
-                Aliquam vel leo augue donec.
+                {{ article.subtitle }}
               </p>
             </div>
             <div>
               <div class="news-card-date">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.66664 3.11263H7.77756M9.33331 3.11263H10.6942C11.6608 3.11263 12.4442 3.89605 12.4442 4.86264V10.6942C12.4442 11.6608 11.6608 12.4442 10.6942 12.4442H3.30572C2.33914 12.4442 1.55573 11.6608 1.55573 10.6942V4.86264C1.55573 3.89605 2.33914 3.11263 3.30572 3.11263M1.55573 7.00055H10.1109M4.66664 4.66722V1.55688M9.33331 4.66722V1.55688"
-            stroke="#B6C2CD"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        2023.02.18
-      </div>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.66664 3.11263H7.77756M9.33331 3.11263H10.6942C11.6608 3.11263 12.4442 3.89605 12.4442 4.86264V10.6942C12.4442 11.6608 11.6608 12.4442 10.6942 12.4442H3.30572C2.33914 12.4442 1.55573 11.6608 1.55573 10.6942V4.86264C1.55573 3.89605 2.33914 3.11263 3.30572 3.11263M1.55573 7.00055H10.1109M4.66664 4.66722V1.55688M9.33331 4.66722V1.55688"
+                    stroke="#B6C2CD"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                {{ article.created_date }}
+              </div>
             </div>
           </div>
 
           <div class="inner-news-banner">
-            <img src="../assets/images/inner-news-banner.png" alt="" />
+            <img :src="article.image" alt="" />
+            <!-- <img src="../../assets/images/inner-news-banner.png" alt="" /> -->
           </div>
-          <div class="inner-news-desc">
-            <p>
+          <div class="inner-news-desc" v-html="article.body">
+            <!-- <p>
               Sasco Global provides professional and comprehensive Air Freight
               services committed to the safe, reliable and cost effective
               service of your consignment. Our dedicated network of integrated
@@ -84,19 +82,19 @@
               provides professional and comprehensive Air Freight services
               committed to the safe, reliable and cost effective delivery of
               your consignment.
-            </p>
+            </p> -->
           </div>
         </div>
-        <LastNews> <TitleSmall title="News" /></LastNews>
+        <LastNews :articles="articles"> <TitleSmall title="News" /></LastNews>
       </div>
     </div>
   </div>
 </template>
 <script>
-import NewsCard from "../components/cards/NewsCard.vue";
-import ServiceApplicationCard from "../components/cards/ServiceApplicationCard.vue";
-import LastNews from "../components/LastNews.vue";
-import TitleSmall from "../components/TitleSmall.vue";
+import NewsCard from "../../components/cards/NewsCard.vue";
+import ServiceApplicationCard from "../../components/cards/ServiceApplicationCard.vue";
+import LastNews from "../../components/LastNews.vue";
+import TitleSmall from "../../components/TitleSmall.vue";
 
 export default {
   data() {
@@ -112,9 +110,40 @@ export default {
         },
       ],
       value: "",
+      article: {},
+      articles: [],
     };
   },
 
+  mounted() {
+    this.__GET_ARTICLE();
+    this.__GET_ARTICLES();
+  },
+  methods: {
+    async __GET_ARTICLE() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.article = await this.$store.dispatch(
+        "fetchArticles/getArticlesInner",
+        {
+          paramsId: this.$route.params.index,
+          langCode: this.$i18n.locale,
+        }
+      );
+      this.$nuxt.$loading.finish();
+    },
+    async __GET_ARTICLES() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.articles = await this.$store.dispatch(
+        "fetchArticles/getArticles",
+        this.$i18n.locale
+      );
+      this.$nuxt.$loading.finish();
+    },
+  },
   components: { NewsCard, ServiceApplicationCard, LastNews, TitleSmall },
 };
 </script>
