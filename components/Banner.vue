@@ -111,17 +111,24 @@
           <div v-if="active == 1">
             <div class="form-block">
               <label for="inputFrom">Send a copy the quote to</label>
-              <input type="text" id="inputFrom" placeholder="Zip or city" />
+              <input
+                type="email"
+                v-model="requestData.email"
+                id="inputFrom"
+                placeholder="Your email"
+              />
             </div>
             <div class="form-block">
               <label for="inputFrom">First available date</label>
               <el-select
                 class="banner-select"
-                v-model="value"
+                v-model="requestData.firstDateValue"
                 placeholder="Select"
+                popper-class="web-selects"
               >
                 <el-option
-                  v-for="item in options"
+                  class="banner-select-options"
+                  v-for="item in firstDate"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -130,29 +137,67 @@
               </el-select>
               <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
             </div>
+            <div class="form-block" v-if="calendar.type">
+              <label for="inputFrom">First available date</label>
+              <a-date-picker
+                @change="onChangeDate"
+                :default-value="
+                  moment(requestData.dateValue, dateFormatList[0])
+                "
+                :format="dateFormatList"
+              />
+              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+            </div>
             <div class="form-block">
               <label for="inputTo">Your phone number</label>
-              <input type="text" id="inputTo" placeholder="Zip or city" />
+              <the-mask
+                type="text"
+                placeholder="(___) ___-____"
+                v-model="requestData.number"
+                :mask="['(###) ###-####', '(###) ###-####']"
+              />
             </div>
           </div>
           <div v-if="active == 2">
             <div class="form-block">
               <label for="">Transport car FROM</label>
-              <input type="text" id="inputFrom" placeholder="Zip or city" />
+              <el-select
+                v-model="requestData.citiesFrom"
+                class="mb-2"
+                filterable
+                :disabled="!cities.length > 0"
+                ref="selectInput"
+                placeholder="Transport car FROM"
+                popper-class="web-selects"
+              >
+                <el-option
+                  class="edit-select"
+                  v-for="item in cities"
+                  :key="item.id"
+                  :label="`${item.state.name} ${item.name} ${item.zip}`"
+                  :value="`${item.zip}`"
+                >
+                </el-option>
+              </el-select>
             </div>
             <div class="form-block">
               <label for="">Transport car TO</label>
 
               <el-select
-                class="banner-select"
-                v-model="value"
-                placeholder="Select"
+                v-model="requestData.citiesTo"
+                class="mb-2"
+                filterable
+                :disabled="!cities.length > 0"
+                ref="selectInput"
+                placeholder="Transport car TO"
+                popper-class="web-selects"
               >
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  class="edit-select"
+                  v-for="item in cities"
+                  :key="item.id"
+                  :label="`${item.state.name} ${item.name} ${item.zip}`"
+                  :value="`${item.zip}`"
                 >
                 </el-option>
               </el-select>
@@ -162,20 +207,35 @@
           <div v-if="active == 3">
             <div class="form-block">
               <label for="">Vehicle year</label>
-              <input type="text" id="inputFrom" placeholder="Zip or city" />
+              <el-select
+                v-model="requestData.carYear"
+                class="banner-select"
+                placeholder="Vehicle year"
+              >
+                <el-option
+                  v-for="item in years"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
             </div>
             <div class="form-block">
               <label for="inputFrom"> Vehicle make</label>
               <el-select
                 class="banner-select"
-                v-model="value"
-                placeholder="Select"
+                v-model="requestData.carMakesValue"
+                placeholder="Change marka"
+                @focus="__GET_CAR_MAKES()"
+                :loading="!carMakes.length > 0"
+                loading-text="Loading..."
               >
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  v-for="item in carMakes"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
                 >
                 </el-option>
               </el-select>
@@ -183,7 +243,20 @@
             </div>
             <div class="form-block">
               <label for="inputTo">Vehicle model</label>
-              <input type="text" id="inputTo" placeholder="Zip or city" />
+              <el-select
+                class="banner-select"
+                v-model="requestData.carModelsValue"
+                placeholder="Model"
+                :disabled="requestData.carMakesValue == ''"
+              >
+                <el-option
+                  v-for="item in carModles"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                >
+                </el-option>
+              </el-select>
             </div>
           </div>
 
@@ -235,52 +308,11 @@
               <el-step title="Name order"></el-step>
               <el-step title="Truck"></el-step>
             </el-steps>
-            <!-- <a-steps :current="current">
-              <a-step
-                v-for="item in steps"
-                :key="item.title"
-                :title="item.title"
-              />
-            </a-steps> -->
           </div>
           <p class="banner-form-info">
             Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
             barcha policy and private qoidalariga rozilik bildirasiz
           </p>
-
-          <!-- <el-button style="margin-top: 12px;" @click="next"
-            >Next step</el-button
-          > -->
-
-          <!-- <el-steps :active="active" finish-status="success">
-            <el-step title="Step 1"></el-step>
-            <el-step title="Step 2"></el-step>
-            <el-step title="Step 3"></el-step>
-          </el-steps> -->
-
-          <!-- <div class="steps-action">
-            <a-button
-              v-if="current < steps.length - 1"
-              type="primary"
-              @click="next"
-            >
-              Next
-            </a-button>
-            <a-button
-              v-if="current == steps.length - 1"
-              type="primary"
-              @click="$message.success('Processing complete!')"
-            >
-              Done
-            </a-button>
-            <a-button
-              v-if="current > 0"
-              style="margin-left: 8px;"
-              @click="prev"
-            >
-              Previous
-            </a-button>
-          </div> -->
         </form>
       </div>
     </div>
@@ -288,7 +320,7 @@
 </template>
 <script>
 import Title from "./Title.vue";
-
+import moment from "moment";
 export default {
   data() {
     return {
@@ -298,53 +330,82 @@ export default {
       video: true,
       videoMuted: false,
       active: 1,
-      steps: [
+      dateValue: "01/01/2015",
+      dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
+      cities: [],
+      carMakes: [],
+      carModles: [],
+      requestData: {
+        email: "",
+        firstDateValue: "",
+        number: "",
+        dateValue: "01/01/2015",
+        citiesTo: "",
+        citiesFrom: "",
+        carMakesValue: "",
+        carModelsValue: "",
+        carYear: "",
+      },
+      calendar: {
+        type: false,
+        value: "",
+      },
+      firstDate: [
         {
-          title: "First",
-          content: "First-content",
+          value: "As soon as possible",
+          label: "As soon as possible",
         },
         {
-          title: "Second",
-          content: "Second-content",
+          value: "Within 2 Weeks",
+          label: "Within 2 Weeks",
         },
         {
-          title: "Last",
-          content: "Last-content",
+          value: "Within 30 Days",
+          label: "Within 30 Days",
+        },
+        {
+          value: "More than 30 days",
+          label: "More than 30 days",
         },
       ],
-      options: [
+
+      years: [
         {
-          value: "Option1",
-          label: "Option1",
+          value: 2023,
+          label: 2023,
         },
         {
-          value: "Option2",
-          label: "Option2",
+          value: 2022,
+          label: 2022,
         },
         {
-          value: "Option3",
-          label: "Option3",
+          value: 2021,
+          label: 2021,
+        },
+        {
+          value: 2020,
+          label: 2020,
+        },
+        {
+          value: 2019,
+          label: 2019,
+        },
+        {
+          value: 2018,
+          label: 2018,
         },
       ],
-      value: "",
     };
   },
   methods: {
-    // next() {
-    //   this.current++;
-    // },
-    prev() {
-      this.current--;
+    moment,
+    onChangeDate(value, dateStrings) {
+      this.requestData.dateValue = dateStrings;
     },
-    enterLoading() {
-      this.loading = true;
-    },
-    enterIconLoading() {
-      this.iconLoading = { delay: 1000 };
-    },
+
     next() {
       if (this.active++ > 2) this.active = 0;
-      console.log(this.active);
+      console.log(this.requestData);
     },
     videoPlay() {
       if (!this.$refs.video.paused) {
@@ -363,12 +424,43 @@ export default {
         this.$refs.video.muted = true;
       }
     },
+    async __GET_CITIES() {
+      this.cities = await this.$store.dispatch("fetchLocations/getCities", {
+        state: null,
+      });
+    },
+    async __GET_CAR_MAKES() {
+      this.carMakes = await this.$store.dispatch(
+        "fetchCars/getCarMakes",
+        this.$i18n.locale
+      );
+    },
   },
   mounted() {
     this.video = true;
     this.videoMuted = false;
   },
   components: { Title },
+  watch: {
+    "requestData.firstDateValue"(val) {
+      if (val == "More than 30 days") {
+        this.calendar.type = true;
+      } else {
+        this.calendar.type = false;
+      }
+    },
+    active(val) {
+      if (val == 2) {
+        this.__GET_CITIES();
+      }
+    },
+    async "requestData.carMakesValue"(val) {
+      this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
+        langCode: this.$i18n.locale,
+        paramsId: val,
+      });
+    },
+  },
 };
 </script>
 <style lang="scss">

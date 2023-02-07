@@ -6,8 +6,8 @@
   grid-gap: 20px;
   grid-template-columns: repeat(2, 1fr);
 }
-.el-select-dropdown {
-  z-index: 2006 !important;
+.web-selects {
+  z-index: 2005 !important;
 }
 .banner-form {
   padding: 24px;
@@ -74,10 +74,19 @@
     }
   }
 }
+.modal-select-opitons {
+  z-index: 2006 !important;
+}
 .form-block {
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  .ant-calendar-picker-input {
+    height: 100%;
+  }
+  .el-input__inner {
+    height: 100% !important;
+  }
   .phone-number {
     position: relative;
     display: flex;

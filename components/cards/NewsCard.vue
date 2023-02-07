@@ -54,7 +54,6 @@
 <script>
 export default {
   props: ["article"],
-
 };
 </script>
 <style lang=""></style>

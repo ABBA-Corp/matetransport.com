@@ -8,6 +8,17 @@
   border: 1.5px solid #e1e9f9;
   border-radius: 16px;
 }
+.map_select {
+  path {
+    cursor: pointer;
+  }
+}
+.mobile-map-selects {
+  display: none;
+}
+.web-map-selects {
+  display: block;
+}
 .form-block-map {
   display: flex;
   flex-direction: column;
@@ -17,11 +28,15 @@
     @include fontStyle(16px, 700, $dark-blue);
     margin-bottom: 16px;
   }
-  span {
+  .el-input__inner {
+    height: 100% !important;
+  }
+  .blue_space,
+  .white_space {
     padding: 5px 26px;
     border: 1px solid #ecf3ff;
     border-radius: 8px;
-  
+
     display: inline;
     position: absolute;
     z-index: 10;
@@ -35,7 +50,7 @@
   }
   .white_space {
     background: #fff;
-    @include fontStyle(10px, 400, #005AA8);
+    @include fontStyle(10px, 400, #005aa8);
     line-height: 13px;
   }
   input {
@@ -340,6 +355,12 @@
   }
 }
 @media (max-width: 576px) {
+  .mobile-map-selects {
+    display: block;
+  }
+  .web-map-selects {
+    display: none;
+  }
   .coverage-map {
     padding-top: 0px;
     padding-bottom: 0;

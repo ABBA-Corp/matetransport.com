@@ -13,7 +13,7 @@
     <AboutUs />
     <LogisticCompany />
     <LogisticsServices :services="services" />
-    <CoverageMap :articles="articles" />
+    <CoverageMap :articles="articles" :states="states" />
     <AboutLogisticComp />
   </div>
 </template>
@@ -33,6 +33,7 @@ export default {
     return {
       services: [],
       articles: [],
+      states: [],
     };
   },
   computed: {
@@ -41,23 +42,30 @@ export default {
     },
   },
   mounted() {
-    this.GET_SERVICES();
-    this.GET_ARTICLES();
+    this.__GET_SERVICES();
+    this.__GET_ARTICLES();
+    this.__GET_STATES();
   },
   methods: {
-    async GET_SERVICES() {
-      this.$nextTick(() => {
-        this.$nuxt.$loading.start();
-      });
+    async __GET_SERVICES() {
+      // this.$nextTick(() => {
+      //   this.$nuxt.$loading.start();
+      // });
       this.services = await this.$store.dispatch(
         "fetchServices/getServices",
         this.$i18n.locale
       );
       this.$nuxt.$loading.finish();
     },
-    async GET_ARTICLES() {
+    async __GET_ARTICLES() {
       this.articles = await this.$store.dispatch(
         "fetchArticles/getArticles",
+        this.$i18n.locale
+      );
+    },
+    async __GET_STATES() {
+      this.states = await this.$store.dispatch(
+        "fetchLocations/getStates",
         this.$i18n.locale
       );
     },

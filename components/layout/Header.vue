@@ -319,6 +319,9 @@
                       v-model="carMake"
                       placeholder="Change marka"
                       @focus="__GET_CAR_MAKES()"
+                      :loading="!carMakes.length > 0"
+                      loading-text="Loading..."
+                      popper-class="modal-select-opitons"
                     >
                       <el-option
                         v-for="item in carMakes"
@@ -344,6 +347,8 @@
                       v-model="value"
                       placeholder="Model"
                       :disabled="carMake == ''"
+                      loading-text="Loading..."
+                      popper-class="modal-select-opitons"
                     >
                       <el-option
                         v-for="item in carModles"
@@ -372,7 +377,9 @@
                       filterable
                       ref="selectInput"
                       @focus="__GET_CITIES"
-                      placeholder="Select"
+                      placeholder="Pickup location"
+                      loading-text="Loading..."
+                      popper-class="modal-select-opitons"
                     >
                       <el-option
                         class="edit-select"
@@ -392,7 +399,9 @@
                       filterable
                       ref="selectInput"
                       @focus="__GET_CITIES"
-                      placeholder="Select"
+                      placeholder="Delivery location"
+                      loading-text="Loading..."
+                      popper-class="modal-select-opitons"
                     >
                       <el-option
                         class="edit-select"
