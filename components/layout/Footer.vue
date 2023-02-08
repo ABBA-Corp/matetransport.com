@@ -10,7 +10,7 @@
             <img src="../../assets/svg/Footer logo.svg" alt="" />
           </div>
           <div class="contact-info contact-web">
-            <a href=""
+            <a :href="`tel:${$store.state.staticInfo.nbm}`"
               ><svg
                 width="20"
                 height="20"
@@ -53,7 +53,7 @@
               </svg>
               {{ $store.state.staticInfo.adres }}</a
             >
-            <a href=""
+            <a :href="`mailto:${$store.state.staticInfo.email}`"
               ><svg
                 width="20"
                 height="20"
