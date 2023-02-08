@@ -56,7 +56,7 @@ export default {
     init(axios) {
       axios.defaults.withCredentials = true;
     },
-    baseURL: "https://metalogistics.pythonanywhere.com/api",
+    baseURL: "http://db4b-31-148-161-224.eu.ngrok.io/api",
   },
 
   i18n: {

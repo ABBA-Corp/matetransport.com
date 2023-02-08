@@ -1483,6 +1483,7 @@ export default {
       tooltipStyle: null,
       currentMap: [],
       states: [],
+      citiesData: [],
       cities: {
         to: [],
         form: [],
@@ -1531,7 +1532,7 @@ export default {
       }
     },
     async __GET_CITIES(id) {
-      const city = await this.$store.dispatch("fetchLocations/getCities", {
+      const citiesData = await this.$store.dispatch("fetchLocations/getCities", {
         state: id,
       });
       return city;

@@ -396,6 +396,7 @@
     .news-card-text {
       @include fontStyle(14px, 400, #96adc1);
       line-height: 20px;
+      height: 40px;
       margin-bottom: 24px;
     }
     .news-card-btn {

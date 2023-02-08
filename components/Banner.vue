@@ -131,30 +131,12 @@
                 />
               </el-form-item>
             </div>
+
             <div class="form-block">
-              <label for="inputFrom">First available date</label>
-              <el-select
-                class="banner-select"
-                v-model="ruleForm.firstDateValue"
-                placeholder="Select"
-                popper-class="web-selects"
-              >
-                <el-option
-                  class="banner-select-options"
-                  v-for="item in firstDate"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                >
-                </el-option>
-              </el-select>
-              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
-            </div>
-            <div class="form-block" v-if="calendar.type">
               <label for="inputFrom">First available date</label>
               <a-date-picker
                 @change="onChangeDate"
-                :default-value="moment(ruleForm.dateValue, dateFormatList[0])"
+                :default-value="moment(ruleForm.date, dateFormatList[0])"
                 :format="dateFormatList"
               />
               <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
@@ -169,7 +151,7 @@
                   type="text"
                   placeholder="(___) ___-____"
                   :mask="['(###) ###-####', '(###) ###-####']"
-                  v-model="ruleForm.number"
+                  v-model="ruleForm.nbm"
                   label-position="top"
                 />
               </el-form-item>
@@ -179,7 +161,7 @@
             <div class="form-block">
               <label for="">Transport car FROM</label>
               <el-select
-                v-model="ruleForm.citiesFrom"
+                v-model="ruleForm.ship_from"
                 class="mb-2"
                 filterable
                 :disabled="!cities.length > 0"
@@ -192,7 +174,7 @@
                   v-for="item in cities"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.zip}`"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -201,7 +183,7 @@
               <label for="">Transport car TO</label>
 
               <el-select
-                v-model="ruleForm.citiesTo"
+                v-model="ruleForm.ship_to"
                 class="mb-2"
                 filterable
                 :disabled="!cities.length > 0"
@@ -214,7 +196,7 @@
                   v-for="item in cities"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.zip}`"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -225,7 +207,7 @@
             <div class="form-block">
               <label for="">Vehicle year</label>
               <el-select
-                v-model="ruleForm.carYear"
+                v-model="ruleForm.car_year"
                 class="banner-select"
                 placeholder="Vehicle year"
               >
@@ -242,7 +224,7 @@
               <label for="inputFrom"> Vehicle make</label>
               <el-select
                 class="banner-select"
-                v-model="ruleForm.carMakesValue"
+                v-model="carMakesValue"
                 placeholder="Change marka"
                 @focus="__GET_CAR_MAKES()"
                 :loading="!carMakes.length > 0"
@@ -262,9 +244,9 @@
               <label for="inputTo">Vehicle model</label>
               <el-select
                 class="banner-select"
-                v-model="ruleForm.carModelsValue"
+                v-model="ruleForm.vehicle"
                 placeholder="Model"
-                :disabled="ruleForm.carMakesValue == ''"
+                :disabled="carMakesValue == ''"
               >
                 <el-option
                   v-for="item in carModles"
@@ -282,7 +264,7 @@
               class="form-btn"
               type="submit"
               @click="submitForm('ruleForm')"
-              v-if="active != 3"
+              v-if="active != 5"
             >
               Next stage<svg
                 width="24"
@@ -352,21 +334,22 @@ export default {
       video: true,
       videoMuted: false,
       active: 1,
-      dateValue: "01/01/2015",
+      date: "01/01/2015",
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
       carMakes: [],
       carModles: [],
+      carMakesValue: "",
       ruleForm: {
         email: "",
-        firstDateValue: "",
-        number: "",
-        dateValue: "01/01/2015",
-        citiesTo: "",
-        citiesFrom: "",
-        carMakesValue: "",
-        carModelsValue: "",
-        carYear: "",
+        nbm: "",
+        date: "01/01/2015",
+        ship_to: "",
+        ship_from: "",
+        vehicle: "",
+        car_year: "",
+        vehicle_runs: 1,
+        ship_via_id: 1,
       },
       calendar: {
         type: false,
@@ -419,7 +402,7 @@ export default {
       ],
 
       rules: {
-        number: [
+        nbm: [
           {
             required: true,
             message: "incorrect number",
@@ -445,7 +428,7 @@ export default {
   methods: {
     moment,
     onChangeDate(value, dateStrings) {
-      this.requestData.dateValue = dateStrings;
+      this.ruleForm.date = dateStrings.replaceAll("/", ".");
     },
 
     videoPlay() {
@@ -483,32 +466,41 @@ export default {
       );
     },
     async submitForm(ruleForm) {
-      this.$refs[ruleForm].validate(async (valid) => {
-        if (valid) {
-          const emailCorrent = await this.$store.dispatch(
-            "fetchCheckEmail/getCheckEmail",
-            this.ruleForm.email
-          );
+      if (this.active == 3) {
+        // const leadData = await this.$store.dispatch("fetchLead/postLead", {
+        //   currentLang: this.$i18n.locale,
+        //   data: this.ruleForm,
+        // });
+        this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
+      } else {
+        this.$refs[ruleForm].validate(async (valid) => {
+          if (valid) {
+            const emailCorrent = await this.$store.dispatch(
+              "fetchCheckEmail/getCheckEmail",
+              this.ruleForm.email
+            );
 
-          if (emailCorrent.deliverability == "DELIVERABLE") {
-            if (this.active++ > 2) {
-              this.active = 0;
+            if (emailCorrent.deliverability == "DELIVERABLE") {
+              console.log(this.ruleForm);
+              if (this.active++ > 2) {
+                this.active = 0;
+              }
+            } else {
+              console.log("toast");
+              this.$toast.open({
+                message: `Email ${emailCorrent.deliverability}`,
+                type: "error",
+                duration: 2000,
+                dismissible: true,
+                position: "top-right",
+              });
             }
           } else {
-            console.log("toast");
-            this.$toast.open({
-              message: `Email ${emailCorrent.deliverability}`,
-              type: "error",
-              duration: 2000,
-              dismissible: true,
-              position: "top-right",
-            });
+            console.log("error submit!!");
+            return false;
           }
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+        });
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
@@ -520,19 +512,19 @@ export default {
   },
   components: { Title },
   watch: {
-    "ruleForm.firstDateValue"(val) {
-      if (val == "More than 30 days") {
-        this.calendar.type = true;
-      } else {
-        this.calendar.type = false;
-      }
-    },
+    // "ruleForm.firstDateValue"(val) {
+    //   if (val == "More than 30 days") {
+    //     this.calendar.type = true;
+    //   } else {
+    //     this.calendar.type = false;
+    //   }
+    // },
     active(val) {
       if (val == 2) {
         this.__GET_CITIES();
       }
     },
-    async "requestData.carMakesValue"(val) {
+    async carMakesValue(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,
         paramsId: val,
