@@ -37,9 +37,12 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [{ src: "//code.jivosite.com/widget/dFa3MqED0a",  async: true, }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
+  script: ["//code.jivosite.com/widget/dFa3MqED0a",],
+
   css: ["~/assets/sass/app.scss", "aos/dist/aos.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -83,7 +86,20 @@ export default {
   },
 
   i18n: {
-    locales: this.posts,
+    locales: [
+      {
+        code: "en",
+        name: "English",
+      },
+      {
+        code: "ru",
+        name: "Russian",
+      },
+      {
+        code: "uz",
+        name: "uz",
+      },
+    ],
     defaultLocale: "en",
     differentDomains: false,
     // baseUrl: "http://localhost:3000/",
