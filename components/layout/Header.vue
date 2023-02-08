@@ -12,7 +12,7 @@
           <div class="anim-right"></div>
         </div>
         <div class="header-links">
-          <span class="header-top-link"
+          <nuxt-link :to="localePath('/about-us')" class="header-top-link"
             >Careers
             <svg
               width="11"
@@ -23,7 +23,7 @@
             >
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
-          </span>
+          </nuxt-link>
           <span class="header-top-link" @click="show('modal_header')"
             >Contact us
             <svg
@@ -68,7 +68,7 @@
           </ul>
         </div>
         <div class="header-navbar-btn">
-          <!-- <el-dropdown
+          <el-dropdown
             trigger="click"
             class="nav_lang"
             @command="handleCommand"
@@ -85,7 +85,7 @@
                 >{{ locale.name }}</el-dropdown-item
               >
             </el-dropdown-menu>
-          </el-dropdown> -->
+          </el-dropdown>
           <div>
             <div class="leave-comment" @click="show('modal_leave_weak')">
               <span>Zayavka qoldirish</span>
@@ -303,7 +303,15 @@
             ></span>
           </div>
           <div class="modal_body">
-            <form action="">
+            <el-form
+              label-position="top"
+              :model="ruleForm"
+              :rules="rules"
+              ref="ruleForm"
+              label-width="120px"
+              class="demo-ruleForm"
+              action=""
+            >
               <div class="modal_form_container">
                 <div class="m-form-title-hr">
                   <h1 class="m-form-title">
@@ -314,50 +322,64 @@
                 <div class="form-block-grid">
                   <div class="modal_form_block form-block">
                     <label for="">Truck marka</label>
-                    <el-select
-                      class="banner-select"
-                      v-model="carMake"
-                      placeholder="Change marka"
-                      @focus="__GET_CAR_MAKES()"
-                      :loading="!carMakes.length > 0"
-                      loading-text="Loading..."
-                      popper-class="modal-select-opitons"
-                    >
-                      <el-option
-                        v-for="item in carMakes"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.id"
+                    <el-form-item prop="car_make" label-position="top">
+                      <el-select
+                        class="banner-select w-100"
+                        v-model="ruleForm.car_make"
+                        placeholder="Change marka"
+                        @focus="__GET_CAR_MAKES()"
+                        :loading="!carMakes.length > 0"
+                        loading-text="Loading..."
+                        popper-class="modal-select-opitons"
                       >
-                      </el-option>
-                    </el-select>
+                        <el-option
+                          v-for="item in carMakes"
+                          :key="item.id"
+                          :label="item.name"
+                          :value="item.id"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Truck Year</label>
-                    <a-date-picker
-                      @change="onChangeDate"
-                      :default-value="moment(dateValue, dateFormatList[0])"
-                      :format="dateFormatList"
-                    />
+                    <el-form-item prop="car_year" label-position="top">
+                      <el-select
+                        v-model="ruleForm.car_year"
+                        class="banner-select w-100"
+                        placeholder="Vehicle year"
+                      >
+                        <el-option
+                          v-for="item in years"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Truck model</label>
-                    <el-select
-                      class="banner-select"
-                      v-model="value"
-                      placeholder="Model"
-                      :disabled="carMake == ''"
-                      loading-text="Loading..."
-                      popper-class="modal-select-opitons"
-                    >
-                      <el-option
-                        v-for="item in carModles"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.id"
+                    <el-form-item prop="vehicle" label-position="top">
+                      <el-select
+                        class="banner-select w-100"
+                        v-model="ruleForm.vehicle"
+                        placeholder="Model"
+                        :disabled="ruleForm.car_make == ''"
+                        loading-text="Loading..."
+                        popper-class="modal-select-opitons"
                       >
-                      </el-option>
-                    </el-select>
+                        <el-option
+                          v-for="item in carModles"
+                          :key="item.id"
+                          :label="item.name"
+                          :value="item.id"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
                   </div>
                 </div>
               </div>
@@ -371,55 +393,65 @@
                 <div class="form-block-grid">
                   <div class="modal_form_block form-block">
                     <label for="">Pickup location</label>
-                    <el-select
-                      v-model="shipFrom"
-                      class="mb-2"
-                      filterable
-                      @focus="__GET_CITIES"
-                      :loading="!shipFromOptions.length > 0"
-                      placeholder="Pickup location"
-                      loading-text="Loading..."
-                      popper-class="modal-select-opitons"
-                    >
-                      <el-option
-                        class="edit-select"
-                        v-for="item in shipFromOptions"
-                        :key="item.id"
-                        :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                        :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                    <el-form-item prop="ship_from" label-position="top">
+                      <el-select
+                        v-model="ruleForm.ship_from"
+                        class="w-100"
+                        filterable
+                        @focus="__GET_CITIES"
+                        :loading="!shipFromOptions.length > 0"
+                        placeholder="Pickup location"
+                        loading-text="Loading..."
+                        popper-class="modal-select-opitons"
                       >
-                      </el-option>
-                    </el-select>
+                        <el-option
+                          class="edit-select"
+                          v-for="item in shipFromOptions"
+                          :key="item.id"
+                          :label="`${item.state.name} ${item.state.code} ${item.zip}`"
+                          :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Delivery location</label>
-                    <el-select
-                      v-model="shipTo"
-                      class="mb-2"
-                      filterable
-                      ref="selectInput"
-                      @focus="__GET_CITIES"
-                      placeholder="Delivery location"
-                      loading-text="Loading..."
-                      popper-class="modal-select-opitons"
-                    >
-                      <el-option
-                        class="edit-select"
-                        v-for="item in shipFromOptions"
-                        :key="item.id"
-                        :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                        :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                    <el-form-item prop="ship_to" label-position="top">
+                      <el-select
+                        v-model="ruleForm.ship_to"
+                        class="w-100"
+                        filterable
+                        ref="selectInput"
+                        @focus="__GET_CITIES"
+                        placeholder="Delivery location"
+                        loading-text="Loading..."
+                        popper-class="modal-select-opitons"
                       >
-                      </el-option>
-                    </el-select>
+                        <el-option
+                          class="edit-select"
+                          v-for="item in shipFromOptions"
+                          :key="item.id"
+                          :label="`${item.state.name} ${item.state.code} ${item.zip}`"
+                          :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Delivery data</label>
-                    <a-date-picker
-                      @change="onChangeDate"
-                      :default-value="moment(dateValue, dateFormatList[0])"
-                      :format="dateFormatList"
-                    />
+                    <el-form-item prop="date" label-position="top">
+                      <a-date-picker
+                        @change="onChangeDate"
+                        class="w-100"
+                        v-model="ruleForm.date"
+                        :default-value="
+                          moment(ruleForm.date, dateFormatList[0])
+                        "
+                        :format="dateFormatList"
+                      />
+                    </el-form-item>
                   </div>
                 </div>
               </div>
@@ -433,24 +465,52 @@
                 <div class="form-block-grid">
                   <div class="modal_form_block form-block">
                     <label for="">First name</label>
-                    <input type="text" placeholder="Full name" />
+                    <el-form-item prop="" label-position="top">
+                      <input
+                        class="w-100"
+                        type="text"
+                        placeholder="Full name"
+                      />
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Email</label>
-                    <input type="text" placeholder="Your email" />
+                    <el-form-item prop="email" label-position="top">
+                      <input
+                        class="w-100"
+                        type="email"
+                        v-model="ruleForm.email"
+                        id="inputFrom"
+                        placeholder="Your email"
+                        required
+                      />
+                    </el-form-item>
                   </div>
                   <div class="modal_form_block form-block">
                     <label for="">Phone number</label>
-                    <input type="text" placeholder="Number" />
+                    <el-form-item prop="nbm" label-position="top">
+                      <the-mask
+                        class="w-100"
+                        type="text"
+                        placeholder="(___) ___-____"
+                        :mask="['(###) ###-####', '(###) ###-####']"
+                        v-model="ruleForm.nbm"
+                        label-position="top"
+                      />
+                    </el-form-item>
                   </div>
                 </div>
               </div>
               <div class="modal-application-form-btn">
-                <div class="form-btn" @click="sendNomer">
+                <div
+                  type="submit"
+                  class="form-btn"
+                  @click="submitForm('ruleForm')"
+                >
                   Send all informations
                 </div>
               </div>
-            </form>
+            </el-form>
           </div>
         </div>
       </modal>
@@ -525,6 +585,7 @@ export default {
       deadline2: moment().add(1, "h").format(fmt),
       dateValue: "01/01/2015",
       discountTimer: 60,
+      carMakesValue: "",
       options: [
         {
           value: "Option1",
@@ -547,6 +608,97 @@ export default {
       shipTo: "",
       shipFromOptions: [],
       number: 0,
+      rules: {
+        nbm: [
+          {
+            min: 10,
+            max: 10,
+            message: "Length should be 10",
+            trigger: "change",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "incorrect email",
+            trigger: "blur",
+          },
+        ],
+
+        vehicle: [
+          {
+            required: true,
+            message: "Pleace enter vehicle model",
+            trigger: "change",
+          },
+        ],
+        car_year: [
+          {
+            required: true,
+            message: "Pleace enter vehicle year",
+            trigger: "change",
+          },
+        ],
+        ship_from: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        ship_to: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        date: [
+          {
+            required: true,
+            message: "Pleace enter date",
+            trigger: "change",
+          },
+        ],
+      },
+      ruleForm: {
+        email: "",
+        nbm: "",
+        date: "",
+        ship_to: "",
+        ship_from: "",
+        vehicle: "",
+        car_year: "",
+        vehicle_runs: 1,
+        ship_via_id: 1,
+        car_make: "",
+      },
+      years: [
+        {
+          value: 2023,
+          label: 2023,
+        },
+        {
+          value: 2022,
+          label: 2022,
+        },
+        {
+          value: 2021,
+          label: 2021,
+        },
+        {
+          value: 2020,
+          label: 2020,
+        },
+        {
+          value: 2019,
+          label: 2019,
+        },
+        {
+          value: 2018,
+          label: 2018,
+        },
+      ],
     };
   },
   computed: {
@@ -614,19 +766,40 @@ export default {
         "fetchLocations/getCities"
       );
     },
-    numberUt(x) {
-      this.number = x
-        .toString()
-        .replace(".", ",")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    async submitForm(ruleForm) {
+      // const leadData = await this.$store.dispatch("fetchLead/postLead", {
+      //   currentLang: this.$i18n.locale,
+      //   data: this.ruleForm,
+      // });
+      // this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
+      this.$refs[ruleForm].validate(async (valid) => {
+        if (valid) {
+          const emailCorrent = await this.$store.dispatch(
+            "fetchCheckEmail/getCheckEmail",
+            this.ruleForm.email
+          );
+
+          if (emailCorrent.deliverability == "DELIVERABLE") {
+            // this.$router.push("/calculator/")
+          } else {
+            this.$toast.open({
+              message: `Email ${emailCorrent.deliverability}`,
+              type: "error",
+              duration: 2000,
+              dismissible: true,
+              position: "top-right",
+            });
+          }
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
   },
   mounted() {
     this.GET_STATIC_INFORMATIONS();
-    this.numberUt(124234324.989);
-    console.log(this.$refs.selectInput);
-    const time = new Date();
-    console.log(time);
+
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -644,7 +817,7 @@ export default {
   },
   components: { TextCarousel, Drawer, FlipCountdown },
   watch: {
-    async carMake(val) {
+    async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,
         paramsId: val,

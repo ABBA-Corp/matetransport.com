@@ -17,7 +17,7 @@
     <AboutLogisticComp />
   </div>
 </template>
-
+<script src="//code.jivosite.com/widget/4Tm0SZmQhV" async></script>
 <script>
 import AboutLogisticComp from "../components/AboutLogisticComp.vue";
 import AboutUs from "../components/AboutUs.vue";

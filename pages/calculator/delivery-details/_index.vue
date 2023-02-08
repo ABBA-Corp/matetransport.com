@@ -6,7 +6,7 @@
         <label for="inputFrom">Delivery address</label>
         <div class="calculator-grid">
           <input type="text" id="inputFrom" placeholder="Street home flat" />
-          <input type="text" id="inputFrom" placeholder="Street home flat" />
+          <input type="text" id="inputFrom" placeholder="USA California" />
         </div>
       </div>
 
@@ -34,12 +34,12 @@
           <div class="calculator-grid">
             <div class="checkbox-input">
               <a-radio :value="1">
-                Residential address
+                Contact me
               </a-radio>
             </div>
             <div class="checkbox-input">
               <a-radio :value="2">
-                Residential address
+                Contact someone else
               </a-radio>
             </div>
           </div>

@@ -1,6 +1,29 @@
 // const locales = "./lang/en-US.js";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  data: () => ({
+    posts: [
+      {
+        code: "en",
+        name: "English",
+      },
+      {
+        code: "ru",
+        name: "Russian",
+      },
+      {
+        code: "uz",
+        name: "uz",
+      },
+    ],
+  }),
+  async fetch() {
+    this.posts = await this.$http.$get(
+      "https://metalogistics.pythonanywhere.com/api/articles"
+    );
+    console.log(this.posts);
+  },
   loading: "~/components/loading.vue",
   head: {
     title: "meta-logistics",
@@ -56,20 +79,11 @@ export default {
     init(axios) {
       axios.defaults.withCredentials = true;
     },
-    baseURL: "http://db4b-31-148-161-224.eu.ngrok.io/api",
+    baseURL: "https://metalogistics.pythonanywhere.com/api",
   },
 
   i18n: {
-    locales: [
-      {
-        code: "en",
-        name: "English",
-      },
-      {
-        code: "ru",
-        name: "Russian",
-      },
-    ],
+    locales: this.posts,
     defaultLocale: "en",
     differentDomains: false,
     // baseUrl: "http://localhost:3000/",
@@ -110,6 +124,5 @@ export default {
         },
       ];
     },
-   
   },
 };

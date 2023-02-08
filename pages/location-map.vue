@@ -37,18 +37,158 @@
         <div class="location-map-form">
           <div class="location-map-shadow"></div>
           <div class="banner-form">
-            <form action="">
+            <el-form
+              label-position="top"
+              :model="ruleForm"
+              :rules="rules"
+              ref="ruleForm"
+              label-width="120px"
+              class="demo-ruleForm"
+              action=""
+            >
               <div class="form-title">
                 <h2>Get an instant quoteor call now call</h2>
               </div>
-              <div class="form-block">
-                <label for="inputFrom">Transport car FROM</label>
-                <input type="text" id="inputFrom" placeholder="Zip or city" />
-              </div>
+              <div v-if="active == 1">
+                <div class="form-block">
+                  <label for="">Transport car FROM</label>
+                  <el-select
+                    v-model="ruleForm.ship_from"
+                    class="mb-2"
+                    filterable
+                    :disabled="!cities.length > 0"
+                    ref="selectInput"
+                    placeholder="Transport car FROM"
+                    popper-class="web-selects"
+                  >
+                    <el-option
+                      class="edit-select"
+                      v-for="item in cities"
+                      :key="item.id"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="`${item.id}`"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <div class="form-block">
+                  <label for="">Transport car TO</label>
 
-              <div class="form-block">
-                <label for="inputTo">Transport car TO</label>
-                <input type="text" id="inputTo" placeholder="Zip or city" />
+                  <el-select
+                    v-model="ruleForm.ship_to"
+                    class="mb-2"
+                    filterable
+                    :disabled="!cities.length > 0"
+                    ref="selectInput"
+                    placeholder="Transport car TO"
+                    popper-class="web-selects"
+                  >
+                    <el-option
+                      class="edit-select"
+                      v-for="item in cities"
+                      :key="item.id"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="`${item.id}`"
+                    >
+                    </el-option>
+                  </el-select>
+                  <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                </div>
+              </div>
+              <div v-if="active == 2">
+                <div class="form-block">
+                  <label for="inputFrom">Send a copy the quote to</label>
+
+                  <el-form-item prop="email" label-position="top">
+                    <input
+                      class="w-100"
+                      type="email"
+                      v-model="ruleForm.email"
+                      id="inputFrom"
+                      placeholder="Your email"
+                      required
+                    />
+                  </el-form-item>
+                </div>
+
+                <div class="form-block">
+                  <label for="inputFrom">First available date</label>
+                  <a-date-picker
+                    @change="onChangeDate"
+                    :default-value="moment(ruleForm.date, dateFormatList[0])"
+                    :format="dateFormatList"
+                  />
+                  <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                </div>
+
+                <div class="form-block">
+                  <label for="inputTo">Your phone number</label>
+                  <el-form-item prop="nbm" label-position="top">
+                    <the-mask
+                      class="w-100"
+                      type="text"
+                      placeholder="(___) ___-____"
+                      :mask="['(###) ###-####', '(###) ###-####']"
+                      v-model="ruleForm.nbm"
+                      label-position="top"
+                    />
+                  </el-form-item>
+                </div>
+              </div>
+              <div v-if="active == 3">
+                <div class="form-block">
+                  <label for="">Vehicle year</label>
+                  <el-select
+                    v-model="ruleForm.car_year"
+                    class="banner-select"
+                    placeholder="Vehicle year"
+                  >
+                    <el-option
+                      v-for="item in years"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <div class="form-block">
+                  <label for="inputFrom"> Vehicle make</label>
+                  <el-select
+                    class="banner-select"
+                    v-model="carMakesValue"
+                    placeholder="Change marka"
+                    @focus="__GET_CAR_MAKES()"
+                    :loading="!carMakes.length > 0"
+                    loading-text="Loading..."
+                  >
+                    <el-option
+                      v-for="item in carMakes"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    >
+                    </el-option>
+                  </el-select>
+                  <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                </div>
+                <div class="form-block">
+                  <label for="inputTo">Vehicle model</label>
+                  <el-select
+                    class="banner-select"
+                    v-model="ruleForm.vehicle"
+                    placeholder="Model"
+                    :disabled="carMakesValue == ''"
+                  >
+                    <el-option
+                      v-for="item in carModles"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
               </div>
               <p class="banner-form-info">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -60,7 +200,11 @@
               <div
                 class="banner-form-btn d-flex justify-content-end steps-action"
               >
-                <div class="form-btn">
+                <div
+                  class="form-btn"
+                  type="submit"
+                  @click="submitForm('ruleForm')"
+                >
                   Next stage<svg
                     width="24"
                     height="24"
@@ -80,48 +224,19 @@
                 </div>
               </div>
               <div class="banner-steps">
-                <a-steps :current="current">
-                  <a-step
-                    v-for="item in steps"
-                    :key="item.title"
-                    :title="item.title"
-                  />
-                </a-steps>
+                <div class="banner-steps">
+                  <el-steps :active="active" finish-status="success">
+                    <el-step
+                      @click="reverse(1)"
+                      style="cursor: pointer;"
+                      title="Location"
+                    ></el-step>
+                    <el-step title="Name order"></el-step>
+                    <el-step title="Truck"></el-step>
+                  </el-steps>
+                </div>
               </div>
-
-              <!-- <el-steps :active="active" finish-status="success">
-            <el-step title="Step 1"></el-step>
-            <el-step title="Step 2"></el-step>
-            <el-step title="Step 3"></el-step>
-          </el-steps> -->
-
-              <!-- <div class="steps-content">
-            {{ steps[current].content }}
-          </div> -->
-              <!-- <div class="steps-action">
-            <a-button
-              v-if="current < steps.length - 1"
-              type="primary"
-              @click="next"
-            >
-              Next
-            </a-button>
-            <a-button
-              v-if="current == steps.length - 1"
-              type="primary"
-              @click="$message.success('Processing complete!')"
-            >
-              Done
-            </a-button>
-            <a-button
-              v-if="current > 0"
-              style="margin-left: 8px;"
-              @click="prev"
-            >
-              Previous
-            </a-button>
-          </div> -->
-            </form>
+            </el-form>
           </div>
         </div>
       </div>
@@ -323,26 +438,151 @@ import ServiceApplicationCard from "../components/cards/ServiceApplicationCard.v
 import PartnersCarousel from "../components/PartnersCarousel.vue";
 import Title from "../components/Title.vue";
 import TitleSmall from "../components/TitleSmall.vue";
+import moment from "moment";
 
 export default {
   data() {
     return {
       current: 0,
-      steps: [
+      active: 1,
+      date: "01/01/2015",
+      cities: [],
+      carMakes: [],
+      carMakesValue: "",
+      carModles: [],
+      dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
+      ruleForm: {
+        email: "",
+        nbm: "",
+        date: "01/01/2015",
+        ship_to: "",
+        ship_from: "",
+        vehicle: "",
+        car_year: "",
+        vehicle_runs: 1,
+        ship_via_id: 1,
+      },
+      years: [
         {
-          title: "First",
-          content: "First-content",
+          value: 2023,
+          label: 2023,
         },
         {
-          title: "Second",
-          content: "Second-content",
+          value: 2022,
+          label: 2022,
         },
         {
-          title: "Last",
-          content: "Last-content",
+          value: 2021,
+          label: 2021,
+        },
+        {
+          value: 2020,
+          label: 2020,
+        },
+        {
+          value: 2019,
+          label: 2019,
+        },
+        {
+          value: 2018,
+          label: 2018,
         },
       ],
+      rules: {
+        nbm: [
+          {
+            required: true,
+            message: "incorrect number",
+            trigger: "blur",
+          },
+          {
+            min: 10,
+            max: 10,
+            message: "Length should be 10",
+            trigger: "change",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "incorrect email",
+            trigger: "blur",
+          },
+        ],
+      },
     };
+  },
+  mounted() {
+    this.__GET_CITIES();
+  },
+  methods: {
+    moment,
+    reverse(val) {
+      (this.active = val), console.log(this.active);
+    },
+    async __GET_CITIES() {
+      this.cities = await this.$store.dispatch("fetchLocations/getCities", {
+        state: null,
+      });
+    },
+    async __GET_CAR_MAKES() {
+      this.carMakes = await this.$store.dispatch(
+        "fetchCars/getCarMakes",
+        this.$i18n.locale
+      );
+    },
+    onChangeDate(value, dateStrings) {
+      this.ruleForm.date = dateStrings.replaceAll("/", ".");
+    },
+    async submitForm(ruleForm) {
+      if (this.active == 3) {
+        // const leadData = await this.$store.dispatch("fetchLead/postLead", {
+        //   currentLang: this.$i18n.locale,
+        //   data: this.ruleForm,
+        // });
+        this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
+      } else if (this.active == 2) {
+        this.$refs[ruleForm].validate(async (valid) => {
+          if (valid) {
+            const emailCorrent = await this.$store.dispatch(
+              "fetchCheckEmail/getCheckEmail",
+              this.ruleForm.email
+            );
+
+            if (emailCorrent.deliverability == "DELIVERABLE") {
+              console.log(this.ruleForm);
+              if (this.active++ > 2) {
+                this.active = 0;
+              }
+            } else {
+              console.log("toast");
+              this.$toast.open({
+                message: `Email ${emailCorrent.deliverability}`,
+                type: "error",
+                duration: 2000,
+                dismissible: true,
+                position: "top-right",
+              });
+            }
+          } else {
+            console.log("error submit!!");
+            return false;
+          }
+        });
+      } else {
+        if (this.active++ > 2) {
+          this.active = 0;
+        }
+      }
+    },
+  },
+  watch: {
+    async carMakesValue(val) {
+      this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
+        langCode: this.$i18n.locale,
+        paramsId: val,
+      });
+    },
   },
   components: {
     TitleSmall,

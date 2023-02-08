@@ -145,7 +145,7 @@
             <div class="form-block">
               <label for="inputTo">Your phone number</label>
 
-              <el-form-item prop="number" label-position="top">
+              <el-form-item prop="nbm" label-position="top">
                 <the-mask
                   class="w-100"
                   type="text"
@@ -153,6 +153,7 @@
                   :mask="['(###) ###-####', '(###) ###-####']"
                   v-model="ruleForm.nbm"
                   label-position="top"
+                  
                 />
               </el-form-item>
             </div>
