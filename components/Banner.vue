@@ -104,25 +104,38 @@
       <div class="banner-form" data-aos="fade-left" data-aos-duration="1000">
         <div class="ellipse-shodow3"></div>
 
-        <form action="">
+        <el-form
+          label-position="top"
+          :model="ruleForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="120px"
+          class="demo-ruleForm"
+          action=""
+        >
           <div class="form-title">
             <h2>Get an instant quoteor call now call</h2>
           </div>
           <div v-if="active == 1">
             <div class="form-block">
               <label for="inputFrom">Send a copy the quote to</label>
-              <input
-                type="email"
-                v-model="requestData.email"
-                id="inputFrom"
-                placeholder="Your email"
-              />
+
+              <el-form-item prop="email" label-position="top">
+                <input
+                  class="w-100"
+                  type="email"
+                  v-model="ruleForm.email"
+                  id="inputFrom"
+                  placeholder="Your email"
+                  required
+                />
+              </el-form-item>
             </div>
             <div class="form-block">
               <label for="inputFrom">First available date</label>
               <el-select
                 class="banner-select"
-                v-model="requestData.firstDateValue"
+                v-model="ruleForm.firstDateValue"
                 placeholder="Select"
                 popper-class="web-selects"
               >
@@ -141,28 +154,32 @@
               <label for="inputFrom">First available date</label>
               <a-date-picker
                 @change="onChangeDate"
-                :default-value="
-                  moment(requestData.dateValue, dateFormatList[0])
-                "
+                :default-value="moment(ruleForm.dateValue, dateFormatList[0])"
                 :format="dateFormatList"
               />
               <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
             </div>
+
             <div class="form-block">
               <label for="inputTo">Your phone number</label>
-              <the-mask
-                type="text"
-                placeholder="(___) ___-____"
-                v-model="requestData.number"
-                :mask="['(###) ###-####', '(###) ###-####']"
-              />
+
+              <el-form-item prop="number" label-position="top">
+                <the-mask
+                  class="w-100"
+                  type="text"
+                  placeholder="(___) ___-____"
+                  :mask="['(###) ###-####', '(###) ###-####']"
+                  v-model="ruleForm.number"
+                  label-position="top"
+                />
+              </el-form-item>
             </div>
           </div>
           <div v-if="active == 2">
             <div class="form-block">
               <label for="">Transport car FROM</label>
               <el-select
-                v-model="requestData.citiesFrom"
+                v-model="ruleForm.citiesFrom"
                 class="mb-2"
                 filterable
                 :disabled="!cities.length > 0"
@@ -184,7 +201,7 @@
               <label for="">Transport car TO</label>
 
               <el-select
-                v-model="requestData.citiesTo"
+                v-model="ruleForm.citiesTo"
                 class="mb-2"
                 filterable
                 :disabled="!cities.length > 0"
@@ -208,7 +225,7 @@
             <div class="form-block">
               <label for="">Vehicle year</label>
               <el-select
-                v-model="requestData.carYear"
+                v-model="ruleForm.carYear"
                 class="banner-select"
                 placeholder="Vehicle year"
               >
@@ -225,7 +242,7 @@
               <label for="inputFrom"> Vehicle make</label>
               <el-select
                 class="banner-select"
-                v-model="requestData.carMakesValue"
+                v-model="ruleForm.carMakesValue"
                 placeholder="Change marka"
                 @focus="__GET_CAR_MAKES()"
                 :loading="!carMakes.length > 0"
@@ -245,9 +262,9 @@
               <label for="inputTo">Vehicle model</label>
               <el-select
                 class="banner-select"
-                v-model="requestData.carModelsValue"
+                v-model="ruleForm.carModelsValue"
                 placeholder="Model"
-                :disabled="requestData.carMakesValue == ''"
+                :disabled="ruleForm.carMakesValue == ''"
               >
                 <el-option
                   v-for="item in carModles"
@@ -261,7 +278,12 @@
           </div>
 
           <div class="banner-form-btn steps-action">
-            <div class="form-btn" @click="next" v-if="active != 3">
+            <div
+              class="form-btn"
+              type="submit"
+              @click="submitForm('ruleForm')"
+              v-if="active != 3"
+            >
               Next stage<svg
                 width="24"
                 height="24"
@@ -313,7 +335,7 @@
             Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
             barcha policy and private qoidalariga rozilik bildirasiz
           </p>
-        </form>
+        </el-form>
       </div>
     </div>
   </div>
@@ -335,7 +357,7 @@ export default {
       cities: [],
       carMakes: [],
       carModles: [],
-      requestData: {
+      ruleForm: {
         email: "",
         firstDateValue: "",
         number: "",
@@ -395,6 +417,29 @@ export default {
           label: 2018,
         },
       ],
+
+      rules: {
+        number: [
+          {
+            required: true,
+            message: "incorrect number",
+            trigger: "blur",
+          },
+          {
+            min: 10,
+            max: 10,
+            message: "Length should be 10",
+            trigger: "change",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "incorrect email",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -403,10 +448,6 @@ export default {
       this.requestData.dateValue = dateStrings;
     },
 
-    next() {
-      if (this.active++ > 2) this.active = 0;
-      console.log(this.requestData);
-    },
     videoPlay() {
       if (!this.$refs.video.paused) {
         this.$refs.video.pause();
@@ -429,11 +470,48 @@ export default {
         state: null,
       });
     },
+    async __CHECK_EMAIL(emal) {
+      this.cities = await this.$store.dispatch(
+        "fetchCheckEmail/getCheckEmail",
+        email
+      );
+    },
     async __GET_CAR_MAKES() {
       this.carMakes = await this.$store.dispatch(
         "fetchCars/getCarMakes",
         this.$i18n.locale
       );
+    },
+    async submitForm(ruleForm) {
+      this.$refs[ruleForm].validate(async (valid) => {
+        if (valid) {
+          const emailCorrent = await this.$store.dispatch(
+            "fetchCheckEmail/getCheckEmail",
+            this.ruleForm.email
+          );
+
+          if (emailCorrent.deliverability == "DELIVERABLE") {
+            if (this.active++ > 2) {
+              this.active = 0;
+            }
+          } else {
+            console.log("toast");
+            this.$toast.open({
+              message: `Email ${emailCorrent.deliverability}`,
+              type: "error",
+              duration: 2000,
+              dismissible: true,
+              position: "top-right",
+            });
+          }
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
   mounted() {
@@ -442,7 +520,7 @@ export default {
   },
   components: { Title },
   watch: {
-    "requestData.firstDateValue"(val) {
+    "ruleForm.firstDateValue"(val) {
       if (val == "More than 30 days") {
         this.calendar.type = true;
       } else {

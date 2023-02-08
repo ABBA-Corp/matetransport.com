@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="logistic-services">
+  <div class="logistic-services" id="ourServices">
     <div class="container_xl">
       <Title
         title="Бизнинг барча логистика<br/> хизматларимиз"

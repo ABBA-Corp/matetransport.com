@@ -8,7 +8,7 @@
       direction="ltr"
     >
       <div class="drawer_container">
-        <div class="drawer_hadear" @click="show('modal_leave_weak')">
+        <div class="drawer_hadear">
           <img src="../assets/svg/image 2.svg" alt="" />
           <span @click="drawerClose">
             <svg
@@ -46,22 +46,22 @@
           <div class="drawer_body">
             <ul>
               <li>
-                <nuxt-link to="/">How it works</nuxt-link>
+                <a @click="drawerClose" href="#home-banner">How it works</a>
               </li>
               <li>
-                <nuxt-link to="/">For individuals</nuxt-link>
+                <a @click="drawerClose" href="#howWeWork">How we work</a>
               </li>
               <li>
-                <nuxt-link to="/">For businesses</nuxt-link>
+                <a @click="drawerClose" href="#ourServices">Our services</a>
               </li>
               <li>
-                <nuxt-link to="/">Why montway</nuxt-link>
+                <a @click="drawerClose" href="#coverageMap">Coverage map</a>
               </li>
               <li>
-                <nuxt-link to="/">Help</nuxt-link>
+                <a @click="drawerClose" href="#newAndEvents">News and events</a>
               </li>
             </ul>
-            <div class="drawer_lang">
+            <!-- <div class="drawer_lang">
               <nuxt-link
                 :class="{
                   'is-activeLang':
@@ -72,7 +72,7 @@
                 :to="switchLocalePath(locale.code)"
                 >{{ locale.name }}</nuxt-link
               >
-            </div>
+            </div> -->
           </div>
           <div class="drawer_footer">
             <a href=""
@@ -196,9 +196,13 @@ export default {
   methods: {
     drawerOpen() {
       this.drawer = true;
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
     },
     drawerClose() {
       this.drawer = false;
+      document.body.style.overflowY = "auto";
+      document.body.style.height = "auto";
     },
     show(name) {
       this.$modal.show(name);

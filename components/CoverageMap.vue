@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="coverage-map">
+  <div class="coverage-map" id="coverageMap">
     <div
       class="examples__block__map__tooltip"
       v-if="pointedLocation"
@@ -1359,7 +1359,7 @@
                 class="mb-2"
                 filterable
                 ref="selectInput"
-                placeholder="Select"
+                placeholder="Tochka A"
                 popper-class="web-selects"
                 :loading="!cities.from"
                 loading-text="Loading..."
@@ -1382,7 +1382,7 @@
                 filterable
                 :disabled="!cities.to.length > 0"
                 ref="selectInput"
-                placeholder="Select"
+                placeholder="Tochka B"
                 popper-class="web-selects"
               >
                 <el-option
@@ -1425,7 +1425,7 @@
         </div>
       </div>
 
-      <div class="mate-news">
+      <div class="mate-news" >
         <img src="../assets/images/MATE NEWS.png" alt="" />
         <div class="log-news">
           <img src="../assets/svg/Footer logo.svg" alt="" />
@@ -1546,8 +1546,8 @@ export default {
     moveOnLocation(event) {
       this.tooltipStyle = {
         display: "block",
-        top: `${event.clientY + 10}px`,
-        left: `${event.clientX - 10}px`,
+        top: `${event.clientY + 20}px`,
+        left: `${event.clientX - 15}px`,
       };
     },
     getLocationClass(location, index) {

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="home-page">
+  <div class="home-page" id="home-banner">
     <Banner />
     <div class="carousel-container">
       <div class="container_xl position-relative">

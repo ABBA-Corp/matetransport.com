@@ -195,6 +195,7 @@
         </div>
         <div class="calculator-container">
           <Nuxt :show="show" />
+
           <div class="calculator-info">
             <div class="calculator-info-body">
               <div class="calculator-info-items">
@@ -562,59 +563,10 @@
               </div>
             </div>
           </div>
-          <modal name="modal_discount" width="590px" height="auto">
-      <div class="modal_container">
-        <div class="modal_header d-flex justify-content-between">
-          <h5>10% discount</h5>
-          <span @click="hide('modal_discount')"
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-                stroke="#024E90"
-                stroke-width="1.5"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-          ></span>
-        </div>
-        <div
-          class="modal_body modal-discount d-flex flex-column align-items-center"
-        >
-          <div class="d-flex flex-column align-items-center mt-lg-2 mb-4">
-            <h6 class="discount-title">10% discount</h6>
-            <p class="discount-text text-center">
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy
-            </p>
-          </div>
-          <div class="form-block w-100">
-            <input type="text" placeholder="+998 (__) ___ __ __" />
-            <span class="discount-timer">0:{{ discountTimer }} sekund</span>
-          </div>
-
-          <div class="modal-discount-btn w-100">
-            <div class="form-discount-btn form-btn">
-              I dont want discount
-            </div>
-            <div class="form-btn">
-              Send a phone number
-            </div>
-          </div>
-        </div>
-      </div></modal
-    >
         </div>
       </div>
     </div>
     <Footer />
-   
   </div>
 </template>
 <script>
@@ -705,7 +657,6 @@ export default {
       value: "",
       shipFrom: "",
       shipTo: "",
-      discountTimer: 60,
     };
   },
   computed: {
@@ -743,8 +694,6 @@ export default {
     },
     onChangeDate(value, dateStrings) {
       this.dateValue = dateStrings;
-      console.log("From: ", value, ", to: ", dateStrings);
-      console.log(this.dateValue);
     },
     drawerClose() {
       this.drawer = false;

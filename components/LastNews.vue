@@ -1,6 +1,7 @@
 <template>
   <div
     class="flex last-news items-center justify-center blog position-relative"
+    id="newAndEvents"
   >
     <div class="container_xl position-relative carousel_navigate mb-4">
       <slot></slot>

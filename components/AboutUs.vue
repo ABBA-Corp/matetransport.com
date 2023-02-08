@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="about-us" id="howItWorks">
+  <div class="about-us" id="howWeWork">
     <div class="container_xl">
       <Title title="Biz qanday ishlaymiz?" />
       <div class="about-us-grid">

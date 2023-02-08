@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="about-logistic-comp">
+  <div class="about-logistic-comp" >
     <div class="container_xl">
       <Title
         title="Mate logistics Company"
