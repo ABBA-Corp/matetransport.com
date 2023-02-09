@@ -172,7 +172,6 @@
       </div>
     </el-drawer>
 
-    <Chat />
     <Header :drawerOpen="drawerOpen" />
     <Nuxt />
     <Footer />
