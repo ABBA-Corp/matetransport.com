@@ -1298,22 +1298,21 @@
               <!-- <label for="inputFrom">Tochka A</label> -->
               <span class="blue_space">Tochka A</span>
               <el-select
-                v-model="citiesForm"
+                v-model="stateFrom"
                 class="mb-2"
                 filterable
                 ref="selectInput"
                 placeholder="Select"
                 popper-class="web-selects"
-                :disabled="!cities.from"
-                :loading="true"
+                :disabled="!states"
                 loading-text="Loading..."
               >
                 <el-option
                   class="edit-select"
-                  v-for="item in cities.from"
+                  v-for="item in states"
                   :key="item.id"
-                  :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.state.name} ${item.name} ${item.zip}`"
+                  :label="item.name"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -1322,17 +1321,19 @@
               <!-- <label for="inputFrom">Tochka A</label> -->
               <span class="white_space">Tochka A shahari</span>
               <el-select
-                v-model="citiesTo"
+                v-model="citiesFrom"
                 class="mb-2"
                 filterable
-                :disabled="!cities.to.length > 0"
+                :disabled="!cities.from"
                 ref="selectInput"
                 placeholder="Select"
                 popper-class="web-selects"
+                :loading="!cities.from"
+                loading-text="Loading..."
               >
                 <el-option
                   class="edit-select"
-                  v-for="item in cities.to"
+                  v-for="item in cities.from"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
                   :value="`${item.zip}`"
@@ -1355,7 +1356,7 @@
             <div class="form-block-map">
               <label for="inputFrom">Tochka A</label>
               <el-select
-                v-model="citiesForm"
+                v-model="citiesFrom"
                 class="mb-2"
                 filterable
                 ref="selectInput"
@@ -1369,7 +1370,7 @@
                   v-for="item in cities.from"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.state.name} ${item.name} ${item.zip}`"
+                  :value="`${item.zip}`"
                 >
                 </el-option>
               </el-select>
@@ -1399,7 +1400,11 @@
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
           >
-            <nuxt-link :to="localePath('/location-map')" class="form-btn">
+            <nuxt-link
+              :disabled="!citiesFrom && !citiesTo"
+              :to="localePath('/location-map')"
+              class="form-btn"
+            >
               Next step<svg
                 width="24"
                 height="24"
@@ -1425,7 +1430,7 @@
         </div>
       </div>
 
-      <div class="mate-news" >
+      <div class="mate-news">
         <img src="../assets/images/MATE NEWS.png" alt="" />
         <div class="log-news">
           <img src="../assets/svg/Footer logo.svg" alt="" />
@@ -1476,8 +1481,10 @@ export default {
   data() {
     return {
       USA,
-      citiesForm: "",
+      citiesFrom: "",
       citiesTo: "",
+      stateFrom: "",
+      stateTo: "",
       selectedLocations: [],
       pointedLocation: null,
       tooltipStyle: null,
@@ -1486,7 +1493,7 @@ export default {
       citiesData: [],
       cities: {
         to: [],
-        form: [],
+        from: [],
       },
     };
   },
@@ -1506,7 +1513,7 @@ export default {
       this.pointedLocation = event.toElement.dataset.name;
     },
     async mapClick(val) {
-      (this.citiesForm = ""),
+      (this.citiesFrom = ""),
         (this.citiesTo = ""),
         await this.currentMap.push(val);
       if (this.currentMap.length > 2) {
@@ -1532,9 +1539,12 @@ export default {
       }
     },
     async __GET_CITIES(id) {
-      const citiesData = await this.$store.dispatch("fetchLocations/getCities", {
-        state: id,
-      });
+      const citiesData = await this.$store.dispatch(
+        "fetchLocations/getCities",
+        {
+          state: id,
+        }
+      );
       return city;
     },
     findCity(id) {
@@ -1563,8 +1573,14 @@ export default {
         this.selectedLocations = this.selectedLocations.slice(-2);
       }
     },
-    citiesTo(val) {
-      console.log(val);
+    async stateFrom(val) {
+      this.citiesFrom = ""
+      this.cities.from = await this.$store.dispatch(
+        "fetchLocations/getCities",
+        {
+          state: val,
+        }
+      );
     },
   },
 };

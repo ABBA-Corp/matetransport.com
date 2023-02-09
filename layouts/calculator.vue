@@ -172,7 +172,6 @@
       </div>
     </el-drawer>
 
-    <Chat />
     <Header :drawerOpen="drawerOpen" />
     <div class="calculator">
       <div class="container_xl position-relative">
@@ -326,8 +325,8 @@
                       </el-option>
                     </el-select>
                     <div class="select-btns d-flex">
-                      <div class="save-btn btn btn-primary">Save</div>
-                      <div class="cancel-btn btn mx-3" @click="activeEdit = 0">
+                      <div class="calculator-save-btn ">Save</div>
+                      <div class="calculator-cancel-btn mx-3" @click="activeEdit = 0">
                         Cancel
                       </div>
                     </div>
@@ -463,7 +462,6 @@
                 <span>Service type </span>
                 <p>Door to door</p>
               </div>
-
               <div class="calculator-info-items">
                 <span>Insurance </span>
                 <p>Included</p>
@@ -573,7 +571,6 @@
 import CalculatorInfoItems from "../components/calculator/calculatorInfoItems.vue";
 import Header from "../components/layout/Header.vue";
 import Footer from "../components/layout/Footer.vue";
-import Chat from "../components/Chat.vue";
 import CalculatorStep1 from "../components/calculator/calculatorStep1.vue";
 import CalculatorStep2 from "../components/calculator/calculatorStep2.vue";
 import CalculatorStep3 from "../components/calculator/calculatorStep3.vue";
@@ -730,7 +727,6 @@ export default {
     CalculatorStep3,
     Header,
     Footer,
-    Chat,
   },
   watch: {
     selectedLocations(newVal, oldVal) {

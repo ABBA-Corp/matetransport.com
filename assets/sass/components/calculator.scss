@@ -40,6 +40,18 @@
     padding-bottom: 12px;
     margin-bottom: 12px;
     border-bottom: 1px solid #ecf3ff;
+    .calculator-save-btn,
+    .calculator-cancel-btn {
+      @include fontStyle(14px, 400, #fff);
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    .calculator-cancel-btn {
+      color: #008aff;
+    }
+    .calculator-save-btn {
+      background-color: #008aff;
+    }
     &:last-child {
       border-bottom: none;
       margin-bottom: 0;

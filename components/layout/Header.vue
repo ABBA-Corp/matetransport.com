@@ -68,7 +68,7 @@
           </ul>
         </div>
         <div class="header-navbar-btn">
-          <el-dropdown
+          <!-- <el-dropdown
             trigger="click"
             class="nav_lang"
             @command="handleCommand"
@@ -85,7 +85,7 @@
                 >{{ locale.name }}</el-dropdown-item
               >
             </el-dropdown-menu>
-          </el-dropdown>
+          </el-dropdown> -->
           <div>
             <div class="leave-comment" @click="show('modal_leave_weak')">
               <span>Zayavka qoldirish</span>

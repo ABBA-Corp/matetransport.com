@@ -134,7 +134,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 <script>
@@ -145,7 +144,7 @@ export default {
     return {
       value: 1,
       value1: 1,
-      inputX: require("../../assets/svg/x.svg"),
+      inputX: require("~/assets/svg/x.svg"),
       numberInputs: [
         {
           id: 1,

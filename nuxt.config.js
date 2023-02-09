@@ -61,7 +61,7 @@ export default {
     init(axios) {
       axios.defaults.withCredentials = true;
     },
-    baseURL: "https://metalogistics.pythonanywhere.com/api",
+    baseURL: "https://matelog.abba.uz/api",
   },
 
   i18n: {

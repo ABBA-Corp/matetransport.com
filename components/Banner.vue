@@ -350,6 +350,7 @@ export default {
       carMakes: [],
       carModles: [],
       carMakesValue: "",
+      allCities: [],
       ruleForm: {
         email: "",
         nbm: "",
@@ -505,6 +506,7 @@ export default {
       this.cities = await this.$store.dispatch("fetchLocations/getCities", {
         state: null,
       });
+      this.allCities = this.cities;
     },
     async __CHECK_EMAIL(emal) {
       this.cities = await this.$store.dispatch(
@@ -581,6 +583,12 @@ export default {
         langCode: this.$i18n.locale,
         paramsId: val,
       });
+    },
+    "ruleForm.ship_to"(val) {
+      this.cities = this.allCities.filter((item) => item.id != val);
+    },
+    "ruleForm.ship_from"(val) {
+      this.cities = this.allCities.filter((item) => item.id != val);
     },
   },
 };

@@ -22,11 +22,12 @@
 import AboutLogisticComp from "../components/AboutLogisticComp.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Banner from "../components/Banner.vue";
-import Chat from "../components/Chat.vue";
 import CoverageMap from "../components/CoverageMap.vue";
 import LogisticCompany from "../components/LogisticCompany.vue";
 import LogisticsServices from "../components/LogisticsServices/LogisticsServices.vue";
 import PartnersCarousel from "../components/PartnersCarousel.vue";
+
+// Fetch the computer's MAC address
 export default {
   name: "IndexPage",
   data() {
@@ -45,6 +46,7 @@ export default {
     this.__GET_SERVICES();
     this.__GET_ARTICLES();
     this.__GET_STATES();
+    console.log(window.navigator);
   },
   methods: {
     async __GET_SERVICES() {
@@ -71,7 +73,6 @@ export default {
     },
   },
   components: {
-    Chat,
     Banner,
     PartnersCarousel,
     AboutUs,

@@ -58,7 +58,7 @@
       </div>
       <div class="banner-form-btn d-flex justify-content-end steps-action pt-3">
         <nuxt-link
-          :to="localePath('/calculator/transport')"
+          :to="localePath('/calculator/transport/asdsadasdsad')"
           class="form-btn"
           @click="changeSteps(2)"
         >

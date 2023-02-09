@@ -46,7 +46,7 @@
             />
             <img
               @click="deleteNumberInput(item.id)"
-              src="../../assets/svg/x.svg"
+              src="~/assets/svg/x.svg"
               alt=""
             />
           </div>
@@ -61,7 +61,7 @@
       <div class="banner-form-btn d-flex justify-content-end steps-action pt-3">
         <nuxt-link
           class="form-btn"
-          :to="localePath('/calculator/choice-tarif')"
+          :to="localePath('/calculator/choice-tarif/asdasdasd')"
         >
           Next stage<svg
             width="24"
@@ -119,7 +119,7 @@ export default {
     return {
       value: 1,
       value1: 1,
-      inputX: require("../../assets/svg/x.svg"),
+      inputX: require("~/assets/svg/x.svg"),
       numberInputs: [
         {
           id: 1,

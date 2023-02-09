@@ -11,6 +11,11 @@
   h3 {
     @include fontStyle(24.1622px, 700, #ffffff);
     line-height: 30px;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    text-overflow: ellipsis;
   }
   p {
     @include fontStyle(16.1082px, 400, #ffffff);

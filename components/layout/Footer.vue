@@ -253,7 +253,7 @@
       </div>
       <div class="footer-hr"></div>
       <div class="footer-bottom d-flex justify-content-between">
-        <p>Matelogistics 2023. All rights reserved</p>
+        <p>Matelogistics {{date}}. All rights reserved</p>
         <p>Copyright © Mate | Designed Abba coding</p>
       </div>
     </div>
@@ -261,6 +261,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      date: new Date().getFullYear()
+    };
+  },
   computed: {
     localChange() {
       return this.$i18n.locale;

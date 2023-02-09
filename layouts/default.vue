@@ -180,7 +180,6 @@
 <script>
 import Header from "../components/layout/Header.vue";
 import Footer from "../components/layout/Footer.vue";
-import Chat from "../components/Chat.vue";
 export default {
   data() {
     return {
@@ -213,7 +212,6 @@ export default {
   components: {
     Header,
     Footer,
-    Chat,
   },
 };
 </script>
