@@ -2,28 +2,7 @@
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  data: () => ({
-    posts: [
-      {
-        code: "en",
-        name: "English",
-      },
-      {
-        code: "ru",
-        name: "Russian",
-      },
-      {
-        code: "uz",
-        name: "uz",
-      },
-    ],
-  }),
-  async fetch() {
-    this.posts = await this.$http.$get(
-      "https://metalogistics.pythonanywhere.com/api/articles"
-    );
-    console.log(this.posts);
-  },
+
   loading: "~/components/loading.vue",
   head: {
     title: "meta-logistics",
@@ -37,11 +16,11 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    script: [{ src: "//code.jivosite.com/widget/dFa3MqED0a",  async: true, }],
+    script: [{ src: "//code.jivosite.com/widget/dFa3MqED0a", async: true }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  script: ["//code.jivosite.com/widget/dFa3MqED0a",],
+  script: ["//code.jivosite.com/widget/dFa3MqED0a"],
 
   css: ["~/assets/sass/app.scss", "aos/dist/aos.css"],
 

@@ -134,12 +134,15 @@
 
             <div class="form-block">
               <label for="inputFrom">First available date</label>
-              <a-date-picker
-                @change="onChangeDate"
-                :default-value="moment(ruleForm.date, dateFormatList[0])"
-                :format="dateFormatList"
-              />
-              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+              <el-form-item prop="date" label-position="top">
+                <a-date-picker
+                  class="w-100"
+                  @change="onChangeDate"
+                  :default-value="moment(ruleForm.date, dateFormatList[0])"
+                  :format="dateFormatList"
+                  placeholder="First available date"
+                />
+              </el-form-item>
             </div>
 
             <div class="form-block">
@@ -153,7 +156,6 @@
                   :mask="['(###) ###-####', '(###) ###-####']"
                   v-model="ruleForm.nbm"
                   label-position="top"
-                  
                 />
               </el-form-item>
             </div>
@@ -161,102 +163,109 @@
           <div v-if="active == 2">
             <div class="form-block">
               <label for="">Transport car FROM</label>
-              <el-select
-                v-model="ruleForm.ship_from"
-                class="mb-2"
-                filterable
-                :disabled="!cities.length > 0"
-                ref="selectInput"
-                placeholder="Transport car FROM"
-                popper-class="web-selects"
-              >
-                <el-option
-                  class="edit-select"
-                  v-for="item in cities"
-                  :key="item.id"
-                  :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.id}`"
+              <el-form-item prop="ship_from" label-position="top">
+                <el-select
+                  v-model="ruleForm.ship_from"
+                  class="mb-2 w-100"
+                  filterable
+                  :disabled="!cities.length > 0"
+                  ref="selectInput"
+                  placeholder="Transport car FROM"
+                  popper-class="web-selects"
                 >
-                </el-option>
-              </el-select>
+                  <el-option
+                    class="edit-select"
+                    v-for="item in cities"
+                    :key="item.id"
+                    :label="`${item.state.name} ${item.name} ${item.zip}`"
+                    :value="`${item.id}`"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </div>
             <div class="form-block">
               <label for="">Transport car TO</label>
-
-              <el-select
-                v-model="ruleForm.ship_to"
-                class="mb-2"
-                filterable
-                :disabled="!cities.length > 0"
-                ref="selectInput"
-                placeholder="Transport car TO"
-                popper-class="web-selects"
-              >
-                <el-option
-                  class="edit-select"
-                  v-for="item in cities"
-                  :key="item.id"
-                  :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.id}`"
+              <el-form-item prop="ship_to" label-position="top">
+                <el-select
+                  v-model="ruleForm.ship_to"
+                  class="mb-2 w-100"
+                  filterable
+                  :disabled="!cities.length > 0"
+                  ref="selectInput"
+                  placeholder="Transport car TO"
+                  popper-class="web-selects"
                 >
-                </el-option>
-              </el-select>
-              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                  <el-option
+                    class="edit-select"
+                    v-for="item in cities"
+                    :key="item.id"
+                    :label="`${item.state.name} ${item.name} ${item.zip}`"
+                    :value="`${item.id}`"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </div>
           </div>
           <div v-if="active == 3">
             <div class="form-block">
               <label for="">Vehicle year</label>
-              <el-select
-                v-model="ruleForm.car_year"
-                class="banner-select"
-                placeholder="Vehicle year"
-              >
-                <el-option
-                  v-for="item in years"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+              <el-form-item prop="car_year" label-position="top">
+                <el-select
+                  v-model="ruleForm.car_year"
+                  class="banner-select w-100"
+                  placeholder="Vehicle year"
                 >
-                </el-option>
-              </el-select>
+                  <el-option
+                    v-for="item in years"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </div>
             <div class="form-block">
               <label for="inputFrom"> Vehicle make</label>
-              <el-select
-                class="banner-select"
-                v-model="carMakesValue"
-                placeholder="Change marka"
-                @focus="__GET_CAR_MAKES()"
-                :loading="!carMakes.length > 0"
-                loading-text="Loading..."
-              >
-                <el-option
-                  v-for="item in carMakes"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
+              <el-form-item prop="car_make" label-position="top">
+                <el-select
+                  class="banner-select w-100"
+                  v-model="ruleForm.car_make"
+                  placeholder="Change marka"
+                  @focus="__GET_CAR_MAKES()"
+                  :loading="!carMakes.length > 0"
+                  loading-text="Loading..."
                 >
-                </el-option>
-              </el-select>
-              <!-- <input type="text" id="inputFrom" placeholder="Zip or city" /> -->
+                  <el-option
+                    v-for="item in carMakes"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </div>
             <div class="form-block">
               <label for="inputTo">Vehicle model</label>
-              <el-select
-                class="banner-select"
-                v-model="ruleForm.vehicle"
-                placeholder="Model"
-                :disabled="carMakesValue == ''"
-              >
-                <el-option
-                  v-for="item in carModles"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id"
+              <el-form-item prop="vehicle" label-position="top">
+                <el-select
+                  class="banner-select w-100"
+                  v-model="ruleForm.vehicle"
+                  placeholder="Model"
+                  :disabled="ruleForm.car_make == ''"
                 >
-                </el-option>
-              </el-select>
+                  <el-option
+                    v-for="item in carModles"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </div>
           </div>
 
@@ -344,13 +353,14 @@ export default {
       ruleForm: {
         email: "",
         nbm: "",
-        date: "01/01/2015",
+        date: "",
         ship_to: "",
         ship_from: "",
         vehicle: "",
         car_year: "",
         vehicle_runs: 1,
         ship_via_id: 1,
+        car_make: "",
       },
       calendar: {
         type: false,
@@ -406,7 +416,7 @@ export default {
         nbm: [
           {
             required: true,
-            message: "incorrect number",
+            message: "Please enter your number",
             trigger: "blur",
           },
           {
@@ -419,8 +429,50 @@ export default {
         email: [
           {
             required: true,
-            message: "incorrect email",
+            message: "Please enter your email",
             trigger: "blur",
+          },
+        ],
+        date: [
+          {
+            required: true,
+            message: "Please enter date",
+            trigger: "blur",
+          },
+        ],
+        ship_from: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        ship_to: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        car_make: [
+          {
+            required: true,
+            message: "Pleace enter transport",
+            trigger: "change",
+          },
+        ],
+        vehicle: [
+          {
+            required: true,
+            message: "Pleace enter transport model",
+            trigger: "change",
+          },
+        ],
+        car_year: [
+          {
+            required: true,
+            message: "Pleace enter transport model",
+            trigger: "change",
           },
         ],
       },
@@ -467,41 +519,40 @@ export default {
       );
     },
     async submitForm(ruleForm) {
-      if (this.active == 3) {
-        // const leadData = await this.$store.dispatch("fetchLead/postLead", {
-        //   currentLang: this.$i18n.locale,
-        //   data: this.ruleForm,
-        // });
-        this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
-      } else {
-        this.$refs[ruleForm].validate(async (valid) => {
-          if (valid) {
-            const emailCorrent = await this.$store.dispatch(
-              "fetchCheckEmail/getCheckEmail",
-              this.ruleForm.email
-            );
+      console.log(this.active);
+      // const leadData = await this.$store.dispatch("fetchLead/postLead", {
+      //   currentLang: this.$i18n.locale,
+      //   data: this.ruleForm,
+      // });
 
-            if (emailCorrent.deliverability == "DELIVERABLE") {
-              console.log(this.ruleForm);
-              if (this.active++ > 2) {
-                this.active = 0;
-              }
-            } else {
-              console.log("toast");
-              this.$toast.open({
-                message: `Email ${emailCorrent.deliverability}`,
-                type: "error",
-                duration: 2000,
-                dismissible: true,
-                position: "top-right",
-              });
-            }
-          } else {
-            console.log("error submit!!");
-            return false;
+      this.$refs[ruleForm].validate(async (valid) => {
+        if (valid) {
+          // const emailCorrent = await this.$store.dispatch(
+          //   "fetchCheckEmail/getCheckEmail",
+          //   this.ruleForm.email
+          // );
+
+          // if (emailCorrent.deliverability == "DELIVERABLE") {
+          if (this.active++ > 2) {
+            this.active = 0;
+            this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
           }
-        });
-      }
+
+          // } else {
+          //   console.log("toast");
+          //   this.$toast.open({
+          //     message: `Email ${emailCorrent.deliverability}`,
+          //     type: "error",
+          //     duration: 2000,
+          //     dismissible: true,
+          //     position: "top-right",
+          //   });
+          // }
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
@@ -525,7 +576,7 @@ export default {
         this.__GET_CITIES();
       }
     },
-    async carMakesValue(val) {
+    async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,
         paramsId: val,
