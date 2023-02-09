@@ -25,6 +25,18 @@
   }
   margin-bottom: 33px;
 }
+.video-sound {
+  span {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(9.35485px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+}
 .banner-select {
   .el-input {
     input {
