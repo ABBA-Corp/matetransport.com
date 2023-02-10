@@ -5,15 +5,13 @@
         <div class="d-flex align-items-center header-text-animate">
           <div class="anim-left"></div>
           <p class="slider-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. publishing software like Aldus PageMaker including
-            versions of
+            {{ $store.state.translations["main.nav_top_text"] }}
           </p>
           <div class="anim-right"></div>
         </div>
         <div class="header-links">
-          <nuxt-link :to="localePath('/about-us')" class="header-top-link"
-            >Careers
+          <nuxt-link :to="localePath('/about-us')" class="header-top-link">
+            {{ $store.state.translations["main.careers"] }}
             <svg
               width="11"
               height="11"
@@ -25,7 +23,7 @@
             </svg>
           </nuxt-link>
           <span class="header-top-link" @click="show('modal_header')"
-            >Contact us
+            >{{ $store.state.translations["main.contact_us"] }}
             <svg
               width="11"
               height="11"
@@ -37,7 +35,9 @@
             </svg>
           </span>
           <nuxt-link class="header-top-btn" to="/"
-            ><span>Check my order</span></nuxt-link
+            ><span>{{
+              $store.state.translations["main.check_my_order"]
+            }}</span></nuxt-link
           >
         </div>
       </div>
@@ -51,19 +51,29 @@
         <div class="header-navbar-nav">
           <ul>
             <li>
-              <a class="is-active" href="#home-banner">How it works</a>
+              <a class="is-active" href="#home-banner">{{
+                $store.state.translations["main.nav_howItWorks"]
+              }}</a>
             </li>
             <li>
-              <a href="#howWeWork">How we work</a>
+              <a href="#howWeWork">{{
+                $store.state.translations["main.nav_howWeWork"]
+              }}</a>
             </li>
             <li>
-              <a href="#ourServices">Our services</a>
+              <a href="#ourServices">{{
+                $store.state.translations["main.nav_ourServices"]
+              }}</a>
             </li>
             <li>
-              <a href="#coverageMap">Coverage map</a>
+              <a href="#coverageMap">{{
+                $store.state.translations["main.nav_coverageMap"]
+              }}</a>
             </li>
             <li>
-              <a href="#newAndEvents">News and events</a>
+              <a href="#newAndEvents">{{
+                $store.state.translations["main.nav_newsAndEvents"]
+              }}</a>
             </li>
           </ul>
         </div>
@@ -167,7 +177,6 @@
               </p>
             </div>
             <div class="form-block modal-form-block">
-              <!-- <input type="text" id="inputFrom" v-mask="'##/##/#### ##:##:##'" placeholder="Phone number" /> -->
               <the-mask
                 type="text"
                 placeholder="Phone number"
@@ -182,48 +191,6 @@
           </div>
         </div></modal
       >
-      <!-- <modal name="modal_timer" width="440px" height="auto">
-        <div class="modal_container">
-          <div class="modal_header d-flex justify-content-between">
-            <h5>Tezkor aloqa</h5>
-            <span @click="hide('modal_timer')"
-              ><svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-                  stroke="#024E90"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-            ></span>
-          </div>
-          <div class="modal_body">
-            <p class="timer_text">
-              Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
-              chiqadi
-            </p>
-            <div class="modal_timer">
-              <span class="two_dots">:</span>
-              <flip-countdown
-                :deadline="deadline2"
-                :showDays="false"
-                :showHours="false"
-                @timeElapsed="timeElapsedHandler"
-              ></flip-countdown>
-            </div>
-            <div class="d-flex justify-content-center">
-              <span class="another_attempt">Boshqattan urinish</span>
-            </div>
-          </div>
-        </div></modal
-      > -->
       <modal name="modal_success" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
@@ -270,250 +237,7 @@
           </div>
         </div></modal
       >
-      <modal
-        :adaptive="true"
-        name="modal_leave_weak"
-        width="996px"
-        height="auto"
-      >
-        <div class="modal_container window-header">
-          <div class="modal_header d-flex justify-content-between">
-            <div>
-              <h5>Zayavka topshirirsh</h5>
-              <p class="fasting-contact-text sub-text">
-                Malumotlaringiz havfsizligi taminlanadi va tarqatilmaydi
-              </p>
-            </div>
-            <span @click="hide('modal_leave_weak')"
-              ><svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-                  stroke="#024E90"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-            ></span>
-          </div>
-          <div class="modal_body">
-            <el-form
-              label-position="top"
-              :model="ruleForm"
-              :rules="rules"
-              ref="ruleForm"
-              label-width="120px"
-              class="demo-ruleForm"
-              action=""
-            >
-              <div class="modal_form_container">
-                <div class="m-form-title-hr">
-                  <h1 class="m-form-title">
-                    Truck mode
-                  </h1>
-                  <span></span>
-                </div>
-                <div class="form-block-grid">
-                  <div class="modal_form_block form-block">
-                    <label for="">Truck marka</label>
-                    <el-form-item prop="car_make" label-position="top">
-                      <el-select
-                        class="banner-select w-100"
-                        v-model="ruleForm.car_make"
-                        placeholder="Change marka"
-                        @focus="__GET_CAR_MAKES()"
-                        :loading="!carMakes.length > 0"
-                        loading-text="Loading..."
-                        popper-class="modal-select-opitons"
-                      >
-                        <el-option
-                          v-for="item in carMakes"
-                          :key="item.id"
-                          :label="item.name"
-                          :value="item.id"
-                        >
-                        </el-option>
-                      </el-select>
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Truck Year</label>
-                    <el-form-item prop="car_year" label-position="top">
-                      <el-select
-                        v-model="ruleForm.car_year"
-                        class="banner-select w-100"
-                        placeholder="Vehicle year"
-                      >
-                        <el-option
-                          v-for="item in years"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value"
-                        >
-                        </el-option>
-                      </el-select>
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Truck model</label>
-                    <el-form-item prop="vehicle" label-position="top">
-                      <el-select
-                        class="banner-select w-100"
-                        v-model="ruleForm.vehicle"
-                        placeholder="Model"
-                        :disabled="ruleForm.car_make == ''"
-                        loading-text="Loading..."
-                        popper-class="modal-select-opitons"
-                      >
-                        <el-option
-                          v-for="item in carModles"
-                          :key="item.id"
-                          :label="item.name"
-                          :value="item.id"
-                        >
-                        </el-option>
-                      </el-select>
-                    </el-form-item>
-                  </div>
-                </div>
-              </div>
-              <div class="modal_form_container">
-                <div class="m-form-title-hr">
-                  <h1 class="m-form-title">
-                    Location
-                  </h1>
-                  <span></span>
-                </div>
-                <div class="form-block-grid">
-                  <div class="modal_form_block form-block">
-                    <label for="">Pickup location</label>
-                    <el-form-item prop="ship_from" label-position="top">
-                      <el-select
-                        v-model="ruleForm.ship_from"
-                        class="w-100"
-                        filterable
-                        @focus="__GET_CITIES"
-                        :loading="!shipFromOptions.length > 0"
-                        placeholder="Pickup location"
-                        loading-text="Loading..."
-                        popper-class="modal-select-opitons"
-                      >
-                        <el-option
-                          class="edit-select"
-                          v-for="item in shipFromOptions"
-                          :key="item.id"
-                          :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                          :value="`${item.state.name} ${item.state.code} ${item.zip}`"
-                        >
-                        </el-option>
-                      </el-select>
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Delivery location</label>
-                    <el-form-item prop="ship_to" label-position="top">
-                      <el-select
-                        v-model="ruleForm.ship_to"
-                        class="w-100"
-                        filterable
-                        ref="selectInput"
-                        @focus="__GET_CITIES"
-                        placeholder="Delivery location"
-                        loading-text="Loading..."
-                        popper-class="modal-select-opitons"
-                      >
-                        <el-option
-                          class="edit-select"
-                          v-for="item in shipFromOptions"
-                          :key="item.id"
-                          :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                          :value="`${item.state.name} ${item.state.code} ${item.zip}`"
-                        >
-                        </el-option>
-                      </el-select>
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Delivery data</label>
-                    <el-form-item prop="date" label-position="top">
-                      <a-date-picker
-                        @change="onChangeDate"
-                        class="w-100"
-                        v-model="ruleForm.date"
-                        :default-value="
-                          moment(ruleForm.date, dateFormatList[0])
-                        "
-                        :format="dateFormatList"
-                      />
-                    </el-form-item>
-                  </div>
-                </div>
-              </div>
-              <div class="modal_form_container">
-                <div class="m-form-title-hr">
-                  <h1 class="m-form-title">
-                    Contact
-                  </h1>
-                  <span></span>
-                </div>
-                <div class="form-block-grid">
-                  <div class="modal_form_block form-block">
-                    <label for="">First name</label>
-                    <el-form-item prop="" label-position="top">
-                      <input
-                        class="w-100"
-                        type="text"
-                        placeholder="Full name"
-                      />
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Email</label>
-                    <el-form-item prop="email" label-position="top">
-                      <input
-                        class="w-100"
-                        type="email"
-                        v-model="ruleForm.email"
-                        id="inputFrom"
-                        placeholder="Your email"
-                        required
-                      />
-                    </el-form-item>
-                  </div>
-                  <div class="modal_form_block form-block">
-                    <label for="">Phone number</label>
-                    <el-form-item prop="nbm" label-position="top">
-                      <the-mask
-                        class="w-100"
-                        type="text"
-                        placeholder="(___) ___-____"
-                        :mask="['(###) ###-####', '(###) ###-####']"
-                        v-model="ruleForm.nbm"
-                        label-position="top"
-                      />
-                    </el-form-item>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-application-form-btn">
-                <div
-                  type="submit"
-                  class="form-btn"
-                  @click="submitForm('ruleForm')"
-                >
-                  Send all informations
-                </div>
-              </div>
-            </el-form>
-          </div>
-        </div>
-      </modal>
+      <ModalSubmitApp />
       <modal name="modal_discount" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
@@ -570,6 +294,7 @@ import TextCarousel from "./TextCarousel.vue";
 import FlipCountdown from "vue2-flip-countdown";
 import Drawer from "vue-drawer";
 import moment from "moment";
+import ModalSubmitApp from "../modals/modalSubmitApp.vue";
 const fmt = "YYYY-MM-DD HH:mm:ss";
 export default {
   props: {
@@ -579,126 +304,9 @@ export default {
   },
   data() {
     return {
-      translations: [],
       drawerShow: false,
-      dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       deadline2: moment().add(1, "h").format(fmt),
-      dateValue: "01/01/2015",
       discountTimer: 60,
-      carMakesValue: "",
-      options: [
-        {
-          value: "Option1",
-          label: "Option1",
-        },
-        {
-          value: "Option2",
-          label: "Option2",
-        },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-      ],
-      value: "",
-      carMake: "",
-      carMakes: [],
-      carModles: [],
-      shipFrom: "",
-      shipTo: "",
-      shipFromOptions: [],
-      number: 0,
-      rules: {
-        nbm: [
-          {
-            min: 10,
-            max: 10,
-            message: "Length should be 10",
-            trigger: "change",
-          },
-        ],
-        email: [
-          {
-            required: true,
-            message: "incorrect email",
-            trigger: "blur",
-          },
-        ],
-
-        vehicle: [
-          {
-            required: true,
-            message: "Pleace enter vehicle model",
-            trigger: "change",
-          },
-        ],
-        car_year: [
-          {
-            required: true,
-            message: "Pleace enter vehicle year",
-            trigger: "change",
-          },
-        ],
-        ship_from: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
-        ship_to: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
-        date: [
-          {
-            required: true,
-            message: "Pleace enter date",
-            trigger: "change",
-          },
-        ],
-      },
-      ruleForm: {
-        email: "",
-        nbm: "",
-        date: "",
-        ship_to: "",
-        ship_from: "",
-        vehicle: "",
-        car_year: "",
-        vehicle_runs: 1,
-        ship_via_id: 1,
-        car_make: "",
-      },
-      years: [
-        {
-          value: 2023,
-          label: 2023,
-        },
-        {
-          value: 2022,
-          label: 2022,
-        },
-        {
-          value: 2021,
-          label: 2021,
-        },
-        {
-          value: 2020,
-          label: 2020,
-        },
-        {
-          value: 2019,
-          label: 2019,
-        },
-        {
-          value: 2018,
-          label: 2018,
-        },
-      ],
     };
   },
   computed: {
@@ -706,12 +314,8 @@ export default {
       return this.$i18n.locales;
     },
   },
-
   methods: {
     moment,
-    onChangeDate(value, dateStrings) {
-      this.dateValue = dateStrings;
-    },
     sendNomer() {
       this.$modal.hide(`modal_header`);
       (this.deadline2 = moment().add(1, "h").format(fmt)),
@@ -731,75 +335,39 @@ export default {
       console.log(e);
     },
     handleCommand(command) {
-      this.GET_STATIC_INFORMATIONS(command);
+      this.__GET_STATIC_INFORMATIONS(command);
       this.$i18n.setLocale(command);
     },
     drawerToggle() {
       this.drawerShow = !this.drawerShow;
     },
-    async GET_TRANSLATIONS(command) {
-      this.translations = this.$store.dispatch(
+
+    async __GET_TRANSLATIONS(command) {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      const translations = await this.$store.dispatch(
         "fetchTranslations/getTranslations",
         command
       );
+      await this.$store.commit("getTranslations", translations);
+      await this.$nuxt.$loading.finish();
     },
-    async GET_STATIC_INFORMATIONS() {
-      // this.$nextTick(() => {
-      //   this.$nuxt.$loading.start();
-      // });
+    async __GET_STATIC_INFORMATIONS() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
       const info = await this.$store.dispatch(
         "fetchStaticInformations/getStaticInformations",
         this.$i18n.locale
       );
       await this.$store.commit("getInfo", info);
-      // await this.$nuxt.$loading.finish();
-    },
-
-    async __GET_CAR_MAKES() {
-      this.carMakes = await this.$store.dispatch(
-        "fetchCars/getCarMakes",
-        this.$i18n.locale
-      );
-    },
-    async __GET_CITIES() {
-      this.shipFromOptions = await this.$store.dispatch(
-        "fetchLocations/getCities"
-      );
-    },
-    async submitForm(ruleForm) {
-      // const leadData = await this.$store.dispatch("fetchLead/postLead", {
-      //   currentLang: this.$i18n.locale,
-      //   data: this.ruleForm,
-      // });
-      // this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
-      this.$refs[ruleForm].validate(async (valid) => {
-        if (valid) {
-          const emailCorrent = await this.$store.dispatch(
-            "fetchCheckEmail/getCheckEmail",
-            this.ruleForm.email
-          );
-
-          if (emailCorrent.deliverability == "DELIVERABLE") {
-            // this.$router.push("/calculator/")
-          } else {
-            this.$toast.open({
-              message: `Email ${emailCorrent.deliverability}`,
-              type: "error",
-              duration: 2000,
-              dismissible: true,
-              position: "top-right",
-            });
-          }
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+      await this.$nuxt.$loading.finish();
     },
   },
   mounted() {
-    this.GET_STATIC_INFORMATIONS();
-
+    this.__GET_STATIC_INFORMATIONS();
+    this.__GET_TRANSLATIONS();
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -815,21 +383,7 @@ export default {
       this.lastScrollTop = scrollTop;
     });
   },
-  components: { TextCarousel, Drawer, FlipCountdown },
-  watch: {
-    async "ruleForm.car_make"(val) {
-      this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
-        langCode: this.$i18n.locale,
-        paramsId: val,
-      });
-    },
-    async shipFrom(newVal, oldVal) {
-      this.shipFromOptions = await this.$store.dispatch(
-        "fetchLocations/getCities",
-        this.shipFrom
-      );
-    },
-  },
+  components: { TextCarousel, Drawer, FlipCountdown, ModalSubmitApp },
 };
 </script>
 <style lang="scss">

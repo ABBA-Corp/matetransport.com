@@ -32,14 +32,14 @@
             <div>
               <el-select
                 class="inner-news-select"
-                v-model="value"
-                placeholder="Select"
+                v-model="service"
+                placeholder="Another services"
               >
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  v-for="item in services"
+                  :key="item.id"
+                  :label="item.title"
+                  :value="item.id"
                 >
                 </el-option>
               </el-select>
@@ -275,29 +275,7 @@ import ServiceApplicationCard from "../../components/cards/ServiceApplicationCar
 export default {
   data() {
     return {
-      options: [
-        {
-          value: "Option1",
-          label: "Option1",
-        },
-        {
-          value: "Option2",
-          label: "Option2",
-        },
-        {
-          value: "Option3",
-          label: "Option3",
-        },
-        {
-          value: "Option4",
-          label: "Option4",
-        },
-        {
-          value: "Option5",
-          label: "Option5",
-        },
-      ],
-      value: "",
+      service: "",
     };
   },
   async asyncData({ params, store, i18n }) {
@@ -305,7 +283,16 @@ export default {
       paramsId: params.index,
       langCode: i18n.locale,
     });
-    return { serviceInfo };
+    const services = await store.dispatch(
+      "fetchServices/getServices",
+      i18n.locale
+    );
+    return { serviceInfo, services };
+  },
+  watch: {
+    service(id) {
+      this.$router.push(`/service/${id}`);
+    },
   },
   components: { NewsCard, ServiceApplicationCard },
 };

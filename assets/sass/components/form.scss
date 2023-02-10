@@ -111,3 +111,12 @@
     }
   }
 }
+.el-select-dropdown__item {
+  span {
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 350px;
+  }
+}

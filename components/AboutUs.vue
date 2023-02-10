@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="about-us" id="howWeWork">
     <div class="container_xl">
-      <Title title="Biz qanday ishlaymiz?" />
+      <Title :title="$store.state.translations['main.howWeWork']" />
       <div class="about-us-grid">
         <div class="img-block" data-aos="fade-right" data-aos-duration="1000">
           <img
@@ -10,7 +10,7 @@
           />
           <div class="about-us-img-text">
             <h2>
-              Free consultation
+              {{ $store.state.translations["main.free_consultation"] }}
               <svg
                 width="44"
                 height="44"
@@ -145,7 +145,7 @@
               </svg>
             </h2>
             <p>
-              Get an instant free quote and book your order.
+              {{ $store.state.translations["main.howWeWork_banner_text"] }}
             </p>
           </div>
         </div>
@@ -156,24 +156,26 @@
         >
           <div class="about-title">
             <h4>
-              Kompaniyamizning ishlash tartibi shulardan iborat barcha qadamlar
-              Kompaniyamizning ishlash tartibi shulardan iborat barcha qadamlar
+              {{ $store.state.translations["main.howWeWork_title"] }}
             </h4>
           </div>
           <div class="about-steps">
             <el-steps :active="2" finish-status="success">
-              <el-step title="Location"></el-step>
-              <el-step title="Name order"></el-step>
-              <el-step title="Truck"></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_location']"
+              ></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_nameOrder']"
+              ></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_truck']"
+              ></el-step>
             </el-steps>
+           
           </div>
           <div class="about-text">
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but
+              {{ $store.state.translations["main.howWeWork_text"] }}
             </p>
           </div>
         </div>

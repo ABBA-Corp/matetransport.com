@@ -2,8 +2,8 @@
   <div class="banner">
     <div class="container_xl banner-title-mobile">
       <Title
-        title="Fast & reliable nationwide auto transport company"
-        text="Montway Auto Transport is the number one rated car transporter in the U.S."
+        :title="$store.state.staticInfo.title"
+        :text="$store.state.staticInfo.subtitle"
       />
     </div>
     <div class="banner-grid">
@@ -130,11 +130,13 @@
           action=""
         >
           <div class="form-title">
-            <h2>Get an instant quoteor call now call</h2>
+            <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
           </div>
           <div v-if="active == 1">
             <div class="form-block">
-              <label for="inputFrom">Send a copy the quote to</label>
+              <label for="inputFrom">{{
+                $store.state.translations["main.form_label_email"]
+              }}</label>
 
               <el-form-item prop="email" label-position="top">
                 <input
@@ -142,27 +144,33 @@
                   type="email"
                   v-model="ruleForm.email"
                   id="inputFrom"
-                  placeholder="Your email"
+                  :placeholder="$store.state.translations['main.placeH_email']"
                   required
                 />
               </el-form-item>
             </div>
 
             <div class="form-block">
-              <label for="inputFrom">First available date</label>
+              <label for="inputFrom">{{
+                $store.state.translations["main.form_label_firstDate"]
+              }}</label>
               <el-form-item prop="date" label-position="top">
                 <a-date-picker
                   class="w-100"
                   @change="onChangeDate"
                   :default-value="moment(ruleForm.date, dateFormatList[0])"
                   :format="dateFormatList"
-                  placeholder="First available date"
+                  :placeholder="
+                    $store.state.translations['main.placeH_firstDate']
+                  "
                 />
               </el-form-item>
             </div>
 
             <div class="form-block">
-              <label for="inputTo">Your phone number</label>
+              <label for="inputTo">{{
+                $store.state.translations["main.form_label_number"]
+              }}</label>
 
               <el-form-item prop="nbm" label-position="top">
                 <the-mask
@@ -178,7 +186,9 @@
           </div>
           <div v-if="active == 2">
             <div class="form-block">
-              <label for="">Transport car FROM</label>
+              <label for="">{{
+                $store.state.translations["main.form_label_shipFrom"]
+              }}</label>
               <el-form-item prop="ship_from" label-position="top">
                 <el-select
                   v-model="ruleForm.ship_from"
@@ -186,7 +196,9 @@
                   filterable
                   :disabled="!cities.length > 0"
                   ref="selectInput"
-                  placeholder="Transport car FROM"
+                  :placeholder="
+                    $store.state.translations['main.placeH_shipFrom']
+                  "
                   popper-class="web-selects"
                 >
                   <el-option
@@ -201,7 +213,9 @@
               </el-form-item>
             </div>
             <div class="form-block">
-              <label for="">Transport car TO</label>
+              <label for="">{{
+                $store.state.translations["main.form_label_shipTo"]
+              }}</label>
               <el-form-item prop="ship_to" label-position="top">
                 <el-select
                   v-model="ruleForm.ship_to"
@@ -209,7 +223,7 @@
                   filterable
                   :disabled="!cities.length > 0"
                   ref="selectInput"
-                  placeholder="Transport car TO"
+                  :placeholder="$store.state.translations['main.placeH_shipTo']"
                   popper-class="web-selects"
                 >
                   <el-option
@@ -226,12 +240,16 @@
           </div>
           <div v-if="active == 3">
             <div class="form-block">
-              <label for="">Vehicle year</label>
+              <label for="">{{
+                $store.state.translations["main.form_vehicleYear"]
+              }}</label>
               <el-form-item prop="car_year" label-position="top">
                 <el-select
                   v-model="ruleForm.car_year"
                   class="banner-select w-100"
-                  placeholder="Vehicle year"
+                  :placeholder="
+                    $store.state.translations['main.placeH_vehicleYear']
+                  "
                 >
                   <el-option
                     v-for="item in years"
@@ -244,12 +262,16 @@
               </el-form-item>
             </div>
             <div class="form-block">
-              <label for="inputFrom"> Vehicle make</label>
+              <label for="inputFrom">{{
+                $store.state.translations["main.form_vehicleMake"]
+              }}</label>
               <el-form-item prop="car_make" label-position="top">
                 <el-select
                   class="banner-select w-100"
                   v-model="ruleForm.car_make"
-                  placeholder="Change marka"
+                  :placeholder="
+                    $store.state.translations['main.placeH_vehicleMake']
+                  "
                   @focus="__GET_CAR_MAKES()"
                   :loading="!carMakes.length > 0"
                   loading-text="Loading..."
@@ -265,12 +287,16 @@
               </el-form-item>
             </div>
             <div class="form-block">
-              <label for="inputTo">Vehicle model</label>
+              <label for="inputTo">{{
+                $store.state.translations["main.form_vehicleModel"]
+              }}</label>
               <el-form-item prop="vehicle" label-position="top">
                 <el-select
                   class="banner-select w-100"
                   v-model="ruleForm.vehicle"
-                  placeholder="Model"
+                  :placeholder="
+                    $store.state.translations['main.placeH_vehicleModel']
+                  "
                   :disabled="ruleForm.car_make == ''"
                 >
                   <el-option
@@ -292,7 +318,8 @@
               @click="submitForm('ruleForm')"
               v-if="active != 5"
             >
-              Next stage<svg
+              {{ $store.state.translations["main.form_btn_nextStage"]
+              }}<svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -314,7 +341,8 @@
               v-else
               :to="localePath('/calculator/delivery-details')"
             >
-              Next stage<svg
+              {{ $store.state.translations["main.form_btn_Stage"]
+              }}<svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -334,14 +362,19 @@
           </div>
           <div class="banner-steps">
             <el-steps :active="active" finish-status="success">
-              <el-step title="Location"></el-step>
-              <el-step title="Name order"></el-step>
-              <el-step title="Truck"></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_location']"
+              ></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_nameOrder']"
+              ></el-step>
+              <el-step
+                :title="$store.state.translations['main.step_truck']"
+              ></el-step>
             </el-steps>
           </div>
           <p class="banner-form-info">
-            Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
-            barcha policy and private qoidalariga rozilik bildirasiz
+            {{ $store.state.translations["main.banner_form_text"] }}
           </p>
         </el-form>
       </div>
@@ -497,10 +530,9 @@ export default {
   },
   methods: {
     moment,
-    onChangeDate(value, dateStrings) {
+    onChangeDate(_, dateStrings) {
       this.ruleForm.date = dateStrings.replaceAll("/", ".");
     },
-
     videoPlay() {
       if (!this.$refs.video.paused) {
         this.$refs.video.pause();
@@ -574,22 +606,12 @@ export default {
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    },
   },
   mounted() {
     this.video = true;
   },
   components: { Title },
   watch: {
-    // "ruleForm.firstDateValue"(val) {
-    //   if (val == "More than 30 days") {
-    //     this.calendar.type = true;
-    //   } else {
-    //     this.calendar.type = false;
-    //   }
-    // },
     active(val) {
       if (val == 2) {
         this.__GET_CITIES();

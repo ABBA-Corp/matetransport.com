@@ -50,9 +50,9 @@ export default {
   },
   methods: {
     async __GET_SERVICES() {
-      // this.$nextTick(() => {
-      //   this.$nuxt.$loading.start();
-      // });
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
       this.services = await this.$store.dispatch(
         "fetchServices/getServices",
         this.$i18n.locale
