@@ -6,36 +6,10 @@
   >
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <PartnersCard />
+        <div class="swiper-slide" v-for="review in reviews">
+          <PartnersCard :review="review"/>
         </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
-        <div class="swiper-slide">
-          <PartnersCard />
-        </div>
+  
       </div>
     </div>
   </div>
@@ -47,6 +21,7 @@ import Swiper from "swiper/swiper-bundle.js";
 import "swiper/swiper-bundle.min.css";
 import PartnersCard from "./cards/PartnersCard.vue";
 export default {
+  props: ["reviews"],
   mounted() {
     const swiper = new Swiper(".mySwiper", {
       slidesPerView: 2,
@@ -76,7 +51,7 @@ export default {
           spaceBetween: 20,
         },
         1440: {
-          slidesPerView: 4,
+          slidesPerView: 3,
           spaceBetween: 20,
         },
       },
@@ -86,4 +61,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.swiper-slide {
+  height: initial !important
+  ;
+}
+</style>

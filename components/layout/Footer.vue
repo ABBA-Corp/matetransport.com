@@ -253,8 +253,8 @@
       </div>
       <div class="footer-hr"></div>
       <div class="footer-bottom d-flex justify-content-between">
-        <p>Matelogistics {{date}}. All rights reserved</p>
-        <p>Copyright © Mate | Designed Abba coding</p>
+        <p>{{ $store.state.translations["main.footer_allRightsReserved"] }}</p>
+        <p>{{ $store.state.translations["main.footer_made_in"] }}</p>
       </div>
     </div>
   </div>
@@ -263,7 +263,7 @@
 export default {
   data() {
     return {
-      date: new Date().getFullYear()
+      date: new Date().getFullYear(),
     };
   },
   computed: {

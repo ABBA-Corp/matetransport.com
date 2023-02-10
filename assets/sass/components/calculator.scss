@@ -45,6 +45,7 @@
       @include fontStyle(14px, 400, #fff);
       padding: 6px 10px;
       border-radius: 5px;
+      cursor: pointer;
     }
     .calculator-cancel-btn {
       color: #008aff;

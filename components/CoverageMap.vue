@@ -9,8 +9,8 @@
     </div>
     <div class="container_xl">
       <Title
-        title="USA car shipping <br/> coverage map"
-        text="Специализированный онлайн-сервис «Matelogistics» <br/> предоставляет полный спектр услуг. Объявления <br/> охватывают всю"
+        :title="$store.state.translations['main.coverage_map_title']"
+        :text="$store.state.translations['main.coverage_map_text']"
       />
       <div class="coverage-map-grid">
         <div
@@ -18,15 +18,6 @@
           data-aos="zoom-in"
           data-aos-duration="800"
         >
-          <!-- <checkbox-svg-map
-            :map="USA"
-            :location-class="getLocationClass"
-            v-model="selectedLocations"
-            @mouseover="pointLocation"
-            @mouseout="unpointLocation"
-            @mousemove="moveOnLocation"
-          /> -->
-
           <svg
             class="map_select"
             width="600"
@@ -1296,7 +1287,9 @@
           <div class="mobile-map-selects">
             <div class="form-block-map">
               <!-- <label for="inputFrom">Tochka A</label> -->
-              <span class="blue_space">Tochka A</span>
+              <span class="blue_space">{{
+                $store.state.translations["main.coverageMap_label_a"]
+              }}</span>
               <el-select
                 v-model="stateFrom"
                 class="mb-2"
@@ -1343,7 +1336,9 @@
             </div>
             <div class="form-block-map">
               <!-- <label for="inputFrom">Tochka A</label> -->
-              <span class="blue_space">Tochka B</span>
+              <span class="blue_space">{{
+                $store.state.translations["main.coverageMap_label_b"]
+              }}</span>
               <input type="text" id="inputFrom" placeholder="Zip or city" />
             </div>
             <div class="form-block-map">
@@ -1354,13 +1349,17 @@
           </div>
           <div class="web-map-selects">
             <div class="form-block-map">
-              <label for="inputFrom">Tochka A</label>
+              <label for="inputFrom">{{
+                $store.state.translations["main.coverageMap_label_a"]
+              }}</label>
               <el-select
                 v-model="citiesFrom"
                 class="mb-2"
                 filterable
                 ref="selectInput"
-                placeholder="Tochka A"
+                :placeholder="
+                  $store.state.translations['main.coverageMap_placeH_a']
+                "
                 popper-class="web-selects"
                 :loading="!cities.from"
                 loading-text="Loading..."
@@ -1376,14 +1375,18 @@
               </el-select>
             </div>
             <div class="form-block-map">
-              <label for="inputFrom">Tochka B</label>
+              <label for="inputFrom">{{
+                $store.state.translations["main.coverageMap_label_b"]
+              }}</label>
               <el-select
                 v-model="citiesTo"
                 class="mb-2"
                 filterable
                 :disabled="!cities.to.length > 0"
                 ref="selectInput"
-                placeholder="Tochka B"
+                :placeholder="
+                  $store.state.translations['main.coverageMap_placeH_b']
+                "
                 popper-class="web-selects"
               >
                 <el-option
@@ -1405,7 +1408,7 @@
               :to="localePath('/location-map')"
               class="form-btn"
             >
-              Next step<svg
+            {{$store.state.translations["main.form_btn_nextStage"]}}<svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -1424,8 +1427,7 @@
             </nuxt-link>
           </div>
           <p class="form-block-form-info">
-            Специализированный онлайн-сервис «Matelogistics» <br />
-            предоставляет полный спектр услуг. Объявления
+            {{ $store.state.translations["main.coverageMap_form_text"] }}
           </p>
         </div>
       </div>
@@ -1434,9 +1436,7 @@
         <img src="../assets/images/MATE NEWS.png" alt="" />
         <div class="log-news">
           <img src="../assets/svg/Footer logo.svg" alt="" />
-          <h3>
-            логистика сохасидаги <br />
-            янгиликлар
+          <h3 v-html="$store.state.translations['main.logistics_news']">
           </h3>
         </div>
       </div>
@@ -1462,8 +1462,8 @@
             </svg>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <p class="last-news-title">Охирги янгиланиш</p>
-            <h5>26.10.2022</h5>
+            <p class="last-news-title">{{$store.state.translations["main.last_news"]}}</p>
+            <h5>{{`${date.getDay().length > 2 ? date.getDay():"0"+date.getDay()}.${date.getMonth().length > 2 ? date.getMonth():"0"+date.getMonth()}.${date.getFullYear()}`}}</h5>
           </div>
         </div>
       </LastNews>
@@ -1485,6 +1485,7 @@ export default {
       citiesTo: "",
       stateFrom: "",
       stateTo: "",
+      date: new Date(),
       selectedLocations: [],
       pointedLocation: null,
       tooltipStyle: null,
@@ -1574,7 +1575,7 @@ export default {
       }
     },
     async stateFrom(val) {
-      this.citiesFrom = ""
+      this.citiesFrom = "";
       this.cities.from = await this.$store.dispatch(
         "fetchLocations/getCities",
         {

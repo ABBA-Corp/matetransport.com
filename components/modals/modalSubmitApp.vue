@@ -3,9 +3,9 @@
     <div class="modal_container window-header">
       <div class="modal_header d-flex justify-content-between">
         <div>
-          <h5>Zayavka topshirirsh</h5>
+          <h5>{{$store.state.translations['modal.app_title']}}</h5>
           <p class="fasting-contact-text sub-text">
-            Malumotlaringiz havfsizligi taminlanadi va tarqatilmaydi
+            {{$store.state.translations['modal.app_text']}}
           </p>
         </div>
         <span @click="hide('modal_leave_weak')"

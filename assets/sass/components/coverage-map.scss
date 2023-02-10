@@ -223,7 +223,12 @@
 }
 .coverage-map-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 3fr 2fr;
+  .coverage-map-img {
+    svg {
+      width: 95%;
+    }
+  }
 }
 @media (max-width: 1000px) {
   .coverage-map-grid {
@@ -236,7 +241,6 @@
   .coverage-map-img {
     svg {
       width: 100%;
-
     }
   }
   .last-news {

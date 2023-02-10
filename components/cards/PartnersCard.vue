@@ -2,23 +2,22 @@
   <div class="partners-card">
     <div class="partners-grid">
       <div class="partners-avatar">
-        <img src="../../assets/images/Rectangle 23905.png" alt="" />
+        <img :src="review.image" alt="" />
       </div>
       <div class="partners-body">
         <div class="partners-title">
-          <h3>Gillette</h3>
+          <h3>{{ review?.title }}</h3>
         </div>
         <div class="partners-text">
-          <p>
-            We coordinate all shipments through a large network of licensed Auto
-            Shipping Carriers nationwide.
-          </p>
+          <p v-html="review?.text"></p>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["review"],
+};
 </script>
 <style lang=""></style>

@@ -396,10 +396,10 @@ export default {
       date: "01/01/2015",
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
+      allCities: [],
       carMakes: [],
       carModles: [],
       carMakesValue: "",
-      allCities: [],
       ruleForm: {
         email: "",
         nbm: "",
@@ -526,12 +526,13 @@ export default {
           },
         ],
       },
+      leadCread: {},
     };
   },
   methods: {
     moment,
     onChangeDate(_, dateStrings) {
-      this.ruleForm.date = dateStrings.replaceAll("/", ".");
+      this.ruleForm.date = dateStrings;
     },
     videoPlay() {
       if (!this.$refs.video.paused) {
@@ -570,6 +571,22 @@ export default {
         this.$i18n.locale
       );
     },
+    async __POST_LEAD() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.leadCread = await this.$store.dispatch("fetchLead/postLead", {
+        currentLang: this.$i18n.locale,
+        data: this.ruleForm,
+      });
+      this.$nuxt.$loading.finish();
+      if (this.leadCread.uuid) {
+        localStorage.setItem("editData", JSON.stringify(this.ruleForm));
+        this.$router.push(
+          `/calculator/delivery-details/${this.leadCread.uuid}`
+        );
+      }
+    },
     async submitForm(ruleForm) {
       console.log(this.active);
       // const leadData = await this.$store.dispatch("fetchLead/postLead", {
@@ -586,8 +603,7 @@ export default {
 
           // if (emailCorrent.deliverability == "DELIVERABLE") {
           if (this.active++ > 2) {
-            this.active = 0;
-            this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
+            this.__POST_LEAD();
           }
 
           // } else {

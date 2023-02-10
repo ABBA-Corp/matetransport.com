@@ -8,7 +8,7 @@ export const actions = {
     return res;
   },
   async editLead({}, payload) {
-    const res = await this.$axios.$post(
+    const res = await this.$axios.$put(
       `/leads/${payload.leadId}/edit`,
       payload.data,
       {
@@ -20,7 +20,7 @@ export const actions = {
     return res;
   },
   async getLead({}, payload) {
-    const res = await this.$axios.$post(`/leads/${payload.leadId}`, {
+    const res = await this.$axios.$get(`/leads/${payload.leadId}`, {
       headers: {
         Language: payload.currentLang,
       },

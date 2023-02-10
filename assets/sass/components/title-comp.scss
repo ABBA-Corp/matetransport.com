@@ -1,7 +1,13 @@
 .title-comp {
   margin-bottom: 40px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   justify-content: space-between;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+  }
   h1 {
     @include fontStyle(48px, 800, $dark-blue);
     line-height: 60px;
@@ -19,6 +25,7 @@
     @include fontStyle(16px, 400, #5d5d5f);
     line-height: 24px;
     margin-bottom: 0;
+    
   }
 }
 .title-small {
@@ -70,7 +77,7 @@
       line-height: 32px;
     }
     p {
-      @include fontStyle(14px, 400, #96ADC1);
+      @include fontStyle(14px, 400, #96adc1);
       line-height: 20px;
       margin-bottom: 0;
     }

@@ -218,7 +218,8 @@
                       /></svg
                   ></span>
                 </div>
-                <p v-else>2753mi</p>
+                <p v-if="!(activeEdit == 1) && !skeleton">2753mi</p>
+                <el-skeleton-item v-else variant="text" style="width: 100%;" />
               </div>
               <div class="calculator-info-items">
                 <span
@@ -248,13 +249,14 @@
                 ></span>
 
                 <div class="edit_input" v-if="activeEdit == 2">
+                  <el-skeleton-item v-if="skeleton" variant="text" style="width: 100%;" />
                   <a-date-picker
                     @change="onChangeDate"
-                    :default-value="moment(dateValue, dateFormatList[0])"
+                    :default-value="moment(leads.date, dateFormatList[0])"
                     :format="dateFormatList"
                   />
                 </div>
-                <p v-if="!(activeEdit == 2)">{{ dateValue }}</p>
+                <p v-if="!(activeEdit == 2) && !skeleton">{{ leads.date }}</p>
                 <div
                   class="edit-btn"
                   v-if="!(activeEdit == 2)"
@@ -279,14 +281,14 @@
                 <div class="edit_select" v-if="activeEdit == 3">
                   <div class="d-flex flex-column">
                     <el-select
-                      v-model="value"
+                      v-model="editLeads.car_year"
                       class="mb-2"
                       filterable
                       placeholder="Select"
                     >
                       <el-option
                         class="edit-select"
-                        v-for="item in options"
+                        v-for="item in years"
                         :key="item.value"
                         :label="item.label"
                         :value="item.value"
@@ -294,37 +296,49 @@
                       </el-option>
                     </el-select>
                     <el-select
-                      v-model="value"
                       class="mb-2"
                       filterable
-                      placeholder="Select"
+                      v-model="editLeads.car_make"
+                      :placeholder="
+                        $store.state.translations['main.placeH_vehicleMake']
+                      "
+                      @focus="__GET_CAR_MAKES()"
+                      :loading="!carMakes.length > 0"
+                      loading-text="Loading..."
                     >
                       <el-option
                         class="edit-select"
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
+                        v-for="item in carMakes"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
                       >
                       </el-option>
                     </el-select>
                     <el-select
-                      v-model="value"
                       class="mb-2"
                       filterable
-                      placeholder="Select"
+                      v-model="editLeads.vehicle"
+                      :placeholder="
+                        $store.state.translations['main.placeH_vehicleModel']
+                      "
+                      :disabled="editLeads.car_make == ''"
+                      :loading="!carModles.length > 0"
+                      loading-text="Loading..."
                     >
                       <el-option
                         class="edit-select"
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
+                        v-for="item in carModles"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
                       >
                       </el-option>
                     </el-select>
                     <div class="select-btns d-flex">
-                      <div class="calculator-save-btn">Save</div>
+                      <div class="calculator-save-btn" @click="editAutoInfo">
+                        Save
+                      </div>
                       <div
                         class="calculator-cancel-btn mx-3"
                         @click="activeEdit = 0"
@@ -334,7 +348,17 @@
                     </div>
                   </div>
                 </div>
-                <p v-else>2020 Alfa Romeo Giulia Quadrifoglio</p>
+                <el-skeleton-item
+                  v-if="skeleton"
+                  variant="text"
+                  style="width: 100%;"
+                />
+                <p v-if="!(activeEdit == 3) && !skeleton">
+                  {{
+                    `${leads.car_year} ${leads.vehicle?.name} ${leads.vehicle?.mark?.name}`
+                  }}
+                </p>
+
                 <div
                   class="edit-btn"
                   v-if="!(activeEdit == 3)"
@@ -356,25 +380,40 @@
               </div>
               <div class="calculator-info-items">
                 <span>Ship from </span>
-
                 <div class="edit_select" v-if="activeEdit == 4">
                   <el-select
-                    v-model="shipFrom"
+                    v-model="editLeads.ship_from"
                     class="mb-2"
                     filterable
-                    placeholder="Select"
+                    :loading="!cities.length > 0"
+                    ref="selectInput"
+                    :placeholder="
+                      $store.state.translations['main.placeH_shipFrom']
+                    "
+                    popper-class="web-selects"
+                    loading-text="Loading..."
                   >
                     <el-option
                       class="edit-select"
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
+                      v-for="item in cities"
+                      :key="item.id"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="`${item.id}`"
                     >
                     </el-option>
                   </el-select>
                 </div>
-                <p v-else>New York, NY 10025</p>
+                <el-skeleton-item
+                  v-if="skeleton"
+                  variant="text"
+                  style="width: 100%;"
+                />
+
+                <p v-if="!(activeEdit == 4) && !skeleton">
+                  {{
+                    `${leads.ship_from?.name}, ${leads.ship_from?.state.code} ${leads.ship_from?.zip}`
+                  }}
+                </p>
                 <div
                   class="edit-btn"
                   @click="activeEdit = 4"
@@ -399,22 +438,38 @@
 
                 <div class="edit_select" v-if="activeEdit == 5">
                   <el-select
-                    v-model="shipTo"
+                    v-model="editLeads.ship_to"
                     class="mb-2"
                     filterable
-                    placeholder="Select"
+                    :loading="!cities.length > 0"
+                    ref="selectInput"
+                    :placeholder="
+                      $store.state.translations['main.placeH_shipFrom']
+                    "
+                    popper-class="web-selects"
+                    loading-text="Loading..."
                   >
                     <el-option
                       class="edit-select"
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
+                      v-for="item in cities"
+                      :key="item.id"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="`${item.id}`"
                     >
                     </el-option>
                   </el-select>
                 </div>
-                <p v-else>California City, CA 93505</p>
+                <el-skeleton-item
+                  v-if="skeleton"
+                  variant="text"
+                  style="width: 100%;"
+                />
+
+                <p v-if="!(activeEdit == 5) && !skeleton">
+                  {{
+                    `${leads.ship_to?.name}, ${leads.ship_to?.state.code} ${leads.ship_to?.zip}`
+                  }}
+                </p>
                 <div
                   class="edit-btn"
                   @click="activeEdit = 5"
@@ -436,9 +491,15 @@
               </div>
               <div class="calculator-info-items">
                 <span>Vehicle condition </span>
-                <a-radio-group v-model="vehicle" @change="onChange">
+                <a-radio-group v-model="editLeads.vehicle_runs" @change="onChange">
                   <div class="items-checkbox">
+                    <el-skeleton-item
+                      v-if="skeleton"
+                      variant="text"
+                      style="width: 80%;"
+                    />
                     <a-radio
+                      v-if="!skeleton"
                       :value="radio.code"
                       v-for="(radio, index) in vehicleCondition"
                     >
@@ -449,14 +510,20 @@
               </div>
               <div class="calculator-info-items">
                 <span>Transport type</span>
-                <a-radio-group v-model="transport" @change="onChange">
+                <a-radio-group v-model="editLeads.ship_via_id" @change="onChange">
                   <div class="items-checkbox">
                     <a-radio
+                      v-if="!skeleton"
                       :value="radio.code"
                       v-for="(radio, index) in transportType"
                     >
                       <p>{{ radio.name }}</p>
                     </a-radio>
+                    <el-skeleton-item
+                      v-else
+                      variant="text"
+                      style="width: 80%;"
+                    />
                   </div>
                 </a-radio-group>
               </div>
@@ -522,7 +589,7 @@
                     </a-button> </a-tooltip
                 ></span>
 
-                <h3>$600</h3>
+                <h3>${{ leads.price_first_tarif }}</h3>
               </div>
               <div class="calculator-footer-items">
                 <span>Price option </span>
@@ -584,76 +651,129 @@ export default {
       currentPath: "",
       activeEdit: 0,
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
+      cities: [],
+      allCities: [],
+      skeleton: false,
       vehicleCondition: [
         {
-          code: 1,
+          code: "1",
           name: "Running",
         },
         {
-          code: 2,
+          code: "0",
           name: "Non-running",
         },
       ],
       vehicle: 1,
       transportType: [
         {
-          code: 0,
+          code: "1",
           name: "Open (-$190)",
         },
         {
-          code: 1,
+          code: "2",
           name: "Enclosed",
         },
       ],
       transport: 0,
       startValue: "01/01/2015",
       dateValue: "01/01/2015",
-      options: [
+      years: [
         {
-          value: "Option1",
-          label: "Option1 Option1 Option1",
+          value: 2023,
+          label: 2023,
         },
         {
-          value: "Option2",
-          label: "Option2",
+          value: 2022,
+          label: 2022,
         },
         {
-          value: "Option3",
-          label: "Option3",
+          value: 2021,
+          label: 2021,
         },
         {
-          value: "Option4",
-          label: "Option4",
+          value: 2020,
+          label: 2020,
         },
         {
-          value: "Option5",
-          label: "Option5",
+          value: 2019,
+          label: 2019,
         },
         {
-          value: "Option1",
-          label: "Option1 Option1 Option1",
+          value: 2018,
+          label: 2018,
         },
         {
-          value: "Option2",
-          label: "Option2",
+          value: 2017,
+          label: 2017,
         },
         {
-          value: "Option3",
-          label: "Option3",
+          value: 2016,
+          label: 2016,
         },
         {
-          value: "Option4",
-          label: "Option4",
+          value: 2015,
+          label: 2015,
         },
         {
-          value: "Option5",
-          label: "Option5",
+          value: 2015,
+          label: 2015,
+        },
+        {
+          value: 2014,
+          label: 2014,
+        },
+        {
+          value: 2013,
+          label: 2013,
         },
       ],
       value: "",
       shipFrom: "",
       shipTo: "",
-      leads: {},
+      editLeads: {
+        email: "",
+        nbm: "",
+        date: "",
+        ship_to: "",
+        ship_from: "",
+        vehicle: "",
+        car_year: "",
+        vehicle_runs: 1,
+        ship_via_id: 1,
+        car_make: "",
+      },
+      leads: {
+        ship_from: {
+          name: "city",
+          state: {
+            name: "state",
+            code: "code",
+          },
+          zip: "zip",
+        },
+        ship_to: {
+          name: "city",
+          state: {
+            name: "state",
+            code: "code",
+          },
+          zip: "zip",
+        },
+        vehicle: {
+          mark: {
+            name: "Marka",
+          },
+          name: "Model",
+          vehicle_type: "Car",
+        },
+        date: "08/02/2023",
+        distance: null,
+        price_first_tarif: 380.0,
+        car_year: "year",
+      },
+      carMakes: [],
+      carModles: [],
     };
   },
   computed: {
@@ -672,6 +792,18 @@ export default {
   },
   methods: {
     moment,
+    async __GET_CAR_MAKES() {
+      this.carMakes = await this.$store.dispatch(
+        "fetchCars/getCarMakes",
+        this.$i18n.locale
+      );
+    },
+    async __GET_CITIES() {
+      this.cities = await this.$store.dispatch("fetchLocations/getCities", {
+        state: null,
+      });
+      this.allCities = this.cities;
+    },
     show(name) {
       this.$modal.show(name);
       document.body.style.overflowY = "hidden";
@@ -690,13 +822,19 @@ export default {
       this.drawer = true;
     },
     onChangeDate(value, dateStrings) {
-      this.dateValue = dateStrings;
+      this.leads.date = dateStrings;
+      this.editLeads.date = dateStrings;
+      if(dateStrings.length > 0) {
+
+        this.__EDIT_LEADS();
+      }
     },
     drawerClose() {
       this.drawer = false;
     },
     onChange(e) {
-      console.log("radio checked", e.target.value);
+      console.log(this.editLeads.vehicle_runs);
+      this.__EDIT_LEADS();
     },
     show(name) {
       this.$modal.show(name);
@@ -705,20 +843,51 @@ export default {
       document.body.style.height = "100vh";
     },
     async __GET_LEADS() {
-      this.leads = await this.$store.dispatch("fetchLead/getLead", {
-        leadId: this.$route.params.index,
-        currentLang: this.$i18n.locale,
-      });
+      (this.skeleton = true),
+        (this.leads = await this.$store.dispatch("fetchLead/getLead", {
+          leadId: this.$route.params.index,
+          currentLang: this.$i18n.locale,
+        }));
+      this.skeleton = false;
+      if (this.leads.ship_from.name) {
+        this.$nuxt.$loading.finish();
+        console.log(this.leads.vehicle.mark.id);
+        this.forEdit();
+      } else {
+        this.$nextTick(() => {
+          this.$nuxt.$loading.start();
+        });
+      }
+    },
+    editAutoInfo() {
+      this.__EDIT_LEADS();
+    },
+    forEdit() {
+      this.editLeads.email = this.leads.email;
+      this.editLeads.nbm = this.leads.nbm;
+      this.editLeads.date = this.leads.date;
+      this.editLeads.ship_to = this.leads.ship_to.id;
+      this.editLeads.ship_from = this.leads.ship_from.id;
+      this.editLeads.vehicle = this.leads.vehicle.id;
+      this.editLeads.car_year = this.leads.car_year;
+      this.editLeads.vehicle_runs = this.leads.vehicle_runs;
+      this.editLeads.ship_via_id = this.leads.ship_via_id;
+      this.editLeads.car_make = this.leads.vehicle.mark.id;
     },
     async __EDIT_LEADS() {
-      this.leads = await this.$store.dispatch("fetchLead/editLead", {
-        leadId: this.$route.params.index,
-        currentLang: this.$i18n.locale,
-        data: this.leads,
-      });
+      (this.skeleton = true),
+        (this.leads = await this.$store.dispatch("fetchLead/editLead", {
+          leadId: this.$route.params.index,
+          currentLang: this.$i18n.locale,
+          data: this.editLeads,
+        }));
+      this.activeEdit = 0;
+      this.skeleton = false;
     },
   },
   mounted() {
+    this.__GET_LEADS();
+    this.__GET_CITIES();
     if (this.$route.fullPath.includes("transport")) {
       this.currentPath = `/calculator/delivery-details/${this.$route.params.index}`;
     }
@@ -735,6 +904,21 @@ export default {
     Footer,
   },
   watch: {
+    async "editLeads.car_make"(val) {
+      console.log(val);
+      this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
+        langCode: this.$i18n.locale,
+        paramsId: val,
+      });
+    },
+    "editLeads.ship_to"(val) {
+      this.cities = this.allCities.filter((item) => item.id != val);
+      this.__EDIT_LEADS();
+    },
+    "editLeads.ship_from"(val) {
+      this.cities = this.allCities.filter((item) => item.id != val);
+      this.__EDIT_LEADS();
+    },
     selectedLocations(_, oldVal) {
       if ((newVal = !oldVal)) {
         console.log(this.selectedLocations);
@@ -806,5 +990,8 @@ export default {
       outline: none;
     }
   }
+}
+.el-select-dropdown__empty {
+  display: none !important;
 }
 </style>

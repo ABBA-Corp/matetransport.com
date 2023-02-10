@@ -4,7 +4,7 @@
       ref="carouselControl"
       class="container_xl position-relative carousel_navigate logistic-service-carousel"
     >
-      <p>Choice service (click for moree information</p>
+      <p>{{$store.state.translations['main.allServices_choice']}}</p>
       <div class="navigate-grid">
         <div class="swiper-button-prev">
           <svg
@@ -39,7 +39,7 @@
     <div class="swiper mySwiper-2" data-aos="fade-left" data-aos-duration="800">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="service in services">
-          <LogisticsServicesCard :service="service"/>
+          <LogisticsServicesCard :service="service" />
         </div>
         <div class="swiper-slide">
           <div><h1></h1></div>
@@ -50,7 +50,6 @@
         <div class="swiper-slide">
           <div><h1></h1></div>
         </div>
-      
       </div>
     </div>
   </div>

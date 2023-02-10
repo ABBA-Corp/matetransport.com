@@ -2,13 +2,15 @@
   <div class="logistic-services" id="ourServices">
     <div class="container_xl">
       <Title
-        title="Бизнинг барча логистика<br/> хизматларимиз"
-        text="А еще наконец появилась возможность перетаскивать <br/> ярлыки и файлы на панель задач. Эта опция была одной из <br/> самых часто запрашиваемых у пользователей."
+        :title="$store.state.translations['main.all_services']"
+        :text="$store.state.translations['main.allServices_text']"
       />
     </div>
     <div class="logistic-services-container container_xl">
       <div class="carousel_grid" ref="carouselWidth">
-        <div class="position-relative"><LogisticsServicesCarousel :services="services"/></div>
+        <div class="position-relative">
+          <LogisticsServicesCarousel :services="services" />
+        </div>
       </div>
     </div>
   </div>

@@ -5,4 +5,8 @@ export const actions = {
     );
     return res;
   },
+  async getReviews({}, langCode) {
+    const res = await this.$axios.$get(`/reviews`);
+    return res.results;
+  },
 };

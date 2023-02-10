@@ -7,7 +7,7 @@
         <div class="ellipse-shodow2"></div>
       </div>
       <div class="carousel-left"></div>
-      <PartnersCarousel />
+      <PartnersCarousel :reviews="reviews"/>
       <div class="carousel-right"></div>
     </div>
     <AboutUs />
@@ -35,6 +35,7 @@ export default {
       services: [],
       articles: [],
       states: [],
+      reviews: []
     };
   },
   computed: {
@@ -46,7 +47,7 @@ export default {
     this.__GET_SERVICES();
     this.__GET_ARTICLES();
     this.__GET_STATES();
-    console.log(window.navigator);
+    this.__GET_REVIEWS()
   },
   methods: {
     async __GET_SERVICES() {
@@ -70,6 +71,14 @@ export default {
         "fetchLocations/getStates",
         this.$i18n.locale
       );
+    },
+    async __GET_REVIEWS() {
+      this.reviews = await this.$store.dispatch(
+        "fetchGoogleApi/getReviews",
+        this.$i18n.locale
+      );
+      await console.log(this.reviews);
+      
     },
   },
   components: {
