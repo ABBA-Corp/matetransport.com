@@ -171,7 +171,6 @@
         </div>
       </div>
     </el-drawer>
-
     <Header :drawerOpen="drawerOpen" />
     <div class="calculator">
       <div class="container_xl position-relative">
@@ -325,8 +324,11 @@
                       </el-option>
                     </el-select>
                     <div class="select-btns d-flex">
-                      <div class="calculator-save-btn ">Save</div>
-                      <div class="calculator-cancel-btn mx-3" @click="activeEdit = 0">
+                      <div class="calculator-save-btn">Save</div>
+                      <div
+                        class="calculator-cancel-btn mx-3"
+                        @click="activeEdit = 0"
+                      >
                         Cancel
                       </div>
                     </div>
@@ -571,9 +573,6 @@
 import CalculatorInfoItems from "../components/calculator/calculatorInfoItems.vue";
 import Header from "../components/layout/Header.vue";
 import Footer from "../components/layout/Footer.vue";
-import CalculatorStep1 from "../components/calculator/calculatorStep1.vue";
-import CalculatorStep2 from "../components/calculator/calculatorStep2.vue";
-import CalculatorStep3 from "../components/calculator/calculatorStep3.vue";
 import moment from "moment";
 export default {
   layout: "defaut",
@@ -654,6 +653,7 @@ export default {
       value: "",
       shipFrom: "",
       shipTo: "",
+      leads: {},
     };
   },
   computed: {
@@ -704,39 +704,43 @@ export default {
       document.body.style.overflowY = "hidden";
       document.body.style.height = "100vh";
     },
-    timerDis() {},
+    async __GET_LEADS() {
+      this.leads = await this.$store.dispatch("fetchLead/getLead", {
+        leadId: this.$route.params.index,
+        currentLang: this.$i18n.locale,
+      });
+    },
+    async __EDIT_LEADS() {
+      this.leads = await this.$store.dispatch("fetchLead/editLead", {
+        leadId: this.$route.params.index,
+        currentLang: this.$i18n.locale,
+        data: this.leads,
+      });
+    },
   },
   mounted() {
-    console.log(this.$modal);
     if (this.$route.fullPath.includes("transport")) {
-      this.currentPath = "/calculator/delivery-details";
+      this.currentPath = `/calculator/delivery-details/${this.$route.params.index}`;
     }
-    console.log(this.$route.fullPath.includes("choice-tarifs"));
-    if (this.$route.fullPath.includes("choice-tarifs")) {
-      this.currentPath = "/calculator/transport";
+    if (this.$route.fullPath.includes("choice-tarif")) {
+      this.currentPath = `/calculator/transport/${this.$route.params.index}`;
     }
     if (this.$route.fullPath.includes("delivery-details")) {
       this.currentPath = "/";
     }
-    this.timerDis();
   },
   components: {
     CalculatorInfoItems,
-    CalculatorStep1,
-    CalculatorStep2,
-    CalculatorStep3,
     Header,
     Footer,
   },
   watch: {
-    selectedLocations(newVal, oldVal) {
+    selectedLocations(_, oldVal) {
       if ((newVal = !oldVal)) {
         console.log(this.selectedLocations);
       }
-      console.log(this.selectedLocations);
     },
     dateValue(val) {
-      console.log("startValue", val);
       if (val != "") {
         this.activeEdit = 0;
       }
@@ -750,11 +754,10 @@ export default {
     routerName(oldVal, newVal) {
       if (oldVal !== newVal) {
         if (this.$route.fullPath.includes("transport")) {
-          this.currentPath = "/calculator/delivery-details";
+          this.currentPath = `/calculator/delivery-details/${this.$route.params.index}`;
         }
-        console.log(this.$route.fullPath.includes("choice-tarifs"));
-        if (this.$route.fullPath.includes("choice-tarifs")) {
-          this.currentPath = "/calculator/transport";
+        if (this.$route.fullPath.includes("choice-tarif")) {
+          this.currentPath = `/calculator/transport/${this.$route.params.index}`;
         }
         if (this.$route.fullPath.includes("delivery-details")) {
           this.currentPath = "/";

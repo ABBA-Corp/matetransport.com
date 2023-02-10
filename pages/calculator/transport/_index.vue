@@ -2,6 +2,14 @@
   <div class="calculator-form">
     <h1 class="calculator-title">Vehicle delivery details 2222</h1>
     <div class="">
+    <el-form
+        label-position="top"
+        :model="ruleForm"
+        :rules="rules"
+        ref="ruleForm"
+        label-width="120px"
+        class="demo-ruleForm"
+        action="">
       <div class="form-block">
         <a-radio-group v-model="value" @change="onChange">
           <div class="calculator-grid">
@@ -22,15 +30,20 @@
       <div class="form-block calculator-grid">
         <div class="d-flex flex-column">
           <label for="inputTo">Your full name</label>
-          <input type="text" id="inputFrom" placeholder="Jamshid Sultanov" />
+          <el-form-item prop="ship_from" label-position="top">
+          <input type="text" class="w-100" id="inputFrom" placeholder="Jamshid Sultanov" />
+          </el-form-item>
         </div>
         <div class="d-flex flex-column">
           <label for="inputTo">Your email</label>
+          <el-form-item prop="ship_from" label-position="top">
           <input
             type="text"
+            class="w-100"
             id="inputFrom"
             placeholder="jamshid.sultsnov99@gmail.com"
           />
+          </el-form-item>
         </div>
       </div>
 
@@ -40,6 +53,7 @@
           <div class="phone-number" v-for="item in numberInputs" :key="item.id">
             <input
               type="text"
+              class="w-100"
               id="inputFrom"
               v-model="item.value"
               placeholder="(224) 300-5367"
@@ -108,6 +122,7 @@
           </div>
         </div>
       </div>
+    </el-form>
     </div>
   </div>
 </template>
@@ -126,6 +141,71 @@ export default {
           value: "",
         },
       ],
+      rules: {
+        nbm: [
+          {
+            min: 10,
+            max: 10,
+            message: "Length should be 10",
+            trigger: "change",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "incorrect email",
+            trigger: "blur",
+          },
+        ],
+
+        vehicle: [
+          {
+            required: true,
+            message: "Pleace enter vehicle model",
+            trigger: "change",
+          },
+        ],
+        car_year: [
+          {
+            required: true,
+            message: "Pleace enter vehicle year",
+            trigger: "change",
+          },
+        ],
+        ship_from: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        ship_to: [
+          {
+            required: true,
+            message: "Pleace enter adress",
+            trigger: "change",
+          },
+        ],
+        date: [
+          {
+            required: true,
+            message: "Pleace enter date",
+            trigger: "change",
+          },
+        ],
+      },
+      ruleForm: {
+        email: "",
+        nbm: "",
+        date: "",
+        ship_to: "",
+        ship_from: "",
+        vehicle: "",
+        car_year: "",
+        vehicle_runs: 1,
+        ship_via_id: 1,
+        car_make: "",
+      },
     };
   },
   props: {

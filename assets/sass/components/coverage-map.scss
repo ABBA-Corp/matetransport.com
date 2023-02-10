@@ -236,6 +236,7 @@
   .coverage-map-img {
     svg {
       width: 100%;
+
     }
   }
   .last-news {
@@ -366,9 +367,10 @@
     padding-bottom: 0;
   }
   .coverage-map-img {
-    height: 400px;
     svg {
       width: 100%;
+      display: block;
+      height: initial !important;
     }
   }
   .news-card {

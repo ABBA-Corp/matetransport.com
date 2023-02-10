@@ -426,11 +426,12 @@ export default {
     overflow: hidden;
     background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
     height: 0;
-    width: 100%;
+    width: 0;
     position: absolute;
     bottom: 50%;
     top: 50%;
-    left: 0;
+    left: 50%;
+    right: 50%;
     transition: 0.3s;
     border-radius: 20px;
   }
@@ -438,6 +439,9 @@ export default {
     &::after {
       top: 0;
       bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       height: 100%;
     }
     span {
