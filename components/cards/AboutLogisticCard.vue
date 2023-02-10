@@ -33,6 +33,8 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["title","text"]
+};
 </script>
 <style lang=""></style>

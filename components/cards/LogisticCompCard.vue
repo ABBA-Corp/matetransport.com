@@ -46,12 +46,14 @@
       </g>
     </svg>
     <div class="logistic-card">
-      <h3>15 years +</h3>
-      <p>A lot of year experiance</p>
+      <h3>{{title}}</h3>
+      <p>{{text}}</p>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["title","text"]
+};
 </script>
 <style lang=""></style>
