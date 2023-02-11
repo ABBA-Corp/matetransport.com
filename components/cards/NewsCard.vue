@@ -30,7 +30,10 @@
       <p class="news-card-text">
         {{ article.subtitle }}
       </p>
-      <nuxt-link :to="localePath('/all-news')" class="news-card-btn">
+      <nuxt-link
+        :to="localePath(`/inner-news/${article.id}`)"
+        class="news-card-btn"
+      >
         Read more
         <svg
           width="20"
