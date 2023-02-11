@@ -103,7 +103,15 @@
                       filterable
                       :disabled="!cities.length > 0"
                       ref="selectInput"
-                      placeholder="Transport car FROM"
+                      :placeholder="`${
+                        cities.find(
+                          (item) => item.id == currentCities.ship_from
+                        )?.name
+                      } ${
+                        cities.find(
+                          (item) => item.id == currentCities.ship_from
+                        )?.zip
+                      }`"
                       popper-class="web-selects"
                     >
                       <el-option
@@ -126,7 +134,13 @@
                       filterable
                       :disabled="!cities.length > 0"
                       ref="selectInput"
-                      placeholder="Transport car TO"
+                      :placeholder="`${
+                        cities.find((item) => item.id == currentCities.ship_to)
+                          ?.name
+                      } ${
+                        cities.find((item) => item.id == currentCities.ship_to)
+                          ?.zip
+                      }`"
                       popper-class="web-selects"
                     >
                       <el-option
@@ -255,8 +269,14 @@
       <TitleSmall title="Map" />
 
       <div class="location-map-maps-grid">
-        <LocationMapCard />
-        <LocationMapCard />
+        <LocationMapCard
+          :currentCitiesData="currentCitiesData.from"
+          :skeleton="skeleton_from"
+        />
+        <LocationMapCard
+          :currentCitiesData="currentCitiesData.to"
+          :skeleton="skeleton_to"
+        />
       </div>
       <div class="service-from-cards">
         <ServiceApplicationCard />
@@ -463,6 +483,9 @@ export default {
       carModles: [],
       allCities: [],
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
+      currentCities: {},
+      skeleton_to: false,
+      skeleton_from: false,
       ruleForm: {
         email: "",
         nbm: "",
@@ -528,20 +551,6 @@ export default {
             trigger: "blur",
           },
         ],
-        ship_from: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
-        ship_to: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
         car_make: [
           {
             required: true,
@@ -564,10 +573,23 @@ export default {
           },
         ],
       },
+      currentCitiesData: {
+        to: {},
+        form: {},
+      },
     };
   },
-  mounted() {
+  async mounted() {
     this.__GET_CITIES();
+    this.currentCities = await JSON.parse(
+      localStorage.getItem("cities_from_map")
+    );
+    this.__GET_CURRENT_CITY(
+      this.currentCities.ship_from,
+      "from",
+      this.skeleton_from
+    );
+    this.__GET_CURRENT_CITY(this.currentCities.ship_to, "to", this.skeleton_to);
   },
   methods: {
     moment,
@@ -586,32 +608,47 @@ export default {
         this.$i18n.locale
       );
     },
+    async __GET_CURRENT_CITY(id, city, skeletons) {
+      skeletons = true;
+      this.currentCitiesData[city] = await this.$store.dispatch(
+        "fetchLocations/getCurrentCity",
+        {
+          currentCity: id,
+        }
+      );
+      skeletons = false;
+    },
     onChangeDate(value, dateStrings) {
-      this.ruleForm.date = dateStrings.replaceAll("/", ".");
+      this.ruleForm.date = dateStrings;
+    },
+    async __POST_LEAD() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.leadCread = await this.$store.dispatch("fetchLead/postLead", {
+        currentLang: this.$i18n.locale,
+        data: this.ruleForm,
+      });
+      this.$nuxt.$loading.finish();
+      if (this.leadCread.uuid) {
+        localStorage.setItem("editData", JSON.stringify(this.ruleForm));
+        this.$router.push(
+          `/calculator/choice-tarif/${this.leadCread.uuid}`
+        );
+      }
     },
     async submitForm(ruleForm) {
+      if (!this.ruleForm.ship_from) {
+        this.ruleForm.ship_from = this.currentCities.ship_from;
+      }
+      if (!this.ruleForm.ship_to) {
+        this.ruleForm.ship_to = this.currentCities.ship_to;
+      }
       this.$refs[ruleForm].validate(async (valid) => {
         if (valid) {
-          // const emailCorrent = await this.$store.dispatch(
-          //   "fetchCheckEmail/getCheckEmail",
-          //   this.ruleForm.email
-          // );
-
-          // if (emailCorrent.deliverability == "DELIVERABLE") {
           if (this.active++ > 2) {
-            this.active = 0;
+            this.__POST_LEAD();
           }
-
-          // } else {
-          //   console.log("toast");
-          //   this.$toast.open({
-          //     message: `Email ${emailCorrent.deliverability}`,
-          //     type: "error",
-          //     duration: 2000,
-          //     dismissible: true,
-          //     position: "top-right",
-          //   });
-          // }
         } else {
           console.log("error submit!!");
           return false;

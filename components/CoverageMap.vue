@@ -1314,7 +1314,7 @@
               <!-- <label for="inputFrom">Tochka A</label> -->
               <span class="white_space">Tochka A shahari</span>
               <el-select
-                v-model="citiesFrom"
+                v-model="dataForm.ship_from"
                 class="mb-2"
                 filterable
                 :disabled="!cities.from"
@@ -1329,7 +1329,7 @@
                   v-for="item in cities.from"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.zip}`"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -1353,7 +1353,7 @@
                 $store.state.translations["main.coverageMap_label_a"]
               }}</label>
               <el-select
-                v-model="citiesFrom"
+                v-model="dataForm.ship_from"
                 class="mb-2"
                 filterable
                 ref="selectInput"
@@ -1369,7 +1369,7 @@
                   v-for="item in cities.from"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.zip}`"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -1379,7 +1379,7 @@
                 $store.state.translations["main.coverageMap_label_b"]
               }}</label>
               <el-select
-                v-model="citiesTo"
+                v-model="dataForm.ship_to"
                 class="mb-2"
                 filterable
                 :disabled="!cities.to.length > 0"
@@ -1394,7 +1394,7 @@
                   v-for="item in cities.to"
                   :key="item.id"
                   :label="`${item.state.name} ${item.name} ${item.zip}`"
-                  :value="`${item.zip}`"
+                  :value="`${item.id}`"
                 >
                 </el-option>
               </el-select>
@@ -1403,10 +1403,11 @@
           <div
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
           >
-            <nuxt-link
-              :disabled="!citiesFrom && !citiesTo"
-              :to="localePath('/location-map')"
+            <div
+            type="submit"
+              @click="sendCities"
               class="form-btn"
+              :class="{'disabled-btn': !dataForm.ship_from && !dataForm.ship_to}"
             >
             {{$store.state.translations["main.form_btn_nextStage"]}}<svg
                 width="24"
@@ -1424,7 +1425,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </nuxt-link>
+            </div>
           </div>
           <p class="form-block-form-info">
             {{ $store.state.translations["main.coverageMap_form_text"] }}
@@ -1481,8 +1482,10 @@ export default {
   data() {
     return {
       USA,
-      citiesFrom: "",
-      citiesTo: "",
+      dataForm: {
+        ship_to: "",
+        ship_from: "",
+      },
       stateFrom: "",
       stateTo: "",
       date: new Date(),
@@ -1514,8 +1517,8 @@ export default {
       this.pointedLocation = event.toElement.dataset.name;
     },
     async mapClick(val) {
-      (this.citiesFrom = ""),
-        (this.citiesTo = ""),
+      (this.dataForm.ship_from = ""),
+        (this.dataForm.ship_to = ""),
         await this.currentMap.push(val);
       if (this.currentMap.length > 2) {
         this.currentMap = await this.currentMap.slice(-2);
@@ -1566,6 +1569,10 @@ export default {
       // Generate heat map
       return `svg-map__location svg-map__location--heat${index % 4}`;
     },
+    sendCities() {
+      localStorage.setItem("cities_from_map",JSON.stringify(this.dataForm));
+      this.$router.push("/location-map");
+    }
   },
   components: { Title, LastNews, CheckboxSvgMap },
   watch: {
@@ -1575,7 +1582,7 @@ export default {
       }
     },
     async stateFrom(val) {
-      this.citiesFrom = "";
+      this.dataForm.ship_from = "";
       this.cities.from = await this.$store.dispatch(
         "fetchLocations/getCities",
         {
@@ -1752,5 +1759,9 @@ export default {
 }
 .is-active_map {
   fill: #2892ef;
+}
+.disabled-btn {
+  filter: brightness(0.90);
+  pointer-events: none;
 }
 </style>

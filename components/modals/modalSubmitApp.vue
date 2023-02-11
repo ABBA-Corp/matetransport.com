@@ -3,9 +3,9 @@
     <div class="modal_container window-header">
       <div class="modal_header d-flex justify-content-between">
         <div>
-          <h5>{{$store.state.translations['modal.app_title']}}</h5>
+          <h5>{{ $store.state.translations["modal.app_title"] }}</h5>
           <p class="fasting-contact-text sub-text">
-            {{$store.state.translations['modal.app_text']}}
+            {{ $store.state.translations["modal.app_text"] }}
           </p>
         </div>
         <span @click="hide('modal_leave_weak')"
@@ -122,7 +122,6 @@
                     v-model="ruleForm.ship_from"
                     class="w-100"
                     filterable
-                    @focus="__GET_CITIES"
                     :loading="!shipFromOptions.length > 0"
                     placeholder="Pickup location"
                     loading-text="Loading..."
@@ -132,8 +131,8 @@
                       class="edit-select"
                       v-for="item in shipFromOptions"
                       :key="item.id"
-                      :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                      :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="item.id"
                     >
                     </el-option>
                   </el-select>
@@ -144,10 +143,10 @@
                 <el-form-item prop="ship_to" label-position="top">
                   <el-select
                     v-model="ruleForm.ship_to"
+                    label="Khasan"
                     class="w-100"
                     filterable
                     ref="selectInput"
-                    @focus="__GET_CITIES"
                     placeholder="Delivery location"
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
@@ -156,8 +155,8 @@
                       class="edit-select"
                       v-for="item in shipFromOptions"
                       :key="item.id"
-                      :label="`${item.state.name} ${item.state.code} ${item.zip}`"
-                      :value="`${item.state.name} ${item.state.code} ${item.zip}`"
+                      :label="`${item.state.name} ${item.name} ${item.zip}`"
+                      :value="item.id"
                     >
                     </el-option>
                   </el-select>
@@ -169,7 +168,6 @@
                   <a-date-picker
                     @change="onChangeDate"
                     class="w-100"
-                    v-model="ruleForm.date"
                     :default-value="moment(ruleForm.date, dateFormatList[0])"
                     :format="dateFormatList"
                   />
@@ -241,6 +239,7 @@ export default {
       carMakes: [],
       carModles: [],
       carMakesValue: "",
+      allCities: [],
       rules: {
         nbm: [
           {
@@ -334,6 +333,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.__GET_CITIES();
+  },
   methods: {
     moment,
     show(name) {
@@ -347,7 +349,7 @@ export default {
       document.body.style.height = "auto";
     },
     onChangeDate(value, dateStrings) {
-      this.dateValue = dateStrings;
+      this.ruleForm.date = dateStrings;
     },
     async __GET_CAR_MAKES() {
       this.carMakes = await this.$store.dispatch(
@@ -359,31 +361,29 @@ export default {
       this.shipFromOptions = await this.$store.dispatch(
         "fetchLocations/getCities"
       );
+      this.allCities = this.shipFromOptions;
+    },
+    async __POST_LEAD() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.leadCread = await this.$store.dispatch("fetchLead/postLead", {
+        currentLang: this.$i18n.locale,
+        data: this.ruleForm,
+      });
+      this.$nuxt.$loading.finish();
+      if (this.leadCread.uuid) {
+        this.$router.push(
+          `/calculator/choice-tarif/${this.leadCread.uuid}`
+        );
+        this.hide("modal_leave_weak");
+      }
     },
     async submitForm(ruleForm) {
-      // const leadData = await this.$store.dispatch("fetchLead/postLead", {
-      //   currentLang: this.$i18n.locale,
-      //   data: this.ruleForm,
-      // });
-      // this.$router.push(`/calculator/delivery-details/sadsadassadssad`);
       this.$refs[ruleForm].validate(async (valid) => {
         if (valid) {
-          const emailCorrent = await this.$store.dispatch(
-            "fetchCheckEmail/getCheckEmail",
-            this.ruleForm.email
-          );
-
-          if (emailCorrent.deliverability == "DELIVERABLE") {
-            // this.$router.push("/calculator/")
-          } else {
-            this.$toast.open({
-              message: `Email ${emailCorrent.deliverability}`,
-              type: "error",
-              duration: 2000,
-              dismissible: true,
-              position: "top-right",
-            });
-          }
+          console.log(this.ruleForm);
+          // this.__POST_LEAD();
         } else {
           console.log("error submit!!");
           return false;
@@ -392,6 +392,12 @@ export default {
     },
   },
   watch: {
+    "ruleForm.ship_to"(val) {
+      this.shipFromOptions = this.allCities.filter((item) => item.id != val);
+    },
+    "ruleForm.ship_from"(val) {
+      this.shipFromOptions = this.allCities.filter((item) => item.id != val);
+    },
     async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,

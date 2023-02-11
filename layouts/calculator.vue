@@ -249,7 +249,11 @@
                 ></span>
 
                 <div class="edit_input" v-if="activeEdit == 2">
-                  <el-skeleton-item v-if="skeleton" variant="text" style="width: 100%;" />
+                  <el-skeleton-item
+                    v-if="skeleton"
+                    variant="text"
+                    style="width: 100%;"
+                  />
                   <a-date-picker
                     @change="onChangeDate"
                     :default-value="moment(leads.date, dateFormatList[0])"
@@ -491,7 +495,10 @@
               </div>
               <div class="calculator-info-items">
                 <span>Vehicle condition </span>
-                <a-radio-group v-model="editLeads.vehicle_runs" @change="onChange">
+                <a-radio-group
+                  v-model="editLeads.vehicle_runs"
+                  @change="onChange"
+                >
                   <div class="items-checkbox">
                     <el-skeleton-item
                       v-if="skeleton"
@@ -510,7 +517,10 @@
               </div>
               <div class="calculator-info-items">
                 <span>Transport type</span>
-                <a-radio-group v-model="editLeads.ship_via_id" @change="onChange">
+                <a-radio-group
+                  v-model="editLeads.ship_via_id"
+                  @change="onChange"
+                >
                   <div class="items-checkbox">
                     <a-radio
                       v-if="!skeleton"
@@ -646,7 +656,6 @@ export default {
   name: "MyMap",
   data() {
     return {
-      steps: 1,
       drawer: false,
       currentPath: "",
       activeEdit: 0,
@@ -676,7 +685,6 @@ export default {
         },
       ],
       transport: 0,
-      startValue: "01/01/2015",
       dateValue: "01/01/2015",
       years: [
         {
@@ -743,35 +751,7 @@ export default {
         ship_via_id: 1,
         car_make: "",
       },
-      leads: {
-        ship_from: {
-          name: "city",
-          state: {
-            name: "state",
-            code: "code",
-          },
-          zip: "zip",
-        },
-        ship_to: {
-          name: "city",
-          state: {
-            name: "state",
-            code: "code",
-          },
-          zip: "zip",
-        },
-        vehicle: {
-          mark: {
-            name: "Marka",
-          },
-          name: "Model",
-          vehicle_type: "Car",
-        },
-        date: "08/02/2023",
-        distance: null,
-        price_first_tarif: 380.0,
-        car_year: "year",
-      },
+      leads: {},
       carMakes: [],
       carModles: [],
     };
@@ -814,18 +794,14 @@ export default {
       document.body.style.overflowY = "auto";
       document.body.style.height = "auto";
     },
-    changeSteps(step) {
-      this.steps = step;
-      console.log(step);
-    },
+
     drawerOpen() {
       this.drawer = true;
     },
     onChangeDate(value, dateStrings) {
       this.leads.date = dateStrings;
       this.editLeads.date = dateStrings;
-      if(dateStrings.length > 0) {
-
+      if (dateStrings.length > 0) {
         this.__EDIT_LEADS();
       }
     },
@@ -941,10 +917,11 @@ export default {
           this.currentPath = `/calculator/delivery-details/${this.$route.params.index}`;
         }
         if (this.$route.fullPath.includes("choice-tarif")) {
-          this.currentPath = `/calculator/transport/${this.$route.params.index}`;
+          this.currentPath = `/`;
         }
         if (this.$route.fullPath.includes("delivery-details")) {
-          this.currentPath = "/";
+          this.currentPath =
+            `/calculator/choice-tarif/${this.$route.params.index}`;
         }
       }
     },

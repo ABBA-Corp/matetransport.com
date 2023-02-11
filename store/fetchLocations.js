@@ -11,4 +11,8 @@ export const actions = {
     });
     return res.results;
   },
+  async getCurrentCity({}, payload) {
+    const res = await this.$axios.$get(`/city/${payload.currentCity}`);
+    return res;
+  },
 };

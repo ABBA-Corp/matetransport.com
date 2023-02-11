@@ -583,7 +583,7 @@ export default {
       if (this.leadCread.uuid) {
         localStorage.setItem("editData", JSON.stringify(this.ruleForm));
         this.$router.push(
-          `/calculator/delivery-details/${this.leadCread.uuid}`
+          `/calculator/choice-tarif/${this.leadCread.uuid}`
         );
       }
     },

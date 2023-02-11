@@ -87,7 +87,7 @@
         >
           <nuxt-link
             class="form-btn"
-            :to="localePath(`/calculator/choice-tarif/${$route.params.index}`)"
+            :to="localePath(`/`)"
           >
             Next stage<svg
               width="24"
