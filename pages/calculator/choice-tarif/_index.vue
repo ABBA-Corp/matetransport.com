@@ -17,7 +17,52 @@
           since the 1500s,
         </p>
       </div>
-
+      <div class="tarif_card-grid">
+        <div
+          class="tarif_card"
+          @click="ruleForm.tarif = 1"
+          :class="{ superTarif: ruleForm.tarif == 1 }"
+        >
+          <div class="tarif_card__title">
+            <div>
+             
+              <h1 @click="">750$</h1>
+            </div>
+            <div class="tarif_checkbox">
+              <span v-if="tarif == 0"><img :src="checkboxIcon" alt="" /></span>
+            </div>
+          </div>
+          <div class="tarif_body">
+            <p>Service type Door to door</p>
+            <p>InsuranceIncluded</p>
+            <p>All services</p>
+            <p>Service type Door to door</p>
+            <p>InsuranceIncluded</p>
+          </div>
+        </div>
+        <div
+          class="tarif_card"
+          @click="ruleForm.tarif = 2"
+          :class="{ superTarif: ruleForm.tarif == 2 }"
+        >
+          <div class="tarif_card__title">
+            <div>
+              <span>Super price for you</span>
+              <h1 @click="">830$</h1>
+            </div>
+            <div class="tarif_checkbox">
+              <span v-if="tarif == 1"><img :src="checkboxIcon" alt="" /></span>
+            </div>
+          </div>
+          <div class="tarif_body">
+            <p>Service type Door to door</p>
+            <p>InsuranceIncluded</p>
+            <p>All services</p>
+            <p>Service type Door to door</p>
+            <p>InsuranceIncluded</p>
+          </div>
+        </div>
+      </div>
       <div class="included-tariff">
         <h1 class="calculator-title step-title">Tarifga nimalar kiradi?</h1>
         <div class="tariff-info-grid">
@@ -107,31 +152,26 @@
           </p>
         </div>
       </div>
-      <div
-          class="banner-form-btn d-flex justify-content-end steps-action pt-3"
-        >
-          <nuxt-link
-            class="form-btn"
-            :to="localePath(`/calculator/delivery-details/${$route.params.index}`)"
+      <div class="banner-form-btn d-flex justify-content-end steps-action pt-3">
+        <div @click="toNextStep" class="form-btn">
+          Next stage<svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Next stage<svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </nuxt-link>
+            <path
+              d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </div>
+      </div>
 
       <div class="block-help block-help-web" @click="show('modal_discount')">
         <p>
@@ -163,14 +203,20 @@
   </div>
 </template>
 <script>
+import TarifCard from "../../../components/cards/TarifCard.vue";
+
 export default {
   layout: "calculator",
-
   data() {
     return {
       value: 1,
       value1: 1,
+      tarif: 0,
+      checkboxIcon: require("~/assets/svg/tarif_checkbox.svg"),
       inputX: require("~/assets/svg/x.svg"),
+      ruleForm: {
+        tarif: 1,
+      },
       numberInputs: [
         {
           id: 1,
@@ -185,6 +231,12 @@ export default {
     },
   },
   methods: {
+    toNextStep() {
+      localStorage.setItem("app_create", JSON.stringify(this.ruleForm));
+      this.$router.push(
+        `/calculator/delivery-details/${this.$route.params.index}`
+      );
+    },
     show(name) {
       this.$modal.show(name);
       document.body.style.overflowY = "hidden";
@@ -208,6 +260,33 @@ export default {
       }
     },
   },
+  components: { TarifCard },
 };
 </script>
-<style lang=""></style>
+<style lang="scss">
+.tarif_card-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 3fr;
+  grid-gap: 20px;
+}
+@media (max-width: 1200px) {
+  .tarif_card-grid {
+    grid-template-columns: 4fr 4fr 3fr;
+  }
+}
+@media (max-width: 992px) {
+  .tarif_card-grid {
+    grid-template-columns: 4fr 4fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .tarif_card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .tarif_card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

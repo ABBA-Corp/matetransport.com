@@ -14,44 +14,57 @@
         <div class="form-block">
           <label for="inputFrom">Delivery address</label>
           <div class="calculator-grid">
-            <el-form-item prop="ship_from" label-position="top">
-            <input type="text" class="w-100" id="inputFrom" placeholder="Street home flat" />
+            <el-form-item prop="adres" label-position="top">
+              <input
+                type="text"
+                class="w-100"
+                id="inputFrom"
+                v-model="ruleForm.adres"
+                placeholder="Street home flat"
+              />
             </el-form-item>
             <el-form-item prop="ship_from" label-position="top">
-            <input type="text" class="w-100" id="inputFrom" placeholder="USA California" />
+              <input
+                type="text"
+                class="w-100"
+                id="inputFrom"
+                disabled
+                :value="`USA ${leads?.ship_to?.state?.name}`"
+                :placeholder="leads?.ship_from?.name"
+              />
             </el-form-item>
           </div>
         </div>
         <div class="form-block">
           <label for="inputTo">California City, CA 93505 , This is a?</label>
           <el-form-item prop="ship_from" label-position="top">
-          <a-radio-group class="w-100" v-model="value" @change="onChange">
-            <div class="calculator-grid">
-              <div class="checkbox-input">
-                <a-radio :value="1">
-                  Residential address
-                </a-radio>
+            <a-radio-group class="w-100" v-model="value" @change="onChange">
+              <div class="calculator-grid">
+                <div class="checkbox-input">
+                  <a-radio :value="1">
+                    Residential address
+                  </a-radio>
+                </div>
+                <div class="checkbox-input">
+                  <a-radio :value="2">
+                    Residential address
+                  </a-radio>
+                </div>
               </div>
-              <div class="checkbox-input">
-                <a-radio :value="2">
-                  Residential address
-                </a-radio>
-              </div>
-            </div>
-          </a-radio-group>
+            </a-radio-group>
           </el-form-item>
         </div>
         <div class="form-block">
           <label for="inputTo">California City, CA 93505 , This is a?</label>
-          <a-radio-group v-model="value1" @change="onChange">
+          <a-radio-group v-model="ruleForm.contact_me" @change="onChange">
             <div class="calculator-grid">
               <div class="checkbox-input">
-                <a-radio :value="1">
+                <a-radio :value="true">
                   Contact me
                 </a-radio>
               </div>
               <div class="checkbox-input">
-                <a-radio :value="2">
+                <a-radio :value="false">
                   Contact someone else
                 </a-radio>
               </div>
@@ -61,6 +74,7 @@
         <div class="form-block">
           <label for="">Have any special instructions? (Optional)</label>
           <textarea
+            v-model="ruleForm.deckription"
             name=""
             id=""
             cols="20"
@@ -71,11 +85,7 @@
         <div
           class="banner-form-btn d-flex justify-content-end steps-action pt-3"
         >
-          <nuxt-link
-            :to="localePath(`/calculator/transport/${$route.params.index}`)"
-            class="form-btn"
-            @click="changeSteps(2)"
-          >
+          <div @click="toNextStep" class="form-btn">
             Next stage<svg
               width="24"
               height="24"
@@ -92,7 +102,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-          </nuxt-link>
+          </div>
         </div>
       </el-form>
     </div>
@@ -101,7 +111,6 @@
 <script>
 export default {
   layout: "calculator",
-
   data() {
     return {
       value: 1,
@@ -160,27 +169,45 @@ export default {
         ],
       },
       ruleForm: {
-        email: "",
-        nbm: "",
-        date: "",
-        ship_to: "",
-        ship_from: "",
-        vehicle: "",
-        car_year: "",
-        vehicle_runs: 1,
-        ship_via_id: 1,
-        car_make: "",
+        adres: "",
+        deckription: "",
+        lead: "",
+        contact_me: true,
+        contact_else: "1234567898",
       },
+      leads: {},
     };
   },
-  props: {
-    changeSteps: {
-      type: Function,
-    },
+
+  mounted() {
+    this.__GET_LEADS();
   },
   methods: {
     onChange(e) {
       console.log("radio checked", e.target.value);
+    },
+    toNextStep() {
+      const firstStep = JSON.parse(localStorage.getItem("app_create"));
+      this.ruleForm = {
+        ...this.ruleForm,
+        lead: this.leads.id,
+        tarif: firstStep.tarif,
+      };
+      localStorage.setItem("app_create", JSON.stringify(this.ruleForm));
+      this.$router.push(`/calculator/transport/${this.$route.params.index}`);
+    },
+    async __GET_LEADS() {
+      this.leads = await this.$store.dispatch("fetchLead/getLead", {
+        leadId: this.$route.params.index,
+        currentLang: this.$i18n.locale,
+      });
+      if (this.leads.ship_from.name) {
+        this.$nuxt.$loading.finish();
+      } else {
+        this.$nextTick(() => {
+          this.$nuxt.$loading.start();
+        });
+      }
     },
   },
 };

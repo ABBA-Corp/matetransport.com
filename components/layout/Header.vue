@@ -176,18 +176,32 @@
                 >Tezkor zayavka qoldirish
               </p>
             </div>
-            <div class="form-block modal-form-block">
-              <the-mask
-                type="text"
-                placeholder="Phone number"
-                :mask="['+998 (##) ### ## ##', '+998 (##) ### ## ##']"
-              />
-            </div>
-            <div class="modal-form-btn">
-              <div class="form-btn" @click="sendNomer">
-                Biz bilan aloqaga chiqish
+            <el-form
+              label-position="top"
+              :model="ruleForm"
+              :rules="rules"
+              ref="ruleForm"
+              label-width="120px"
+              class="demo-ruleForm"
+              action=""
+            >
+              <div class="form-block modal-form-block">
+                <el-form-item prop="nbm" label-position="top">
+                  <the-mask
+                    type="text"
+                    class="w-100"
+                    v-model="ruleForm.nbm"
+                    placeholder="Phone number"
+                    :mask="['(###) ### ####', '(###) ### ####']"
+                  />
+                </el-form-item>
               </div>
-            </div>
+              <div class="modal-form-btn">
+                <div class="form-btn" @click="submitForm('ruleForm')">
+                  Biz bilan aloqaga chiqish
+                </div>
+              </div>
+            </el-form>
           </div>
         </div></modal
       >
@@ -230,8 +244,54 @@
             </div>
 
             <div class="modal-form-btn w-100">
-              <div class="form-btn" @click="sendNomer">
+              <div class="form-btn" @click="hide('modal_success')">
                 Biz bilan aloqaga chiqish
+              </div>
+            </div>
+          </div>
+        </div></modal
+      >
+      <modal name="modal_app_success" width="590px" height="auto">
+        <div class="modal_container">
+          <div class="modal_header d-flex justify-content-between">
+            <h5>Tezkor aloqa</h5>
+            <span @click="hide('modal_app_success')"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                  stroke="#024E90"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></span>
+          </div>
+          <div class="modal_body d-flex flex-column align-items-center">
+            <span class="success_icon"
+              ><img src="../../assets/svg/succees icon.svg" alt=""
+            /></span>
+            <div
+              class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4"
+            >
+              <h5 class="success_contact">
+                Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
+                chiqadi
+              </h5>
+              <p class="fasting-contact-text text-center mt-1">
+                Shu vaqt ichida bizning operatorlarimiz siz bilan bog’lanadilar
+              </p>
+            </div>
+
+            <div class="modal-form-btn w-100">
+              <div class="form-btn" @click="backToHome">
+                Back to home
               </div>
             </div>
           </div>
@@ -307,6 +367,24 @@ export default {
       drawerShow: false,
       deadline2: moment().add(1, "h").format(fmt),
       discountTimer: 60,
+      ruleForm: {
+        nbm: "",
+      },
+      rules: {
+        nbm: [
+          {
+            required: true,
+            message: "Please enter your number",
+            trigger: "change",
+          },
+          {
+            min: 10,
+            max: 10,
+            message: "Length should be 10",
+            trigger: "change",
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -316,6 +394,10 @@ export default {
   },
   methods: {
     moment,
+    backToHome() {
+      this.hide("modal_app_success");
+      this.$router.push("/");
+    },
     sendNomer() {
       this.$modal.hide(`modal_header`);
       (this.deadline2 = moment().add(1, "h").format(fmt)),
@@ -363,6 +445,37 @@ export default {
       );
       await this.$store.commit("getInfo", info);
       await this.$nuxt.$loading.finish();
+    },
+    async __POST_CONTACT_NUMBER() {
+      this.app_create = await this.$store.dispatch(
+        "fetchLead/getShortAppCreate",
+        {
+          data: this.ruleForm,
+          currentLang: this.$i18n.locale,
+        }
+      );
+      if (this.app_create.status == "На рассмотрении") {
+        this.hide("modal_header");
+        this.show("modal_success");
+      } else {
+        this.$toast.open({
+          message: `${this.app_create.status}`,
+          type: "error",
+          duration: 2000,
+          dismissible: true,
+          position: "top-right",
+        });
+      }
+    },
+    async submitForm(ruleForm) {
+      this.$refs[ruleForm].validate(async (valid) => {
+        if (valid) {
+          this.__POST_CONTACT_NUMBER();
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
   },
   mounted() {

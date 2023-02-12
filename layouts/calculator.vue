@@ -192,7 +192,7 @@
           </nuxt-link>
         </div>
         <div class="calculator-container">
-          <Nuxt :show="show" />
+          <Nuxt :show="show" :leads="leads" />
 
           <div class="calculator-info">
             <div class="calculator-info-body">
@@ -218,7 +218,7 @@
                       /></svg
                   ></span>
                 </div>
-                <p v-if="!(activeEdit == 1) && !skeleton">2753mi</p>
+                <p v-if="!(activeEdit == 1) && !skeleton">{{leads.distance}}</p>
                 <el-skeleton-item v-else variant="text" style="width: 100%;" />
               </div>
               <div class="calculator-info-items">
@@ -249,17 +249,20 @@
                 ></span>
 
                 <div class="edit_input" v-if="activeEdit == 2">
-                  <el-skeleton-item
-                    v-if="skeleton"
-                    variant="text"
-                    style="width: 100%;"
-                  />
+                  <span class="close_edit" @click="activeEdit = 0">
+                    <img :src="iconX" alt="" />
+                  </span>
                   <a-date-picker
                     @change="onChangeDate"
                     :default-value="moment(leads.date, dateFormatList[0])"
                     :format="dateFormatList"
                   />
                 </div>
+                <el-skeleton-item
+                  v-if="skeleton"
+                  variant="text"
+                  style="width: 100%;"
+                />
                 <p v-if="!(activeEdit == 2) && !skeleton">{{ leads.date }}</p>
                 <div
                   class="edit-btn"
@@ -385,6 +388,9 @@
               <div class="calculator-info-items">
                 <span>Ship from </span>
                 <div class="edit_select" v-if="activeEdit == 4">
+                  <span class="close_edit" @click="activeEdit = 0">
+                    <img :src="iconX" alt="" />
+                  </span>
                   <el-select
                     v-model="editLeads.ship_from"
                     class="mb-2"
@@ -441,6 +447,9 @@
                 <span>Ship to </span>
 
                 <div class="edit_select" v-if="activeEdit == 5">
+                  <span class="close_edit" @click="activeEdit = 0">
+                    <img :src="iconX" alt="" />
+                  </span>
                   <el-select
                     v-model="editLeads.ship_to"
                     class="mb-2"
@@ -650,6 +659,7 @@
 import CalculatorInfoItems from "../components/calculator/calculatorInfoItems.vue";
 import Header from "../components/layout/Header.vue";
 import Footer from "../components/layout/Footer.vue";
+import yearsData from "../helpers/yearsData";
 import moment from "moment";
 export default {
   layout: "defaut",
@@ -659,6 +669,7 @@ export default {
       drawer: false,
       currentPath: "",
       activeEdit: 0,
+      iconX: require("../assets/svg/x.svg"),
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
       allCities: [],
@@ -686,56 +697,7 @@ export default {
       ],
       transport: 0,
       dateValue: "01/01/2015",
-      years: [
-        {
-          value: 2023,
-          label: 2023,
-        },
-        {
-          value: 2022,
-          label: 2022,
-        },
-        {
-          value: 2021,
-          label: 2021,
-        },
-        {
-          value: 2020,
-          label: 2020,
-        },
-        {
-          value: 2019,
-          label: 2019,
-        },
-        {
-          value: 2018,
-          label: 2018,
-        },
-        {
-          value: 2017,
-          label: 2017,
-        },
-        {
-          value: 2016,
-          label: 2016,
-        },
-        {
-          value: 2015,
-          label: 2015,
-        },
-        {
-          value: 2015,
-          label: 2015,
-        },
-        {
-          value: 2014,
-          label: 2014,
-        },
-        {
-          value: 2013,
-          label: 2013,
-        },
-      ],
+      years: yearsData,
       value: "",
       shipFrom: "",
       shipTo: "",
@@ -825,6 +787,7 @@ export default {
           currentLang: this.$i18n.locale,
         }));
       this.skeleton = false;
+      console.log(this.leads);
       if (this.leads.ship_from.name) {
         this.$nuxt.$loading.finish();
         console.log(this.leads.vehicle.mark.id);
@@ -920,8 +883,7 @@ export default {
           this.currentPath = `/`;
         }
         if (this.$route.fullPath.includes("delivery-details")) {
-          this.currentPath =
-            `/calculator/choice-tarif/${this.$route.params.index}`;
+          this.currentPath = `/calculator/choice-tarif/${this.$route.params.index}`;
         }
       }
     },

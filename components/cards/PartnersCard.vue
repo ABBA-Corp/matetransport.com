@@ -1,8 +1,10 @@
 <template lang="html">
   <div class="partners-card">
     <div class="partners-grid">
+      <div>
       <div class="partners-avatar">
         <img :src="review.image" alt="" />
+      </div>
       </div>
       <div class="partners-body">
         <div class="partners-title">

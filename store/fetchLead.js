@@ -27,4 +27,37 @@ export const actions = {
     });
     return res;
   },
+
+  async getAppCreate({}, payload) {
+    try {
+      const res = await this.$axios.$post(
+        `/applications/create`,
+        payload.data,
+        {
+          headers: {
+            Language: payload.currentLang,
+          },
+        }
+      );
+      return res;
+    } catch (e) {
+      return e.response;
+    }
+  },
+  async getShortAppCreate({}, payload) {
+    try {
+      const res = await this.$axios.$post(
+        `/short_application/create`,
+        payload.data,
+        {
+          headers: {
+            Language: payload.currentLang,
+          },
+        }
+      );
+      return res;
+    } catch (e) {
+      return e.response;
+    }
+  },
 };

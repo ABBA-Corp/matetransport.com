@@ -12,16 +12,16 @@
         action=""
       >
         <div class="form-block">
-          <a-radio-group v-model="value" @change="onChange">
+          <a-radio-group v-model="ruleForm.ship_type" @change="onChange">
             <div class="calculator-grid">
               <div class="checkbox-input">
-                <a-radio :value="1">
+                <a-radio value="An individual">
                   An individual
                 </a-radio>
               </div>
               <div class="checkbox-input">
-                <a-radio :value="2">
-                  An individual
+                <a-radio value="General">
+                  General
                 </a-radio>
               </div>
             </div>
@@ -31,21 +31,26 @@
         <div class="form-block calculator-grid">
           <div class="d-flex flex-column">
             <label for="inputTo">Your full name</label>
-            <el-form-item prop="ship_from" label-position="top">
+            <el-form-item prop="first_name" label-position="top">
               <input
                 type="text"
                 class="w-100"
                 id="inputFrom"
+                v-model="ruleForm.first_name"
                 placeholder="Jamshid Sultanov"
               />
+              <div class="el-form-item__error" v-if="userNameRequired">
+                First and last name required.
+              </div>
             </el-form-item>
           </div>
           <div class="d-flex flex-column">
             <label for="inputTo">Your email</label>
-            <el-form-item prop="ship_from" label-position="top">
+            <el-form-item prop="email" label-position="top">
               <input
                 type="text"
                 class="w-100"
+                v-model="ruleForm.email"
                 id="inputFrom"
                 placeholder="jamshid.sultsnov99@gmail.com"
               />
@@ -58,16 +63,18 @@
           <div class="calculator-grid">
             <div
               class="phone-number"
-              v-for="item in numberInputs"
+              v-for="item in ruleForm.nbms"
               :key="item.id"
             >
-              <input
-                type="text"
+              <the-mask
                 class="w-100"
-                id="inputFrom"
-                v-model="item.value"
+                type="text"
                 placeholder="(224) 300-5367"
+                :mask="['(###) ###-####', '(###) ###-####']"
+                v-model="item.value"
+                label-position="top"
               />
+
               <img
                 @click="deleteNumberInput(item.id)"
                 src="~/assets/svg/x.svg"
@@ -85,10 +92,7 @@
         <div
           class="banner-form-btn d-flex justify-content-end steps-action pt-3"
         >
-          <nuxt-link
-            class="form-btn"
-            :to="localePath(`/`)"
-          >
+          <div class="form-btn" type="submit" @click="submitForm('ruleForm')">
             Next stage<svg
               width="24"
               height="24"
@@ -105,7 +109,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-          </nuxt-link>
+          </div>
         </div>
 
         <div class="block-help block-help-web">
@@ -144,15 +148,11 @@ export default {
 
   data() {
     return {
-      value: 1,
+      value: "An individual",
       value1: 1,
+      userNameRequired: false,
       inputX: require("~/assets/svg/x.svg"),
-      numberInputs: [
-        {
-          id: 1,
-          value: "",
-        },
-      ],
+      app_create: {},
       rules: {
         nbm: [
           {
@@ -169,54 +169,28 @@ export default {
             trigger: "blur",
           },
         ],
-
-        vehicle: [
+        first_name: [
           {
             required: true,
-            message: "Pleace enter vehicle model",
-            trigger: "change",
-          },
-        ],
-        car_year: [
-          {
-            required: true,
-            message: "Pleace enter vehicle year",
-            trigger: "change",
-          },
-        ],
-        ship_from: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
-        ship_to: [
-          {
-            required: true,
-            message: "Pleace enter adress",
-            trigger: "change",
-          },
-        ],
-        date: [
-          {
-            required: true,
-            message: "Pleace enter date",
-            trigger: "change",
+            message: "incorrect email",
+            trigger: "blur",
           },
         ],
       },
+
       ruleForm: {
+        tarif: null,
         email: "",
-        nbm: "",
-        date: "",
-        ship_to: "",
-        ship_from: "",
-        vehicle: "",
-        car_year: "",
-        vehicle_runs: 1,
-        ship_via_id: 1,
-        car_make: "",
+        ship_type: "An individual",
+        first_name: "",
+        last_name: "",
+        car_year: "2000",
+        nbms: [
+          {
+            id: 1,
+            value: "",
+          },
+        ],
       },
     };
   },
@@ -226,16 +200,79 @@ export default {
     },
   },
   methods: {
+    show(name) {
+      this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
+    },
+    hide(name) {
+      this.$modal.hide(name);
+      document.body.style.overflowY = "auto";
+      document.body.style.height = "auto";
+    },
+    async submitForm(ruleForm) {
+      const newNmbs = this.ruleForm.nbms.map((item) => {
+        return item.value;
+      });
+
+      const newUserFullName = this.ruleForm.first_name.split(" ");
+      this.$refs[ruleForm].validate(async (valid) => {
+        if (valid) {
+          if (this.ruleForm.first_name.includes(" ")) {
+            const step = JSON.parse(localStorage.getItem("app_create"));
+            this.ruleForm = {
+              ...this.ruleForm,
+              ...step,
+              tarif: 1,
+              nbms: newNmbs,
+              first_name: newUserFullName[0],
+              last_name: newUserFullName[1],
+            };
+            console.log(this.ruleForm);
+            this.__POST_APP();
+          } else {
+            this.userNameRequired = true;
+          }
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+
+    async __POST_APP() {
+      this.app_create = await this.$store.dispatch("fetchLead/getAppCreate", {
+        data: this.ruleForm,
+        currentLang: this.$i18n.locale,
+      });
+      if (this.app_create.status == 500) {
+        this.$toast.open({
+          message: this.app_create.error,
+          type: "error",
+          duration: 2000,
+          dismissible: true,
+          position: "top-right",
+        });
+      } else {
+        this.show("modal_app_success");
+      }
+    },
     onChange(e) {
       console.log("radio checked", e.target.value);
     },
     addNumberInput() {
-      this.numberInputs.push({ id: this.numberInputs.length + 1 });
-      console.log(this.numberInputs);
+      this.ruleForm.nbms.push({ id: this.ruleForm.nbms.at(-1).id + 1 });
     },
     deleteNumberInput(id) {
-      if (this.numberInputs.length > 1) {
-        this.numberInputs = this.numberInputs.filter((item) => item.id != id);
+      if (this.ruleForm.nbms.length > 1) {
+        this.ruleForm.nbms = this.ruleForm.nbms.filter((item) => item.id != id);
+      }
+    },
+  },
+  watch: {
+    "ruleForm.first_name"(val) {
+      if (val.includes(" ")) {
+        this.userNameRequired = false;
       }
     },
   },

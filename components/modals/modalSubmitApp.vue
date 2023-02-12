@@ -229,6 +229,7 @@
 </template>
 <script>
 import moment from "moment";
+import yearsData from "../../helpers/yearsData";
 const fmt = "YYYY-MM-DD HH:mm:ss";
 export default {
   data() {
@@ -305,32 +306,7 @@ export default {
         ship_via_id: 1,
         car_make: "",
       },
-      years: [
-        {
-          value: 2023,
-          label: 2023,
-        },
-        {
-          value: 2022,
-          label: 2022,
-        },
-        {
-          value: 2021,
-          label: 2021,
-        },
-        {
-          value: 2020,
-          label: 2020,
-        },
-        {
-          value: 2019,
-          label: 2019,
-        },
-        {
-          value: 2018,
-          label: 2018,
-        },
-      ],
+      years: yearsData,
     };
   },
   mounted() {
@@ -373,9 +349,7 @@ export default {
       });
       this.$nuxt.$loading.finish();
       if (this.leadCread.uuid) {
-        this.$router.push(
-          `/calculator/choice-tarif/${this.leadCread.uuid}`
-        );
+        this.$router.push(`/calculator/choice-tarif/${this.leadCread.uuid}`);
         this.hide("modal_leave_weak");
       }
     },

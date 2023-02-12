@@ -9,7 +9,9 @@
         <div class="swiper-slide" v-for="review in reviews">
           <PartnersCard :review="review"/>
         </div>
-  
+        <div class="swiper-slide" v-for="review in reviews">
+          <PartnersCard :review="review"/>
+        </div>
       </div>
     </div>
   </div>
@@ -32,7 +34,7 @@ export default {
         delay: 1,
         disableOnInteraction: false,
       },
-      speed: 30000,
+      speed: 10000,
       breakpoints: {
         320: {
           slidesPerView: 1.4,

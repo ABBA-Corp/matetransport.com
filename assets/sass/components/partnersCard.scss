@@ -7,15 +7,19 @@
   //   width: 573px;
 }
 .partners-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
+  display: flex;
+
 }
 .partners-avatar {
   width: 53px;
   height: 53px;
   border-radius: 50%;
   overflow: hidden;
+  margin-right: 20px;
+  div {
+    width: 100%;
+    height: 100%;
+  }
   img {
     width: 100%;
     height: 100%;
