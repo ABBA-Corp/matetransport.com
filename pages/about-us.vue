@@ -28,6 +28,10 @@
         <div class="about-grid-container">
           <div>
             <div class="about-video">
+              <div class="video_play_block">
+                <img @click="videoPlay" v-if="!video" :src="vidPlay" alt="" />
+                <img @click="videoPlay" v-else :src="vidStop" alt="" />
+              </div>
               <img src="../assets/images/Exclude.png" alt="" />
               <!-- <svg
                 width="100%"
@@ -44,6 +48,7 @@
                 />
               </svg> -->
               <video
+                ref="video"
                 autoplay="autoplay"
                 loop="loop"
                 playsinline
@@ -93,6 +98,9 @@ export default {
   data() {
     return {
       aboutUs: {},
+      video: true,
+      vidPlay: require("../assets/svg/about_play.svg"),
+      vidStop: require("../assets/svg/video_pause.svg"),
     };
   },
   computed: {
@@ -104,6 +112,15 @@ export default {
     this.GET_ABOUT_US();
   },
   methods: {
+    videoPlay() {
+      if (!this.$refs.video.paused) {
+        this.$refs.video.pause();
+        this.video = false;
+      } else {
+        this.$refs.video.play();
+        this.video = true;
+      }
+    },
     async GET_ABOUT_US() {
       this.$nextTick(() => {
         this.$nuxt.$loading.start();

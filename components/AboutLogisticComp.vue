@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="about-logistic-comp" >
+  <div class="about-logistic-comp">
     <div class="container_xl">
       <Title
-        title="Mate logistics Company"
-        text="Why you should book with one of the best auto <br/> shipping companies:"
+        :title="$store.state.translations['main.mate_logistics_company']"
+        :text="$store.state.translations['main.mate_logistics_company-text']"
       />
       <div class="about-logistic-comp-grid about-shadow">
         <AboutLogisticCard

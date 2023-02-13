@@ -168,8 +168,10 @@
                   <a-date-picker
                     @change="onChangeDate"
                     class="w-100"
-                    :default-value="moment(ruleForm.date, dateFormatList[0])"
                     :format="dateFormatList"
+                    :placeholder="
+                      $store.state.translations['main.placeH_firstDate']
+                    "
                   />
                 </el-form-item>
               </div>

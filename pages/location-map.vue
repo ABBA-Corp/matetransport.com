@@ -47,11 +47,13 @@
               action=""
             >
               <div class="form-title">
-                <h2>Get an instant quoteor call now call</h2>
+                <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
               </div>
               <div v-if="active == 2">
                 <div class="form-block">
-                  <label for="inputFrom">Send a copy the quote to</label>
+                  <label for="inputFrom">{{
+                    $store.state.translations["main.form_label_email"]
+                  }}</label>
 
                   <el-form-item prop="email" label-position="top">
                     <input
@@ -59,27 +61,34 @@
                       type="email"
                       v-model="ruleForm.email"
                       id="inputFrom"
-                      placeholder="Your email"
+                      :placeholder="
+                        $store.state.translations['main.placeH_email']
+                      "
                       required
                     />
                   </el-form-item>
                 </div>
 
                 <div class="form-block">
-                  <label for="inputFrom">First available date</label>
+                  <label for="inputFrom">{{
+                    $store.state.translations["main.form_label_firstDate"]
+                  }}</label>
                   <el-form-item prop="date" label-position="top">
                     <a-date-picker
                       class="w-100"
                       @change="onChangeDate"
-                      :default-value="moment(ruleForm.date, dateFormatList[0])"
                       :format="dateFormatList"
-                      placeholder="First available date"
+                      :placeholder="
+                        $store.state.translations['main.placeH_firstDate']
+                      "
                     />
                   </el-form-item>
                 </div>
 
                 <div class="form-block">
-                  <label for="inputTo">Your phone number</label>
+                  <label for="inputTo">{{
+                    $store.state.translations["main.form_label_number"]
+                  }}</label>
 
                   <el-form-item prop="nbm" label-position="top">
                     <the-mask
@@ -95,7 +104,9 @@
               </div>
               <div v-if="active == 1">
                 <div class="form-block">
-                  <label for="">Transport car FROM</label>
+                  <label for="">{{
+                    $store.state.translations["main.form_label_shipFrom"]
+                  }}</label>
                   <el-form-item prop="ship_from" label-position="top">
                     <el-select
                       v-model="ruleForm.ship_from"
@@ -126,7 +137,9 @@
                   </el-form-item>
                 </div>
                 <div class="form-block">
-                  <label for="">Transport car TO</label>
+                  <label for="">{{
+                    $store.state.translations["main.form_label_shipTo"]
+                  }}</label>
                   <el-form-item prop="ship_to" label-position="top">
                     <el-select
                       v-model="ruleForm.ship_to"
@@ -157,12 +170,16 @@
               </div>
               <div v-if="active == 3">
                 <div class="form-block">
-                  <label for="">Vehicle year</label>
+                  <label for="">{{
+                    $store.state.translations["main.form_vehicleYear"]
+                  }}</label>
                   <el-form-item prop="car_year" label-position="top">
                     <el-select
                       v-model="ruleForm.car_year"
                       class="banner-select w-100"
-                      placeholder="Vehicle year"
+                      :placeholder="
+                        $store.state.translations['main.placeH_vehicleYear']
+                      "
                     >
                       <el-option
                         v-for="item in years"
@@ -175,12 +192,16 @@
                   </el-form-item>
                 </div>
                 <div class="form-block">
-                  <label for="inputFrom"> Vehicle make</label>
+                  <label for="inputFrom">{{
+                    $store.state.translations["main.form_vehicleMake"]
+                  }}</label>
                   <el-form-item prop="car_make" label-position="top">
                     <el-select
                       class="banner-select w-100"
                       v-model="ruleForm.car_make"
-                      placeholder="Change marka"
+                      :placeholder="
+                        $store.state.translations['main.placeH_vehicleMake']
+                      "
                       @focus="__GET_CAR_MAKES()"
                       :loading="!carMakes.length > 0"
                       loading-text="Loading..."
@@ -196,12 +217,16 @@
                   </el-form-item>
                 </div>
                 <div class="form-block">
-                  <label for="inputTo">Vehicle model</label>
+                  <label for="inputTo">{{
+                    $store.state.translations["main.form_vehicleModel"]
+                  }}</label>
                   <el-form-item prop="vehicle" label-position="top">
                     <el-select
                       class="banner-select w-100"
                       v-model="ruleForm.vehicle"
-                      placeholder="Model"
+                      :placeholder="
+                        $store.state.translations['main.placeH_vehicleModel']
+                      "
                       :disabled="ruleForm.car_make == ''"
                     >
                       <el-option
@@ -216,11 +241,7 @@
                 </div>
               </div>
               <p class="banner-form-info">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. publishing software like Aldus PageMaker including
-                versions ofLorem Ipsum is simply dummy text of the printing and
-                typesetting industry. publishing software like Aldus PageMaker
-                including versions of
+                {{ $store.state.translations["main.banner_form_text"] }}
               </p>
               <div
                 class="banner-form-btn d-flex justify-content-end steps-action"
@@ -230,7 +251,11 @@
                   type="submit"
                   @click="submitForm('ruleForm')"
                 >
-                  Next stage<svg
+                  {{
+                    active == 3
+                      ? $store.state.translations["main.form_btn_lastStage"]
+                      : $store.state.translations["main.form_btn_nextStage"]
+                  }}<svg
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -254,10 +279,14 @@
                     <el-step
                       @click="reverse(1)"
                       style="cursor: pointer;"
-                      title="Location"
+                      :title="$store.state.translations['main.step_location']"
                     ></el-step>
-                    <el-step title="Name order"></el-step>
-                    <el-step title="Truck"></el-step>
+                    <el-step
+                      :title="$store.state.translations['main.step_nameOrder']"
+                    ></el-step>
+                    <el-step
+                      :title="$store.state.translations['main.step_truck']"
+                    ></el-step>
                   </el-steps>
                 </div>
               </div>
@@ -458,7 +487,7 @@
         <Title title="Feedbacks from clients" />
       </div>
       <div class="carousel-left"></div>
-      <PartnersCarousel />
+      <PartnersCarousel :reviews="reviews" />
       <div class="carousel-right"></div>
     </div>
   </div>
@@ -473,7 +502,7 @@ import moment from "moment";
 import yearsData from "../helpers/yearsData";
 export default {
   head: {
-    title: "Location"
+    title: "Location",
   },
   data() {
     return {
@@ -489,6 +518,7 @@ export default {
       currentCities: {},
       skeleton_to: false,
       skeleton_from: false,
+      reviews: [],
       ruleForm: {
         email: "",
         nbm: "",
@@ -562,9 +592,16 @@ export default {
       "from",
       this.skeleton_from
     );
+    this.__GET_REVIEWS();
     this.__GET_CURRENT_CITY(this.currentCities.ship_to, "to", this.skeleton_to);
   },
   methods: {
+    async __GET_REVIEWS() {
+      this.reviews = await this.$store.dispatch(
+        "fetchGoogleApi/getReviews",
+        this.$i18n.locale
+      );
+    },
     moment,
     reverse(val) {
       (this.active = val), console.log(this.active);

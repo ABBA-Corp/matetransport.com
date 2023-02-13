@@ -158,7 +158,6 @@
                 <a-date-picker
                   class="w-100"
                   @change="onChangeDate"
-                  :default-value="moment(ruleForm.date, dateFormatList[0])"
                   :format="dateFormatList"
                   :placeholder="
                     $store.state.translations['main.placeH_firstDate']
@@ -558,7 +557,7 @@ export default {
       }
     },
     async submitForm(ruleForm) {
-      console.log(this.active);
+      console.log(this.ruleForm);
       // const leadData = await this.$store.dispatch("fetchLead/postLead", {
       //   currentLang: this.$i18n.locale,
       //   data: this.ruleForm,

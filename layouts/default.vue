@@ -46,19 +46,29 @@
           <div class="drawer_body">
             <ul>
               <li>
-                <a @click="drawerClose" href="#home-banner">How it works</a>
+                <a @click="drawerClose" href="#home-banner">{{
+                  $store.state.translations["main.nav_howItWorks"]
+                }}</a>
               </li>
               <li>
-                <a @click="drawerClose" href="#howWeWork">How we work</a>
+                <a @click="drawerClose" href="#howWeWork">{{
+                  $store.state.translations["main.nav_howWeWork"]
+                }}</a>
               </li>
               <li>
-                <a @click="drawerClose" href="#ourServices">Our services</a>
+                <a @click="drawerClose" href="#ourServices">{{
+                  $store.state.translations["main.nav_ourServices"]
+                }}</a>
               </li>
               <li>
-                <a @click="drawerClose" href="#coverageMap">Coverage map</a>
+                <a @click="drawerClose" href="#coverageMap">{{
+                  $store.state.translations["main.nav_coverageMap"]
+                }}</a>
               </li>
               <li>
-                <a @click="drawerClose" href="#newAndEvents">News and events</a>
+                <a @click="drawerClose" href="#newAndEvents">{{
+                  $store.state.translations["main.nav_newsAndEvents"]
+                }}</a>
               </li>
             </ul>
             <!-- <div class="drawer_lang">

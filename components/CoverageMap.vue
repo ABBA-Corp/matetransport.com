@@ -1335,16 +1335,52 @@
               </el-select>
             </div>
             <div class="form-block-map">
-              <!-- <label for="inputFrom">Tochka A</label> -->
               <span class="blue_space">{{
                 $store.state.translations["main.coverageMap_label_b"]
               }}</span>
-              <input type="text" id="inputFrom" placeholder="Zip or city" />
+              <el-select
+                v-model="stateTo"
+                class="mb-2"
+                filterable
+                ref="selectInput"
+                placeholder="Select"
+                popper-class="web-selects"
+                :disabled="!states"
+                loading-text="Loading..."
+              >
+                <el-option
+                  class="edit-select"
+                  v-for="item in states"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="`${item.id}`"
+                >
+                </el-option>
+              </el-select>
             </div>
             <div class="form-block-map">
               <!-- <label for="inputFrom">Tochka A</label> -->
               <span class="white_space">Tochka B shahari</span>
-              <input type="text" id="inputFrom" placeholder="Zip or city" />
+              <el-select
+                v-model="dataForm.ship_to"
+                class="mb-2"
+                filterable
+                :disabled="!cities.from"
+                ref="selectInput"
+                placeholder="Select"
+                popper-class="web-selects"
+                :loading="!cities.from"
+                loading-text="Loading..."
+              >
+                <el-option
+                  class="edit-select"
+                  v-for="item in cities.to"
+                  :key="item.id"
+                  :label="`${item.state.name} ${item.name} ${item.zip}`"
+                  :value="`${item.id}`"
+                >
+                </el-option>
+              </el-select>
             </div>
           </div>
           <div class="web-map-selects">
@@ -1501,8 +1537,8 @@ export default {
         ship_from: "",
       },
       stateFrom: "",
-      allArticles: [],
       stateTo: "",
+      allArticles: [],
       sliderActive: false,
       date: new Date(),
       selectedLocations: [],
@@ -1614,6 +1650,12 @@ export default {
           state: val,
         }
       );
+    },
+    async stateTo(val) {
+      this.dataForm.ship_to = "";
+      this.cities.to = await this.$store.dispatch("fetchLocations/getCities", {
+        state: val,
+      });
     },
   },
 };

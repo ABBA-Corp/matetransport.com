@@ -34,10 +34,10 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </span>
-          <nuxt-link class="header-top-btn" to="/"
+          <a class="header-top-btn" :href="`tel:${$store.state.staticInfo.nbm}`"
             ><span>{{
               $store.state.translations["main.check_my_order"]
-            }}</span></nuxt-link
+            }}</span></a
           >
         </div>
       </div>
@@ -98,7 +98,7 @@
           </el-dropdown> -->
           <div>
             <div class="leave-comment" @click="show('modal_leave_weak')">
-              <span>Zayavka qoldirish</span>
+              <span>{{$store.state.translations["main.submit_application"]}}</span>
             </div>
           </div>
         </div>
