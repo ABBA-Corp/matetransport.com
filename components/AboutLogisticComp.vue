@@ -10,16 +10,22 @@
           data-aos="fade-up"
           data-aos-duration="800"
           :data-aos-delay="200"
+          :title="$store.state.translations['main.info1_cardTitle']"
+          :text="$store.state.translations['main.info1_cardText']"
         />
         <AboutLogisticCard
           data-aos="fade-up"
           data-aos-duration="800"
           :data-aos-delay="400"
+          :title="$store.state.translations['main.info2_cardTitle']"
+          :text="$store.state.translations['main.info2_cardText']"
         />
         <AboutLogisticCard
           data-aos="fade-up"
           data-aos-duration="800"
           :data-aos-delay="600"
+          :title="$store.state.translations['main.info3cardTitle']"
+          :text="$store.state.translations['main.info3_cardText']"
         />
       </div>
     </div>

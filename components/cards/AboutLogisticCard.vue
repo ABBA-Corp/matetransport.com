@@ -19,22 +19,20 @@
           />
         </svg>
       </div>
-      <div class="al-card-title"><h2>Leave it to the pros</h2></div>
+      <div class="al-card-title">
+        <h2>{{ title }}</h2>
+      </div>
     </div>
     <div class="al-card-text">
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s,Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since.
+        {{ text }}
       </p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: ["title","text"]
+  props: ["title", "text"],
 };
 </script>
 <style lang=""></style>
