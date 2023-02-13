@@ -145,7 +145,9 @@
 <script>
 export default {
   layout: "calculator",
-
+  head: {
+    title: "Calculator Transport",
+  },
   data() {
     return {
       value: "An individual",

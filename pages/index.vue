@@ -7,13 +7,13 @@
         <div class="ellipse-shodow2"></div>
       </div>
       <div class="carousel-left"></div>
-      <PartnersCarousel :reviews="reviews"/>
+      <PartnersCarousel :reviews="reviews" />
       <div class="carousel-right"></div>
     </div>
     <AboutUs />
     <LogisticCompany />
     <LogisticsServices :services="services" />
-    <CoverageMap :articles="articles" :states="states" />
+    <CoverageMap :states="states" />
     <AboutLogisticComp />
   </div>
 </template>
@@ -33,9 +33,8 @@ export default {
   data() {
     return {
       services: [],
-      articles: [],
       states: [],
-      reviews: []
+      reviews: [],
     };
   },
   computed: {
@@ -45,9 +44,8 @@ export default {
   },
   mounted() {
     this.__GET_SERVICES();
-    this.__GET_ARTICLES();
     this.__GET_STATES();
-    this.__GET_REVIEWS()
+    this.__GET_REVIEWS();
   },
   methods: {
     async __GET_SERVICES() {
@@ -60,12 +58,7 @@ export default {
       );
       this.$nuxt.$loading.finish();
     },
-    async __GET_ARTICLES() {
-      this.articles = await this.$store.dispatch(
-        "fetchArticles/getArticles",
-        this.$i18n.locale
-      );
-    },
+
     async __GET_STATES() {
       this.states = await this.$store.dispatch(
         "fetchLocations/getStates",
@@ -78,7 +71,6 @@ export default {
         this.$i18n.locale
       );
       await console.log(this.reviews);
-      
     },
   },
   components: {

@@ -357,7 +357,7 @@ export default {
       this.$refs[ruleForm].validate(async (valid) => {
         if (valid) {
           console.log(this.ruleForm);
-          // this.__POST_LEAD();
+          this.__POST_LEAD();
         } else {
           console.log("error submit!!");
           return false;

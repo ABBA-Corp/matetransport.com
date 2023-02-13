@@ -273,6 +273,9 @@ import NewsCard from "../../components/cards/NewsCard.vue";
 import ServiceApplicationCard from "../../components/cards/ServiceApplicationCard.vue";
 
 export default {
+  head: {
+    title: "Service Inner",
+  },
   data() {
     return {
       service: "",

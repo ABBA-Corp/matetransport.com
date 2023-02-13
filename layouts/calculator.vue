@@ -608,7 +608,7 @@
                     </a-button> </a-tooltip
                 ></span>
 
-                <h3>${{ leads.price_first_tarif }}</h3>
+                <h3>${{ $store.state.tarifType == 1? leads.price_first_tarif:leads.price_second_tarif }}</h3>
               </div>
               <div class="calculator-footer-items">
                 <span>Price option </span>

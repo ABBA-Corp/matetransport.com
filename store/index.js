@@ -2,6 +2,7 @@ export const state = () => ({
   staticInfo: [],
   dataLoader: false,
   translations: {},
+  tarifType: 1,
 });
 export const mutations = {
   getInfo(state, payload) {
@@ -9,5 +10,8 @@ export const mutations = {
   },
   getTranslations(state, payload) {
     state.translations = payload;
+  },
+  tarifType(state, payload) {
+    state.tarifType = payload;
   },
 };

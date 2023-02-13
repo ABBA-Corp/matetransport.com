@@ -30,9 +30,10 @@ export default {
       spaceBetween: 20,
       centeredSlides: true,
       loop: true,
+      // notNextTick: true,
       autoplay: {
         delay: 1,
-        disableOnInteraction: false,
+        // disableOnInteraction: false,
       },
       speed: 10000,
       breakpoints: {

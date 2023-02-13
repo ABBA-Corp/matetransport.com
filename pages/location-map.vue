@@ -472,6 +472,9 @@ import TitleSmall from "../components/TitleSmall.vue";
 import moment from "moment";
 import yearsData from "../helpers/yearsData";
 export default {
+  head: {
+    title: "Location"
+  },
   data() {
     return {
       current: 0,

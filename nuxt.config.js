@@ -5,7 +5,7 @@ export default {
 
   loading: "~/components/loading.vue",
   head: {
-    title: "meta-logistics",
+    title: "Mate Logistics",
     htmlAttrs: {
       lang: "en",
     },

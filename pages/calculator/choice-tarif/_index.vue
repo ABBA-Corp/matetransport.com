@@ -20,16 +20,17 @@
       <div class="tarif_card-grid">
         <div
           class="tarif_card"
-          @click="ruleForm.tarif = 1"
-          :class="{ superTarif: ruleForm.tarif == 1 }"
+          @click="$store.commit('tarifType', 1)"
+          :class="{ superTarif: $store.state.tarifType == 1 }"
         >
           <div class="tarif_card__title">
             <div>
-             
               <h1 @click="">750$</h1>
             </div>
             <div class="tarif_checkbox">
-              <span v-if="tarif == 0"><img :src="checkboxIcon" alt="" /></span>
+              <span v-if="$store.state.tarifType == 1"
+                ><img :src="checkboxIcon" alt=""
+              /></span>
             </div>
           </div>
           <div class="tarif_body">
@@ -42,8 +43,8 @@
         </div>
         <div
           class="tarif_card"
-          @click="ruleForm.tarif = 2"
-          :class="{ superTarif: ruleForm.tarif == 2 }"
+          @click="$store.commit('tarifType', 2)"
+          :class="{ superTarif: $store.state.tarifType == 2 }"
         >
           <div class="tarif_card__title">
             <div>
@@ -51,7 +52,9 @@
               <h1 @click="">830$</h1>
             </div>
             <div class="tarif_checkbox">
-              <span v-if="tarif == 1"><img :src="checkboxIcon" alt="" /></span>
+              <span v-if="$store.state.tarifType == 2"
+                ><img :src="checkboxIcon" alt=""
+              /></span>
             </div>
           </div>
           <div class="tarif_body">
@@ -206,17 +209,15 @@
 import TarifCard from "../../../components/cards/TarifCard.vue";
 
 export default {
+  head: {
+    title: "Calculator Choice Tarif",
+  },
   layout: "calculator",
   data() {
     return {
       value: 1,
-      value1: 1,
-      tarif: 0,
       checkboxIcon: require("~/assets/svg/tarif_checkbox.svg"),
       inputX: require("~/assets/svg/x.svg"),
-      ruleForm: {
-        tarif: 1,
-      },
       numberInputs: [
         {
           id: 1,
@@ -232,7 +233,10 @@ export default {
   },
   methods: {
     toNextStep() {
-      localStorage.setItem("app_create", JSON.stringify(this.ruleForm));
+      localStorage.setItem(
+        "app_create",
+        JSON.stringify({ tarif: this.$store.state.tarifType })
+      );
       this.$router.push(
         `/calculator/delivery-details/${this.$route.params.index}`
       );

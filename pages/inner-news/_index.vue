@@ -97,6 +97,9 @@ import LastNews from "../../components/LastNews.vue";
 import TitleSmall from "../../components/TitleSmall.vue";
 
 export default {
+  head: {
+    title: "Inner News",
+  },
   data() {
     return {
       options: [

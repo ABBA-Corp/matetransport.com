@@ -39,6 +39,9 @@
 import NewsCard from "../components/cards/NewsCard.vue";
 
 export default {
+  head: {
+    title: "All News",
+  },
   data() {
     return {
       articles: [],

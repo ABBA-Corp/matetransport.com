@@ -1404,12 +1404,15 @@
             class="coverage-map-form-btn d-flex justify-content-end steps-action"
           >
             <div
-            type="submit"
+              type="submit"
               @click="sendCities"
               class="form-btn"
-              :class="{'disabled-btn': !dataForm.ship_from && !dataForm.ship_to}"
+              :class="{
+                'disabled-btn': !dataForm.ship_from && !dataForm.ship_to,
+              }"
             >
-            {{$store.state.translations["main.form_btn_nextStage"]}}<svg
+              {{ $store.state.translations["main.form_btn_nextStage"]
+              }}<svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -1437,15 +1440,15 @@
         <img src="../assets/images/MATE NEWS.png" alt="" />
         <div class="log-news">
           <img src="../assets/svg/Footer logo.svg" alt="" />
-          <h3 v-html="$store.state.translations['main.logistics_news']">
-          </h3>
+          <h3 v-html="$store.state.translations['main.logistics_news']"></h3>
         </div>
       </div>
 
-      <LastNews :articles="articles">
+      <LastNews :articles="allArticles">
         <div class="reload-news">
-          <div class="reload-news-btn">
+          <div class="reload-news-btn" @click="__GET_ARTICLES">
             <svg
+              :class="{ activeReload: sliderActive }"
               width="41"
               height="34"
               viewBox="0 0 41 34"
@@ -1463,8 +1466,20 @@
             </svg>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <p class="last-news-title">{{$store.state.translations["main.last_news"]}}</p>
-            <h5>{{`${date.getDay().length > 2 ? date.getDay():"0"+date.getDay()}.${date.getMonth().length > 2 ? date.getMonth():"0"+date.getMonth()}.${date.getFullYear()}`}}</h5>
+            <p class="last-news-title">
+              {{ $store.state.translations["main.last_news"] }}
+            </p>
+            <h5>
+              {{
+                `${
+                  date.getDay().length > 2 ? date.getDay() : "0" + date.getDay()
+                }.${
+                  date.getMonth().length > 2
+                    ? date.getMonth()
+                    : "0" + date.getMonth()
+                }.${date.getFullYear()}`
+              }}
+            </h5>
           </div>
         </div>
       </LastNews>
@@ -1478,7 +1493,6 @@ import { CheckboxSvgMap } from "vue-svg-map";
 // import SvgMap from "vue-simple-svg-map";
 import USA from "@svg-maps/usa";
 export default {
-  props: ["articles"],
   data() {
     return {
       USA,
@@ -1487,7 +1501,9 @@ export default {
         ship_from: "",
       },
       stateFrom: "",
+      allArticles: [],
       stateTo: "",
+      sliderActive: false,
       date: new Date(),
       selectedLocations: [],
       pointedLocation: null,
@@ -1503,8 +1519,17 @@ export default {
   },
   mounted() {
     this.__GET_STATES();
+    this.__GET_ARTICLES();
   },
   methods: {
+    async __GET_ARTICLES() {
+      this.sliderActive = true;
+      this.allArticles = await this.$store.dispatch(
+        "fetchArticles/getArticles",
+        this.$i18n.locale
+      );
+      this.sliderActive = false;
+    },
     async __GET_STATES() {
       this.states = await this.$store.dispatch(
         "fetchLocations/getStates",
@@ -1570,9 +1595,9 @@ export default {
       return `svg-map__location svg-map__location--heat${index % 4}`;
     },
     sendCities() {
-      localStorage.setItem("cities_from_map",JSON.stringify(this.dataForm));
+      localStorage.setItem("cities_from_map", JSON.stringify(this.dataForm));
       this.$router.push("/location-map");
-    }
+    },
   },
   components: { Title, LastNews, CheckboxSvgMap },
   watch: {
@@ -1761,7 +1786,18 @@ export default {
   fill: #2892ef;
 }
 .disabled-btn {
-  filter: brightness(0.90);
+  filter: brightness(0.9);
   pointer-events: none;
+}
+.activeReload {
+  animation: reloadAnim 1s infinite linear;
+}
+@keyframes reloadAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 </style>

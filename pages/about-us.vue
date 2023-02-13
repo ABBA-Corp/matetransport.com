@@ -87,6 +87,9 @@
 import EmployeeCard from "../components/cards/EmployeeCard.vue";
 
 export default {
+  head: {
+    title: "About Us",
+  },
   data() {
     return {
       aboutUs: {},

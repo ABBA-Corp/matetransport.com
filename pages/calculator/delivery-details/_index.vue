@@ -38,16 +38,20 @@
         <div class="form-block">
           <label for="inputTo">California City, CA 93505 , This is a?</label>
           <el-form-item prop="ship_from" label-position="top">
-            <a-radio-group class="w-100" v-model="value" @change="onChange">
+            <a-radio-group
+              class="w-100"
+              v-model="ruleForm.adres_type"
+              @change="onChange"
+            >
               <div class="calculator-grid">
                 <div class="checkbox-input">
-                  <a-radio :value="1">
+                  <a-radio value="Residential address">
                     Residential address
                   </a-radio>
                 </div>
                 <div class="checkbox-input">
-                  <a-radio :value="2">
-                    Residential address
+                  <a-radio value="Business adress">
+                    Business adress
                   </a-radio>
                 </div>
               </div>
@@ -111,6 +115,9 @@
 <script>
 export default {
   layout: "calculator",
+  head: {
+    title: "Calculator Delivery Details",
+  },
   data() {
     return {
       value: 1,
@@ -174,6 +181,7 @@ export default {
         lead: "",
         contact_me: true,
         contact_else: "1234567898",
+        adres_type: "Residential address",
       },
       leads: {},
     };
