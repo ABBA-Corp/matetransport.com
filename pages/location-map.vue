@@ -3,12 +3,10 @@
     <div class="container_xl">
       <div class="location-map-title">
         <h1>
-          New York Transportation <br />
-          Services
+          {{ $store.state.translations["loaction.title"] }}
         </h1>
         <p>
-          Effortlessly shipping vehicles & heavy haul equipment <br />
-          to/from any location in New York
+          {{ $store.state.translations["loaction.text"] }}
         </p>
       </div>
       <div class="location-map-grid">
@@ -17,21 +15,21 @@
             <img src="../assets/images/Rectangle 23896.png" alt="" />
           </div>
           <div class="location-map-text">
-            <p>
-              Ship a Car, New York Inc delivers superior shipping service to Los
-              angles people relocating their vehicles, businesses moving their
-              general freight and/or transporting heavy haul equipment as well
-              as volume relocation services for dealers and corporations. SAC is
-              an experienced transport broker with direct access to the largest
-              network of carriers. One simple call does it all. When you choose
-              Ship A Car, we deliver not only your vehicle and/or freight, but
-              peace of mind as well.
-            </p>
-            <p>
-              Contact a Ship A Car transport coordinator now at (866) 821-4555
-              for direct vehicle transport service to/from any residential or
-              business location in the city of New York.Ship
-            </p>
+            <p
+              v-html="
+                $store.state.translations['loaction.info']
+                  ?.replace(
+                    '(a)',
+                    cities.find((item) => item.id == currentCities.ship_from)
+                      ?.name
+                  )
+                  ?.replace(
+                    '(b)',
+                    cities.find((item) => item.id == currentCities.ship_to)
+                      ?.name
+                  )
+              "
+            ></p>
           </div>
         </div>
         <div class="location-map-form">
@@ -47,7 +45,9 @@
               action=""
             >
               <div class="form-title">
-                <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
+                <h2>
+                  {{ $store.state.translations["main.banner_form_title"] }}
+                </h2>
               </div>
               <div v-if="active == 2">
                 <div class="form-block">
@@ -301,10 +301,12 @@
         <LocationMapCard
           :currentCitiesData="currentCitiesData.from"
           :skeleton="skeleton_from"
+          spaceType="A"
         />
         <LocationMapCard
           :currentCitiesData="currentCitiesData.to"
           :skeleton="skeleton_to"
+          spaceType="B"
         />
       </div>
       <div class="service-from-cards">

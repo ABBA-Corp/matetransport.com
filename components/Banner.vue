@@ -147,6 +147,9 @@
                   :placeholder="$store.state.translations['main.placeH_email']"
                   required
                 />
+                <span class="email_incorrect" v-if="emailIncorrect">
+                  incorrect email
+                </span>
               </el-form-item>
             </div>
 
@@ -390,13 +393,10 @@ import yearsData from "../helpers/yearsData";
 export default {
   data() {
     return {
-      loading: false,
-      iconLoading: false,
-      current: 0,
       video: true,
       videoMuted: true,
       active: 1,
-      date: "01/01/2015",
+      emailIncorrect: false,
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
       allCities: [],
@@ -565,26 +565,18 @@ export default {
 
       this.$refs[ruleForm].validate(async (valid) => {
         if (valid) {
-          // const emailCorrent = await this.$store.dispatch(
-          //   "fetchCheckEmail/getCheckEmail",
-          //   this.ruleForm.email
-          // );
-
-          // if (emailCorrent.deliverability == "DELIVERABLE") {
-          if (this.active++ > 2) {
-            this.__POST_LEAD();
+          const emailCorrect = await this.$store.dispatch(
+            "fetchCheckEmail/getCheckEmail",
+            this.ruleForm.email
+          );
+          if (emailCorrect.status == "valid") {
+            this.emailIncorrect = true;
+            if (this.active++ > 2) {
+              this.__POST_LEAD();
+            }
+          } else {
+            this.emailIncorrect = true;
           }
-
-          // } else {
-          //   console.log("toast");
-          //   this.$toast.open({
-          //     message: `Email ${emailCorrent.deliverability}`,
-          //     type: "error",
-          //     duration: 2000,
-          //     dismissible: true,
-          //     position: "top-right",
-          //   });
-          // }
         } else {
           console.log("error submit!!");
           return false;
@@ -613,6 +605,9 @@ export default {
     },
     "ruleForm.ship_from"(val) {
       this.cities = this.allCities.filter((item) => item.id != val);
+    },
+    "ruleForm.email"(val) {
+      this.emailIncorrect = false;
     },
   },
 };

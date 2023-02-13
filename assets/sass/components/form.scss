@@ -90,6 +90,16 @@
     cursor: pointer;
   }
 }
+.email_incorrect {
+  color: red;
+  position: absolute;
+  right: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  pointer-events: none;
+}
 .form-btn {
   background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
   @include fontStyle(16px, 600, #fff);
@@ -113,8 +123,8 @@
 }
 .el-select-dropdown__item {
   span {
-    overflow:hidden;
-    display:inline-block;
+    overflow: hidden;
+    display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 350px;

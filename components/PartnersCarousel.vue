@@ -33,7 +33,7 @@ export default {
       // notNextTick: true,
       autoplay: {
         delay: 1,
-        disableOnInteraction: false,
+        // disableOnInteraction: false,
       },
       speed: 10000,
       breakpoints: {

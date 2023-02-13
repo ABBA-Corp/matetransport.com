@@ -5,6 +5,7 @@
 }
 .location-map-title {
   margin-bottom: 24px;
+  width: 50%;
   h1 {
     @include fontStyle(48px, 700, #020105);
     line-height: 60px;
@@ -52,6 +53,13 @@
 }
 .location-map-text {
   margin-top: 20px;
+  span {
+    padding: 2px 10px;
+    background: #dff0ff;
+    border-radius: 4px;
+    @include fontStyle(14px, 700, #004696);
+    line-height: 24px;
+  }
   p {
     @include fontStyle(16px, 400, #5d5d5f);
     line-height: 32px;
@@ -130,6 +138,9 @@
   }
   .service-from-cards {
     grid-template-columns: 1fr;
+  }
+  .location-map-title {
+    width: 100%;
   }
 }
 @media (max-width: 800px) {
