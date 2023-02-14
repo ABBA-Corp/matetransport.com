@@ -39,18 +39,18 @@
           <div class="modal_form_container">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
-                Truck mode
+                {{ $store.state.translations["modal.app_subtitle1"] }}
               </h1>
               <span></span>
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">Truck marka</label>
+                <label for="">{{ $store.state.translations["modal.app_truckMark"] }}</label>
                 <el-form-item prop="car_make" label-position="top">
                   <el-select
                     class="banner-select w-100"
                     v-model="ruleForm.car_make"
-                    placeholder="Change marka"
+                    :placeholder="$store.state.translations['modal.app_truckMark']"
                     @focus="__GET_CAR_MAKES()"
                     :loading="!carMakes.length > 0"
                     loading-text="Loading..."
@@ -67,12 +67,12 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Truck Year</label>
+                <label for="">{{ $store.state.translations["modal.app_truckYear"] }}</label>
                 <el-form-item prop="car_year" label-position="top">
                   <el-select
                     v-model="ruleForm.car_year"
                     class="banner-select w-100"
-                    placeholder="Vehicle year"
+                    :placeholder="$store.state.translations['modal.app_truckYear']"
                   >
                     <el-option
                       v-for="item in years"
@@ -85,12 +85,12 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Truck model</label>
+                <label for="">{{$store.state.translations['modal.app_truckModel']}}</label>
                 <el-form-item prop="vehicle" label-position="top">
                   <el-select
                     class="banner-select w-100"
                     v-model="ruleForm.vehicle"
-                    placeholder="Model"
+                    :placeholder="$store.state.translations['modal.app_truckModel']"
                     :disabled="ruleForm.car_make == ''"
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
@@ -110,20 +110,20 @@
           <div class="modal_form_container">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
-                Location
+                {{$store.state.translations['modal.app_subtitle2']}}
               </h1>
               <span></span>
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">Pickup location</label>
+                <label for="">{{$store.state.translations['modal.app_pickupLoc']}}</label>
                 <el-form-item prop="ship_from" label-position="top">
                   <el-select
                     v-model="ruleForm.ship_from"
                     class="w-100"
                     filterable
                     :loading="!shipFromOptions.length > 0"
-                    placeholder="Pickup location"
+                    :placeholder="$store.state.translations['modal.app_pickupLoc']"
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
                   >
@@ -139,7 +139,7 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Delivery location</label>
+                <label for="">{{$store.state.translations['modal.app_deliveryLoc']}}</label>
                 <el-form-item prop="ship_to" label-position="top">
                   <el-select
                     v-model="ruleForm.ship_to"
@@ -147,7 +147,7 @@
                     class="w-100"
                     filterable
                     ref="selectInput"
-                    placeholder="Delivery location"
+                    :placeholder="$store.state.translations['modal.app_deliveryLoc']"
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
                   >
@@ -163,7 +163,7 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Delivery data</label>
+                <label for="">{{$store.state.translations['modal.app_deliveryDate']}}</label>
                 <el-form-item prop="date" label-position="top">
                   <a-date-picker
                     @change="onChangeDate"
@@ -180,32 +180,32 @@
           <div class="modal_form_container">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
-                Contact
+                {{$store.state.translations['modal.app_subtitle3']}}
               </h1>
               <span></span>
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">First name</label>
+                <label for="">{{$store.state.translations['modal.app_firstName']}}</label>
                 <el-form-item prop="" label-position="top">
-                  <input class="w-100" type="text" placeholder="Full name" />
+                  <input class="w-100" type="text" :placeholder="$store.state.translations['modal.app_firstName']" />
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Email</label>
+                <label for="">{{$store.state.translations['modal.app_email']}}</label>
                 <el-form-item prop="email" label-position="top">
                   <input
                     class="w-100"
                     type="email"
                     v-model="ruleForm.email"
                     id="inputFrom"
-                    placeholder="Your email"
+                    :placeholder="$store.state.translations['modal.app_email']"
                     required
                   />
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">Phone number</label>
+                <label for="">{{$store.state.translations['modal.app_number']}}</label>
                 <el-form-item prop="nbm" label-position="top">
                   <the-mask
                     class="w-100"
@@ -221,7 +221,7 @@
           </div>
           <div class="modal-application-form-btn">
             <div type="submit" class="form-btn" @click="submitForm('ruleForm')">
-              Send all informations
+              {{$store.state.translations['modal.app_btn']}}
             </div>
           </div>
         </el-form>

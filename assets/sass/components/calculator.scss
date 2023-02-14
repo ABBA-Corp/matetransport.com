@@ -29,6 +29,9 @@
   background: #ffffff;
   border: 1.5px solid #ecf3ff;
   border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .calculator-info-body {
     padding: 24px;
     padding-bottom: 0;

@@ -1488,12 +1488,12 @@
             </div>
           </div>
           <div
-            class="coverage-map-form-btn d-flex justify-content-end steps-action"
+            class="coverage-map-form-btn d-flex justify-content-end steps-action banner-form-btn"
           >
             <div
               type="submit"
               @click="sendCities"
-              class="map_state"
+              class="form-btn"
               :class="{
                 'disabled-btn': !dataForm.ship_from && !dataForm.ship_to,
               }"

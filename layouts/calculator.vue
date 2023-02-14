@@ -624,7 +624,7 @@
               </div>
               <div class="calculator-footer-items">
                 <span></span>
-                <b>$2729 Discounted cash price</b>
+                <!-- <b>$2729 Discounted cash price</b> -->
               </div>
             </div>
           </div>
