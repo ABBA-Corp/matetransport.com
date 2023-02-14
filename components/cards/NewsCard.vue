@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="news-card">
-    <div class="news-card-img">
+    <div class="news-card-img" @click="$router.push(`/inner-news/${article.id}`)">
       <img :src="article.image" alt="" />
     </div>
     <div class="news-card-body">

@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="log-services-card">
-    <div class="logs-card-img">
+    <div
+      class="logs-card-img"
+      @click="$router.push(localeLocation(`/service/${service.id}`))"
+    >
       <img :src="service.image" alt="service_img" />
     </div>
     <div class="logs-card-body">
