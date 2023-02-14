@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="calculator-form">
-    <h1 class="calculator-title">Vehicle delivery details 2222</h1>
+    <h1 class="calculator-title"> {{ $store.state.translations["calculator.vehicleDelivery"] }}</h1>
     <div class="">
       <el-form
         label-position="top"
@@ -16,12 +16,12 @@
             <div class="calculator-grid">
               <div class="checkbox-input">
                 <a-radio value="An individual">
-                  An individual
+                  {{ $store.state.translations["calculator.placeH_individual"] }}
                 </a-radio>
               </div>
               <div class="checkbox-input">
                 <a-radio value="General">
-                  General
+                  {{ $store.state.translations["calculator.placeH_general"] }}
                 </a-radio>
               </div>
             </div>
@@ -30,14 +30,14 @@
 
         <div class="form-block calculator-grid">
           <div class="d-flex flex-column">
-            <label for="inputTo">Your full name</label>
+            <label for="inputTo"> {{ $store.state.translations["calculator.label_name"] }}</label>
             <el-form-item prop="first_name" label-position="top">
               <input
                 type="text"
                 class="w-100"
                 id="inputFrom"
                 v-model="ruleForm.first_name"
-                placeholder="Jamshid Sultanov"
+                :placeholder="$store.state.translations['calculator.placeH_name']"
               />
               <div class="el-form-item__error" v-if="userNameRequired">
                 First and last name required.
@@ -45,21 +45,21 @@
             </el-form-item>
           </div>
           <div class="d-flex flex-column">
-            <label for="inputTo">Your email</label>
+            <label for="inputTo">{{$store.state.translations['calculator.label_email']}}</label>
             <el-form-item prop="email" label-position="top">
               <input
                 type="text"
                 class="w-100"
                 v-model="ruleForm.email"
                 id="inputFrom"
-                placeholder="jamshid.sultsnov99@gmail.com"
+                :placeholder="$store.state.translations['calculator.placeH_email']"
               />
             </el-form-item>
           </div>
         </div>
 
         <div class="form-block">
-          <label for="inputTo">Your phone number</label>
+          <label for="inputTo">{{$store.state.translations['calculator.label_phoneNumber']}}</label>
           <div class="calculator-grid">
             <div
               class="phone-number"
@@ -83,7 +83,7 @@
             </div>
             <div class="phone-number">
               <div class="add-number-btn" v-on:click="addNumberInput">
-                + Add another number
+                {{$store.state.translations['calculator.btn_addNumber']}}
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
           class="banner-form-btn d-flex justify-content-end steps-action pt-3"
         >
           <div class="form-btn" type="submit" @click="submitForm('ruleForm')">
-            Next stage<svg
+            {{ $store.state.translations["main.form_btn_nextStage"] }}<svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -114,8 +114,8 @@
 
         <div class="block-help block-help-web">
           <p>
-            Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
-            barcha policy and private qoidalariga rozilik bildirasiz
+            {{ $store.state.translations["calculator.text_contact"]
+          }}
           </p>
           <div class="contact-us">
             <div class="contact-us-svg">
@@ -133,8 +133,10 @@
               </svg>
             </div>
             <div class="contact-us-body">
-              <h4>Buyurtma jarayonida muammolarga duch keldingizmi?</h4>
-              <p>bizning call centrimiz sizga yordam berdi aloqadamiz 24/7</p>
+              <h4> {{ $store.state.translations["calculator.contact_title"]
+          }}</h4>
+            <p> {{ $store.state.translations["calculator.contact_text"]
+          }}</p>
             </div>
           </div>
         </div>

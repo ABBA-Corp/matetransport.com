@@ -62,16 +62,16 @@
             <p v-html="aboutUs.text_first"></p>
             <div class="about-us-numbers">
               <div class="about-number-info">
-                <h2>15 years +</h2>
-                <h6>A lot of year experiance</h6>
+                <h2>{{$store.state.translations["main.mlc_card1_title"]}}</h2>
+                <h6>{{$store.state.translations["main.mlc_card1_text"]}}</h6>
               </div>
               <div class="about-number-info">
-                <h2>15 years +</h2>
-                <h6>A lot of year experiance</h6>
+                <h2>{{$store.state.translations["main.mlc_card1_title"]}}</h2>
+                <h6>{{$store.state.translations["main.mlc_card2_text"]}}</h6>
               </div>
               <div class="about-number-info">
-                <h2>15 years +</h2>
-                <h6>A lot of year experiance</h6>
+                <h2>{{$store.state.translations["main.mlc_card1_title"]}}</h2>
+                <h6>{{$store.state.translations["main.mlc_card3_text"]}}</h6>
               </div>
             </div>
           </div>

@@ -257,7 +257,9 @@
       <modal name="modal_app_success" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
-            <h5>Tezkor aloqa</h5>
+            <h5>  {{
+                $store.state.translations["modal.calculator_title"]
+              }}</h5>
             <span @click="hide('modal_app_success')"
               ><svg
                 width="24"
@@ -284,17 +286,22 @@
               class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4"
             >
               <h5 class="success_contact">
-                Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
-                chiqadi
+                {{
+                $store.state.translations["modal.calculator_text"]
+              }}
               </h5>
               <p class="fasting-contact-text text-center mt-1">
-                Shu vaqt ichida bizning operatorlarimiz siz bilan bog’lanadilar
+                {{
+                $store.state.translations["modal.calculator_info"]
+              }}
               </p>
             </div>
 
             <div class="modal-form-btn w-100">
               <div class="form-btn" @click="backToHome">
-                Back to home
+                {{
+                $store.state.translations["modal.calculator_toBackBtn"]
+              }}
               </div>
             </div>
           </div>

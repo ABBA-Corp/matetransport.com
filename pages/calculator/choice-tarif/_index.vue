@@ -1,22 +1,13 @@
 <template lang="html">
   <div class="calculator-form">
-    <h1 class="calculator-title step-title">Choice tarif</h1>
+    <h1 class="calculator-title step-title">
+      {{ $store.state.translations["calculator.choice_tarif"] }}
+    </h1>
     <div class="">
-      <div class="inner-news-desc">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
-        </p>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
-        </p>
-      </div>
+      <div
+        class="inner-news-desc"
+        v-html="$store.state.translations['calculator.chTarif_text']"
+      ></div>
       <div class="tarif_card-grid">
         <div
           class="tarif_card"
@@ -25,7 +16,9 @@
         >
           <div class="tarif_card__title">
             <div>
-              <h1 @click="">750$</h1>
+              <h1 @click="">
+                {{ $store.state.translations["calculator.tarif1_price"] }}
+              </h1>
             </div>
             <div class="tarif_checkbox">
               <span v-if="$store.state.tarifType == 1"
@@ -34,11 +27,11 @@
             </div>
           </div>
           <div class="tarif_body">
-            <p>Service type Door to door</p>
-            <p>InsuranceIncluded</p>
-            <p>All services</p>
-            <p>Service type Door to door</p>
-            <p>InsuranceIncluded</p>
+            <p>{{ $store.state.translations["calculator.tarif1_ption1"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif1_ption2"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif1_ption3"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif1_ption4"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif1_ption5"] }}</p>
           </div>
         </div>
         <div
@@ -48,8 +41,12 @@
         >
           <div class="tarif_card__title">
             <div>
-              <span>Super price for you</span>
-              <h1 @click="">830$</h1>
+              <span>
+                {{ $store.state.translations["calculator.tarif2_title"] }}</span
+              >
+              <h1 @click="">
+                {{ $store.state.translations["calculator.tarif2_price"] }}
+              </h1>
             </div>
             <div class="tarif_checkbox">
               <span v-if="$store.state.tarifType == 2"
@@ -58,16 +55,18 @@
             </div>
           </div>
           <div class="tarif_body">
-            <p>Service type Door to door</p>
-            <p>InsuranceIncluded</p>
-            <p>All services</p>
-            <p>Service type Door to door</p>
-            <p>InsuranceIncluded</p>
+            <p>{{ $store.state.translations["calculator.tarif2_ption1"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif2_ption2"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif2_ption3"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif2_ption4"] }}</p>
+            <p>{{ $store.state.translations["calculator.tarif2_ption5"] }}</p>
           </div>
         </div>
       </div>
       <div class="included-tariff">
-        <h1 class="calculator-title step-title">Tarifga nimalar kiradi?</h1>
+        <h1 class="calculator-title step-title">
+          {{ $store.state.translations["calculator.included_tariff"] }}
+        </h1>
         <div class="tariff-info-grid">
           <p class="tariff-info-text">
             <svg
@@ -81,7 +80,7 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff1"] }}
           </p>
           <p class="tariff-info-text">
             <svg
@@ -95,7 +94,7 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff2"] }}
           </p>
           <p class="tariff-info-text">
             <svg
@@ -109,7 +108,7 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff3"] }}
           </p>
           <p class="tariff-info-text">
             <svg
@@ -123,7 +122,7 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff4"] }}
           </p>
           <p class="tariff-info-text">
             <svg
@@ -137,7 +136,7 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff5"] }}
           </p>
           <p class="tariff-info-text">
             <svg
@@ -151,13 +150,14 @@
                 d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                 fill="#0070CE"
               /></svg
-            >Service type Door to door
+            >{{ $store.state.translations["calculator.included_tariff6"] }}
           </p>
         </div>
       </div>
       <div class="banner-form-btn d-flex justify-content-end steps-action pt-3">
         <div @click="toNextStep" class="form-btn">
-          Next stage<svg
+          {{ $store.state.translations["main.form_btn_nextStage"]
+          }}<svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -178,8 +178,8 @@
 
       <div class="block-help block-help-web">
         <p>
-          Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning barcha
-          policy and private qoidalariga rozilik bildirasiz
+          {{ $store.state.translations["calculator.text_contact"]
+          }}
         </p>
         <div class="contact-us">
           <div class="contact-us-svg">
@@ -197,8 +197,10 @@
             </svg>
           </div>
           <div class="contact-us-body">
-            <h4>Buyurtma jarayonida muammolarga duch keldingizmi?</h4>
-            <p>bizning call centrimiz sizga yordam berdi aloqadamiz 24/7</p>
+            <h4> {{ $store.state.translations["calculator.contact_title"]
+          }}</h4>
+            <p> {{ $store.state.translations["calculator.contact_text"]
+          }}</p>
           </div>
         </div>
       </div>

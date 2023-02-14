@@ -8,7 +8,7 @@
       direction="ltr"
     >
       <div class="drawer_container">
-        <div class="drawer_hadear" @click="show('modal_leave_weak')">
+        <div class="drawer_hadear">
           <img src="../assets/svg/image 2.svg" alt="" />
           <span @click="drawerClose">
             <svg
@@ -46,22 +46,32 @@
           <div class="drawer_body">
             <ul>
               <li>
-                <nuxt-link to="/">How it works</nuxt-link>
+                <a @click="drawerClose" href="#home-banner">{{
+                  $store.state.translations["main.nav_howItWorks"]
+                }}</a>
               </li>
               <li>
-                <nuxt-link to="/">For individuals</nuxt-link>
+                <a @click="drawerClose" href="#howWeWork">{{
+                  $store.state.translations["main.nav_howWeWork"]
+                }}</a>
               </li>
               <li>
-                <nuxt-link to="/">For businesses</nuxt-link>
+                <a @click="drawerClose" href="#ourServices">{{
+                  $store.state.translations["main.nav_ourServices"]
+                }}</a>
               </li>
               <li>
-                <nuxt-link to="/">Why montway</nuxt-link>
+                <a @click="drawerClose" href="#coverageMap">{{
+                  $store.state.translations["main.nav_coverageMap"]
+                }}</a>
               </li>
               <li>
-                <nuxt-link to="/">Help</nuxt-link>
+                <a @click="drawerClose" href="#newAndEvents">{{
+                  $store.state.translations["main.nav_newsAndEvents"]
+                }}</a>
               </li>
             </ul>
-            <div class="drawer_lang">
+            <!-- <div class="drawer_lang">
               <nuxt-link
                 :class="{
                   'is-activeLang':
@@ -72,10 +82,10 @@
                 :to="switchLocalePath(locale.code)"
                 >{{ locale.name }}</nuxt-link
               >
-            </div>
+            </div> -->
           </div>
           <div class="drawer_footer">
-            <a href=""
+            <a :href="`tel:${$store.state.staticInfo.nbm}`"
               ><svg
                 width="20"
                 height="20"
@@ -91,10 +101,10 @@
                   stroke-linejoin="round"
                 />
               </svg>
-              +998 99 011 89 34</a
+              {{ $store.state.staticInfo.nbm }}</a
             >
             <div class="drawer_brands">
-              <span
+              <a :href="$store.state.staticInfo.instagram"
                 ><svg
                   width="24"
                   height="24"
@@ -111,8 +121,8 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-              </span>
-              <span
+              </a>
+              <a :href="$store.state.staticInfo.facebook"
                 ><svg
                   width="24"
                   height="24"
@@ -129,8 +139,8 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-              </span>
-              <span
+              </a>
+              <a :href="$store.state.staticInfo.telegram"
                 ><svg
                   width="24"
                   height="24"
@@ -147,8 +157,8 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-              </span>
-              <span
+              </a>
+              <a :href="$store.state.staticInfo.telegram"
                 ><svg
                   width="24"
                   height="24"
@@ -165,7 +175,7 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-              </span>
+              </a>
             </div>
           </div>
         </div>
@@ -188,7 +198,7 @@
                 fill="#005BA8"
               />
             </svg>
-            Back
+            {{ $store.state.translations["calculator.toBack"] }}
           </nuxt-link>
         </div>
         <div class="calculator-container">
@@ -197,7 +207,9 @@
           <div class="calculator-info">
             <div class="calculator-info-body">
               <div class="calculator-info-items">
-                <span>Distance </span>
+                <span
+                  >{{ $store.state.translations["calculator.info_distance"] }}
+                </span>
                 <div class="edit_input" v-if="activeEdit == 1">
                   <input type="text" />
                   <span @click="activeEdit = 0"
@@ -225,14 +237,12 @@
               </div>
               <div class="calculator-info-items">
                 <span
-                  >First avail. date
+                  >{{ $store.state.translations["calculator.info_date"] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
-                      <span color="red" class="hover-info"
-                        >Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Accusamus velit quis mollitia sunt assumenda iste
-                        iusto? Possimus qui dolorum quaerat.</span
-                      >
+                      <span color="red" class="hover-info">{{
+                        $store.state.translations["calculator.info_dateText"]
+                      }}</span>
                     </template>
                     <a-button
                       ><svg
@@ -286,7 +296,9 @@
                 </div>
               </div>
               <div class="calculator-info-items">
-                <span>Vehicle </span>
+                <span
+                  >{{ $store.state.translations["calculator.info_vehicle"] }}
+                </span>
                 <div class="edit_select" v-if="activeEdit == 3">
                   <div class="d-flex flex-column">
                     <el-select
@@ -388,7 +400,9 @@
                 </div>
               </div>
               <div class="calculator-info-items">
-                <span>Ship from </span>
+                <span>{{
+                  $store.state.translations["calculator.info_shipFrom"]
+                }}</span>
                 <div class="edit_select" v-if="activeEdit == 4">
                   <span class="close_edit" @click="activeEdit = 0">
                     <img :src="iconX" alt="" />
@@ -446,7 +460,9 @@
                 </div>
               </div>
               <div class="calculator-info-items">
-                <span>Ship to </span>
+                <span>{{
+                  $store.state.translations["calculator.info_shipTo"]
+                }}</span>
 
                 <div class="edit_select" v-if="activeEdit == 5">
                   <span class="close_edit" @click="activeEdit = 0">
@@ -505,7 +521,9 @@
                 </div>
               </div>
               <div class="calculator-info-items">
-                <span>Vehicle condition </span>
+                <span>{{
+                  $store.state.translations["calculator.info_vehicleCondition"]
+                }}</span>
                 <a-radio-group
                   v-model="editLeads.vehicle_runs"
                   @change="onChange"
@@ -527,7 +545,9 @@
                 </a-radio-group>
               </div>
               <div class="calculator-info-items">
-                <span>Transport type</span>
+                <span>{{
+                  $store.state.translations["calculator.info_transportType"]
+                }}</span>
                 <a-radio-group
                   v-model="editLeads.ship_via_id"
                   @change="onChange"
@@ -549,23 +569,36 @@
                 </a-radio-group>
               </div>
               <div class="calculator-info-items">
-                <span>Service type </span>
-                <p>Door to door</p>
+                <span>{{
+                  $store.state.translations["calculator.info_serviceType"]
+                }}</span>
+                <p>
+                  {{
+                    $store.state.translations["calculator.info_serviceTypeText"]
+                  }}
+                </p>
               </div>
               <div class="calculator-info-items">
-                <span>Insurance </span>
-                <p>Included</p>
+                <span>{{
+                  $store.state.translations["calculator.info_insurance"]
+                }}</span>
+                <p>
+                  {{
+                    $store.state.translations["calculator.info_insuranceText"]
+                  }}
+                </p>
               </div>
               <div class="calculator-info-items">
-                <span
-                  >Transit time
+                <span>
+                  {{ $store.state.translations["calculator.info_transitTime"] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
-                      <span color="red" class="hover-info"
-                        >We coordinate all shipments through a large network of
-                        licensed Auto Shipping Carriers nationwide. We
-                        coordinate all shipments through a large network of
-                        licensed Auto Shipping Carriers nationwide.</span
+                      <span color="red" class="hover-info">
+                        {{
+                          $store.state.translations[
+                            "calculator.info_transitTimeText"
+                          ]
+                        }}</span
                       >
                     </template>
                     <a-button
@@ -583,16 +616,28 @@
                       </svg>
                     </a-button> </a-tooltip
                 ></span>
-                <p>7-9 days</p>
+                <p>
+                  {{
+                    $store.state.translations[
+                      "calculator.info_transitTimeOption"
+                    ]
+                  }}
+                </p>
               </div>
             </div>
             <div class="calculator-info-footer">
               <div class="calculator-footer-items">
-                <span
-                  >Transit time
+                <span>
+                  {{ $store.state.translations["calculator.info_transitTime"] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
-                      <span color="red" class="hover-info">Transit time</span>
+                      <span color="red" class="hover-info">
+                        {{
+                          $store.state.translations[
+                            "calculator.info_transitTimeText2"
+                          ]
+                        }}</span
+                      >
                     </template>
                     <a-button
                       ><svg
@@ -619,8 +664,16 @@
                 </h3>
               </div>
               <div class="calculator-footer-items">
-                <span>Price option </span>
-                <p>Have you had problems in the order process?</p>
+                <span>
+                  {{
+                    $store.state.translations["calculator.info_priceOption"]
+                  }}</span
+                >
+                <p>
+                  {{
+                    $store.state.translations["calculator.info_priceOptionText"]
+                  }}
+                </p>
               </div>
               <div class="calculator-footer-items">
                 <span></span>
@@ -630,8 +683,7 @@
           </div>
           <div class="block-help block-help-mobile">
             <p>
-              Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
-              barcha policy and private qoidalariga rozilik bildirasiz
+              {{ $store.state.translations["calculator.text_contact"] }}
             </p>
             <div class="contact-us">
               <div class="contact-us-svg">
@@ -649,8 +701,12 @@
                 </svg>
               </div>
               <div class="contact-us-body">
-                <h4>Buyurtma jarayonida muammolarga duch keldingizmi?</h4>
-                <p>bizning call centrimiz sizga yordam berdi aloqadamiz 24/7</p>
+                <h4>
+                  {{ $store.state.translations["calculator.contact_title"] }}
+                </h4>
+                <p>
+                  {{ $store.state.translations["calculator.contact_text"] }}
+                </p>
               </div>
             </div>
           </div>

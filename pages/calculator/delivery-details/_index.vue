@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="calculator-form">
-    <h1 class="calculator-title">Vehicle delivery details</h1>
+    <h1 class="calculator-title">
+      {{ $store.state.translations["calculator.vehicleDelivery"] }}
+    </h1>
     <div class="">
       <el-form
         label-position="top"
@@ -12,7 +14,9 @@
         action=""
       >
         <div class="form-block">
-          <label for="inputFrom">Delivery address</label>
+          <label for="inputFrom">{{
+            $store.state.translations["calculator.label_deliveryAddress"]
+          }}</label>
           <div class="calculator-grid">
             <el-form-item prop="adres" label-position="top">
               <input
@@ -20,7 +24,9 @@
                 class="w-100"
                 id="inputFrom"
                 v-model="ruleForm.adres"
-                placeholder="Street home flat"
+                :placeholder="
+                  $store.state.translations['calculator.placeH_deliveryAddress']
+                "
               />
             </el-form-item>
             <el-form-item prop="ship_from" label-position="top">
@@ -36,7 +42,12 @@
           </div>
         </div>
         <div class="form-block">
-          <label for="inputTo">California City, CA 93505 , This is a?</label>
+          <label for="inputTo"
+            >{{
+              ` ${leads.ship_to?.name} city, ${leads.ship_to?.state?.code} ${leads.ship_to?.zip}`
+            }}
+            , {{ $store.state.translations["calculator.label_thisIs"] }}</label
+          >
           <el-form-item prop="ship_from" label-position="top">
             <a-radio-group
               class="w-100"
@@ -46,12 +57,12 @@
               <div class="calculator-grid">
                 <div class="checkbox-input">
                   <a-radio value="Residential address">
-                    Residential address
+                    {{ $store.state.translations["calculator.r_address"] }}
                   </a-radio>
                 </div>
                 <div class="checkbox-input">
                   <a-radio value="Business adress">
-                    Business adress
+                    {{ $store.state.translations["calculator.b_adress"] }}
                   </a-radio>
                 </div>
               </div>
@@ -59,24 +70,29 @@
           </el-form-item>
         </div>
         <div class="form-block">
-          <label for="inputTo">California City, CA 93505 , This is a?</label>
+          <label for="inputTo"
+            >{{
+              ` ${leads.ship_to?.name} city, ${leads.ship_to?.state?.code} ${leads.ship_to?.zip}`
+            }}
+            , {{ $store.state.translations["calculator.label_thisIs"] }}</label
+          >
           <a-radio-group v-model="ruleForm.contact_me" @change="onChange">
             <div class="calculator-grid">
               <div class="checkbox-input">
                 <a-radio :value="true">
-                  Contact me
+                  {{ $store.state.translations["calculator.contact_me"] }}
                 </a-radio>
               </div>
               <div class="checkbox-input">
                 <a-radio :value="false">
-                  Contact someone else
+                  {{ $store.state.translations["calculator.contact_else"] }}
                 </a-radio>
               </div>
             </div>
           </a-radio-group>
         </div>
         <div class="form-block">
-          <label for="">Have any special instructions? (Optional)</label>
+          <label for="">{{ $store.state.translations["calculator.textArea_label"] }}</label>
           <textarea
             v-model="ruleForm.deckription"
             name=""
@@ -90,7 +106,7 @@
           class="banner-form-btn d-flex justify-content-end steps-action pt-3"
         >
           <div @click="toNextStep" class="form-btn">
-            Next stage<svg
+            {{ $store.state.translations["main.form_btn_nextStage"] }}<svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
