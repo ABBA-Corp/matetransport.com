@@ -22,7 +22,7 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </nuxt-link>
-          <span class="header-top-link"
+          <span class="header-top-link" @click="show('modal_header')"
             >{{ $store.state.translations["main.contact_us"] }}
             <svg
               width="11"
