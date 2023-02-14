@@ -218,7 +218,9 @@
                       /></svg
                   ></span>
                 </div>
-                <p v-if="!(activeEdit == 1) && !skeleton">{{leads.distance}}</p>
+                <p v-if="!(activeEdit == 1) && !skeleton">
+                  {{ leads.distance }}
+                </p>
                 <el-skeleton-item v-else variant="text" style="width: 100%;" />
               </div>
               <div class="calculator-info-items">
@@ -608,7 +610,13 @@
                     </a-button> </a-tooltip
                 ></span>
 
-                <h3>${{ $store.state.tarifType == 1? leads.price_first_tarif:leads.price_second_tarif }}</h3>
+                <h3>
+                  ${{
+                    $store.state.tarifType == 1
+                      ? leads.price_first_tarif
+                      : leads.price_second_tarif
+                  }}
+                </h3>
               </div>
               <div class="calculator-footer-items">
                 <span>Price option </span>
@@ -620,10 +628,7 @@
               </div>
             </div>
           </div>
-          <div
-            class="block-help block-help-mobile"
-            @click="show('modal_discount')"
-          >
+          <div class="block-help block-help-mobile">
             <p>
               Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning
               barcha policy and private qoidalariga rozilik bildirasiz
@@ -653,6 +658,65 @@
       </div>
     </div>
     <Footer />
+    <modal name="modal_discount" width="590px" height="auto">
+      <div class="modal_container">
+        <div class="modal_header d-flex justify-content-between">
+          <h5>{{ $store.state.translations["modal.discount_title"] }}</h5>
+          <span @click="hide('modal_discount')"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                stroke="#024E90"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+          ></span>
+        </div>
+        <div
+          class="modal_body modal-discount d-flex flex-column align-items-center"
+        >
+          <div class="d-flex flex-column align-items-center mt-lg-2 mb-4">
+            <h6 class="discount-title">
+              {{ $store.state.translations["modal.discount_title"] }}
+            </h6>
+            <p class="discount-text text-center">
+              {{ $store.state.translations["modal.discount_text"] }}
+            </p>
+          </div>
+          <div class="form-block w-100">
+            <input type="text" placeholder="+998 (__) ___ __ __" />
+            <span class="discount-timer"
+              >0:{{
+                discountTimer.toString().length < 2
+                  ? `0${discountTimer}`
+                  : discountTimer
+              }}
+              sekund</span
+            >
+          </div>
+
+          <div class="modal-discount-btn w-100">
+            <div
+              class="form-discount-btn form-btn"
+              @click="hide('modal_discount')"
+            >
+              {{ $store.state.translations["modal.discount_btn_no"] }}
+            </div>
+            <div class="form-btn">
+              {{ $store.state.translations["modal.discount_btn_yes"] }}
+            </div>
+          </div>
+        </div>
+      </div></modal
+    >
   </div>
 </template>
 <script>
@@ -673,6 +737,7 @@ export default {
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
       allCities: [],
+      discountTimer: 60,
       skeleton: false,
       vehicleCondition: [
         {
@@ -823,8 +888,25 @@ export default {
       this.activeEdit = 0;
       this.skeleton = false;
     },
+    timer() {
+      setTimeout(() => {
+        if (this.discountTimer > 0) {
+          this.discountTimer--;
+          this.timer();
+        } else {
+          this.hide("modal_discount");
+        }
+      }, 1000);
+    },
   },
   mounted() {
+    if (!JSON.parse(localStorage.getItem("discount"))) {
+      this.show("modal_discount");
+      if (this.discountTimer == 60) {
+        this.timer();
+      }
+      localStorage.setItem("discount", JSON.stringify(true));
+    }
     this.__GET_LEADS();
     this.__GET_CITIES();
     if (this.$route.fullPath.includes("transport")) {
@@ -886,17 +968,6 @@ export default {
           this.currentPath = `/calculator/choice-tarif/${this.$route.params.index}`;
         }
       }
-    },
-    discountTimer: {
-      handler(value) {
-        if (value > 0) {
-          setTimeout(() => {
-            this.discountTimer--;
-          }, 1000);
-        }
-      },
-
-      // immediate: true,
     },
   },
 };

@@ -22,7 +22,7 @@
       <div class="about-container">
         <div class="service-title">
           <div class="d-flex flex-column">
-            <h1>Биз хакимизда</h1>
+            <h1>{{$store.state.translations['about_us.title']}}</h1>
           </div>
         </div>
         <div class="about-grid-container">

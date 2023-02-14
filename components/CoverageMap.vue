@@ -37,6 +37,7 @@
             </g>
             <path
               :data-name="findCity('CA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('CA')?.id),
               }"
@@ -47,6 +48,7 @@
             ></path>
             <path
               :data-name="findCity('WA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('WA')?.id),
               }"
@@ -67,6 +69,7 @@
             />
             <path
               :data-name="findCity('OR')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('OR')?.id),
               }"
@@ -77,6 +80,7 @@
             />
             <path
               :data-name="findCity('ID')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('ID')?.id),
               }"
@@ -87,6 +91,7 @@
             />
             <path
               :data-name="findCity('NV')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NV')?.id),
               }"
@@ -97,6 +102,7 @@
             />
             <path
               :data-name="findCity('AZ')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('AZ')?.id),
               }"
@@ -107,6 +113,7 @@
             />
             <path
               :data-name="findCity('MT')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MT')?.id),
               }"
@@ -117,6 +124,7 @@
             />
             <path
               :data-name="findCity('UT')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('UT')?.id),
               }"
@@ -127,6 +135,7 @@
             />
             <path
               :data-name="findCity('ND')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('ND')?.id),
               }"
@@ -137,6 +146,7 @@
             />
             <path
               :data-name="findCity('WY')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('WY')?.id),
               }"
@@ -147,6 +157,7 @@
             />
             <path
               :data-name="findCity('CO')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('CO')?.id),
               }"
@@ -157,6 +168,7 @@
             />
             <path
               :data-name="findCity('NM')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NM')?.id),
               }"
@@ -167,6 +179,7 @@
             />
             <path
               :data-name="findCity('TX')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('TX')?.id),
               }"
@@ -177,6 +190,7 @@
             />
             <path
               :data-name="findCity('OK')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('OK')?.id),
               }"
@@ -187,6 +201,7 @@
             />
             <path
               :data-name="findCity('SD')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('SD')?.id),
               }"
@@ -197,6 +212,7 @@
             />
             <path
               :data-name="findCity('MN')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MN')?.id),
               }"
@@ -207,6 +223,7 @@
             />
             <path
               :data-name="findCity('MI')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MI')?.id),
               }"
@@ -217,6 +234,7 @@
             />
             <path
               :data-name="findCity('NE')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NE')?.id),
               }"
@@ -227,6 +245,7 @@
             />
             <path
               :data-name="findCity('KS')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('KS')?.id),
               }"
@@ -237,6 +256,7 @@
             />
             <path
               :data-name="findCity('IA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('IA')?.id),
               }"
@@ -247,6 +267,7 @@
             />
             <path
               :data-name="findCity('MO')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MO')?.id),
               }"
@@ -257,6 +278,7 @@
             />
             <path
               :data-name="findCity('AR')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('AR')?.id),
               }"
@@ -267,6 +289,7 @@
             />
             <path
               :data-name="findCity('LA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('LA')?.id),
               }"
@@ -277,6 +300,7 @@
             />
             <path
               :data-name="findCity('MS')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MS')?.id),
               }"
@@ -287,6 +311,7 @@
             />
             <path
               :data-name="findCity('FL')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('FL')?.id),
               }"
@@ -297,6 +322,7 @@
             />
             <path
               :data-name="findCity('WI')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('WI')?.id),
               }"
@@ -307,6 +333,7 @@
             />
             <path
               :data-name="findCity('IL')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('IL')?.id),
               }"
@@ -317,6 +344,7 @@
             />
             <path
               :data-name="findCity('AL')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('AL')?.id),
               }"
@@ -327,6 +355,7 @@
             />
             <path
               :data-name="findCity('MI')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MI')?.id),
               }"
@@ -337,6 +366,7 @@
             />
             <path
               :data-name="findCity('IN')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('IN')?.id),
               }"
@@ -347,6 +377,7 @@
             />
             <path
               :data-name="findCity('GA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('GA')?.id),
               }"
@@ -357,6 +388,7 @@
             />
             <path
               :data-name="findCity('SC')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('SC')?.id),
               }"
@@ -367,6 +399,7 @@
             />
             <path
               :data-name="findCity('TN')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('TN')?.id),
               }"
@@ -377,6 +410,7 @@
             />
             <path
               :data-name="findCity('NC')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NC')?.id),
               }"
@@ -387,6 +421,7 @@
             />
             <path
               :data-name="findCity('KY')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('KY')?.id),
               }"
@@ -397,6 +432,7 @@
             />
             <path
               :data-name="findCity('OH')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('OH')?.id),
               }"
@@ -407,6 +443,7 @@
             />
             <path
               :data-name="findCity('VA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('VA')?.id),
               }"
@@ -417,6 +454,7 @@
             />
             <path
               :data-name="findCity('WV')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('WV')?.id),
               }"
@@ -427,6 +465,7 @@
             />
             <path
               :data-name="findCity('DE')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('DE')?.id),
               }"
@@ -437,6 +476,7 @@
             />
             <path
               :data-name="findCity('MD')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MD')?.id),
               }"
@@ -447,6 +487,7 @@
             />
             <path
               :data-name="findCity('PA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('PA')?.id),
               }"
@@ -457,6 +498,7 @@
             />
             <path
               :data-name="findCity('NJ')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NJ')?.id),
               }"
@@ -467,6 +509,7 @@
             />
             <path
               :data-name="findCity('NY')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NY')?.id),
               }"
@@ -477,6 +520,7 @@
             />
             <path
               :data-name="findCity('CT')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('CT')?.id),
               }"
@@ -487,6 +531,7 @@
             />
             <path
               :data-name="findCity('RI')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('RI')?.id),
               }"
@@ -497,6 +542,7 @@
             />
             <path
               :data-name="findCity('MA')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('MA')?.id),
               }"
@@ -507,6 +553,7 @@
             />
             <path
               :data-name="findCity('ME')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('ME')?.id),
               }"
@@ -517,6 +564,7 @@
             />
             <path
               :data-name="findCity('VT')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('VT')?.id),
               }"
@@ -527,6 +575,7 @@
             />
             <path
               :data-name="findCity('NH')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('NH')?.id),
               }"
@@ -860,6 +909,7 @@
               />
               <path
                 :data-name="findCity('AK')?.name"
+                class="map_state"
                 :class="{
                   'is-active_map': currentMap.includes(findCity('AK')?.id),
                 }"
@@ -871,6 +921,7 @@
             </g>
             <path
               :data-name="findCity('AK')?.name"
+              class="map_state"
               :class="{
                 'is-active_map': currentMap.includes(findCity('AK')?.id),
               }"
@@ -1442,7 +1493,7 @@
             <div
               type="submit"
               @click="sendCities"
-              class="form-btn"
+              class="map_state"
               :class="{
                 'disabled-btn': !dataForm.ship_from && !dataForm.ship_to,
               }"
@@ -1484,6 +1535,7 @@
         <div class="reload-news">
           <div class="reload-news-btn" @click="__GET_ARTICLES">
             <svg
+              class="map_state"
               :class="{ activeReload: sliderActive }"
               width="41"
               height="34"
@@ -1824,9 +1876,7 @@ export default {
     }
   }
 }
-.is-active_map {
-  fill: #2892ef;
-}
+
 .disabled-btn {
   filter: brightness(0.9);
   pointer-events: none;

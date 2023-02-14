@@ -16,7 +16,7 @@
                 fill="#005BA8"
               />
             </svg>
-            Back
+           {{$store.state.translations['calculator.toBack']}}
           </nuxt-link>
         </div>
         <div class="inner-news-shadow"></div>

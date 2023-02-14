@@ -176,7 +176,7 @@
         </div>
       </div>
 
-      <div class="block-help block-help-web" @click="show('modal_discount')">
+      <div class="block-help block-help-web">
         <p>
           Ma’lumotlarni tanlshingiz va qoldirishingiz bilan siz saytning barcha
           policy and private qoidalariga rozilik bildirasiz

@@ -22,7 +22,7 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </nuxt-link>
-          <span class="header-top-link" @click="show('modal_header')"
+          <span class="header-top-link"
             >{{ $store.state.translations["main.contact_us"] }}
             <svg
               width="11"
@@ -98,7 +98,9 @@
           </el-dropdown> -->
           <div>
             <div class="leave-comment" @click="show('modal_leave_weak')">
-              <span>{{$store.state.translations["main.submit_application"]}}</span>
+              <span>{{
+                $store.state.translations["main.submit_application"]
+              }}</span>
             </div>
           </div>
         </div>
@@ -109,7 +111,7 @@
       <modal name="modal_header" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
-            <h5>Tezkor aloqa</h5>
+            <h5>{{ $store.state.translations["modal.fastContact_title"] }}</h5>
             <span @click="hide('modal_header')"
               ><svg
                 width="24"
@@ -130,7 +132,7 @@
           </div>
           <div class="modal_body">
             <p class="fasting-contact-text">
-              Telefon raqamingizni yozib qoldiring va bizning operatorlar
+              {{ $store.state.translations["modal.fastContact_text"] }}
             </p>
             <div class="modal-tariff-info-grid">
               <p class="tariff-info-text">
@@ -145,7 +147,7 @@
                     d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                     fill="#0070CE"
                   /></svg
-                >Bepul konsultatsiya
+                >{{ $store.state.translations["modal.fastContact_info1"] }}
               </p>
               <p class="tariff-info-text">
                 <svg
@@ -159,7 +161,7 @@
                     d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                     fill="#0070CE"
                   /></svg
-                >Yukni bepul hisoblatish
+                >{{ $store.state.translations["modal.fastContact_info2"] }}
               </p>
               <p class="tariff-info-text">
                 <svg
@@ -173,7 +175,7 @@
                     d="M9.00033 17.3334C4.39783 17.3334 0.666992 13.6026 0.666992 9.00008C0.666992 4.39758 4.39783 0.666748 9.00033 0.666748C13.6028 0.666748 17.3337 4.39758 17.3337 9.00008C17.3337 13.6026 13.6028 17.3334 9.00033 17.3334ZM8.16699 11.5001V13.1667H9.83366V11.5001H8.16699ZM9.83366 10.1292C10.5034 9.92739 11.0783 9.49171 11.4538 8.90153C11.8292 8.31136 11.9802 7.60596 11.8793 6.9138C11.7783 6.22165 11.4321 5.58878 10.9037 5.13046C10.3753 4.67214 9.6998 4.41886 9.00033 4.41675C8.32604 4.4167 7.67255 4.65021 7.15099 5.07758C6.62943 5.50494 6.272 6.09977 6.13949 6.76091L7.77449 7.08841C7.82089 6.85627 7.93226 6.64208 8.09563 6.47076C8.25901 6.29944 8.46767 6.17803 8.69735 6.12067C8.92702 6.0633 9.16827 6.07234 9.39301 6.14672C9.61775 6.22111 9.81675 6.35778 9.96685 6.54084C10.117 6.7239 10.212 6.94582 10.2409 7.18078C10.2698 7.41574 10.2314 7.65408 10.1301 7.86807C10.0289 8.08205 9.86894 8.26288 9.66893 8.38952C9.46892 8.51616 9.23706 8.5834 9.00033 8.58341C8.77931 8.58341 8.56735 8.67121 8.41107 8.82749C8.25479 8.98377 8.16699 9.19573 8.16699 9.41675V10.6667H9.83366V10.1292Z"
                     fill="#0070CE"
                   /></svg
-                >Tezkor zayavka qoldirish
+                >{{ $store.state.translations["modal.fastContact_info3"] }}
               </p>
             </div>
             <el-form
@@ -198,7 +200,7 @@
               </div>
               <div class="modal-form-btn">
                 <div class="form-btn" @click="submitForm('ruleForm')">
-                  Biz bilan aloqaga chiqish
+                  {{ $store.state.translations["modal.fastContact_btn"] }}
                 </div>
               </div>
             </el-form>
@@ -208,7 +210,9 @@
       <modal name="modal_success" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
-            <h5>Tezkor aloqa</h5>
+            <h5>
+              {{ $store.state.translations["modal.fastContact_title"] }}
+            </h5>
             <span @click="hide('modal_success')"
               ><svg
                 width="24"
@@ -235,17 +239,16 @@
               class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4"
             >
               <h5 class="success_contact">
-                Ma’lumot uchun raxmat! atiga 1 soat ichida operatorimiz aloqaga
-                chiqadi
+                {{ $store.state.translations["modal.fastSuccess_text"] }}
               </h5>
               <p class="fasting-contact-text text-center mt-1">
-                Shu vaqt ichida bizning operatorlarimiz siz bilan bog’lanadilar
+                {{ $store.state.translations["modal.fastSuccess_info"] }}
               </p>
             </div>
 
             <div class="modal-form-btn w-100">
               <div class="form-btn" @click="hide('modal_success')">
-                Biz bilan aloqaga chiqish
+                {{ $store.state.translations["modal.fastContact_btn"] }}
               </div>
             </div>
           </div>
@@ -298,54 +301,6 @@
         </div></modal
       >
       <ModalSubmitApp />
-      <modal name="modal_discount" width="590px" height="auto">
-        <div class="modal_container">
-          <div class="modal_header d-flex justify-content-between">
-            <h5>10% discount</h5>
-            <span @click="hide('modal_discount')"
-              ><svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-                  stroke="#024E90"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-            ></span>
-          </div>
-          <div
-            class="modal_body modal-discount d-flex flex-column align-items-center"
-          >
-            <div class="d-flex flex-column align-items-center mt-lg-2 mb-4">
-              <h6 class="discount-title">10% discount</h6>
-              <p class="discount-text text-center">
-                simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy
-              </p>
-            </div>
-            <div class="form-block w-100">
-              <input type="text" placeholder="+998 (__) ___ __ __" />
-              <span class="discount-timer">0:{{ discountTimer }} sekund</span>
-            </div>
-
-            <div class="modal-discount-btn w-100">
-              <div class="form-discount-btn form-btn">
-                I dont want discount
-              </div>
-              <div class="form-btn">
-                Send a phone number
-              </div>
-            </div>
-          </div>
-        </div></modal
-      >
     </div>
   </div>
 </template>
@@ -390,6 +345,9 @@ export default {
   computed: {
     availableLocales() {
       return this.$i18n.locales;
+    },
+    discountFunc() {
+      return JSON.parse(localStorage.getItem("discount"));
     },
   },
   methods: {
@@ -481,6 +439,7 @@ export default {
   mounted() {
     this.__GET_STATIC_INFORMATIONS();
     this.__GET_TRANSLATIONS();
+
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -495,6 +454,14 @@ export default {
       }
       this.lastScrollTop = scrollTop;
     });
+  },
+  watch: {
+    discountFunc(val) {
+      if (val) {
+        console.log("sdfsdfsdfsd");
+        this.timer();
+      }
+    },
   },
   components: { TextCarousel, Drawer, FlipCountdown, ModalSubmitApp },
 };

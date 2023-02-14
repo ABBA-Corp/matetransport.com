@@ -16,13 +16,13 @@
                 fill="#005BA8"
               />
             </svg>
-            Back
+            {{$store.state.translations['calculator.toBack']}}
           </nuxt-link>
         </div>
         <div class="all-news-shadow"></div>
         <div class="all-news-container">
           <div class="all-news-title">
-            <h1>Barcha yangiliklar</h1>
+            <h1>{{$store.state.translations['all_news.title']}}</h1>
 
             <div class="all-news-grid">
               <div class="all-news-card-box" v-for="article in articles">

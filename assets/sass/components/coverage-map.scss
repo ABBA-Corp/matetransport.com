@@ -11,7 +11,23 @@
 .map_select {
   path {
     cursor: pointer;
+    transition: 0.4s;
+    position: relative;
   }
+}
+.map_state {
+  position: relative;
+  z-index: 1000;
+  display: block;
+  transition: 0.4s;
+  &:hover {
+    transform: translateX(-1%) translateY(-1%);
+    fill: #2892ef;
+  }
+}
+
+.is-active_map {
+  fill: #2892ef;
 }
 .mobile-map-selects {
   display: none;

@@ -269,6 +269,9 @@
   .form-discount-btn {
     background: #f9f9f9;
     color: #000;
+    &:hover {
+      color: #000
+    }
   }
 }
 @media (max-width: 768px) {
