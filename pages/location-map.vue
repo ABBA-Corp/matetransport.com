@@ -307,7 +307,7 @@
           <div
             class="lm-map"
             v-else
-            v-html="currentCitiesData.from.iframe"
+            v-html="currentCitiesData.from?.iframe"
           ></div>
           <div class="lm-body">
             <el-skeleton-item
@@ -316,7 +316,7 @@
             style="width: 80%;"
           />
             <h2 v-else class="lm-title">
-              {{ currentCitiesData.from.name }}
+              {{ currentCitiesData.from?.name }}
             </h2>
             <h6 class="lm-area">Tochka A</h6>
             <el-skeleton-item
@@ -324,7 +324,7 @@
             variant="text"
             style="width: 80%;"
           />
-            <div v-else class="lm-text" v-html="currentCitiesData.from.text"></div>
+            <div v-else class="lm-text" v-html="currentCitiesData.from?.text"></div>
           </div>
         </div>
         <div class="location-map-card">
@@ -333,7 +333,7 @@
             variant="text"
             style="width: 80%;"
           />
-          <div v-else class="lm-map" v-html="currentCitiesData.to.iframe"></div>
+          <div v-else class="lm-map" v-html="currentCitiesData.to?.iframe"></div>
           <div class="lm-body">
             <el-skeleton-item
             v-if="skeleton_from"
@@ -341,7 +341,7 @@
             style="width: 80%;"
           />
             <h2 v-else class="lm-title">
-              {{ currentCitiesData.to.name }}
+              {{ currentCitiesData.to?.name }}
             </h2>
             <h6 class="lm-area">Tochka B</h6>
             <el-skeleton-item
@@ -349,7 +349,7 @@
             variant="text"
             style="width: 80%;"
           />
-            <div v-else class="lm-text" v-html="currentCitiesData.to.text"></div>
+            <div v-else class="lm-text" v-html="currentCitiesData.to?.text"></div>
           </div>
         </div>
         <!-- <LocationMapCard
