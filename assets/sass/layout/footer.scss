@@ -13,11 +13,18 @@
     @include fontStyle(16px, 500, #fff);
     line-height: 24px;
     margin-bottom: 20px;
-    &:hover {
-      color: #fff;
-    }
+    transition: 0.3s;
     svg {
+      transition: 0.3s;
       margin-right: 10.21px;
+    }
+    &:hover {
+      color: #40a9ff;
+      svg {
+        path {
+          stroke: #40a9ff;
+        }
+      }
     }
   }
 }
@@ -25,6 +32,17 @@
   display: flex;
   a {
     margin-right: 18.67px;
+    transition: 0.3s;
+    svg {
+      transition: 0.3s;
+    }
+    &:hover {
+      svg {
+        path {
+          stroke: #40a9ff;
+        }
+      }
+    }
   }
 }
 .footer-grid {
@@ -47,7 +65,11 @@
     li {
       margin-bottom: 20px;
       a {
+        transition: 0.3s;
         @include fontStyle(16, 300, #fff);
+        &:hover {
+          color: #40a9ff;
+        }
       }
     }
   }

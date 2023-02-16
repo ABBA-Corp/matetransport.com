@@ -19,9 +19,11 @@
   position: relative;
   z-index: 1000;
   display: block;
-  transition: 0.4s;
+  transition: 0.4s all;
+  transform-origin: 50% 50% !important;
+  transform-box: fill-box !important;
   &:hover {
-    transform: translateX(-1%) translateY(-1%);
+    transform: scale(1.2, 1.2);
     fill: #2892ef;
   }
 }
@@ -183,12 +185,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: .5s;
+      transition: 0.5s;
     }
     &:hover {
       img {
         transform: scale(1.2);
-
       }
     }
   }

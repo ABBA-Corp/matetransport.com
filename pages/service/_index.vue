@@ -53,12 +53,16 @@
             v-html="serviceInfo.deckription"
           ></div>
           <div class="service-btn-group">
-            <nuxt-link to="/">{{
-              $store.state.translations["service.useService"]
-            }}</nuxt-link>
-            <nuxt-link to="/">{{
-              $store.state.translations["service.useService"]
-            }}</nuxt-link>
+            <nuxt-link to="/">
+              <span>
+                {{ $store.state.translations["service.useService"] }}
+              </span>
+            </nuxt-link>
+            <nuxt-link to="/">
+              <span>
+                {{ $store.state.translations["service.useService"] }}
+              </span>
+            </nuxt-link>
           </div>
         </div>
         <div class="service-from-cards">

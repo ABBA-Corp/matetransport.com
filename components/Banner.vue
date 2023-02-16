@@ -132,7 +132,7 @@
           <div class="form-title">
             <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
           </div>
-          <div v-if="active == 1">
+          <div v-if="active == 0">
             <div class="form-block">
               <label for="inputFrom">{{
                 $store.state.translations["main.form_label_email"]
@@ -186,7 +186,7 @@
               </el-form-item>
             </div>
           </div>
-          <div v-if="active == 2">
+          <div v-if="active == 1">
             <div class="form-block">
               <label for="">{{
                 $store.state.translations["main.form_label_shipFrom"]
@@ -240,7 +240,7 @@
               </el-form-item>
             </div>
           </div>
-          <div v-if="active == 3">
+          <div v-if="active == 2">
             <div class="form-block">
               <label for="">{{
                 $store.state.translations["main.form_vehicleYear"]
@@ -313,15 +313,22 @@
             </div>
           </div>
 
-          <div class="banner-form-btn steps-action">
+          <div
+            class="banner-form-btn steps-action d-flex justify-content-end"
+            :class="{ 'justify-content-between': active > 0 }"
+          >
+            <div class="form-btn previos-btn" @click="prev" v-if="active > 0">
+              Previos
+            </div>
             <div
               class="form-btn"
               type="submit"
               @click="submitForm('ruleForm')"
               v-if="active != 5"
+              :class="activeDisabled"
             >
               {{
-                active == 3
+                active == 2
                   ? $store.state.translations["main.form_btn_lastStage"]
                   : $store.state.translations["main.form_btn_nextStage"]
               }}<svg
@@ -365,18 +372,15 @@
               </svg>
             </nuxt-link>
           </div>
+
           <div class="banner-steps">
-            <el-steps :active="active" finish-status="success">
-              <el-step
-                :title="$store.state.translations['main.step_location']"
-              ></el-step>
-              <el-step
-                :title="$store.state.translations['main.step_nameOrder']"
-              ></el-step>
-              <el-step
-                :title="$store.state.translations['main.step_truck']"
-              ></el-step>
-            </el-steps>
+            <a-steps :current="active">
+              <a-step
+                v-for="item in steps"
+                :key="item.title"
+                :title="item.title"
+              />
+            </a-steps>
           </div>
           <p class="banner-form-info">
             {{ $store.state.translations["main.banner_form_text"] }}
@@ -395,7 +399,7 @@ export default {
     return {
       video: true,
       videoMuted: true,
-      active: 1,
+      active: 0,
       emailIncorrect: false,
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
@@ -403,6 +407,21 @@ export default {
       carMakes: [],
       carModles: [],
       carMakesValue: "",
+      current: 0,
+      steps: [
+        {
+          title: "Location",
+          content: "First-content",
+        },
+        {
+          title: "Name order",
+          content: "Second-content",
+        },
+        {
+          title: "Truck",
+          content: "Last-content",
+        },
+      ],
       ruleForm: {
         email: "",
         nbm: "",
@@ -500,6 +519,29 @@ export default {
       leadCread: {},
     };
   },
+  computed: {
+    activeDisabled() {
+      return {
+        lastStage: this.active == 2,
+        disabledStep: this.active,
+      };
+    },
+    stepStr() {
+      switch (this.active) {
+        case 0:
+          this.ruleForm.email && this.ruleForm.date;
+          break;
+        case 1:
+          this.ruleForm.ship_from && this.ruleForm.ship_to;
+          break;
+        case 2:
+          this.ruleForm.vehicle &&
+            this.ruleForm.car_year &&
+            this.ruleForm.car_make;
+          break;
+      }
+    },
+  },
   methods: {
     moment,
     onChangeDate(_, dateStrings) {
@@ -514,6 +556,12 @@ export default {
         this.video = true;
         console.log(this.$refs.video.muted);
       }
+    },
+    next() {
+      this.active++;
+    },
+    prev() {
+      this.active--;
     },
     videoSound() {
       if (this.$refs.video.muted) {
@@ -571,8 +619,10 @@ export default {
           );
           if (emailCorrect.status == "valid") {
             this.emailIncorrect = true;
-            if (this.active++ > 2) {
+            if (this.active > 1) {
               this.__POST_LEAD();
+            } else {
+              this.active++;
             }
           } else {
             this.emailIncorrect = true;
@@ -590,7 +640,7 @@ export default {
   components: { Title },
   watch: {
     active(val) {
-      if (val == 2) {
+      if (val == 1) {
         this.__GET_CITIES();
       }
     },
