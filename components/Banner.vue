@@ -323,8 +323,8 @@
             <div
               class="form-btn"
               type="submit"
-              @click="submitForm('ruleForm')"
-              v-if="active != 5"
+              v-on:click="submitForm('ruleForm', 1)"
+              v-if="active == 0"
               :class="activeDisabled"
             >
               {{
@@ -348,12 +348,18 @@
                 />
               </svg>
             </div>
-            <nuxt-link
+            <div
               class="form-btn"
-              v-else
-              :to="localePath('/calculator/delivery-details')"
+              type="submit"
+              v-on:click="submitForm('ruleForm', 2)"
+              v-if="active == 1"
+              :class="activeDisabled"
             >
-              {{ $store.state.translations["main.form_btn_Stage"]
+              sdfsd
+              {{
+                active == 2
+                  ? $store.state.translations["main.form_btn_lastStage"]
+                  : $store.state.translations["main.form_btn_nextStage"]
               }}<svg
                 width="24"
                 height="24"
@@ -370,17 +376,51 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </nuxt-link>
+            </div>
+            <div
+              class="form-btn"
+              type="submit"
+              v-on:click="submitForm('ruleForm', 2)"
+              v-if="active == 2"
+              :class="activeDisabled"
+            >
+              {{ $store.state.translations["main.form_btn_lastStage"] }}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
           </div>
-
           <div class="banner-steps">
-            <a-steps :current="active">
-              <a-step
-                v-for="item in steps"
-                :key="item.title"
-                :title="item.title"
-              />
-            </a-steps>
+            <div
+              class="banner-steps"
+              v-for="step in steps"
+              v-if="active == step"
+            >
+              <el-steps :active="step + 1" finish-status="success">
+                <el-step
+                  :title="$store.state.translations['main.step_location']"
+                ></el-step>
+                <el-step
+                  :title="$store.state.translations['main.step_nameOrder']"
+                ></el-step>
+                <el-step
+                  :title="$store.state.translations['main.step_truck']"
+                ></el-step>
+              </el-steps>
+            </div>
           </div>
           <p class="banner-form-info">
             {{ $store.state.translations["main.banner_form_text"] }}
@@ -407,21 +447,7 @@ export default {
       carMakes: [],
       carModles: [],
       carMakesValue: "",
-      current: 0,
-      steps: [
-        {
-          title: "Location",
-          content: "First-content",
-        },
-        {
-          title: "Name order",
-          content: "Second-content",
-        },
-        {
-          title: "Truck",
-          content: "Last-content",
-        },
-      ],
+      steps: [0, 1, 2],
       ruleForm: {
         email: "",
         nbm: "",
@@ -523,23 +549,7 @@ export default {
     activeDisabled() {
       return {
         lastStage: this.active == 2,
-        disabledStep: this.active,
       };
-    },
-    stepStr() {
-      switch (this.active) {
-        case 0:
-          this.ruleForm.email && this.ruleForm.date;
-          break;
-        case 1:
-          this.ruleForm.ship_from && this.ruleForm.ship_to;
-          break;
-        case 2:
-          this.ruleForm.vehicle &&
-            this.ruleForm.car_year &&
-            this.ruleForm.car_make;
-          break;
-      }
     },
   },
   methods: {
@@ -604,34 +614,35 @@ export default {
         this.$router.push(`/calculator/choice-tarif/${this.leadCread.uuid}`);
       }
     },
-    async submitForm(ruleForm) {
-      console.log(this.ruleForm);
-      // const leadData = await this.$store.dispatch("fetchLead/postLead", {
-      //   currentLang: this.$i18n.locale,
-      //   data: this.ruleForm,
-      // });
-
-      this.$refs[ruleForm].validate(async (valid) => {
+    async submitForm(ruleForm, val) {
+      this.$refs[ruleForm].validate((valid) => {
         if (valid) {
-          const emailCorrect = await this.$store.dispatch(
-            "fetchCheckEmail/getCheckEmail",
-            this.ruleForm.email
-          );
-          if (emailCorrect.status == "valid") {
-            this.emailIncorrect = true;
-            if (this.active > 1) {
-              this.__POST_LEAD();
-            } else {
-              this.active++;
-            }
-          } else {
-            this.emailIncorrect = true;
-          }
+          this.checkEmail().then((data) => {
+            const emailCorrect = data;
+            emailCorrect.status == "valid"
+              ? this.nextStep(val)
+              : (this.emailIncorrect = true);
+          });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
+    },
+
+    async checkEmail() {
+      const emailCorrect = await this.$store.dispatch(
+        "fetchCheckEmail/getCheckEmail",
+        this.ruleForm.email
+      );
+      return await emailCorrect;
+    },
+    nextStep(val) {
+      if (this.active > 1) {
+        this.__POST_LEAD();
+      } else {
+        this.active = val;
+      }
+      this.emailIncorrect = false;
     },
   },
   mounted() {
@@ -644,6 +655,7 @@ export default {
         this.__GET_CITIES();
       }
     },
+
     async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,
@@ -728,5 +740,8 @@ export default {
   .el-select-dropdown__wrap {
     max-height: 300px !important;
   }
+}
+.disabledStep {
+  pointer-events: none;
 }
 </style>

@@ -1536,7 +1536,6 @@
         <div class="reload-news">
           <div class="reload-news-btn" @click="__GET_ARTICLES">
             <svg
-              class="map_state"
               :class="{ activeReload: sliderActive }"
               width="41"
               height="34"

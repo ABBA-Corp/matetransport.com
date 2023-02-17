@@ -49,7 +49,7 @@
                   {{ $store.state.translations["main.banner_form_title"] }}
                 </h2>
               </div>
-              <div v-if="active == 2">
+              <div v-if="active == 1">
                 <div class="form-block">
                   <label for="inputFrom">{{
                     $store.state.translations["main.form_label_email"]
@@ -102,7 +102,7 @@
                   </el-form-item>
                 </div>
               </div>
-              <div v-if="active == 1">
+              <div v-if="active == 0">
                 <div class="form-block">
                   <label for="">{{
                     $store.state.translations["main.form_label_shipFrom"]
@@ -168,7 +168,7 @@
                   </el-form-item>
                 </div>
               </div>
-              <div v-if="active == 3">
+              <div v-if="active == 2">
                 <div class="form-block">
                   <label for="">{{
                     $store.state.translations["main.form_vehicleYear"]
@@ -244,15 +244,25 @@
                 {{ $store.state.translations["main.banner_form_text"] }}
               </p>
               <div
-                class="banner-form-btn d-flex justify-content-end steps-action"
+                class="banner-form-btn steps-action d-flex justify-content-end"
+                :class="{ 'justify-content-between': active > 0 }"
               >
+                <div
+                  class="form-btn previos-btn"
+                  @click="prev"
+                  v-if="active > 0"
+                >
+                  Previos
+                </div>
                 <div
                   class="form-btn"
                   type="submit"
-                  @click="submitForm('ruleForm')"
+                  v-on:click="submitForm('ruleForm', 1)"
+                  v-if="active == 0"
+                  :class="activeDisabled"
                 >
                   {{
-                    active == 3
+                    active == 2
                       ? $store.state.translations["main.form_btn_lastStage"]
                       : $store.state.translations["main.form_btn_nextStage"]
                   }}<svg
@@ -272,13 +282,68 @@
                     />
                   </svg>
                 </div>
+                <div
+                  class="form-btn"
+                  type="submit"
+                  v-on:click="submitForm('ruleForm', 2)"
+                  v-if="active == 1"
+                  :class="activeDisabled"
+                >
+                  {{
+                    active == 2
+                      ? $store.state.translations["main.form_btn_lastStage"]
+                      : $store.state.translations["main.form_btn_nextStage"]
+                  }}<svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="form-btn"
+                  type="submit"
+                  v-on:click="submitForm('ruleForm', 2)"
+                  v-if="active == 2"
+                  :class="activeDisabled"
+                >
+                  {{ $store.state.translations["main.form_btn_lastStage"] }}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.9565 6.28711L18.6695 12.0001L12.9565 17.7131M5.35547 12.0001H18.6525"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
               <div class="banner-steps">
-                <div class="banner-steps">
-                  <el-steps :active="active" finish-status="success">
+                <div
+                  class="banner-steps"
+                  v-for="step in steps"
+                  v-if="active == step"
+                >
+                  <el-steps :active="step + 1" finish-status="success">
                     <el-step
-                      @click="reverse(1)"
-                      style="cursor: pointer;"
                       :title="$store.state.translations['main.step_location']"
                     ></el-step>
                     <el-step
@@ -311,20 +376,24 @@
           ></div>
           <div class="lm-body">
             <el-skeleton-item
-            v-if="skeleton_from"
-            variant="text"
-            style="width: 80%;"
-          />
+              v-if="skeleton_from"
+              variant="text"
+              style="width: 80%;"
+            />
             <h2 v-else class="lm-title">
               {{ currentCitiesData.from?.name }}
             </h2>
             <h6 class="lm-area">Tochka A</h6>
             <el-skeleton-item
-            v-if="skeleton_from"
-            variant="text"
-            style="width: 80%;"
-          />
-            <div v-else class="lm-text" v-html="currentCitiesData.from?.text"></div>
+              v-if="skeleton_from"
+              variant="text"
+              style="width: 80%;"
+            />
+            <div
+              v-else
+              class="lm-text"
+              v-html="currentCitiesData.from?.text"
+            ></div>
           </div>
         </div>
         <div class="location-map-card">
@@ -333,23 +402,31 @@
             variant="text"
             style="width: 80%;"
           />
-          <div v-else class="lm-map" v-html="currentCitiesData.to?.iframe"></div>
+          <div
+            v-else
+            class="lm-map"
+            v-html="currentCitiesData.to?.iframe"
+          ></div>
           <div class="lm-body">
             <el-skeleton-item
-            v-if="skeleton_from"
-            variant="text"
-            style="width: 80%;"
-          />
+              v-if="skeleton_from"
+              variant="text"
+              style="width: 80%;"
+            />
             <h2 v-else class="lm-title">
               {{ currentCitiesData.to?.name }}
             </h2>
             <h6 class="lm-area">Tochka B</h6>
             <el-skeleton-item
-            v-if="skeleton_from"
-            variant="text"
-            style="width: 80%;"
-          />
-            <div v-else class="lm-text" v-html="currentCitiesData.to?.text"></div>
+              v-if="skeleton_from"
+              variant="text"
+              style="width: 80%;"
+            />
+            <div
+              v-else
+              class="lm-text"
+              v-html="currentCitiesData.to?.text"
+            ></div>
           </div>
         </div>
         <!-- <LocationMapCard
@@ -535,7 +612,7 @@ export default {
   data() {
     return {
       current: 0,
-      active: 1,
+      active: 0,
       date: "01/01/2015",
       cities: [],
       carMakes: [],
@@ -547,6 +624,7 @@ export default {
       skeleton_to: false,
       skeleton_from: false,
       reviews: [],
+      steps: [0, 1, 2],
       ruleForm: {
         email: "",
         nbm: "",
@@ -620,6 +698,13 @@ export default {
       },
     };
   },
+  computed: {
+    activeDisabled() {
+      return {
+        lastStage: this.active == 2,
+      };
+    },
+  },
   async mounted() {
     this.__GET_CITIES();
     this.currentCities = await JSON.parse(
@@ -643,6 +728,12 @@ export default {
     moment,
     reverse(val) {
       (this.active = val), console.log(this.active);
+    },
+    next() {
+      this.active++;
+    },
+    prev() {
+      this.active--;
     },
     async __GET_CITIES() {
       this.cities = await this.$store.dispatch("fetchLocations/getCities", {
@@ -683,23 +774,36 @@ export default {
         this.$router.push(`/calculator/choice-tarif/${this.leadCread.uuid}`);
       }
     },
-    async submitForm(ruleForm) {
+    async submitForm(ruleForm, val) {
+      console.log(this.active);
       if (!this.ruleForm.ship_from) {
         this.ruleForm.ship_from = this.currentCities.ship_from;
       }
       if (!this.ruleForm.ship_to) {
         this.ruleForm.ship_to = this.currentCities.ship_to;
       }
-      this.$refs[ruleForm].validate(async (valid) => {
+      this.$refs[ruleForm].validate((valid) => {
         if (valid) {
-          if (this.active++ > 2) {
-            this.__POST_LEAD();
-          }
+          this.nextStep(val);
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
+    },
+
+    async checkEmail() {
+      const emailCorrect = await this.$store.dispatch(
+        "fetchCheckEmail/getCheckEmail",
+        this.ruleForm.email
+      );
+      return await emailCorrect;
+    },
+    nextStep(val) {
+      if (this.active > 1) {
+        this.__POST_LEAD();
+      } else {
+        this.active = val;
+      }
     },
   },
   watch: {
@@ -708,6 +812,7 @@ export default {
         langCode: this.$i18n.locale,
         paramsId: val,
       });
+      console.log(this.carMakesValue);
     },
     async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
