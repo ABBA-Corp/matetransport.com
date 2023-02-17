@@ -355,7 +355,6 @@
               v-if="active == 1"
               :class="activeDisabled"
             >
-              sdfsd
               {{
                 active == 2
                   ? $store.state.translations["main.form_btn_lastStage"]
