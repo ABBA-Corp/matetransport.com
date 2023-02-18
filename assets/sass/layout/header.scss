@@ -10,6 +10,7 @@
   background-color: #f0f8ff;
   p {
     @include fontStyle(13px, 400, $dark-blue);
+    white-space: nowrap;
   }
 }
 .header-top-grid {
