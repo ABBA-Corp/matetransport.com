@@ -102,13 +102,18 @@
 }
 .form-btn {
   background: linear-gradient(90deg, #008aff 0%, #005ba8 100%);
+  // background: green;
   @include fontStyle(16px, 600, #fff);
   line-height: 20px;
   padding: 10px 29px;
   border-radius: 500px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 1s !important;
   &:hover {
     color: #fff;
+    background: linear-gradient(90deg, #005ba8 0%, #008aff 100%);
   }
   svg {
     margin-left: 18px;

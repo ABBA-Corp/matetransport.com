@@ -73,7 +73,7 @@
             >
           </div>
           <div class="brand-icons">
-            <a :href="$store.state.staticInfo.instagram"
+            <a target="_blank" v-if="$store.state.staticInfo.instagram" :href="$store.state.staticInfo.instagram"
               ><svg
                 width="24"
                 height="24"
@@ -91,7 +91,7 @@
                 />
               </svg>
             </a>
-            <a :href="$store.state.staticInfo.facebook"
+            <a target="_blank" v-if="$store.state.staticInfo.facebook" :href="$store.state.staticInfo.facebook"
               ><svg
                 width="24"
                 height="24"
@@ -109,7 +109,7 @@
                 />
               </svg>
             </a>
-            <a :href="$store.state.staticInfo.telegram"
+            <a target="_blank" v-if="$store.state.staticInfo.linked_in" :href="$store.state.staticInfo.linked_in"
               ><svg
                 width="24"
                 height="24"
@@ -127,7 +127,7 @@
                 />
               </svg>
             </a>
-            <a :href="$store.state.staticInfo.telegram"
+            <a target="_blank" v-if="$store.state.staticInfo.twitter" :href="$store.state.staticInfo.twitter"
               ><svg
                 width="24"
                 height="24"
