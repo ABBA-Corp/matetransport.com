@@ -362,7 +362,7 @@
 
       <TitleSmall title="Map" />
 
-      <div class="location-map-maps-grid">
+      <div class="location-map-maps-grid" v-if="!skeletonMap">
         <div class="location-map-card">
           <el-skeleton-item
             v-if="skeleton_from"
@@ -372,7 +372,7 @@
           <div
             class="lm-map"
             v-else
-            v-html="currentCitiesData.from?.iframe"
+            v-html="currentCitiesData_from?.iframe"
           ></div>
           <div class="lm-body">
             <el-skeleton-item
@@ -381,7 +381,7 @@
               style="width: 80%;"
             />
             <h2 v-else class="lm-title">
-              {{ currentCitiesData.from?.name }}
+              {{ currentCitiesData_from?.name }}
             </h2>
             <h6 class="lm-area">Tochka A</h6>
             <el-skeleton-item
@@ -392,7 +392,7 @@
             <div
               v-else
               class="lm-text"
-              v-html="currentCitiesData.from?.text"
+              v-html="currentCitiesData_from?.text"
             ></div>
           </div>
         </div>
@@ -405,7 +405,7 @@
           <div
             v-else
             class="lm-map"
-            v-html="currentCitiesData.to?.iframe"
+            v-html="currentCitiesData_to?.iframe"
           ></div>
           <div class="lm-body">
             <el-skeleton-item
@@ -414,7 +414,7 @@
               style="width: 80%;"
             />
             <h2 v-else class="lm-title">
-              {{ currentCitiesData.to?.name }}
+              {{ currentCitiesData_to?.name }}
             </h2>
             <h6 class="lm-area">Tochka B</h6>
             <el-skeleton-item
@@ -425,7 +425,7 @@
             <div
               v-else
               class="lm-text"
-              v-html="currentCitiesData.to?.text"
+              v-html="currentCitiesData_to?.text"
             ></div>
           </div>
         </div>
@@ -621,7 +621,6 @@ export default {
       allCities: [],
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       currentCities: {},
-      skeleton_to: false,
       skeleton_from: false,
       reviews: [],
       steps: [0, 1, 2],
@@ -710,13 +709,9 @@ export default {
     this.currentCities = await JSON.parse(
       localStorage.getItem("cities_from_map")
     );
-    this.__GET_CURRENT_CITY(
-      this.currentCities.ship_from,
-      "from",
-      this.skeleton_from
-    );
     this.__GET_REVIEWS();
-    this.__GET_CURRENT_CITY(this.currentCities.ship_to, "to", this.skeleton_to);
+    this.__GET_CURRENT_CITY_TO();
+    this.__GET_CURRENT_CITY_FROM();
   },
   methods: {
     async __GET_REVIEWS() {
@@ -747,15 +742,21 @@ export default {
         this.$i18n.locale
       );
     },
-    async __GET_CURRENT_CITY(id, city, skeletons) {
-      skeletons = true;
-      this.currentCitiesData[city] = await this.$store.dispatch(
+    async __GET_CURRENT_CITY_TO() {
+      this.currentCitiesData_to = await this.$store.dispatch(
         "fetchLocations/getCurrentCity",
         {
-          currentCity: id,
+          currentCity: this.currentCities.ship_to,
         }
       );
-      skeletons = false;
+    },
+    async __GET_CURRENT_CITY_FROM() {
+      this.currentCitiesData_from = await this.$store.dispatch(
+        "fetchLocations/getCurrentCity",
+        {
+          currentCity: this.currentCities.ship_from,
+        }
+      );
     },
     onChangeDate(value, dateStrings) {
       this.ruleForm.date = dateStrings;
