@@ -472,15 +472,11 @@ export default {
       await this.$nuxt.$loading.finish();
     },
     async __GET_STATIC_INFORMATIONS() {
-      this.$nextTick(() => {
-        this.$nuxt.$loading.start();
-      });
       const info = await this.$store.dispatch(
         "fetchStaticInformations/getStaticInformations",
         this.$i18n.locale
       );
       await this.$store.commit("getInfo", info);
-      await this.$nuxt.$loading.finish();
     },
     async __POST_CONTACT_NUMBER() {
       this.app_create = await this.$store.dispatch(
@@ -514,10 +510,13 @@ export default {
       });
     },
   },
+  asyncData() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  },
   mounted() {
     this.__GET_STATIC_INFORMATIONS();
     this.__GET_TRANSLATIONS();
-
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;

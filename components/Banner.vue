@@ -15,13 +15,19 @@
           </p>
         </div>
         <div class="video-container">
+          <img
+            v-if="videoSkeleton"
+            src="../assets/images/Rectangle 23896.png"
+            alt=""
+          />
           <video
+          v-else
             ref="video"
             autoplay="autoplay"
             loop="loop"
             :muted="true"
             type="video/mp4"
-            src="../assets/video/logistic_vid.mp4"
+            :src="aboutUs.video"
           ></video>
         </div>
         <div class="video_controller">
@@ -439,6 +445,7 @@ export default {
       video: true,
       videoMuted: true,
       active: 0,
+      aboutUs: [],
       emailIncorrect: false,
       dateFormatList: ["DD/MM/YYYY", "DD/MM/YY"],
       cities: [],
@@ -447,6 +454,7 @@ export default {
       carModles: [],
       carMakesValue: "",
       steps: [0, 1, 2],
+      videoSkeleton: false,
       ruleForm: {
         email: "",
         nbm: "",
@@ -646,10 +654,19 @@ export default {
       }
       this.emailIncorrect = false;
     },
+    async GET_ABOUT_US() {
+      this.videoSkeleton = true;
+      this.aboutUs = await this.$store.dispatch(
+        "fetchAboutUs/getAboutUs",
+        this.$i18n.locale
+      );
+      this.videoSkeleton = false;
+    },
   },
   mounted() {
     this.video = true;
     this.__GET_CITIES();
+    this.GET_ABOUT_US();
   },
   components: { Title },
   watch: {
