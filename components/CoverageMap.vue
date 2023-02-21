@@ -1615,7 +1615,6 @@ export default {
     this.__GET_ARTICLES();
     let svg = document.querySelector(".map_select");
     let rects = document.querySelectorAll(".map_state");
-    console.log(svg, rects);
     rects.forEach((rect) => {
       rect.addEventListener("mouseenter", (e) => {
         svg.appendChild(rect);
@@ -1636,10 +1635,8 @@ export default {
         "fetchLocations/getStates",
         this.$i18n.locale
       );
-      await console.log(this.states.find((item) => item.code == "WA"));
     },
     pointLocation(event) {
-      console.log(event.toElement.dataset.name);
       this.pointedLocation = event.toElement.dataset.name;
     },
     async mapClick(val) {
@@ -1655,7 +1652,6 @@ export default {
           state: this.currentMap[0],
         }
       );
-      await console.log(this.currentMap);
       if (this.currentMap.length == 2) {
         this.cities.to = await this.$store.dispatch(
           "fetchLocations/getCities",

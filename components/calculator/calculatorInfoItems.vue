@@ -101,11 +101,9 @@ export default {
   },
   methods: {
     onChange(e) {
-      console.log("radio checked", e.target.value);
     },
     editInfo(val) {
       this.editShow = val;
-      console.log(this.editShow);
     },
     CloseInput() {
       if (this.editShow) {

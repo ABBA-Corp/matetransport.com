@@ -450,7 +450,6 @@ export default {
       document.body.style.height = "auto";
     },
     timeElapsedHandler(e) {
-      console.log(e);
     },
     handleCommand(command) {
       this.__GET_STATIC_INFORMATIONS(command);
@@ -504,7 +503,6 @@ export default {
         if (valid) {
           this.__POST_CONTACT_NUMBER();
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
@@ -535,7 +533,6 @@ export default {
   watch: {
     discountFunc(val) {
       if (val) {
-        console.log("sdfsdfsdfsd");
         this.timer();
       }
     },

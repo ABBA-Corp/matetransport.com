@@ -275,7 +275,6 @@ export default {
   watch: {
     localChange(newVal, oldVal) {
       if (newVal != oldVal) {
-        console.log("GETTT");
       }
     },
   },

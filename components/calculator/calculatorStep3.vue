@@ -158,11 +158,9 @@ export default {
   },
   methods: {
     onChange(e) {
-      console.log("radio checked", e.target.value);
     },
     addNumberInput() {
       this.numberInputs.push({ id: this.numberInputs.length + 1 });
-      console.log(this.numberInputs);
     },
     deleteNumberInput(id) {
       if (this.numberInputs.length > 1) {

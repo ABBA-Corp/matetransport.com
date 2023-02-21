@@ -94,7 +94,6 @@ export default {
   },
   methods: {
     onChange(e) {
-      console.log("radio checked", e.target.value);
     },
   },
 };

@@ -117,7 +117,6 @@ export default {
     onMessageWasSent(message) {
       // called when the user sends a message
       this.messageList = [...this.messageList, message];
-      console.log(this.messageList);
     },
     openChat() {
       // called when the user clicks on the fab button to open the chat
@@ -133,7 +132,6 @@ export default {
       // leverage pagination for loading another page of messages
     },
     handleOnType() {
-      console.log("Emit typing event");
     },
     editMessage(message) {
       const m = this.messageList.find((m) => m.id === message.id);

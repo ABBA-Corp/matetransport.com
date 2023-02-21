@@ -45,12 +45,16 @@
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">{{ $store.state.translations["modal.app_truckMark"] }}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_truckMark"]
+                }}</label>
                 <el-form-item prop="car_make" label-position="top">
                   <el-select
                     class="banner-select w-100"
                     v-model="ruleForm.car_make"
-                    :placeholder="$store.state.translations['modal.app_truckMark']"
+                    :placeholder="
+                      $store.state.translations['modal.app_truckMark']
+                    "
                     @focus="__GET_CAR_MAKES()"
                     :loading="!carMakes.length > 0"
                     loading-text="Loading..."
@@ -67,12 +71,16 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{ $store.state.translations["modal.app_truckYear"] }}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_truckYear"]
+                }}</label>
                 <el-form-item prop="car_year" label-position="top">
                   <el-select
                     v-model="ruleForm.car_year"
                     class="banner-select w-100"
-                    :placeholder="$store.state.translations['modal.app_truckYear']"
+                    :placeholder="
+                      $store.state.translations['modal.app_truckYear']
+                    "
                   >
                     <el-option
                       v-for="item in years"
@@ -85,12 +93,16 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_truckModel']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_truckModel"]
+                }}</label>
                 <el-form-item prop="vehicle" label-position="top">
                   <el-select
                     class="banner-select w-100"
                     v-model="ruleForm.vehicle"
-                    :placeholder="$store.state.translations['modal.app_truckModel']"
+                    :placeholder="
+                      $store.state.translations['modal.app_truckModel']
+                    "
                     :disabled="ruleForm.car_make == ''"
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
@@ -110,20 +122,24 @@
           <div class="modal_form_container">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
-                {{$store.state.translations['modal.app_subtitle2']}}
+                {{ $store.state.translations["modal.app_subtitle2"] }}
               </h1>
               <span></span>
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_pickupLoc']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_pickupLoc"]
+                }}</label>
                 <el-form-item prop="ship_from" label-position="top">
                   <el-select
                     v-model="ruleForm.ship_from"
                     class="w-100"
                     filterable
                     :loading="!shipFromOptions.length > 0"
-                    :placeholder="$store.state.translations['modal.app_pickupLoc']"
+                    :placeholder="
+                      $store.state.translations['modal.app_pickupLoc']
+                    "
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
                   >
@@ -139,7 +155,9 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_deliveryLoc']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_deliveryLoc"]
+                }}</label>
                 <el-form-item prop="ship_to" label-position="top">
                   <el-select
                     v-model="ruleForm.ship_to"
@@ -147,7 +165,9 @@
                     class="w-100"
                     filterable
                     ref="selectInput"
-                    :placeholder="$store.state.translations['modal.app_deliveryLoc']"
+                    :placeholder="
+                      $store.state.translations['modal.app_deliveryLoc']
+                    "
                     loading-text="Loading..."
                     popper-class="modal-select-opitons"
                   >
@@ -163,7 +183,9 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_deliveryDate']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_deliveryDate"]
+                }}</label>
                 <el-form-item prop="date" label-position="top">
                   <a-date-picker
                     @change="onChangeDate"
@@ -180,19 +202,29 @@
           <div class="modal_form_container">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
-                {{$store.state.translations['modal.app_subtitle3']}}
+                {{ $store.state.translations["modal.app_subtitle3"] }}
               </h1>
               <span></span>
             </div>
             <div class="form-block-grid">
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_firstName']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_firstName"]
+                }}</label>
                 <el-form-item prop="" label-position="top">
-                  <input class="w-100" type="text" :placeholder="$store.state.translations['modal.app_firstName']" />
+                  <input
+                    class="w-100"
+                    type="text"
+                    :placeholder="
+                      $store.state.translations['modal.app_firstName']
+                    "
+                  />
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_email']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_email"]
+                }}</label>
                 <el-form-item prop="email" label-position="top">
                   <input
                     class="w-100"
@@ -205,7 +237,9 @@
                 </el-form-item>
               </div>
               <div class="modal_form_block form-block">
-                <label for="">{{$store.state.translations['modal.app_number']}}</label>
+                <label for="">{{
+                  $store.state.translations["modal.app_number"]
+                }}</label>
                 <el-form-item prop="nbm" label-position="top">
                   <the-mask
                     class="w-100"
@@ -221,7 +255,7 @@
           </div>
           <div class="modal-application-form-btn">
             <div type="submit" class="form-btn" @click="submitForm('ruleForm')">
-              {{$store.state.translations['modal.app_btn']}}
+              {{ $store.state.translations["modal.app_btn"] }}
             </div>
           </div>
         </el-form>
@@ -358,10 +392,8 @@ export default {
     async submitForm(ruleForm) {
       this.$refs[ruleForm].validate(async (valid) => {
         if (valid) {
-          console.log(this.ruleForm);
           this.__POST_LEAD();
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
