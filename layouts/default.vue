@@ -46,29 +46,29 @@
           <div class="drawer_body">
             <ul>
               <li>
-                <a @click="drawerClose" href="#home-banner">{{
+                <span @click="drawerClose('home-banner')">{{
                   $store.state.translations["main.nav_howItWorks"]
-                }}</a>
+                }}</span>
               </li>
               <li>
-                <a @click="drawerClose" href="#howWeWork">{{
+                <span @click="drawerClose('howWeWork')">{{
                   $store.state.translations["main.nav_howWeWork"]
-                }}</a>
+                }}</span>
               </li>
               <li>
-                <a @click="drawerClose" href="#ourServices">{{
+                <span @click="drawerClose('ourServices')">{{
                   $store.state.translations["main.nav_ourServices"]
-                }}</a>
+                }}</span>
               </li>
               <li>
-                <a @click="drawerClose" href="#coverageMap">{{
+                <span @click="drawerClose('coverageMap')">{{
                   $store.state.translations["main.nav_coverageMap"]
-                }}</a>
+                }}</span>
               </li>
               <li>
-                <a @click="drawerClose" href="#newAndEvents">{{
+                <span @click="drawerClose('newAndEvents')">{{
                   $store.state.translations["main.nav_newsAndEvents"]
-                }}</a>
+                }}</span>
               </li>
             </ul>
             <!-- <div class="drawer_lang">
@@ -210,10 +210,12 @@ export default {
       document.body.style.overflowY = "hidden";
       document.body.style.height = "100vh";
     },
-    drawerClose() {
+    drawerClose(id) {
       this.drawer = false;
       document.body.style.overflowY = "auto";
       document.body.style.height = "auto";
+      const element = document.getElementById(id);
+      element.scrollIntoView();
     },
     show(name) {
       this.$modal.show(name);
@@ -261,13 +263,14 @@ export default {
     li {
       padding: 24px 0;
       border-bottom: 1px solid #e4edf5;
-      a {
+      a,span {
         font-family: "Mulish";
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;
         color: #024e90;
+        cursor: pointer;
       }
     }
   }

@@ -51,29 +51,29 @@
         <div class="header-navbar-nav">
           <ul>
             <li>
-              <a class="is-active" href="#home-banner">{{
+              <span class="is-active" @click="scrollElement('home-banner')">{{
                 $store.state.translations["main.nav_howItWorks"]
-              }}</a>
+              }}</span>
             </li>
             <li>
-              <a href="#howWeWork">{{
+              <span @click="scrollElement('howWeWork')">{{
                 $store.state.translations["main.nav_howWeWork"]
-              }}</a>
+              }}</span>
             </li>
             <li>
-              <a href="#ourServices">{{
+              <span @click="scrollElement('ourServices')">{{
                 $store.state.translations["main.nav_ourServices"]
-              }}</a>
+              }}</span>
             </li>
             <li>
-              <a href="#coverageMap">{{
+              <span @click="scrollElement('coverageMap')">{{
                 $store.state.translations["main.nav_coverageMap"]
-              }}</a>
+              }}</span>
             </li>
             <li>
-              <a href="#newAndEvents">{{
+              <span @click="scrollElement('newAndEvents')">{{
                 $store.state.translations["main.nav_newsAndEvents"]
-              }}</a>
+              }}</span>
             </li>
           </ul>
         </div>
@@ -449,8 +449,7 @@ export default {
       document.body.style.overflowY = "auto";
       document.body.style.height = "auto";
     },
-    timeElapsedHandler(e) {
-    },
+    timeElapsedHandler(e) {},
     handleCommand(command) {
       this.__GET_STATIC_INFORMATIONS(command);
       this.$i18n.setLocale(command);
@@ -506,6 +505,10 @@ export default {
           return false;
         }
       });
+    },
+    scrollElement(id) {
+      const element = document.getElementById(id);
+      element.scrollIntoView();
     },
   },
   asyncData() {

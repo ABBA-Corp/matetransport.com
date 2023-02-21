@@ -105,11 +105,11 @@
     display: flex;
     li {
       margin-right: 60px;
-      a {
+      a,span {
         @include fontStyle(16px, 500, #96adc1);
         line-height: 20px;
         position: relative;
-
+cursor: pointer;
         &::after {
           content: "";
           position: absolute;
