@@ -1364,7 +1364,10 @@
             </div>
             <div class="form-block-map">
               <!-- <label for="inputFrom">Tochka A</label> -->
-              <span class="white_space">Tochka A shahari</span>
+              <!-- Tochka A shahari -->
+              <span class="white_space">{{
+                $store.state.translations["main.coverageMap_city_a"]
+              }}</span>
               <el-select
                 v-model="dataForm.ship_from"
                 class="mb-2"
@@ -1412,7 +1415,9 @@
             </div>
             <div class="form-block-map">
               <!-- <label for="inputFrom">Tochka A</label> -->
-              <span class="white_space">Tochka B shahari</span>
+              <span class="white_space">{{
+                $store.state.translations["main.coverageMap_city_b"]
+              }}</span>
               <el-select
                 v-model="dataForm.ship_to"
                 class="mb-2"

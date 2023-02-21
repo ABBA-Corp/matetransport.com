@@ -563,7 +563,6 @@ export default {
       } else {
         this.$refs.video.play();
         this.video = true;
-        console.log(this.$refs.video.muted);
       }
     },
     next() {

@@ -258,23 +258,7 @@
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
             <h5>{{ $store.state.translations["modal.calculator_title"] }}</h5>
-            <span @click="hide('modal_app_success')"
-              ><svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-                  stroke="#024E90"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                /></svg
-            ></span>
+            <span></span>
           </div>
           <div class="modal_body d-flex flex-column align-items-center">
             <span class="success_icon"
