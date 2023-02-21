@@ -34,10 +34,10 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </span>
-          <a class="header-top-btn" :href="`tel:${$store.state.staticInfo.nbm}`"
+          <span class="header-top-btn" @click="show('modal_support_chat')"
             ><span>{{
               $store.state.translations["main.check_my_order"]
-            }}</span></a
+            }}</span></span
           >
         </div>
       </div>
@@ -257,9 +257,7 @@
       <modal name="modal_app_success" width="590px" height="auto">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
-            <h5>  {{
-                $store.state.translations["modal.calculator_title"]
-              }}</h5>
+            <h5>{{ $store.state.translations["modal.calculator_title"] }}</h5>
             <span @click="hide('modal_app_success')"
               ><svg
                 width="24"
@@ -286,27 +284,116 @@
               class="d-flex flex-column align-items-center mt-2 mt-lg-4 mb-4"
             >
               <h5 class="success_contact">
-                {{
-                $store.state.translations["modal.calculator_text"]
-              }}
+                {{ $store.state.translations["modal.calculator_text"] }}
               </h5>
               <p class="fasting-contact-text text-center mt-1">
-                {{
-                $store.state.translations["modal.calculator_info"]
-              }}
+                {{ $store.state.translations["modal.calculator_info"] }}
               </p>
             </div>
 
             <div class="modal-form-btn w-100">
               <div class="form-btn" @click="backToHome">
-                {{
-                $store.state.translations["modal.calculator_toBackBtn"]
-              }}
+                {{ $store.state.translations["modal.calculator_toBackBtn"] }}
               </div>
             </div>
           </div>
         </div></modal
       >
+      <modal name="modal_support_chat" width="590px" height="auto">
+        <div class="modal_container">
+          <div
+            class="modal_header modal_support_chat d-flex justify-content-between"
+          >
+            <div class="modal_support_profile">
+              <img src="../../assets/images/Ellipse 102.png" alt="" />
+              <div class="d-flex flex-column">
+                <h5 class="profile_name">
+                  Nargiza Ahmedova
+                </h5>
+                <span class="profile_work">
+                  Meta logistics asistant
+                </span>
+              </div>
+            </div>
+            <span @click="hide('modal_support_chat')"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
+                  stroke="#024E90"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+            ></span>
+          </div>
+          <div class="modal_support_body d-flex flex-column align-items-center">
+            <div class="modal_text_area">
+              <div class="asistant_text">
+                <p>Hey, How are you?</p>
+              </div>
+              <div class="asistant_text">
+                <p>
+                  I was asking for your New ask we are going to host a party.
+                </p>
+              </div>
+
+              <div class="user_text">
+                <p>
+                  I am fine, How about you?
+                </p>
+              </div>
+              <div class="user_text">
+                <p>
+                  Yayy, Great I would love to join the party!
+                </p>
+              </div>
+              <div class="asistant_text">
+                <p>Hey, How are you?</p>
+              </div>
+              <div class="asistant_text">
+                <p>
+                  I was asking for your New ask we are going to host a party.
+                </p>
+              </div>
+
+              <div class="user_text">
+                <p>
+                  I am fine, How about you?
+                </p>
+              </div>
+              <div class="user_text">
+                <p>
+                  Yayy, Great I would love to join the party!
+                </p>
+              </div>
+            </div>
+
+            <div class="modal_support_send w-100">
+              <input type="text" placeholder="Xabaringiz..." />
+              <div class="modal_support_btn">
+                <svg
+                  width="18"
+                  height="15"
+                  viewBox="0 0 18 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.08189 6.27235C1.15554 6.26073 1.23008 6.25537 1.30465 6.25631H14.0033L13.7264 6.13117C13.4557 6.00669 13.2095 5.83728 12.9987 5.63059L9.43773 2.17036C8.96873 1.73533 8.88993 1.0355 9.25098 0.512206C9.6712 -0.0454281 10.4771 -0.166505 11.051 0.241817C11.0973 0.274823 11.1414 0.310802 11.1828 0.349518L17.6223 6.60672C18.1255 7.09517 18.126 7.88753 17.6233 8.37653C17.623 8.37684 17.6226 8.37719 17.6223 8.3775L11.1828 14.6347C10.6792 15.1227 9.86374 15.1216 9.36146 14.6322C9.32194 14.5937 9.28503 14.5527 9.25098 14.5096C8.88993 13.9863 8.96873 13.2864 9.43773 12.8514L12.9923 9.38491C13.1813 9.20111 13.3985 9.04698 13.6363 8.92814L14.0226 8.75919H1.37553C0.717617 8.78293 0.1404 8.33636 0.0168018 7.70798C-0.0970554 7.02575 0.379787 6.38302 1.08189 6.27235Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div></div
+      ></modal>
       <ModalSubmitApp />
     </div>
   </div>

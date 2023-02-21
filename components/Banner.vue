@@ -132,7 +132,7 @@
           <div class="form-title">
             <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
           </div>
-          <div v-if="active == 0">
+          <div v-if="active == 1">
             <div class="form-block">
               <label for="inputFrom">{{
                 $store.state.translations["main.form_label_email"]
@@ -186,7 +186,7 @@
               </el-form-item>
             </div>
           </div>
-          <div v-if="active == 1">
+          <div v-if="active == 0">
             <div class="form-block">
               <label for="">{{
                 $store.state.translations["main.form_label_shipFrom"]
@@ -616,12 +616,16 @@ export default {
     async submitForm(ruleForm, val) {
       this.$refs[ruleForm].validate((valid) => {
         if (valid) {
-          this.checkEmail().then((data) => {
-            const emailCorrect = data;
-            emailCorrect.status == "valid"
-              ? this.nextStep(val)
-              : (this.emailIncorrect = true);
-          });
+          if (this.active == 1) {
+            this.checkEmail().then((data) => {
+              const emailCorrect = data;
+              emailCorrect.status == "valid"
+                ? this.nextStep(val)
+                : (this.emailIncorrect = true);
+            });
+          } else {
+            this.nextStep(val);
+          }
         } else {
           return false;
         }
@@ -646,15 +650,10 @@ export default {
   },
   mounted() {
     this.video = true;
+    this.__GET_CITIES();
   },
   components: { Title },
   watch: {
-    active(val) {
-      if (val == 1) {
-        this.__GET_CITIES();
-      }
-    },
-
     async "ruleForm.car_make"(val) {
       this.carModles = await this.$store.dispatch("fetchCars/getCarsModels", {
         langCode: this.$i18n.locale,
