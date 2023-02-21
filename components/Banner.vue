@@ -21,7 +21,7 @@
             alt=""
           />
           <video
-          v-else
+            v-else
             ref="video"
             autoplay="autoplay"
             loop="loop"
@@ -206,6 +206,8 @@
                   ref="selectInput"
                   :placeholder="
                     $store.state.translations['main.placeH_shipFrom']
+                      ? $store.state.translations['main.placeH_shipFrom']
+                      : 'Loading...'
                   "
                   popper-class="web-selects"
                 >
@@ -231,8 +233,13 @@
                   filterable
                   :disabled="!cities.length > 0"
                   ref="selectInput"
-                  :placeholder="$store.state.translations['main.placeH_shipTo']"
+                  :placeholder="
+                    $store.state.translations['main.placeH_shipTo']
+                      ? $store.state.translations['main.placeH_shipTo']
+                      : 'Loading...'
+                  "
                   popper-class="web-selects"
+                  loading-text="Loading..."
                 >
                   <el-option
                     class="edit-select"
