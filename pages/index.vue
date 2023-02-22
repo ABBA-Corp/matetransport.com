@@ -47,10 +47,7 @@ export default {
     this.__GET_STATES();
     this.__GET_REVIEWS();
   },
-  asyncData() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  },
+
   methods: {
     async __GET_SERVICES() {
       this.$nextTick(() => {

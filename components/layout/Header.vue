@@ -511,10 +511,7 @@ export default {
       element.scrollIntoView();
     },
   },
-  asyncData() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  },
+ 
   mounted() {
     this.__GET_STATIC_INFORMATIONS();
     this.__GET_TRANSLATIONS();
