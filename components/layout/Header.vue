@@ -133,9 +133,9 @@
             ></span>
           </div>
           <div class="modal_body">
-            <p class="fasting-contact-text">
+            <!-- <p class="fasting-contact-text">
               {{ $store.state.translations["modal.fastContact_text"] }}
-            </p>
+            </p> -->
             <div class="modal-tariff-info-grid">
               <p class="tariff-info-text">
                 <svg

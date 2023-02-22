@@ -178,8 +178,7 @@
 
       <div class="block-help block-help-web">
         <p>
-          {{ $store.state.translations["calculator.text_contact"]
-          }}
+          {{ $store.state.translations["calculator.text_contact"] }}
         </p>
         <div class="contact-us">
           <div class="contact-us-svg">
@@ -197,10 +196,8 @@
             </svg>
           </div>
           <div class="contact-us-body">
-            <h4> {{ $store.state.translations["calculator.contact_title"]
-          }}</h4>
-            <p> {{ $store.state.translations["calculator.contact_text"]
-          }}</p>
+            <h4>{{ $store.state.translations["calculator.contact_title"] }}</h4>
+            <p>{{ $store.state.translations["calculator.contact_text"] }}</p>
           </div>
         </div>
       </div>
