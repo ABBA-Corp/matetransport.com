@@ -53,16 +53,16 @@
             v-html="serviceInfo.deckription"
           ></div>
           <div class="service-btn-group">
-            <nuxt-link to="/">
+            <div @click="show('modal_header')">
               <span>
                 {{ $store.state.translations["service.useService"] }}
               </span>
-            </nuxt-link>
-            <nuxt-link to="/">
+            </div>
+            <!-- <nuxt-link to="/">
               <span>
                 {{ $store.state.translations["service.useService"] }}
               </span>
-            </nuxt-link>
+            </nuxt-link> -->
           </div>
         </div>
         <div class="service-from-cards">
@@ -238,6 +238,18 @@ export default {
       i18n.locale
     );
     return { serviceInfo, services };
+  },
+  methods: {
+    show(name) {
+      this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
+    },
+    hide(name) {
+      this.$modal.hide(name);
+      document.body.style.overflowY = "auto";
+      document.body.style.height = "auto";
+    },
   },
   watch: {
     service(id) {

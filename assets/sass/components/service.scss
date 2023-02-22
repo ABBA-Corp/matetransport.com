@@ -75,11 +75,13 @@ feColorMatrix .service-select {
 .service-btn-group {
   margin-top: 40px;
 
-  a {
+  a,div {
     padding: 12px 32px;
     border-radius: 24px;
     @include fontStyle(14px, 600, #ffffff);
     line-height: 18px;
+    display: inline;
+    cursor: pointer;
     &:first-child {
       span {
         position: relative;

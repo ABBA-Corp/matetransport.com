@@ -22,7 +22,9 @@
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
           </nuxt-link>
-          <span class="header-top-link" @click="show('modal_header')"
+          <a
+            class="header-top-link"
+            :href="`tel:${$store.state.staticInfo.nbm}`"
             >{{ $store.state.translations["main.contact_us"] }}
             <svg
               width="11"
@@ -33,7 +35,7 @@
             >
               <circle cx="5.5" cy="5.5" r="5.5" fill="#008AFF" />
             </svg>
-          </span>
+          </a>
           <span class="header-top-btn" @click="show('modal_support_chat')"
             ><span>{{
               $store.state.translations["main.check_my_order"]
@@ -511,7 +513,7 @@ export default {
       element.scrollIntoView();
     },
   },
- 
+
   mounted() {
     this.__GET_STATIC_INFORMATIONS();
     this.__GET_TRANSLATIONS();
