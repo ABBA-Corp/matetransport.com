@@ -4,9 +4,9 @@
       ref="carouselControl"
       class="container_xl position-relative carousel_navigate logistic-service-carousel"
     >
-      <p>{{$store.state.translations['main.allServices_choice']}}</p>
+      <p>{{ $store.state.translations["main.allServices_choice"] }}</p>
       <div class="navigate-grid">
-        <div class="swiper-button-prev">
+        <div class="swiper-button-prev prevq">
           <svg
             width="20"
             height="11"
@@ -20,7 +20,7 @@
             />
           </svg>
         </div>
-        <div class="swiper-button-next">
+        <div class="swiper-button-next nextq">
           <svg
             width="20"
             height="11"
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="swiper mySwiper-2" data-aos="fade-left" data-aos-duration="800">
+    <div class="swiper mySwiper-2 oneMoreSlider">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="service in services">
           <LogisticsServicesCard :service="service" />
@@ -47,8 +47,8 @@
         <div class="swiper-slide">
           <div><h1></h1></div>
         </div>
-      
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </template>
@@ -67,40 +67,41 @@ export default {
     },
   },
   mounted() {
-    const car = this.$refs.carouselControl;
-    car.style.width = `${window.innerWidth - 32}px`;
-    window.addEventListener("resize", () => {
-      car.style.width = `${window.innerWidth - 32}px`;
-    });
+    // const car = this.$refs.carouselControl;
+    // car.style.width = `${window.innerWidth - 32}px`;
+    // window.addEventListener("resize", () => {
+    //   car.style.width = `${window.innerWidth - 32}px`;
+    // });
 
-    const swiper = new Swiper(".mySwiper-2", {
-      slidesPerView: 4,
+    const swiper = new Swiper(".oneMoreSlider", {
+      slidesPerView: 5,
       spaceBetween: 24,
       // loop: true,
       //   autoplay: {
       //     delay: 5000,
       //     disableOnInteraction: false,
       //   },
+
       navigation: {
-        nextEl: ".position-relative .navigate-grid .swiper-button-next",
-        prevEl: ".position-relative .navigate-grid .swiper-button-prev",
+        nextEl: ".nextq",
+        prevEl: ".prevq",
       },
       speed: 1000,
-      breakpoints: {
-        320: {
-          slidesPerView: 5,
-          spaceBetween: 10,
-        },
+      // breakpoints: {
+      //   320: {
+      //     slidesPerView: 5,
+      //     spaceBetween: 10,
+      //   },
 
-        771: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-        },
-        1440: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-        },
-      },
+      //   771: {
+      //     slidesPerView: 5,
+      //     spaceBetween: 30,
+      //   },
+      //   1440: {
+      //     slidesPerView: 5,
+      //     spaceBetween: 30,
+      //   },
+      // },
     });
   },
 
@@ -113,10 +114,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.carousel_navigate {
-  margin-left: 0;
-  display: flex;
-  justify-content: space-between;
+.logistic-service-carousel {
   .swiper-button-disabled {
     background: #2c7bf2 !important;
     svg {
@@ -133,6 +131,16 @@ export default {
     border-radius: 50%;
     background: #ffffff;
     border: 2.40546px solid #2c7bf2;
+    transition: 0.4s;
+    &:hover {
+      background: #2c7bf2;
+      border: 2.40546px solid #2c7bf2;
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
     &::after {
       display: none;
     }
@@ -142,6 +150,11 @@ export default {
       transform: rotate(180deg);
     }
   }
+}
+.carousel_navigate {
+  margin-left: 0;
+  display: flex;
+  justify-content: space-between;
 
   .navigate-grid {
     display: grid;

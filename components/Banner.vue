@@ -9,10 +9,10 @@
     <div class="banner-grid">
       <div class="banner-video" data-aos="fade-right" data-aos-duration="1000">
         <div class="banner-title">
-          <h1>{{ $store.state.staticInfo.title }}</h1>
+          <!-- <h1>{{ $store.state.staticInfo.title }}</h1>
           <p>
             {{ $store.state.staticInfo.subtitle }}
-          </p>
+          </p> -->
         </div>
         <div class="video-container">
           <img

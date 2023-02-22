@@ -6,7 +6,7 @@
     <div class="container_xl position-relative carousel_navigate mb-4">
       <slot></slot>
       <div class="navigate-grid">
-        <div class="swiper-button-prev">
+        <div class="swiper-button-prev last-news-prev">
           <svg
             width="20"
             height="11"
@@ -20,7 +20,7 @@
             />
           </svg>
         </div>
-        <div class="swiper-button-next">
+        <div class="swiper-button-next last-news-next">
           <svg
             width="20"
             height="11"
@@ -94,8 +94,8 @@ export default {
       //   },
       autoplay: false,
       navigation: {
-        nextEl: ".position-relative .navigate-grid .swiper-button-next",
-        prevEl: ".position-relative .navigate-grid .swiper-button-prev",
+        nextEl: ".position-relative .navigate-grid .last-news-next",
+        prevEl: ".position-relative .navigate-grid .last-news-prev",
       },
       speed: 1000,
       breakpoints: {
@@ -140,6 +140,16 @@ export default {
       border-radius: 50%;
       background: #ffffff;
       border: 2.40546px solid #2c7bf2;
+      transition: .4s;
+    &:hover {
+      background: #2c7bf2;
+      border: 2.40546px solid #2c7bf2;
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
       &::after {
         display: none;
       }

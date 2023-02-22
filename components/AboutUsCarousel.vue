@@ -93,7 +93,7 @@ export default {
       },
 
       speed: 1000,
-    });
+    })
     const swiper2 = new Swiper(".mySwiper-steps-mobile", {
       slidesPerView: 1,
       pagination: {
