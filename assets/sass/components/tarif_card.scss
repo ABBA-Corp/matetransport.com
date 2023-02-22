@@ -4,6 +4,9 @@
   background: rgba(217, 217, 217, 0.2);
   cursor: pointer;
   transition: all .4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .tarif_card__title {
   display: flex;
