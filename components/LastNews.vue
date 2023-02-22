@@ -41,9 +41,7 @@
         <div class="swiper-slide" v-for="article in articles">
           <NewsCard :article="article" />
         </div>
-        <div class="swiper-slide" v-for="article in articles">
-          <NewsCard :article="article" />
-        </div>
+
         <!-- <div class="swiper-slide">
           <NewsCard />
         </div>
@@ -140,16 +138,16 @@ export default {
       border-radius: 50%;
       background: #ffffff;
       border: 2.40546px solid #2c7bf2;
-      transition: .4s;
-    &:hover {
-      background: #2c7bf2;
-      border: 2.40546px solid #2c7bf2;
-      svg {
-        path {
-          fill: #fff;
+      transition: 0.4s;
+      &:hover {
+        background: #2c7bf2;
+        border: 2.40546px solid #2c7bf2;
+        svg {
+          path {
+            fill: #fff;
+          }
         }
       }
-    }
       &::after {
         display: none;
       }
