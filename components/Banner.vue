@@ -15,13 +15,7 @@
           </p> -->
         </div>
         <div class="video-container">
-          <img
-            v-if="videoSkeleton"
-            src="../assets/images/Rectangle 23896.png"
-            alt=""
-          />
           <video
-            v-else
             ref="video"
             autoplay="autoplay"
             loop="loop"
