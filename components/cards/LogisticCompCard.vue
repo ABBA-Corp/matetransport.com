@@ -75,6 +75,9 @@ export default {
         decimal: ".",
         prefix: "",
         suffix: "",
+        enableScrollSpy: true, // start animation when target is in view
+        scrollSpyDelay: 500, // delay (ms) after target comes into view
+        scrollSpyOnce: true,
       },
     };
   },
