@@ -32,7 +32,8 @@
 <script>
 import LogisticCompCard from "./cards/LogisticCompCard.vue";
 import Title from "./Title.vue";
-
-export default { components: { Title, LogisticCompCard } };
+export default {
+  components: { Title, LogisticCompCard },
+};
 </script>
 <style lang="scss"></style>

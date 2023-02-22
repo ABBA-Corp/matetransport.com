@@ -47,7 +47,7 @@
                   fill="white"
                 />
               </svg> -->
-              
+
               <video
                 ref="video"
                 autoplay="autoplay"
@@ -63,15 +63,42 @@
             <p v-html="aboutUs.text_first"></p>
             <div class="about-us-numbers">
               <div class="about-number-info">
-                <h2>{{ $store.state.translations["main.mlc_card1_title"] }}</h2>
+                <h2 v-if="this.$store.state.translations['main.mlc_card1_title']">
+                  <ICountUp
+                    :delay="delay"
+                    :endVal="
+                      Number($store.state.translations['main.mlc_card1_title'])
+                    "
+                    :options="options"
+                    @ready="onReady"
+                  />
+                </h2>
                 <h6>{{ $store.state.translations["main.mlc_card1_text"] }}</h6>
               </div>
               <div class="about-number-info">
-                <h2>{{ $store.state.translations["main.mlc_card1_title"] }}</h2>
+                <h2 v-if="this.$store.state.translations['main.mlc_card2_title']">
+                  <ICountUp
+                    :delay="delay"
+                    :endVal="
+                      Number($store.state.translations['main.mlc_card2_title'])
+                    "
+                    :options="options"
+                    @ready="onReady1"
+                  />
+                </h2>
                 <h6>{{ $store.state.translations["main.mlc_card2_text"] }}</h6>
               </div>
               <div class="about-number-info">
-                <h2>{{ $store.state.translations["main.mlc_card1_title"] }}</h2>
+                <h2 v-if="this.$store.state.translations['main.mlc_card3_title']">
+                  <ICountUp
+                    :delay="delay"
+                    :endVal="
+                      Number($store.state.translations['main.mlc_card3_title'])
+                    "
+                    :options="options"
+                    @ready="onReady2"
+                  />
+                </h2>
                 <h6>{{ $store.state.translations["main.mlc_card3_text"] }}</h6>
               </div>
             </div>
@@ -91,7 +118,7 @@
 </template>
 <script>
 import EmployeeCard from "../components/cards/EmployeeCard.vue";
-
+import ICountUp from "vue-countup-v2";
 export default {
   head: {
     title: "About Us",
@@ -102,6 +129,16 @@ export default {
       video: true,
       vidPlay: require("../assets/svg/about_play.svg"),
       vidStop: require("../assets/svg/video_pause.svg"),
+      delay: 1000,
+      endVal: 120500,
+      options: {
+        useEasing: true,
+        useGrouping: true,
+        separator: ",",
+        decimal: ".",
+        prefix: "",
+        suffix: "",
+      },
     };
   },
   computed: {
@@ -113,6 +150,21 @@ export default {
     this.GET_ABOUT_US();
   },
   methods: {
+    onReady: function (instance, CountUp) {
+      instance.update(
+        Number(this.$store.state.translations["main.mlc_card1_title"])
+      );
+    },
+    onReady1: function (instance, CountUp) {
+      instance.update(
+        Number(this.$store.state.translations["main.mlc_card2_title"])
+      );
+    },
+    onReady2: function (instance, CountUp) {
+      instance.update(
+        Number(this.$store.state.translations["main.mlc_card3_title"])
+      );
+    },
     videoPlay() {
       if (!this.$refs.video.paused) {
         this.$refs.video.pause();
@@ -133,7 +185,7 @@ export default {
       await this.$nuxt.$loading.finish();
     },
   },
-  components: { EmployeeCard },
+  components: { EmployeeCard, ICountUp },
 };
 </script>
 <style lang=""></style>

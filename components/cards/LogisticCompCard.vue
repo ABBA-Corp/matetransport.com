@@ -45,15 +45,46 @@
         />
       </g>
     </svg>
+
     <div class="logistic-card">
-      <h3>{{title}}</h3>
-      <p>{{text}}</p>
+      <h3 v-if="this.title">
+        <ICountUp
+          :delay="delay"
+          :endVal="Number(this.title)"
+          :options="options"
+          @ready="onReady"
+        />+
+      </h3>
+      <p>{{ text }}</p>
     </div>
   </div>
 </template>
 <script>
+import ICountUp from "vue-countup-v2";
+
 export default {
-  props: ["title","text"]
+  props: ["title", "text"],
+  data() {
+    return {
+      delay: 1000,
+      endVal: 120500,
+      options: {
+        useEasing: true,
+        useGrouping: true,
+        separator: ",",
+        decimal: ".",
+        prefix: "",
+        suffix: "",
+      },
+    };
+  },
+  methods: {
+    onReady: function (instance, CountUp) {
+      const that = this;
+      instance.update(Number(this.title));
+    },
+  },
+  components: { ICountUp },
 };
 </script>
 <style lang=""></style>
