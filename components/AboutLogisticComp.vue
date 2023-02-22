@@ -24,7 +24,7 @@
           data-aos="fade-up"
           data-aos-duration="800"
           :data-aos-delay="600"
-          :title="$store.state.translations['main.info3cardTitle']"
+          :title="$store.state.translations['main.info3_cardTitle']"
           :text="$store.state.translations['main.info3_cardText']"
         />
       </div>
