@@ -18,8 +18,8 @@
             <AboutUsSteps :img="4" />
           </div>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
     </div>
     <div
       class="flex items-center justify-center blog position-relative about-us-carousel-mobile"
@@ -93,9 +93,11 @@ export default {
       },
 
       speed: 1000,
-    })
+    });
     const swiper2 = new Swiper(".mySwiper-steps-mobile", {
       slidesPerView: 1,
+      direction: "vertical",
+
       pagination: {
         el: ".swiper-pagination-mobile",
         type: "bullets",
@@ -122,14 +124,19 @@ export default {
 }
 @media (max-width: 1000px) {
   .mySwiper-steps {
-    height: 1000px;
-    background: red;
+    height: 600px;
   }
   .about-us-carousel-mobile {
     display: block;
   }
   .about-us-carousel {
     display: none;
+  }
+  .mySwiper-steps-mobile {
+    max-height: 550px;
+  }
+  .swiper-wrapper {
+    max-height: 550px;
   }
 }
 .swiper-pagination-bullets {

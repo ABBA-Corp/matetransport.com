@@ -44,6 +44,7 @@
   .swiper-pagination {
     width: 30px;
     top: 30% !important;
+    left: 20px !important;
     .swiper-pagination-bullet {
       background: #0084f4;
       opacity: 0.25;
@@ -102,8 +103,14 @@
 }
 .about-us-carousel-mobile {
   .swiper-pagination-mobile {
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
+    position: absolute !important;
+    width: 30px;
+    right: 0px !important;
+    left: initial !important;
+    z-index: 100;
+    top: 90px !important;
     .swiper-pagination-bullet {
       background: #0084f4;
       opacity: 0.25;
@@ -112,13 +119,13 @@
       width: 12px;
       height: 12px;
       display: flex !important;
-      align-items: center !important;
+      justify-content: center !important;
       &::after {
         content: "";
         position: absolute;
-        height: 4px;
-        width: calc(40px);
-        right: -35px;
+        width: 4px;
+        height: calc(40px);
+        bottom: -35px;
         background: #33b2fe !important;
         opacity: 0.4 !important;
         border-radius: 64.2396px;
@@ -131,7 +138,7 @@
           display: none;
         }
       }
-      margin-right: 30px !important;
+      margin-bottom: 30px !important;
     }
     .swiper-pagination-bullet-active {
       width: 21px;
@@ -144,7 +151,7 @@
       background: transparent !important;
       border: 0.839568px solid #0082f1 !important;
       opacity: 1 !important;
-      margin-top: -5px !important;
+      margin-left: -5px !important;
       padding: 4px;
       &::after {
         opacity: 0.1 !important;
@@ -428,6 +435,7 @@
     position: relative;
     height: initial;
     padding-top: 0;
+    height: 550px;
   }
   .img-block {
     padding-left: 0;
@@ -499,6 +507,10 @@
       line-height: 20px;
       text-align: left;
     }
+
+  }
+  .ellipse-shodow-about2 {
+    display: none;
   }
   .about-grid-container {
     display: grid;

@@ -10,7 +10,7 @@
       <div class="drawer_container">
         <div class="drawer_hadear">
           <img src="../assets/svg/image 2.svg" alt="" />
-          <span @click="drawerClose">
+          <span @click="drawerHide">
             <svg
               width="40"
               height="40"
@@ -210,6 +210,9 @@ export default {
       document.body.style.overflowY = "hidden";
       document.body.style.height = "100vh";
     },
+    drawerHide() {
+      this.drawer = false;
+    },
     drawerClose(id) {
       this.drawer = false;
       document.body.style.overflowY = "auto";
@@ -263,7 +266,8 @@ export default {
     li {
       padding: 24px 0;
       border-bottom: 1px solid #e4edf5;
-      a,span {
+      a,
+      span {
         font-family: "Mulish";
         font-style: normal;
         font-weight: 600;
