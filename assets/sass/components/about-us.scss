@@ -46,6 +46,7 @@
     top: 30% !important;
     left: 20px !important;
     .swiper-pagination-bullet {
+      outline: none !important;
       background: #0084f4;
       opacity: 0.25;
       position: relative;
@@ -113,6 +114,8 @@
     top: 90px !important;
     .swiper-pagination-bullet {
       background: #0084f4;
+      outline: none !important;
+
       opacity: 0.25;
       position: relative;
       z-index: 50;
