@@ -193,7 +193,7 @@
   .banner-form-btn {
     margin-top: 24px;
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     grid-gap: 16px;
     .form-btn {
       @include fontStyle(14px, 600, #fff);

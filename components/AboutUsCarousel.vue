@@ -144,6 +144,9 @@ export default {
   left: 10px !important;
 }
 .about-us-btns-mobile {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
   .swiper-button-disabled {
     display: none;
   }
