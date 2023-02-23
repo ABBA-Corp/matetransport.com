@@ -24,6 +24,7 @@
     <div
       class="flex items-center justify-center blog position-relative about-us-carousel-mobile"
     >
+    <div class="absolute_banner"></div>
       <div class="swiper mySwiper-steps-mobile">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -145,6 +146,11 @@ export default {
 .about-us-btns-mobile {
   .swiper-button-disabled {
     display: none;
+  }
+}
+.mySwiper-steps-mobile {
+  .swiper-slide {
+    pointer-events: none;
   }
 }
 </style>
