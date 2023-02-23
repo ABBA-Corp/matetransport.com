@@ -24,7 +24,7 @@
     <div
       class="flex items-center justify-center blog position-relative about-us-carousel-mobile"
     >
-    <div class="absolute_banner"></div>
+      <div class="absolute_banner"></div>
       <div class="swiper mySwiper-steps-mobile">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -151,6 +151,19 @@ export default {
 .mySwiper-steps-mobile {
   .swiper-slide {
     pointer-events: none;
+  }
+}
+.absolute_banner {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .absolute_banner {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 550px;
+    z-index: 99;
   }
 }
 </style>
