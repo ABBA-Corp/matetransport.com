@@ -75,7 +75,8 @@ feColorMatrix .service-select {
 .service-btn-group {
   margin-top: 40px;
 
-  a,div {
+  a,
+  div {
     padding: 12px 32px;
     border-radius: 24px;
     @include fontStyle(14px, 600, #ffffff);
@@ -259,6 +260,10 @@ feColorMatrix .service-select {
     justify-content: center;
     margin-bottom: 16px;
     height: 60px;
+    img {
+      width: 60px;
+      height: 60px;
+    }
   }
   .services-card-title {
     display: flex;
