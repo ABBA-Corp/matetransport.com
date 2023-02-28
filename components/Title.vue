@@ -12,6 +12,22 @@
 <script>
 export default {
   props: ["title", "text"],
+  data() {
+    return {
+      loader: true,
+    };
+  },
+
 };
 </script>
-<style lang=""></style>
+<style lang="scss">
+.loader_fixed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 2222;
+  top: 0;
+  left: 0;
+  background: red;
+}
+</style>

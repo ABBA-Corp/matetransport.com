@@ -120,6 +120,7 @@
 import EmployeeCard from "../components/cards/EmployeeCard.vue";
 import ICountUp from "vue-countup-v2";
 export default {
+  name: "AboutUs",
   head: {
     title: "About Us",
   },

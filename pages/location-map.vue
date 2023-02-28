@@ -359,10 +359,8 @@
           </div>
         </div>
       </div>
-
       <TitleSmall title="Map" />
-
-      <div class="location-map-maps-grid" v-if="!skeletonMap">
+      <div class="location-map-maps-grid">
         <div class="location-map-card">
           <el-skeleton-item
             v-if="skeleton_from"
@@ -429,16 +427,7 @@
             ></div>
           </div>
         </div>
-        <!-- <LocationMapCard
-          :currentCitiesData="currentCitiesData.from"
-          :skeleton="skeleton_from"
-          spaceType="A"
-        />
-        <LocationMapCard
-          :currentCitiesData="currentCitiesData.to"
-          :skeleton="skeleton_to"
-          spaceType="B"
-        /> -->
+      
       </div>
       <div class="service-from-cards">
         <ServiceApplicationCard
@@ -606,6 +595,7 @@ import moment from "moment";
 import yearsData from "../helpers/yearsData";
 import ServicesCard from "../components/cards/ServicesCard.vue";
 export default {
+  name: "LocationMap",
   head: {
     title: "Location",
   },
@@ -706,9 +696,11 @@ export default {
   },
   async mounted() {
     this.__GET_CITIES();
-    this.currentCities = await JSON.parse(
-      localStorage.getItem("cities_from_map")
-    );
+    if (process.browser) {
+      this.currentCities = await JSON.parse(
+        localStorage.getItem("cities_from_map")
+      );
+    }
     this.__GET_REVIEWS();
     this.__GET_CURRENT_CITY_TO();
     this.__GET_CURRENT_CITY_FROM();
@@ -770,7 +762,7 @@ export default {
         data: this.ruleForm,
       });
       this.$nuxt.$loading.finish();
-      if (this.leadCread.uuid) {
+      if (this.leadCread.uuid && process.browser) {
         localStorage.setItem("editData", JSON.stringify(this.ruleForm));
         this.$router.push(`/calculator/choice-tarif/${this.leadCread.uuid}`);
       }

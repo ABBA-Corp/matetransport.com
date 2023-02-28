@@ -39,6 +39,7 @@
 import NewsCard from "../components/cards/NewsCard.vue";
 
 export default {
+  name: "AllNews",
   head: {
     title: "All News",
   },

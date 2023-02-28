@@ -73,7 +73,10 @@
             >
           </div>
           <div class="brand-icons">
-            <a target="_blank" v-if="$store.state.staticInfo.instagram" :href="$store.state.staticInfo.instagram"
+            <a
+              target="_blank"
+              v-if="$store.state.staticInfo.instagram"
+              :href="$store.state.staticInfo.instagram"
               ><svg
                 width="24"
                 height="24"
@@ -91,7 +94,10 @@
                 />
               </svg>
             </a>
-            <a target="_blank" v-if="$store.state.staticInfo.facebook" :href="$store.state.staticInfo.facebook"
+            <a
+              target="_blank"
+              v-if="$store.state.staticInfo.facebook"
+              :href="$store.state.staticInfo.facebook"
               ><svg
                 width="24"
                 height="24"
@@ -109,7 +115,10 @@
                 />
               </svg>
             </a>
-            <a target="_blank" v-if="$store.state.staticInfo.linked_in" :href="$store.state.staticInfo.linked_in"
+            <a
+              target="_blank"
+              v-if="$store.state.staticInfo.linked_in"
+              :href="$store.state.staticInfo.linked_in"
               ><svg
                 width="24"
                 height="24"
@@ -127,7 +136,10 @@
                 />
               </svg>
             </a>
-            <a target="_blank" v-if="$store.state.staticInfo.twitter" :href="$store.state.staticInfo.twitter"
+            <!-- <a
+              target="_blank"
+              v-if="$store.state.staticInfo.twitter"
+              :href="$store.state.staticInfo.twitter"
               ><svg
                 width="24"
                 height="24"
@@ -144,7 +156,7 @@
                   stroke-linejoin="round"
                 />
               </svg>
-            </a>
+            </a> -->
           </div>
         </div>
         <div class="footer-menu">
@@ -261,6 +273,7 @@
 </template>
 <script>
 export default {
+  name: "Footer",
   data() {
     return {
       date: new Date().getFullYear(),

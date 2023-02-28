@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="home-page" id="home-banner">
+  <client-only>
     <Banner />
     <div class="carousel-container">
       <div class="container_xl position-relative">
@@ -15,6 +16,7 @@
     <LogisticsServices :services="services" />
     <CoverageMap :states="states" />
     <AboutLogisticComp />
+  </client-only>
   </div>
 </template>
 <script src="//code.jivosite.com/widget/4Tm0SZmQhV" async></script>
@@ -42,13 +44,31 @@ export default {
       return this.$i18n.locale;
     },
   },
+  scrollToTop: true,
   mounted() {
     this.__GET_SERVICES();
     this.__GET_STATES();
     this.__GET_REVIEWS();
+    setTimeout(() => {
+      this.scrollElement();
+    }, 0);
+    if (process.client) {
+    window.scrollTo(0, 0)
+  }
   },
-
+  beforeMount() {},
   methods: {
+    async scrollElement() {
+      if (localStorage.getItem("scrollId") && process.client) {
+        setTimeout(() => {
+          const element = document.getElementById(
+            JSON.parse(localStorage.getItem("scrollId"))
+          );
+          element.scrollIntoView();
+          localStorage.removeItem("scrollId");
+        }, 0);
+      }
+    },
     async __GET_SERVICES() {
       this.$nextTick(() => {
         this.$nuxt.$loading.start();
