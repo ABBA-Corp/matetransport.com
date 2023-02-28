@@ -10,7 +10,7 @@
           <div class="anim-right"></div>
         </div>
         <div class="header-links">
-          <nuxt-link :to="localePath('/about-us')" class="header-top-link">
+          <nuxt-link to="/about-us" class="header-top-link">
             {{ $store.state.translations["main.careers"] }}
             <svg
               width="11"
@@ -46,7 +46,7 @@
     </div>
     <div class="header-navbar">
       <div class="container_xl header-navbar-items">
-        <nuxt-link class="header-navbar-logo" :to="localePath('/')">
+        <nuxt-link class="header-navbar-logo" to="/">
           <img src="../../assets/svg/image 2.svg" alt="" />
         </nuxt-link>
 

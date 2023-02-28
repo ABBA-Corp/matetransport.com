@@ -23,7 +23,7 @@
         {{ article.created_date }}
       </div>
       <nuxt-link
-        :to="localePath(`/inner-news/${article.id}`)"
+        :to="`/inner-news/${article.id}`"
         class="news-card-title"
         >{{ article.title }}</nuxt-link
       >
@@ -31,7 +31,7 @@
         {{ article.subtitle }}
       </p>
       <nuxt-link
-        :to="localePath(`/inner-news/${article.id}`)"
+        :to="`/inner-news/${article.id}`"
         class="news-card-btn"
       >
         Read more

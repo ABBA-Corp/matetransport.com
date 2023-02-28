@@ -185,7 +185,7 @@
     <div class="calculator">
       <div class="container_xl position-relative">
         <div>
-          <nuxt-link class="all-news-back-btn" :to="localePath(currentPath)"
+          <nuxt-link class="all-news-back-btn" :to="currentPath"
             ><svg
               width="16"
               height="13"

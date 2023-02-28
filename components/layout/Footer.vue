@@ -165,7 +165,7 @@
           </div>
           <ul>
             <li>
-              <nuxt-link :to="localePath('/about-us')">About us</nuxt-link>
+              <nuxt-link to="/about-us">About us</nuxt-link>
             </li>
             <li>
               <nuxt-link to="/">Shipping</nuxt-link>

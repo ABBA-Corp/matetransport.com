@@ -2,20 +2,20 @@
   <div class="log-services-card">
     <div
       class="logs-card-img"
-      @click="$router.push(localeLocation(`/service/${service.id}`))"
+      @click="$router.push(`/service/${service.id}`)"
     >
       <img :src="service.image" alt="service_img" />
     </div>
     <div class="logs-card-body">
       <h3
         v-if="service.title"
-        @click="$router.push(localeLocation(`/service/${service.id}`))"
+        @click="$router.push(`/service/${service.id}`)"
       >
         {{ service.title }}
       </h3>
       <h3
         v-else
-        @click="$router.push(localeLocation(`/service/${service.id}`))"
+        @click="$router.push(`/service/${service.id}`)"
       >
         Car delivery
       </h3>
