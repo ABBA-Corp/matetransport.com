@@ -209,11 +209,12 @@ export default {
   methods: {
     drawerOpen() {
       this.drawer = true;
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
+   
     },
     drawerHide() {
       this.drawer = false;
+      document.body.style.overflowY = "auto";
+      document.body.style.height = "auto";
     },
     drawerClose(id) {
       this.drawer = false;
