@@ -52,11 +52,7 @@
 
         <div class="header-navbar-nav">
           <ul>
-            <li>
-              <span class="is-active" @click="scrollElement('home-banner')">{{
-                $store.state.translations["main.nav_howItWorks"]
-              }}</span>
-            </li>
+           
             <li>
               <span @click="scrollElement('howWeWork')">{{
                 $store.state.translations["main.nav_howWeWork"]
