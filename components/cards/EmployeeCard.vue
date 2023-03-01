@@ -6,15 +6,17 @@
       alt=""
     />
     <div class="employee-card-avatar">
-      <img src="../../assets/images/Ellipse 102.png" alt="" />
+      <img :src="img" alt="" />
     </div>
     <div class="">
-      <h1 class="employee-card-name">Садулла Кобилжонов</h1>
-      <p class="employee-card-position">Director of Mate logistics</p>
+      <h1 class="employee-card-name">{{ name }}</h1>
+      <p class="employee-card-position">{{ job }}</p>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: ["img", "name", "job"],
+};
 </script>
 <style lang=""></style>

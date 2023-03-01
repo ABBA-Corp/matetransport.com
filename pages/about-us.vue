@@ -63,7 +63,9 @@
             <p v-html="aboutUs.text_first"></p>
             <div class="about-us-numbers">
               <div class="about-number-info">
-                <h2 v-if="this.$store.state.translations['main.mlc_card1_title']">
+                <h2
+                  v-if="this.$store.state.translations['main.mlc_card1_title']"
+                >
                   <ICountUp
                     :delay="delay"
                     :endVal="
@@ -76,7 +78,9 @@
                 <h6>{{ $store.state.translations["main.mlc_card1_text"] }}</h6>
               </div>
               <div class="about-number-info">
-                <h2 v-if="this.$store.state.translations['main.mlc_card2_title']">
+                <h2
+                  v-if="this.$store.state.translations['main.mlc_card2_title']"
+                >
                   <ICountUp
                     :delay="delay"
                     :endVal="
@@ -89,7 +93,9 @@
                 <h6>{{ $store.state.translations["main.mlc_card2_text"] }}</h6>
               </div>
               <div class="about-number-info">
-                <h2 v-if="this.$store.state.translations['main.mlc_card3_title']">
+                <h2
+                  v-if="this.$store.state.translations['main.mlc_card3_title']"
+                >
                   <ICountUp
                     :delay="delay"
                     :endVal="
@@ -108,8 +114,16 @@
             <p v-html="aboutUs.text_second"></p>
           </div>
           <div class="employee-card-grid">
-            <EmployeeCard />
-            <EmployeeCard />
+            <EmployeeCard
+              :img="imgWorker1"
+              name="Ziyobek Turdiev"
+              job="CEO of Mate Logistics"
+            />
+            <EmployeeCard
+              :img="imgWorker2"
+              name="Садулла Кобилжонов"
+              job="Director of Mate logistics"
+            />
           </div>
         </div>
       </div>
@@ -130,6 +144,8 @@ export default {
       video: true,
       vidPlay: require("../assets/svg/about_play.svg"),
       vidStop: require("../assets/svg/video_pause.svg"),
+      imgWorker1: require("../assets/images/photo_2023-03-01_11-40-32.jpg"),
+      imgWorker2: require("../assets/images/Ellipse 102.png"),
       delay: 1000,
       endVal: 120500,
       options: {
