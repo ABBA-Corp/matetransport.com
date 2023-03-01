@@ -52,7 +52,6 @@
 
         <div class="header-navbar-nav">
           <ul>
-           
             <li>
               <span @click="scrollElement('howWeWork')">{{
                 $store.state.translations["main.nav_howWeWork"]
@@ -449,8 +448,7 @@ export default {
     },
     show(name) {
       this.$modal.show(name);
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
+   
     },
     hide(name) {
       this.$modal.hide(name);
@@ -465,15 +463,6 @@ export default {
     drawerToggle() {
       this.drawerShow = !this.drawerShow;
     },
-    // async asyncData({ $axios, store }) {
-    //   const res = await $axios.$get(`/translations`, {
-    //     headers: {
-    //       Language: "en",
-    //     },
-    //   });
-    //   await store.commit("getTranslations", res);
-    // },
-
     async __GET_STATIC_INFORMATIONS() {
       const info = await this.$store.dispatch(
         "fetchStaticInformations/getStaticInformations",
@@ -532,8 +521,11 @@ export default {
     },
   },
 
-  mounted() {
+  fetch() {
     this.__GET_TRANSLATIONS();
+  },
+  mounted() {
+    // this.__GET_TRANSLATIONS();
     this.__GET_STATIC_INFORMATIONS();
     if (process.client) {
     }

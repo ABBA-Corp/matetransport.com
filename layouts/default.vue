@@ -226,8 +226,7 @@ export default {
     show(name) {
       this.$modal.show(name);
       this.drawer = false;
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
+    
     },
   },
   components: {

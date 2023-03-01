@@ -108,7 +108,7 @@
                 fill="#2C67BE"
               />
             </svg> -->
-            <img src="../../assets/images/logistics15k.png" alt="">
+            <img src="../../assets/images/logistics15k.png" alt="" />
           </ServicesCard>
           <ServicesCard
             :title="$store.state.translations['service.servicesCard2_title']"
@@ -130,8 +130,7 @@
                 fill="#2C67BE"
               />
             </svg> -->
-            <img src="../../assets/images/door-to-door.png" alt="">
-
+            <img src="../../assets/images/door-to-door.png" alt="" />
           </ServicesCard>
           <ServicesCard
             :title="$store.state.translations['service.servicesCard3_title']"
@@ -161,8 +160,7 @@
                 fill="#2C67BE"
               />
             </svg> -->
-            <img src="../../assets/images/insurance.png" alt="">
-
+            <img src="../../assets/images/insurance.png" alt="" />
           </ServicesCard>
           <ServicesCard
             :title="$store.state.translations['service.servicesCard4_title']"
@@ -184,8 +182,7 @@
                 fill="#2C67BE"
               />
             </svg> -->
-            <img src="../../assets/images/consulting_1.png" alt="">
-
+            <img src="../../assets/images/consulting_1.png" alt="" />
           </ServicesCard>
           <ServicesCard
             :title="$store.state.translations['service.servicesCard5_title']"
@@ -215,8 +212,7 @@
                 fill="#2C67BE"
               />
             </svg> -->
-            <img src="../../assets/images/big-truck_1.png" alt="">
-
+            <img src="../../assets/images/big-truck_1.png" alt="" />
           </ServicesCard>
         </div>
       </div>
@@ -251,8 +247,6 @@ export default {
   methods: {
     show(name) {
       this.$modal.show(name);
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
     },
     hide(name) {
       this.$modal.hide(name);

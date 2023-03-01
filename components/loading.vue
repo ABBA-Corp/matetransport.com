@@ -13,8 +13,7 @@ export default {
   methods: {
     start() {
       this.loading = true;
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
+   
     },
     finish() {
       this.loading = false;

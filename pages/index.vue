@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="home-page" id="home-banner">
-  <client-only>
     <Banner />
     <div class="carousel-container">
       <div class="container_xl position-relative">
@@ -16,7 +15,6 @@
     <LogisticsServices :services="services" />
     <CoverageMap :states="states" />
     <AboutLogisticComp />
-  </client-only>
   </div>
 </template>
 <script src="//code.jivosite.com/widget/4Tm0SZmQhV" async></script>
