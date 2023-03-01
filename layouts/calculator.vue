@@ -717,7 +717,7 @@
     </div>
     <Footer />
     <client-only>
-      <modal name="modal_discount" width="590px" height="auto">
+      <modal name="modal_discount" width="590px" height="auto" :clickToClose="false">
         <div class="modal_container">
           <div class="modal_header d-flex justify-content-between">
             <h5>{{ $store.state.translations["modal.discount_title"] }}</h5>
@@ -872,6 +872,8 @@ export default {
     },
     show(name) {
       this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
   
     },
     hide(name) {
@@ -899,6 +901,8 @@ export default {
     },
     show(name) {
       this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
       this.drawer = false;
     
     },

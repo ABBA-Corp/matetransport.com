@@ -2,7 +2,7 @@
   <div>
   <client-only>
 
-    <modal name="modal_timer" width="440px" height="auto">
+    <modal name="modal_timer" width="440px" height="auto" :clickToClose="false">
       <div class="modal_container">
         <div class="modal_header d-flex justify-content-between">
           <h5>Tezkor aloqa</h5>

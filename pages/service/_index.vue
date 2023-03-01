@@ -247,6 +247,8 @@ export default {
   methods: {
     show(name) {
       this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
     },
     hide(name) {
       this.$modal.hide(name);

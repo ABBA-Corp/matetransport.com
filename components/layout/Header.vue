@@ -106,7 +106,12 @@
         </div>
       </div>
       <client-only>
-        <modal name="modal_header" width="590px" height="auto">
+        <modal
+          name="modal_header"
+          width="590px"
+          height="auto"
+          :clickToClose="false"
+        >
           <div class="modal_container">
             <div class="modal_header d-flex justify-content-between">
               <h5>
@@ -204,7 +209,12 @@
             </div>
           </div></modal
         >
-        <modal name="modal_success" width="590px" height="auto">
+        <modal
+          name="modal_success"
+          width="590px"
+          height="auto"
+          :clickToClose="false"
+        >
           <div class="modal_container">
             <div class="modal_header d-flex justify-content-between">
               <h5>
@@ -251,7 +261,12 @@
             </div>
           </div></modal
         >
-        <modal name="modal_app_success" width="590px" height="auto">
+        <modal
+          name="modal_app_success"
+          width="590px"
+          height="auto"
+          :clickToClose="false"
+        >
           <div class="modal_container">
             <div class="modal_header d-flex justify-content-between">
               <h5>{{ $store.state.translations["modal.calculator_title"] }}</h5>
@@ -280,7 +295,12 @@
             </div>
           </div></modal
         >
-        <modal name="modal_support_chat" width="590px" height="auto">
+        <modal
+          name="modal_support_chat"
+          width="590px"
+          height="auto"
+          :clickToClose="false"
+        >
           <div class="modal_container">
             <div
               class="modal_header modal_support_chat d-flex justify-content-between"
@@ -448,7 +468,8 @@ export default {
     },
     show(name) {
       this.$modal.show(name);
-   
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
     },
     hide(name) {
       this.$modal.hide(name);
@@ -525,10 +546,8 @@ export default {
     this.__GET_TRANSLATIONS();
   },
   mounted() {
-    // this.__GET_TRANSLATIONS();
     this.__GET_STATIC_INFORMATIONS();
-    if (process.client) {
-    }
+
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;

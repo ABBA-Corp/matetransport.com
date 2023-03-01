@@ -1,7 +1,7 @@
 <template lang="html">
       <client-only>
 
-  <modal :adaptive="true" name="modal_leave_weak" width="996px" height="auto">
+  <modal :adaptive="true" name="modal_leave_weak" width="996px" height="auto" :clickToClose="false">
     <div class="modal_container window-header">
       <div class="modal_header d-flex justify-content-between">
         <div>
@@ -356,6 +356,8 @@ export default {
     moment,
     show(name) {
       this.$modal.show(name);
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
       
     },
     hide(name) {
