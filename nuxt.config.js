@@ -108,6 +108,7 @@ export default {
     babel: {
       compact: true,
     },
+    postcss: null,
     // fix to work with swiperjs 8 - need to run with standalone:true. That can make some troubles.
     vendor: ["aos"],
     standalone: true,

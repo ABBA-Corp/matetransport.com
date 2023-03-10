@@ -397,7 +397,6 @@
               </div>
             </div></div
         ></modal>
-        <ModalSubmitApp />
         <LoaderComp :loader="loader" />
       </client-only>
     </div>
@@ -467,9 +466,10 @@ export default {
         this.$modal.show(`modal_success`);
     },
     show(name) {
-      this.$modal.show(name);
-      document.body.style.overflowY = "hidden";
-      document.body.style.height = "100vh";
+      // this.$modal.show(name);
+      // document.body.style.overflowY = "hidden";
+      // document.body.style.height = "100vh";
+      this.$router.push('/aplication')
     },
     hide(name) {
       this.$modal.hide(name);

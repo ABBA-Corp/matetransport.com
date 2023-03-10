@@ -1,44 +1,15 @@
-<template lang="html">
-      <client-only>
-
-  <modal :adaptive="true" name="modal_leave_weak" width="996px" height="auto" :clickToClose="false">
-    <div class="modal_container window-header">
-      <div class="modal_header d-flex justify-content-between">
-        <div>
-          <h5>{{ $store.state.translations["modal.app_title"] }}</h5>
-          <p class="fasting-contact-text sub-text">
-            {{ $store.state.translations["modal.app_text"] }}
-          </p>
-        </div>
-        <span @click="hide('modal_leave_weak')"
-          ><svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6.66699 6.646L17.333 17.31M6.66699 17.31L17.333 6.646"
-              stroke="#024E90"
-              stroke-width="1.5"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            /></svg
-        ></span>
-      </div>
-      <div class="modal_body">
+<template>
+    <div class="container_xl classInput">
+      <div class="">
         <el-form
           label-position="top"
           :model="ruleForm"
           :rules="rules"
           ref="ruleForm"
           label-width="120px"
-          class="demo-ruleForm"
           action=""
         >
-          <div class="modal_form_container">
+          <div class="">
             <div class="m-form-title-hr">
               <h1 class="m-form-title">
                 {{ $store.state.translations["modal.app_subtitle1"] }}
@@ -60,7 +31,7 @@
                     @focus="__GET_CAR_MAKES()"
                     :loading="!carMakes.length > 0"
                     loading-text="Loading..."
-                    popper-class="modal-select-opitons"
+                    popper-class=""
                   >
                     <el-option
                       v-for="item in carMakes"
@@ -107,7 +78,7 @@
                     "
                     :disabled="ruleForm.car_make == ''"
                     loading-text="Loading..."
-                    popper-class="modal-select-opitons"
+                    popper-class=""
                   >
                     <el-option
                       v-for="item in carModles"
@@ -143,7 +114,7 @@
                       $store.state.translations['modal.app_pickupLoc']
                     "
                     loading-text="Loading..."
-                    popper-class="modal-select-opitons"
+                    popper-class=""
                   >
                     <el-option
                       class="edit-select"
@@ -263,8 +234,6 @@
         </el-form>
       </div>
     </div>
-  </modal>
-</client-only>
 
 </template>
 <script>
@@ -426,4 +395,15 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style lang="scss">
+.classInput{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+@media(max-width: 768px){
+  .classInput{
+  margin-top: 20px;
+  margin-bottom: 20px;
+} 
+}
+</style>

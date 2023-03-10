@@ -5,7 +5,7 @@
       <span></span>
     </div>
     <div>
-      <p v-if="text" v-html="text"></p>
+      <p class="colors" v-if="text" v-html="text"></p>
     </div>
   </div>
 </template>
@@ -21,6 +21,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.colors{
+color: white !important;
+}
 .loader_fixed {
   position: fixed;
   width: 100%;

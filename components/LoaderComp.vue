@@ -1,12 +1,12 @@
 <template>
   <div v-if="loader" class="data_loader">
-    <cube-spin></cube-spin>
+    <!-- <cube-spin></cube-spin> -->
   </div>
 </template>
-<script>
-import CubeSpin from "vue-loading-spinner/src/components/RotateSquare2.vue";
+<script lang="js">
+// import CubeSpin from "vue-loading-spinner/src/components/RotateSquare2.vue";
 export default {
-  components: { CubeSpin },
+  // components: { CubeSpin },
   props: ["loader"],
 };
 </script>
