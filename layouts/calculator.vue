@@ -592,7 +592,7 @@
               </div>
               <div class="calculator-info-items">
                 <span>
-                  {{ $store.state.translations["calculator.2] }}
+                  {{ $store.state.translations["calculator.info_transitTime"] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
                       <span color="red" class="hover-info">
