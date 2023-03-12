@@ -306,13 +306,13 @@
               class="modal_header modal_support_chat d-flex justify-content-between"
             >
               <div class="modal_support_profile">
-                <img src="../../assets/images/Ellipse 102.png" alt="" />
+                <img src="../../assets/images/avatar-person.svg" alt="" />
                 <div class="d-flex flex-column">
                   <h5 class="profile_name">
-                    Nargiza Ahmedova
+                    Admin
                   </h5>
                   <span class="profile_work">
-                    Meta logistics asistant
+                    Mate logistics asistant
                   </span>
                 </div>
               </div>

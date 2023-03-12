@@ -17,7 +17,7 @@
           <div class="tarif_card__title">
             <div>
               <h1 @click="">
-                {{ $store.state.translations["calculator.tarif1_price"] }}
+                {{ leads?.price_first_tarif }}$
               </h1>
             </div>
             <div class="tarif_checkbox">
@@ -45,7 +45,7 @@
                 {{ $store.state.translations["calculator.tarif2_title"] }}</span
               >
               <h1 @click="">
-                {{ $store.state.translations["calculator.tarif2_price"] }}
+                {{ leads?.price_second_tarif }}$
               </h1>
             </div>
             <div class="tarif_checkbox">
@@ -215,6 +215,7 @@ export default {
   data() {
     return {
       value: 1,
+      leads: {},
       checkboxIcon: require("~/assets/svg/tarif_checkbox.svg"),
       inputX: require("~/assets/svg/x.svg"),
       numberInputs: [
@@ -225,15 +226,18 @@ export default {
       ],
     };
   },
-  props: {
-    changeSteps: {
-      type: Function,
-    },
+  mounted() {
+    this.__GET_LEADS();
   },
   methods: {
+    async __GET_LEADS() {
+      this.leads = await this.$store.dispatch("fetchLead/getLead", {
+        leadId: this.$route.params.index,
+        currentLang: this.$i18n.locale,
+      });
+    },
     toNextStep() {
-      if(process.browser) {
-
+      if (process.browser) {
         localStorage.setItem(
           "app_create",
           JSON.stringify({ tarif: this.$store.state.tarifType })
@@ -247,7 +251,6 @@ export default {
       this.$modal.show(name);
       document.body.style.overflowY = "hidden";
       document.body.style.height = "100vh";
-   
     },
     hide(name) {
       this.$modal.hide(name);
