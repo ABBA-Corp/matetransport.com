@@ -28,11 +28,11 @@
         <div class="about-grid-container">
           <div>
             <div class="about-video">
-              <div class="video_play_block">
+              <!-- <div class="video_play_block">
                 <img @click="videoPlay" v-if="!video" :src="vidPlay" alt="" />
                 <img @click="videoPlay" v-else :src="vidStop" alt="" />
-              </div>
-              <img src="../assets/images/Exclude.png" alt="" />
+              </div> -->
+              <img class="abs_logo" src="../assets/images/Exclude.png" alt="" />
               <!-- <svg
                 width="100%"
                 height="400"
@@ -47,15 +47,15 @@
                   fill="white"
                 />
               </svg> -->
-
-              <video
+              <img src="../assets/images/fura.jpg" alt="" />
+              <!-- <video
                 ref="video"
                 autoplay="autoplay"
                 loop="loop"
                 playsinline
                 muted="muted"
                 :src="aboutUs.video"
-              ></video>
+              ></video> -->
             </div>
           </div>
           <div class="about-desc">
@@ -119,11 +119,11 @@
               name="Ziyobek Turdiev"
               job="CEO of Mate Logistics"
             />
-            <EmployeeCard
+            <!-- <EmployeeCard
               :img="imgWorker2"
               name="Садулла Кобилжонов"
               job="Director of Mate logistics"
-            />
+            /> -->
           </div>
         </div>
       </div>
