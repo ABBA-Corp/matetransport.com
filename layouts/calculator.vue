@@ -592,7 +592,7 @@
               </div>
               <div class="calculator-info-items">
                 <span>
-                  {{ $store.state.translations["calculator.info_transitTime"] }}
+                  {{ $store.state.translations["calculator.2] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
                       <span color="red" class="hover-info">
@@ -630,7 +630,7 @@
             <div class="calculator-info-footer">
               <div class="calculator-footer-items">
                 <span>
-                  {{ $store.state.translations["calculator.info_transitTime"] }}
+                  {{ $store.state.translations["calculator.info_transitTime2"] }}
                   <a-tooltip placement="top" color="red">
                     <template slot="title" color="red">
                       <span color="red" class="hover-info">
