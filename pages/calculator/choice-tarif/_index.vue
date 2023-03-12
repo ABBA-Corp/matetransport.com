@@ -180,6 +180,7 @@
         <p>
           {{ $store.state.translations["calculator.text_contact"] }}
         </p>
+        <a :href="`tel:${$store.state.staticInfo.nbm}`">
         <div class="contact-us">
           <div class="contact-us-svg">
             <svg
@@ -200,6 +201,7 @@
             <p>{{ $store.state.translations["calculator.contact_text"] }}</p>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </div>
