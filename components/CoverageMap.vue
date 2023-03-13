@@ -1524,12 +1524,73 @@
         </div>
       </div>
 
-      <div class="mate-news">
+      <!-- <div class="mate-news">
         <img src="../assets/images/MATE NEWS.png" alt="" />
         <div class="log-news">
           <img src="../assets/svg/Footer logo.svg" alt="" />
           <h3 v-html="$store.state.translations['main.logistics_news']"></h3>
         </div>
+      </div> -->
+
+      <div class="colap">
+        <div class="colap_1">
+          <div class="demo-collapse">
+                <el-collapse  accordion>
+              <el-collapse-item class="Pointer" v-for="(item,i) in collapseItem1" :key="1" :name="i+1">
+                <template #title>
+                  <h1 class="Collapse_title">{{ item.title }}</h1>
+                </template>
+                <div>
+                  <p class="Collapse_text">{{ item.text }}</p>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+        </div>
+        <div class="colap_2">
+          <div class="demo-collapse">
+                <el-collapse accordion>
+              <el-collapse-item  v-for="(item,i) in collapseItem2" :key="1" :name="i+5">
+                <template #title>
+                  <h1 class="Collapse_title">{{ item.title }}</h1>
+                </template>
+                <div>
+                  <p class="Collapse_text">{{ item.text }}</p>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+         </div>
+        </div>
+      </div>
+
+      <div class="collapDemo demo-collapse">
+                <el-collapse accordion>
+              <el-collapse-item  v-for="(item,i) in collapseItem" :key="1" :name="i+1">
+                <template #title>
+                  <h1 class="Collapse_title">{{ item.title }}</h1>
+                </template>
+                <div>
+                  <p class="Collapse_text">{{ item.text }}</p>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+      <div>
       </div>
 
       <LastNews :articles="allArticles">
@@ -1583,6 +1644,82 @@ import USA from "@svg-maps/usa";
 export default {
   data() {
     return {
+      collapseItem:[
+        { title: 'What if I need to ship a car ASAP?',
+          text: 'People who need to ship their vehicles immediately will most likely pay a little more. Auto transport companies can move as many cars as they do because they spend a great deal of time coordinating pickups and deliveries for not only maximum efficiency.'},
+        {
+          title: 'Is the cost of car shipping less from a major city?',
+          text: 'Most likely. Pickup and dropoff locations will play a big role when you’re scheduling your transport. If you live in a major metropolitan area, there are many trucks coming in and out of your city to deliver loads. Since these areas are heavily populated, there are more opportunities for truck drivers to pick up more cars…and make money. This generally means lower prices for customers.'
+        },
+        {
+          title: 'Can I ship personal items in my car?',
+          text: 'Cars transported on land: Yes! You can have free of charge up to 1 piece of luggage, such as a suitcase or a bag, of up to 100 lb. placed in the trunk or cargo area only. Cars transported on water: No! The vehicle must be completely empty of personal belongings, except for factory-installed equipment or the Port will reject it.'
+        },
+        {
+          title: 'Are vehicles insured during transport?',
+          text: 'For car shipments being transported over land, an insurance policy of up to $100,000-$150,000 is provided by the motor carrier that transports your vehicle. This is subject to some exclusions and limitations.'
+        },
+        {
+          title: 'When my car can be picked up with standard shipping?',
+          text: 'We will pick your vehicle up in 1-4 business days with the standard shipment, delivery depends on Distance / Miles Calendar Days 0 - 400 1 to 2, 400 - 800 2 to 4, 800 - 1200 3 to 5, 1200 - 1600 4 to 6, 1600 - 2000 5 to 7, 2000 - 2600 6 to 8, 2600 and up 7 to 9.'
+        },
+        {
+          title: 'How do I pay for my transport service?',
+          text: 'You can choose to pay in full online as we accept CashApp, Zelle, Venmo, and PayPal. You can also pay in cash at the time of delivery. If you choose to pay in cash, there is a small partial payment of $199 or less (depending on the distance of your shipment) when you place your order to secure your cars spot on a truck.'
+        },
+        {
+          title: 'Can you guarantee a pick-up or delivery date and time?',
+          text: 'Guarantee pickup dates...Yes, we can! All you need to do is decide whether you need the car picked up by a specific date or on a specific date, which will determine the extra cost involved to guarantee your time frame. Please call for a customized quote if you need a guaranteed pick-up date(s). However, because anything can happen on the road, the auto-hauling industry does not guarantee delivery dates.'
+        },
+        {
+          title: 'What is the First Available Shipping Date?',
+          text: 'This is the date your vehicle is ready to be picked up. However, this is not necessarily the exact pick-up date. Depending on truck availability at that particular time, we may be able to assign a truck to load your vehicle on your First Available Shipping Date but it may also be a few days after. If we cannot pick it up that day, it should be within our usual pick-up window of 1 to 4 business days starting from that date. For more details see pick-up date and time.'
+        },
+        {
+          title: 'What is Door-to-Door auto transport?',
+          text: 'This means that the truck driver will pick the vehicle up and drop it off as close to your home as he can legally and safely get. Many cities have restrictions on large trucks that prohibit them from driving into some residential areas. Transport trucks are enormous and need a lot of room to maneuver and turn around, so if access to your home is restricted by narrow streets, low-hanging trees, speed bumps or tight turns the driver may ask that you meet the truck at a large parking lot nearby such as a grocery store. You will receive a call directly from the trucker if these alternative arrangements are necessary'
+        },
+        
+      ],
+      collapseItem1:[
+        { title: 'What if I need to ship a car ASAP?',
+          text: 'People who need to ship their vehicles immediately will most likely pay a little more. Auto transport companies can move as many cars as they do because they spend a great deal of time coordinating pickups and deliveries for not only maximum efficiency.'},
+        {
+          title: 'Is the cost of car shipping less from a major city?',
+          text: 'Most likely. Pickup and dropoff locations will play a big role when you’re scheduling your transport. If you live in a major metropolitan area, there are many trucks coming in and out of your city to deliver loads. Since these areas are heavily populated, there are more opportunities for truck drivers to pick up more cars…and make money. This generally means lower prices for customers.'
+        },
+        {
+          title: 'Can I ship personal items in my car?',
+          text: 'Cars transported on land: Yes! You can have free of charge up to 1 piece of luggage, such as a suitcase or a bag, of up to 100 lb. placed in the trunk or cargo area only. Cars transported on water: No! The vehicle must be completely empty of personal belongings, except for factory-installed equipment or the Port will reject it.'
+        },
+        {
+          title: 'Are vehicles insured during transport?',
+          text: 'For car shipments being transported over land, an insurance policy of up to $100,000-$150,000 is provided by the motor carrier that transports your vehicle. This is subject to some exclusions and limitations.'
+        },
+        {
+          title: 'When my car can be picked up with standard shipping?',
+          text: 'We will pick your vehicle up in 1-4 business days with the standard shipment, delivery depends on Distance / Miles Calendar Days 0 - 400 1 to 2, 400 - 800 2 to 4, 800 - 1200 3 to 5, 1200 - 1600 4 to 6, 1600 - 2000 5 to 7, 2000 - 2600 6 to 8, 2600 and up 7 to 9.'
+        },
+        
+      ],
+      collapseItem2:[
+        {
+          title: 'How do I pay for my transport service?',
+          text: 'You can choose to pay in full online as we accept CashApp, Zelle, Venmo, and PayPal. You can also pay in cash at the time of delivery. If you choose to pay in cash, there is a small partial payment of $199 or less (depending on the distance of your shipment) when you place your order to secure your cars spot on a truck.'
+        },
+        {
+          title: 'Can you guarantee a pick-up or delivery date and time?',
+          text: 'Guarantee pickup dates...Yes, we can! All you need to do is decide whether you need the car picked up by a specific date or on a specific date, which will determine the extra cost involved to guarantee your time frame. Please call for a customized quote if you need a guaranteed pick-up date(s). However, because anything can happen on the road, the auto-hauling industry does not guarantee delivery dates.'
+        },
+        {
+          title: 'What is the First Available Shipping Date?',
+          text: 'This is the date your vehicle is ready to be picked up. However, this is not necessarily the exact pick-up date. Depending on truck availability at that particular time, we may be able to assign a truck to load your vehicle on your First Available Shipping Date but it may also be a few days after. If we cannot pick it up that day, it should be within our usual pick-up window of 1 to 4 business days starting from that date. For more details see pick-up date and time.'
+        },
+        {
+          title: 'What is Door-to-Door auto transport?',
+          text: 'This means that the truck driver will pick the vehicle up and drop it off as close to your home as he can legally and safely get. Many cities have restrictions on large trucks that prohibit them from driving into some residential areas. Transport trucks are enormous and need a lot of room to maneuver and turn around, so if access to your home is restricted by narrow streets, low-hanging trees, speed bumps or tight turns the driver may ask that you meet the truck at a large parking lot nearby such as a grocery store. You will receive a call directly from the trucker if these alternative arrangements are necessary'
+        },
+      ],
       USA,
       dataForm: {
         ship_to: "",
@@ -1619,6 +1756,8 @@ export default {
     }
   },
   methods: {
+
+
     async __GET_ARTICLES() {
       this.sliderActive = true;
       this.allArticles = await this.$store.dispatch(
@@ -1723,6 +1862,56 @@ export default {
 <style lang="" src="vue-svg-map/dist/index.css"></style>
 
 <style lang="scss">
+.el-collapse-item__header{
+  cursor: pointer;
+}
+.collapDemo{
+  display: none;
+}
+.colap{
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  &_1{
+    width: 45%;
+  }
+  &_2{
+    width: 45%;
+  }
+}
+
+.Collapse{
+&_title{
+  font-size: 20px;
+  font-family: 'Mulish' sans-serif;
+ 
+}
+&_text{
+  font-size: 16px;
+  font-family: 'Mulish' sans-serif;
+}
+}
+
+@media(max-width: 1000px){
+  .collapDemo{
+  display: flex;
+  flex-direction: column;
+}
+.colap{
+  display: none;
+}
+.Collapse{
+&_title{
+  font-size: 16px;
+}
+&_text{
+  font-size: 12px;
+}
+}
+}
+
+
+
 .svg-map__location {
   fill: rgb(2, 78, 144);
 }

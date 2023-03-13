@@ -7,8 +7,9 @@
       </div>
       </div>
       <div class="partners-body">
-        <div class="partners-title">
-          <h3>{{ review?.title }}</h3>
+        <div class="IconGoogle partners-title">
+          <h3 class="Text">{{ review?.title }}</h3>
+          <img style="margin-left: 20px;" width="40" src="../../static/Img/google2.jpg" alt="">
         </div>
         <div class="partners-text">
           <p v-html="review?.text"></p>
@@ -22,4 +23,12 @@ export default {
   props: ["review"],
 };
 </script>
-<style lang=""></style>
+<style scoped lang="scss">
+.IconGoogle{
+  display: flex;
+  align-items: center;
+}
+.Text{
+  margin-top: 10px;
+}
+</style>

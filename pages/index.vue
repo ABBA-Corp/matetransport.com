@@ -75,6 +75,7 @@ export default {
         "fetchServices/getServices",
         this.$i18n.locale
       );
+      console.log(this.services,"this.services");
       this.$nuxt.$loading.finish();
     },
 

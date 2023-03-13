@@ -2,14 +2,12 @@
   <div class="about-us" id="howWeWork">
     <div class="container_xl position-relative">
       <Title :title="$store.state.translations['main.howWeWork']" />
-      <AboutUsCarousel />
-      <div class="ellipse-shodow-about"></div>
-      <div class="ellipse-shodow-about2"></div>
+      <AboutCard />
     </div>
   </div>
 </template>
 <script>
-import AboutUsCarousel from "./AboutUsCarousel.vue";
+import AboutCard from "./../components/cards/AboutUsSteps.vue"
 import Title from "./Title.vue";
 
 export default {
@@ -33,7 +31,7 @@ export default {
     };
   },
 
-  components: { Title, AboutUsCarousel },
+  components: { Title,AboutCard },
 
   methods: {
     next() {

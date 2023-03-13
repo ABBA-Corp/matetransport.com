@@ -57,10 +57,23 @@
                 $store.state.translations["main.nav_howWeWork"]
               }}</span>
             </li>
-            <li>
+            <li class="DropHover">
+            
+
               <span @click="scrollElement('ourServices')">{{
                 $store.state.translations["main.nav_ourServices"]
               }}</span>
+              <div class="DropHover2">
+                <div style="position: relative;">
+                <div class="Drapdown">
+                  <div style="width: 180px;" v-for="(item,i) in services" :key="i">
+                    <label class="Drapdown_title"  
+                      @click.stop="$router.push(`/service/${item.id}`)">
+                      {{ item.title }} </label>
+                  </div>
+                </div>
+                </div>
+              </div>
             </li>
             <li>
               <span @click="scrollElement('coverageMap')">{{
@@ -421,6 +434,7 @@ export default {
       deadline2: moment().add(1, "h").format(fmt),
       discountTimer: 60,
       loader: false,
+      services: [],
       ruleForm: {
         nbm: "",
       },
@@ -439,6 +453,7 @@ export default {
           },
         ],
       },
+      Dropdown: false
     };
   },
   computed: {
@@ -466,10 +481,18 @@ export default {
         this.$modal.show(`modal_success`);
     },
     show(name) {
-      // this.$modal.show(name);
-      // document.body.style.overflowY = "hidden";
-      // document.body.style.height = "100vh";
       this.$router.push('/aplication')
+    },
+    async __GET_SERVICES() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+      });
+      this.services = await this.$store.dispatch(
+        "fetchServices/getServices",
+        this.$i18n.locale
+      );
+      console.log(this.services,"this.services");
+      this.$nuxt.$loading.finish();
     },
     hide(name) {
       this.$modal.hide(name);
@@ -522,8 +545,12 @@ export default {
       });
     },
     scrollElement(id) {
-      console.log(id);
-      if (this.$route.path == "/" && process.client) {
+        if (id == 'ourServices') {
+        
+        }
+
+
+     if (this.$route.path == "/" && process.client) {
         const element = document.getElementById(id);
         element.scrollIntoView();
       } else {
@@ -547,6 +574,7 @@ export default {
   },
   mounted() {
     this.__GET_STATIC_INFORMATIONS();
+    this.__GET_SERVICES()
 
     var header = this.$refs.navScroll;
     window.addEventListener("scroll", () => {
@@ -640,5 +668,43 @@ export default {
 }
 .el-drawer__wrapper {
   z-index: 2009 !important;
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+
+}
+.Drapdown{
+  margin-top: 2px;
+  border-radius: 10px;
+  width: 400px;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  left: -110%;
+  flex-wrap: wrap;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: auto;
+  position: absolute;
+  display: none;
+  background-color: white;
+  overflow-x: hidden;
+  &_title{
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover{
+      background: #000;
+      color: white;
+    }
+  }
+  &:hover{
+     display: flex;
+  }
+}
+.DropHover{
+  &:hover .DropHover2 .Drapdown{
+    display: flex;
+  }
 }
 </style>

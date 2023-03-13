@@ -596,7 +596,7 @@ export default {
   justify-content: space-between;
 }
 .formWidth{
-  max-width: 500px !important;
+  max-width: 470px !important;
 }
 @media(max-width:1000px){
   .Header_body{
