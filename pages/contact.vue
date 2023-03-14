@@ -194,13 +194,13 @@
 
                 <div class="form-block calculator-grid">
                     <div class="d-flex flex-column">
-                    <el-form-item label="Phone" prop="phone" label-position="top">
+                    <el-form-item label="Phone" prop="nmb" label-position="top">
                         <the-mask
                         class="w-100"
                         type="text"
                         placeholder="(224) 300-5367"
                         :mask="['(###) ###-####', '(###) ###-####']"
-                        v-model="ruleForm.phone"
+                        v-model="ruleForm.nmb"
                         label-position="top"
                         />
                     </el-form-item>
@@ -255,7 +255,7 @@ export default {
         ruleForm:{
            first_name: '',
            email: '',
-           phone: '',
+           nmb: '',
            subject: '',
            commit: '',
         },
@@ -297,7 +297,7 @@ export default {
                 trigger: ['blur', 'change'],
                 },
             ],
-        phone: [
+          nmb: [
                 { required: true,min: 10, message: 'Required field', trigger: 'blur' }
                 ],
         subject: [
@@ -323,7 +323,7 @@ async  onSubmit(ruleForm){
            const res = await this.$axios.$post(`/application/create`,this.ruleForm);
            this.ruleForm.first_name ='',
            this.ruleForm.email = '',
-           this.ruleForm.phone = '',
+           this.ruleForm.nmb = '',
            this.ruleForm.subject ='',
            this.ruleForm.commit = ''
         } catch (error) {
