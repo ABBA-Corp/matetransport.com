@@ -13,7 +13,7 @@
 
               <div class="swgIcon">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                    width="80.0pt" height="80.0pt" viewBox="0 0 920.000000 1200.000000"
+                    width="60.0pt" height="60.0pt" viewBox="0 0 920.000000 1200.000000"
                     preserveAspectRatio="xMidYMid meet">
 
                     <g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
@@ -498,7 +498,7 @@
 
 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="120.0pt" height="90.0pt" viewBox="0 0 920.000000 1200.000000"
+ width="100.0pt" height="80.0pt" viewBox="0 0 920.000000 1200.000000"
  preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
@@ -559,7 +559,7 @@ c94 -258 171 -476 171 -482 0 -10 -76 -13 -344 -13 -190 0 -347 3 -349 8 -3 5
 
 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="200.000000pt" height="67.000000pt" viewBox="0 0 1200.000000 675.000000"
+ width="120.000000pt" height="67.000000pt" viewBox="0 0 1200.000000 675.000000"
  preserveAspectRatio="xMidYMid meet">
 
 <g transform="translate(0.000000,675.000000) scale(0.100000,-0.100000)"
@@ -773,9 +773,8 @@ export default {
 <style lang="scss" scoped>
 .icon{
   display: flex;
-  flex-direction: column;
   margin-top: 20px;
-  align-items: center;
+  justify-content: start;
 }
 .swgIcon{
   display: none;
@@ -797,6 +796,7 @@ export default {
 .swgIcon{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .footer-top{
   display: flex;

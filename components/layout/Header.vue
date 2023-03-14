@@ -41,15 +41,16 @@
               $store.state.translations["main.check_my_order"]
             }}</span></span
           >
-          <span style="margin-left: 10px; color:black" class="header-top-btn" @click="show('modal_support_chat')"
-            >
-
+            <div class="header-navbar-btn ButtonPhone">
+            <div class="leave-comment" >
               <a
             class="header-top-link"
             :href="`tel:${$store.state.staticInfo.nbm}`">
-            {{ $store.state.staticInfo.nbm }}
+            <span> {{ $store.state.staticInfo.nbm }}</span>
           </a>
-            </span>
+            </div>
+        </div>
+
         </div>
       </div>
     </div>
@@ -611,6 +612,14 @@ export default {
 };
 </script>
 <style lang="scss">
+.ButtonPhone{
+  background-color: #008aff;
+  border: 1px solid #008aff;
+  border-radius: 15px;
+  margin-left: 10px;
+  height: 30px !important;
+  overflow: hidden;
+}
 .ant-calendar-picker-container {
   z-index: 2006 !important;
 }

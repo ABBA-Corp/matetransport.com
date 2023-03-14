@@ -2098,8 +2098,9 @@ export default {
 }
 .FAQ {
   text-align: center;
-  margin-top: 20px;
+  margin: 50px 0px;
   font-weight: 700;
+  color:#056ac2;
 }
 @media (max-width: 700px) {
   .FAQ {
