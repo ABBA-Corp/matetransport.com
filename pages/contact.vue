@@ -247,7 +247,6 @@
 </template>
 <script>
 import moment from "moment";
-import { async } from "q";
 export default {
     data(){
     return{
@@ -265,19 +264,19 @@ export default {
             label: 'Select',
         },
         {
-            value: 'I want a free quote',
+            value: '0',
             label: 'I want a free quote',
         },
         {
-            value: 'I have an existing order',
+            value: '1',
             label: 'I have an existing order',
         },
         {
-            value: 'I want to book a shipment',
+            value: '2',
             label: 'I want to book a shipment',
         },
         {
-            value: 'Other questions',
+            value: '3',
             label: 'Other questions',
         },
         ],
@@ -320,7 +319,14 @@ async  onSubmit(ruleForm){
     this.$refs[ruleForm].validate( async (valid) => {
     if (valid) {
         try {
-           const res = await this.$axios.$post(`/application/create`,this.ruleForm);
+           const res = await this.$axios.$post(`/application/create`,
+           {
+            name: this.ruleForm.first_name,
+            email: this.ruleForm.email,
+            nmb: '+'+ this.ruleForm.nmb,
+            subject: this.ruleForm.subject,
+            commit: this.ruleForm.commit,
+          });
            this.ruleForm.first_name ='',
            this.ruleForm.email = '',
            this.ruleForm.nmb = '',

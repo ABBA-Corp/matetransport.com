@@ -1,14 +1,15 @@
 <template lang="html">
   <div class="wrapper">
     <client-only>
-    <div class="header-back"></div>
+    <div   class="header-back"></div>
       <el-drawer
         title="I am the title"
         :visible.sync="drawer"
         :with-header="false"
         direction="ltr"
+        style="height: 100vh"
       >
-        <div class="drawer_container">
+        <div  class="drawer_container">
           <div class="drawer_hadear">
             <img src="../assets/svg/image 2.svg" alt="" />
             <span @click="drawerHide">
@@ -254,7 +255,7 @@ export default {
 }
 .drawer_container {
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 .drawer_hadear {
   display: flex;
