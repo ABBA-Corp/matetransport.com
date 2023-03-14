@@ -1531,6 +1531,9 @@
           <h3 v-html="$store.state.translations['main.logistics_news']"></h3>
         </div>
       </div> -->
+      <div>
+        <h1 class="FAQ">F.A.Q</h1>
+      </div>
 
       <div class="colap">
         <div class="colap_1">
@@ -2080,6 +2083,15 @@ export default {
 }
 .activeReload {
   animation: reloadAnim 1s infinite linear;
+}
+.FAQ{
+  text-align: center;
+  margin-top: 20px;
+}
+@media(max-width: 700px){
+  .FAQ{
+  font-size: 25px;
+}
 }
 @keyframes reloadAnim {
   0% {

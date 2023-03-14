@@ -3,7 +3,7 @@
       <div class="Cards">
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img  class="Card_img" src="../../assets/images/Retro Telephone.G01 1.png" alt="">
+      <img  class="Card_img" src="../../static/Img/card1.png" alt="">
         <div class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title1`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text1`] }}</p>
@@ -11,7 +11,7 @@
       </div>
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../assets/images/image 1.png" alt="">
+      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../static/Img/card2.png" alt="">
         <div class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title2`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text2`] }}</p>
@@ -19,7 +19,7 @@
       </div>
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../assets/images/Car Flip Key.G15 1.png" alt="">
+      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../static/Img/card3.png" alt="">
         <div class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title3`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text3`] }}</p>
@@ -27,7 +27,7 @@
       </div>
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../assets/images/Car Blue.H15 1.png" alt="">
+      <img style="max-height: 250px" width="100%"  class="Card_img" src="../../static/Img/card4.png" alt="">
         <div class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title4`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text4`] }}</p>

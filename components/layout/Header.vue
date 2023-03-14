@@ -23,8 +23,8 @@
             </svg>
           </nuxt-link>
           <a
+            @click="$router.push('/contact')"
             class="header-top-link"
-            :href="`tel:${$store.state.staticInfo.nbm}`"
             >{{ $store.state.translations["main.contact_us"] }}
             <svg
               width="11"
