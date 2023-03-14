@@ -3,32 +3,32 @@
       <div class="Cards">
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img  class="Card_img" src="../../static/Img/card1.png" alt="">
-        <div style="height: 300px" class="Card_Divtext">
+      <img style="margin-top: -30px"  class="Card_img" src="../../static/Img/card1.png" alt="">
+        <div style="margin-top: -20px" class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title1`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text1`] }}</p>
         </div>
       </div>
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img style="max-height: 300px" width="100%"  class="Card_img" src="../../static/Img/card2.png" alt="">
-        <div  class="Card_Divtext">
+      <img style="margin-top: -30px"  class="Card_img" src="../../static/Img/card2.png" alt="">
+        <div style=" margin-top: -15px"  class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title2`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text2`] }}</p>
         </div>
       </div>
       <div  data-aos="fade-up"
             data-aos-duration="800"  class="Card"> 
-      <img style="height: 300px; margin-top: -60px" width="100%"  class="Card_img" src="../../static/Img/card3.png" alt="">
-        <div style=" margin-top: -60px" class="Card_Divtext">
+      <img style=" margin-top: -40px"   class="Card_img" src="../../static/Img/card3.png" alt="">
+        <div style=" margin-top: -10px" class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title3`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text3`] }}</p>
         </div>
       </div>
       <div data-aos="fade-up"
             data-aos-duration="800"  class="Card">
-      <img style="height: 300px; margin-top: -60px" width="100%"  class="Card_img" src="../../static/Img/card4.png" alt="">
-        <div style=" margin-top: -60px" class="Card_Divtext">
+      <img style=" margin-top: -40px"   class="Card_img" src="../../static/Img/card4.png" alt="">
+        <div style=" margin-top: -10px" class="Card_Divtext">
         <h1 class="Card_title">{{ $store.state.translations[`main.howWeWork_banner_title4`] }}</h1>
         <p class="Card_text">{{ $store.state.translations[`main.howWeWork_banner_text4`] }}</p>
         </div>
@@ -87,7 +87,6 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 &_img{
   width:100%;
-  height: 180px;
 }
 }
 </style>

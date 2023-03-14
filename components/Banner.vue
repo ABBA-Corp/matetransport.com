@@ -21,7 +21,7 @@
           action=""
         >
           <div class="form-title">
-            <h2>{{ $store.state.translations["main.banner_form_title"] }}</h2>
+            <h2 class="titleH2">{{ $store.state.translations["main.banner_form_title"] }}</h2>
           </div>
           <div v-if="active == 1">
             <div class="form-block">
@@ -638,6 +638,7 @@ export default {
   background: transparent !important;
 }
 
+
 .el-select-dropdown {
   background: #f4f8ff !important;
   border: 1px solid #d2dbec !important;
@@ -683,5 +684,10 @@ export default {
 }
 .disabledStep {
   pointer-events: none;
+}
+@media(max-width: 768px){
+  .titleH2{
+  width: 300px;
+}
 }
 </style>

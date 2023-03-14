@@ -1549,7 +1549,7 @@
         </div>
       </div> -->
       <div>
-        <h1 class="FAQ">F.A.Q</h1>
+        <h1 class="FAQ">Frequently Asked Questions</h1>
       </div>
 
       <div class="colap">
@@ -2099,6 +2099,7 @@ export default {
 .FAQ {
   text-align: center;
   margin-top: 20px;
+  font-weight: 700;
 }
 @media (max-width: 700px) {
   .FAQ {

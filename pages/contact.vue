@@ -209,8 +209,8 @@
 
                 <div class="form-block calculator-grid">
                     <div class="d-flex flex-column " >
-                    <el-form-item label="Subject"  prop="subject" label-position="top">
-                        <el-select style="width:100%;" v-model="ruleForm.subject" class="m-2" placeholder="Select" size="large">
+                    <el-form-item label="Subject" style="margin-left: -10px; margin-right: 7px"  prop="subject" label-position="top">
+                        <el-select style="width:100%; " v-model="ruleForm.subject" class="m-2" placeholder="Select" size="large">
                         <el-option
                         v-for="item in options"
                         :key="item.value"
