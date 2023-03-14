@@ -41,6 +41,15 @@
               $store.state.translations["main.check_my_order"]
             }}</span></span
           >
+          <span style="margin-left: 10px; color:black" class="header-top-btn" @click="show('modal_support_chat')"
+            >
+
+              <a
+            class="header-top-link"
+            :href="`tel:${$store.state.staticInfo.nbm}`">
+            {{ $store.state.staticInfo.nbm }}
+          </a>
+            </span>
         </div>
       </div>
     </div>
