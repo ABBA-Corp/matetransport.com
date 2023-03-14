@@ -1864,7 +1864,7 @@ export default {
 </script>
 <style lang="" src="vue-svg-map/dist/index.css"></style>
 
-<style lang="scss">
+<style scoped lang="scss">
 .el-collapse-item__header{
   cursor: pointer;
 }

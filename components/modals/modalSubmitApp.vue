@@ -17,7 +17,34 @@
               <span></span>
             </div>
             <div class="form-block-grid">
+
               <div class="modal_form_block form-block">
+                <label for="">{{
+                  $store.state.translations["modal.app_truckMark"]
+                }}</label>
+                <el-form-item prop="car_make" label-position="top">
+                  <el-select
+                    v-model="ruleForm.car_make"
+                    class="w-100"
+                    filterable
+                    :loading="!carMakes.length > 0"
+                    :placeholder="
+                    $store.state.translations['modal.app_truckMark']
+                    "
+                    @focus="__GET_CAR_MAKES()"
+                  >
+                  <el-option
+                      v-for="item in carMakes"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </div>
+
+              <!-- <div class="modal_form_block form-block">
                 <label for="">{{
                   $store.state.translations["modal.app_truckMark"]
                 }}</label>
@@ -42,7 +69,8 @@
                     </el-option>
                   </el-select>
                 </el-form-item>
-              </div>
+              </div> -->
+
               <div class="modal_form_block form-block">
                 <label for="">{{
                   $store.state.translations["modal.app_truckYear"]
@@ -65,6 +93,39 @@
                   </el-select>
                 </el-form-item>
               </div>
+
+
+              <div class="modal_form_block form-block">
+                <label for="">{{
+                  $store.state.translations["modal.app_truckModel"]
+                }}</label>
+                <el-form-item prop="vehicle" label-position="top">
+                  <el-select
+                    v-model="ruleForm.vehicle"
+                    class="w-100"
+                    filterable
+                    :placeholder="
+                    $store.state.translations['modal.app_truckModel']
+                    "
+                    :disabled="ruleForm.car_make == ''"
+                    loading-text="Loading..."
+                    popper-class=""
+                  >
+                  <el-option
+                      v-for="item in carModles"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </div>
+
+
+
+
+<!-- 
               <div class="modal_form_block form-block">
                 <label for="">{{
                   $store.state.translations["modal.app_truckModel"]
@@ -89,7 +150,7 @@
                     </el-option>
                   </el-select>
                 </el-form-item>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="modal_form_container">

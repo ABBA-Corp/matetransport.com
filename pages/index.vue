@@ -90,7 +90,6 @@ export default {
         "fetchGoogleApi/getReviews",
         this.$i18n.locale
       );
-      await console.log(this.reviews);
     },
   },
   components: {
