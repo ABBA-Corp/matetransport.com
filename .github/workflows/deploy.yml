@@ -22,7 +22,7 @@ jobs:
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       with:
         source: "."
-        target: "/home/front/meta-logistic"
+        target: "/home/front/matetransport.com"
 
     - name: Command using from script
       uses: appleboy/ssh-action@master
@@ -35,8 +35,8 @@ jobs:
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         script_stop: true
         script: |
-          git --work-tree=/home/front/meta-logistic --git-dir=/home/front/meta-logistic/.git clean -f .
-          npm --prefix /home/front/meta-logistic/ install /home/front/meta-logistic/
-          npm --prefix /home/front/meta-logistic/ run build
+          git --work-tree=/home/front/matetransport.com --git-dir=/home/front/matetransport.com/.git clean -f .
+          npm --prefix /home/front/matetransport.com/ install /home/front/matetransport.com/
+          npm --prefix /home/front/matetransport.com/ run build
           sh /home/devops/matelog_front.sh "${{ github.event.head_commit.message }}"
           pm2 reload matetransport.com
