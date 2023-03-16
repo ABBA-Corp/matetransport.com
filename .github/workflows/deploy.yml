@@ -36,7 +36,7 @@ jobs:
         script_stop: true
         script: |
           git --work-tree=/home/front/matetransport.com --git-dir=/home/front/matetransport.com/.git clean -f .
-          npm --prefix /home/front/matetransport.com/ install /home/front/matetransport.com/
-          npm --prefix /home/front/matetransport.com/ run build
+          yarn --cwd /home/front/matetransport.com
+          yarn --cwd /home/front/matetransport.com run build
           sh /home/devops/matelog_front.sh "${{ github.event.head_commit.message }}"
           pm2 reload matetransport.com
